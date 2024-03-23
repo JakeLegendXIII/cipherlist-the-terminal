@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34607.119
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CipherListTerminal", "CipherListTerminal\CipherListTerminal.csproj", "{AAD0A7E5-675C-4C71-A5BE-B37A4F14C21F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AAD0A7E5-675C-4C71-A5BE-B37A4F14C21F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAD0A7E5-675C-4C71-A5BE-B37A4F14C21F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAD0A7E5-675C-4C71-A5BE-B37A4F14C21F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAD0A7E5-675C-4C71-A5BE-B37A4F14C21F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D84EB8CA-DB40-4A78-8714-EFFB3BAD06EB}
+	EndGlobalSection
+EndGlobal
