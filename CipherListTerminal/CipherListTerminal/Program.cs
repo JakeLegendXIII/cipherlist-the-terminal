@@ -1,3 +1,3 @@
 ﻿
-using var game = new CipherListTerminal.Game1();
+using var game = new CipherListTerminal.MainGame();
 game.Run();
