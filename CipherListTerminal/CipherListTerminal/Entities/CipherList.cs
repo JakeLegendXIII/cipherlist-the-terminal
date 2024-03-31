@@ -17,6 +17,7 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
 		{
+
 		}
 
 		public void Update(GameTime gameTime)
