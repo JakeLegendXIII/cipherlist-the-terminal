@@ -44,6 +44,9 @@ namespace CipherListTerminal
 					matrix[i, j] = possibleValues[randomIndex];
 				}
 			}
+
+			// Create the target CipherLists using the possibleValues
+
 		}
 
 		protected override void Update(GameTime gameTime)
