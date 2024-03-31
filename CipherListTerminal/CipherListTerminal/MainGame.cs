@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using CipherListTerminal.Entities;
 using System;
 
 namespace CipherListTerminal
@@ -8,12 +9,11 @@ namespace CipherListTerminal
 	public class MainGame : Game
 	{
 		private GraphicsDeviceManager _graphics;
-		private SpriteBatch _spriteBatch;
-		string[,] matrix = new string[6, 6];
+		private SpriteBatch _spriteBatch;		
 		string[] possibleValues = { "1C", "55", "BD", "FF", "E9" };
 
 		private SpriteFont _font;
-		private Random _random = new Random();
+		private PuzzleMatrix _matrix;
 
 		public MainGame()
 		{
@@ -35,15 +35,8 @@ namespace CipherListTerminal
 
 			_font = Content.Load<SpriteFont>("TestFont");
 
-			// Initialize the matrix
-			for (int i = 0; i < 6; i++)
-			{
-				for (int j = 0; j < 6; j++)
-				{
-					int randomIndex = _random.Next(0, possibleValues.Length - 1);
-					matrix[i, j] = possibleValues[randomIndex];
-				}
-			}
+			// Create the starting Matrix
+			_matrix = new PuzzleMatrix(_font, possibleValues);
 
 			// Create the target CipherLists using the possibleValues
 
@@ -65,16 +58,7 @@ namespace CipherListTerminal
 
 			_spriteBatch.Begin();
 
-			// Draw the matrix
-			for (int i = 0; i < 6; i++)
-			{
-				for (int j = 0; j < 6; j++)
-				{
-					string text = matrix[i, j];
-					Vector2 position = new Vector2(100 + j * 50, 100 + i * 50);
-					_spriteBatch.DrawString(_font,text, position, Color.White);
-				}
-			}
+			_matrix.Draw(_spriteBatch, gameTime);
 
 			_spriteBatch.End();
 
