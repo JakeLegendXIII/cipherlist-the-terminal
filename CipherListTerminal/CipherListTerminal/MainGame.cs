@@ -14,6 +14,9 @@ namespace CipherListTerminal
 
 		private SpriteFont _font;
 		private PuzzleMatrix _matrix;
+		private CipherList _targetList1;
+		private CipherList _targetList2;
+		private CipherList _targetList3;
 
 		public MainGame()
 		{
@@ -39,7 +42,7 @@ namespace CipherListTerminal
 			_matrix = new PuzzleMatrix(_font, possibleValues);
 
 			// Create the target CipherLists using the possibleValues
-
+			_targetList1 = new CipherList(possibleValues, 10);
 		}
 
 		protected override void Update(GameTime gameTime)

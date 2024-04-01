@@ -7,12 +7,17 @@ namespace CipherListTerminal.Entities
 	{
 		public int DrawOrder => 0;
 		public int PointValue { get; private set; }
+		public int NumberOfValues { get; private set; }
 		public string[] CipherListValues { get; private set; }
 
-		public CipherList(string[] cipherListValues, int pointValue)
+		private string[] _possibleValues;
+
+		public CipherList(string[] cipherListValues, int pointValue, int numberOfValues, string[] possibleValues)
 		{
 			CipherListValues = cipherListValues;
 			PointValue = pointValue;
+			NumberOfValues = numberOfValues;
+			_possibleValues = possibleValues;
 		}
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
