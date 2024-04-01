@@ -42,7 +42,9 @@ namespace CipherListTerminal
 			_matrix = new PuzzleMatrix(_font, possibleValues);
 
 			// Create the target CipherLists using the possibleValues
-			_targetList1 = new CipherList(300, 3, possibleValues, _font);
+			_targetList1 = new CipherList(_font, possibleValues, 3, 300, 1);
+			_targetList2 = new CipherList(_font, possibleValues, 4, 450, 2);
+			_targetList3 = new CipherList(_font, possibleValues, 5, 700, 3);
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -63,6 +65,8 @@ namespace CipherListTerminal
 
 			_matrix.Draw(_spriteBatch, gameTime);
 			_targetList1.Draw(_spriteBatch, gameTime);
+			_targetList2.Draw(_spriteBatch, gameTime);
+			_targetList3.Draw(_spriteBatch, gameTime);
 
 			_spriteBatch.End();
 

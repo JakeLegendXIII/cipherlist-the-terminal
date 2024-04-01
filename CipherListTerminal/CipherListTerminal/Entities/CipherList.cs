@@ -14,14 +14,17 @@ namespace CipherListTerminal.Entities
 		private string[] _possibleValues;
 		private Random _random = new Random();
 		private SpriteFont _font;
+		private int _targetNumber;
 
-		public CipherList(int pointValue, int numberOfValues, string[] possibleValues, SpriteFont font)
+		public CipherList(SpriteFont font, string[] possibleValues, int numberOfValues, int pointValue,
+			int targetNumber)
 		{
 			PointValue = pointValue;
 			NumberOfValues = numberOfValues;
 			CipherListValues = new string[NumberOfValues];
 			_possibleValues = possibleValues;
 			_font = font;
+			_targetNumber = targetNumber;
 
 			// Initialize the CipherList
 			for (int i = 0; i < NumberOfValues; i++)
@@ -37,9 +40,11 @@ namespace CipherListTerminal.Entities
 			for (int i = 0; i < NumberOfValues; i++)
 			{
 				string text = CipherListValues[i];
-				Vector2 position = new Vector2(500 + i * 50, 100);
+				Vector2 position = new Vector2(450 + i * 50, 100 + (_targetNumber * 50));
 				spriteBatch.DrawString(_font, text, position, Color.White);
 			}
+
+			spriteBatch.DrawString(_font, PointValue.ToString() + " POINTS", new Vector2(700, 100 + (_targetNumber * 50)), Color.White);
 		}
 
 		public void Update(GameTime gameTime)
