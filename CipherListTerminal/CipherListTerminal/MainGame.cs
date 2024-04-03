@@ -59,6 +59,8 @@ namespace CipherListTerminal
 
 		protected override void Draw(GameTime gameTime)
 		{
+			// Add RenterTarget2D to allow screen resizing
+			
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 
 			_spriteBatch.Begin();
