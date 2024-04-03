@@ -9,7 +9,11 @@ namespace CipherListTerminal
 	public class MainGame : Game
 	{
 		private GraphicsDeviceManager _graphics;
-		private SpriteBatch _spriteBatch;		
+		private SpriteBatch _spriteBatch;
+
+		private int _nativeWidth = 1280;
+		private int _nativeHeight = 800;
+
 		string[] possibleValues = { "1C", "55", "BD", "FF", "E9" };
 
 		private SpriteFont _font;
@@ -22,6 +26,13 @@ namespace CipherListTerminal
 		{
 			_graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
+
+			_graphics.PreferredBackBufferWidth = _nativeWidth;
+			_graphics.PreferredBackBufferHeight = _nativeHeight;
+			_graphics.ApplyChanges();
+
+
+			Window.AllowUserResizing = true;
 			IsMouseVisible = true;
 		}
 
@@ -63,7 +74,7 @@ namespace CipherListTerminal
 			
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 
-			_spriteBatch.Begin();
+			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
 			_matrix.Draw(_spriteBatch, gameTime);
 			_targetList1.Draw(_spriteBatch, gameTime);
