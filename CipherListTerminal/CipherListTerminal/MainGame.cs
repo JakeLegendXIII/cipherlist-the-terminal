@@ -10,6 +10,7 @@ namespace CipherListTerminal
 	{
 		private GraphicsDeviceManager _graphics;
 		private SpriteBatch _spriteBatch;
+		private RenderTarget2D _renderTarget;
 
 		private int _nativeWidth = 1280;
 		private int _nativeHeight = 800;
@@ -47,6 +48,8 @@ namespace CipherListTerminal
 		{
 			_spriteBatch = new SpriteBatch(GraphicsDevice);
 
+			_renderTarget = new RenderTarget2D(GraphicsDevice, _nativeWidth, _nativeHeight);
+
 			_font = Content.Load<SpriteFont>("TestFont");
 
 			// Create the starting Matrix
@@ -69,10 +72,11 @@ namespace CipherListTerminal
 		}
 
 		protected override void Draw(GameTime gameTime)
-		{
-			// Add RenterTarget2D to allow screen resizing
-			
+		{						
 			GraphicsDevice.Clear(Color.CornflowerBlue);
+
+			// Add RenterTarget2D to allow screen resizing
+			//GraphicsDevice.SetRenderTarget(_renderTarget);
 
 			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
@@ -81,6 +85,12 @@ namespace CipherListTerminal
 			_targetList2.Draw(_spriteBatch, gameTime);
 			_targetList3.Draw(_spriteBatch, gameTime);
 
+			_spriteBatch.End();
+
+			GraphicsDevice.SetRenderTarget(null);
+
+			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+			_spriteBatch.Draw(_renderTarget, new Rectangle(0, 0, _nativeWidth, _nativeHeight), Color.White);
 			_spriteBatch.End();
 
 			base.Draw(gameTime);
