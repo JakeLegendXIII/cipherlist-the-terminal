@@ -53,6 +53,8 @@ namespace CipherListTerminal.Entities
 
 			if (highlightColumn >= 0)
 			{
+				// Currently an issue where it does not dynamically scale with the matrix
+				// Need the mouse position to know about the RenderTarget2D position
 				Rectangle highlightRectangle = new Rectangle(startX + highlightColumn * cellWidth, startY, cellWidth, cellHeight * 6);
 				_spriteBatch.Draw(_highlightTexture, highlightRectangle, highlightColor);
 			}
