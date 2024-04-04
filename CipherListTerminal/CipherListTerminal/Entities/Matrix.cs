@@ -11,6 +11,8 @@ namespace CipherListTerminal.Entities
 		private string[] _possibleValues;
 		private SpriteFont _font;
 
+		private bool _currentlyVertical = true;
+
 		private Random _random = new Random();
 
 		public PuzzleMatrix(SpriteFont font, string[] possibleValues)
