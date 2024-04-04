@@ -20,6 +20,7 @@ namespace CipherListTerminal
 		string[] possibleValues = { "1C", "55", "BD", "FF", "E9" };
 
 		private SpriteFont _font;
+		private TerminalBuffer _terminalBuffer;
 		private PuzzleMatrix _matrix;
 		private CipherList _targetList1;
 		private CipherList _targetList2;
@@ -56,6 +57,8 @@ namespace CipherListTerminal
 
 			_font = Content.Load<SpriteFont>("TestFont");
 
+			_terminalBuffer = new TerminalBuffer(_font);
+
 			// Create the starting Matrix
 			_matrix = new PuzzleMatrix(_font, possibleValues);
 
@@ -85,6 +88,7 @@ namespace CipherListTerminal
 			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
 			_matrix.Draw(_spriteBatch, gameTime);
+			_terminalBuffer.Draw(_spriteBatch, gameTime);
 			_targetList1.Draw(_spriteBatch, gameTime);
 			_targetList2.Draw(_spriteBatch, gameTime);
 			_targetList3.Draw(_spriteBatch, gameTime);
