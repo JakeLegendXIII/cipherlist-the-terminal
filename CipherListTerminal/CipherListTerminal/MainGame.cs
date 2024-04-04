@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using CipherListTerminal.Entities;
 using System;
+using CipherListTerminal.Input;
 
 namespace CipherListTerminal
 {
@@ -25,6 +26,8 @@ namespace CipherListTerminal
 		private CipherList _targetList1;
 		private CipherList _targetList2;
 		private CipherList _targetList3;
+
+		private Texture2D _highlightTexture;
 
 		public MainGame()
 		{
@@ -55,12 +58,15 @@ namespace CipherListTerminal
 
 			_renderTarget = new RenderTarget2D(GraphicsDevice, _nativeWidth, _nativeHeight);
 
+			_highlightTexture = new Texture2D(GraphicsDevice, 1, 1);
+			_highlightTexture.SetData(new Color[] { Color.White });
+
 			_font = Content.Load<SpriteFont>("TestFont");
 
 			_terminalBuffer = new TerminalBuffer(_font);
 
 			// Create the starting Matrix
-			_matrix = new PuzzleMatrix(_font, possibleValues);
+			_matrix = new PuzzleMatrix(_font, possibleValues, _highlightTexture);
 
 			// Create the target CipherLists using the possibleValues
 			_targetList1 = new CipherList(_font, possibleValues, 3, 300, 1);
@@ -74,6 +80,7 @@ namespace CipherListTerminal
 				Exit();
 
 			// TODO: Add your update logic here
+			InputManager.Update();
 
 			base.Update(gameTime);
 		}

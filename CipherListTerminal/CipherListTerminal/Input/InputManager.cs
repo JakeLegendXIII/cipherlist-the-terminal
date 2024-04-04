@@ -13,9 +13,9 @@ namespace CipherListTerminal.Input
 			mouseState = Mouse.GetState();
 		}
 
-		public static Vector2 GetMousePosition()
+		public static MouseState GetMousePosition()
 		{
-			return new Vector2(mouseState.X, mouseState.Y);
+			return mouseState;
 		}
 	}
 }

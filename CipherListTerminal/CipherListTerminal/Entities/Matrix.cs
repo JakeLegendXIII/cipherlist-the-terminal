@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CipherListTerminal.Input;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 
 namespace CipherListTerminal.Entities
@@ -10,15 +12,19 @@ namespace CipherListTerminal.Entities
 		private string[,] _matrix = new string[6, 6];
 		private string[] _possibleValues;
 		private SpriteFont _font;
+		private Texture2D _highlightTexture;
 
 		private bool _currentlyVertical = true;
 
 		private Random _random = new Random();
+		// Highlight color
+		Color highlightColor = new Color(255, 255, 0, 128); // Semi-transparent yellow
 
-		public PuzzleMatrix(SpriteFont font, string[] possibleValues)
+		public PuzzleMatrix(SpriteFont font, string[] possibleValues, Texture2D highlightTexture)
 		{
 			_font = font;
 			_possibleValues = possibleValues;
+			_highlightTexture = highlightTexture;
 
 			// Initialize the matrix
 			for (int i = 0; i < 6; i++)
@@ -33,6 +39,24 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch _spriteBatch, GameTime gameTime)
 		{
+			int cellWidth = 50;
+			int cellHeight = 50;
+			int startX = 100;
+			int startY = 100;
+
+			int highlightColumn = -1;
+			MouseState mouseState = InputManager.GetMousePosition();
+			if (mouseState.X >= startX && mouseState.X < startX + 6 * cellWidth)
+			{
+				highlightColumn = (mouseState.X - startX) / cellWidth;
+			}
+
+			if (highlightColumn >= 0)
+			{
+				Rectangle highlightRectangle = new Rectangle(startX + highlightColumn * cellWidth, startY, cellWidth, cellHeight * 6);
+				_spriteBatch.Draw(_highlightTexture, highlightRectangle, highlightColor);
+			}
+
 			// Draw the matrix
 			for (int i = 0; i < 6; i++)
 			{
