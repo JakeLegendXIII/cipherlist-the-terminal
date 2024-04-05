@@ -47,8 +47,8 @@ namespace CipherListTerminal.Entities
 			int highlightColumn = -1;
 			MouseState mouseState = InputManager.GetMousePosition();
 
-			Vector2 transformedMousePosition = new Vector2((mouseState.X - (renderTarget.X + 110)) / scale,
-														(mouseState.Y - (renderTarget.Y + 110)) / scale);
+			Vector2 transformedMousePosition = new Vector2((mouseState.X - (renderTarget.X + 100)) / scale,
+														(mouseState.Y - (renderTarget.Y + 100)) / scale);
 
 			if (transformedMousePosition.X >= 0 && transformedMousePosition.X < 6 * cellWidth)
 			{
