@@ -13,6 +13,7 @@ namespace CipherListTerminal
 		private SpriteBatch _spriteBatch;
 		private RenderTarget2D _renderTarget;
 		private Rectangle _renderDestination;
+		private float _scale = 1f;
 
 		private int _nativeWidth = 1280;
 		private int _nativeHeight = 800;
@@ -80,7 +81,7 @@ namespace CipherListTerminal
 				Exit();
 
 			// TODO: Add your update logic here
-			InputManager.Update();
+			InputManager.Update(_renderDestination);
 
 			base.Update(gameTime);
 		}
@@ -94,7 +95,7 @@ namespace CipherListTerminal
 
 			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-			_matrix.Draw(_spriteBatch, gameTime);
+			_matrix.Draw(_spriteBatch, gameTime, _renderDestination, _scale);
 			_terminalBuffer.Draw(_spriteBatch, gameTime);
 			_targetList1.Draw(_spriteBatch, gameTime);
 			_targetList2.Draw(_spriteBatch, gameTime);
@@ -131,13 +132,13 @@ namespace CipherListTerminal
 			float scaleX = (float)size.X / _renderTarget.Width;
 			float scaleY = (float)size.Y / _renderTarget.Height;
 
-			float scale = Math.Min(scaleX, scaleY);
+			_scale = Math.Min(scaleX, scaleY);
 
-			_renderDestination.Width = (int)(_renderTarget.Width * scale);
-			_renderDestination.Height = (int)(_renderTarget.Height * scale);
+			_renderDestination.Width = (int)(_renderTarget.Width * _scale);
+			_renderDestination.Height = (int)(_renderTarget.Height * _scale);
 
 			_renderDestination.X = (size.X - _renderDestination.Width) / 2;
-			_renderDestination.Y = (size.Y - _renderDestination.Height) / 2;
+			_renderDestination.Y = (size.Y - _renderDestination.Height) / 2;			
 		}
 	}
 }

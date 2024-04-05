@@ -37,7 +37,7 @@ namespace CipherListTerminal.Entities
 			}
 		}
 
-		public void Draw(SpriteBatch _spriteBatch, GameTime gameTime)
+		public void Draw(SpriteBatch _spriteBatch, GameTime gameTime, Rectangle renderTarget, float scale)
 		{
 			int cellWidth = 50;
 			int cellHeight = 50;
@@ -46,9 +46,13 @@ namespace CipherListTerminal.Entities
 
 			int highlightColumn = -1;
 			MouseState mouseState = InputManager.GetMousePosition();
-			if (mouseState.X >= startX && mouseState.X < startX + 6 * cellWidth)
+
+			Vector2 transformedMousePosition = new Vector2((mouseState.X - (renderTarget.X + 110)) / scale,
+														(mouseState.Y - (renderTarget.Y + 110)) / scale);
+
+			if (transformedMousePosition.X >= 0 && transformedMousePosition.X < 6 * cellWidth)
 			{
-				highlightColumn = (mouseState.X - startX) / cellWidth;
+				highlightColumn = (int)(transformedMousePosition.X / cellWidth);
 			}
 
 			if (highlightColumn >= 0)
