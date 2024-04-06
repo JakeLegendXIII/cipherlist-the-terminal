@@ -12,7 +12,6 @@ namespace CipherListTerminal.Entities
 		private string[,] _matrix = new string[6, 6];
 		private string[] _possibleValues;
 		private SpriteFont _font;
-		private Texture2D _highlightTexture;
 
 		private bool _currentlyVertical = true;
 
@@ -20,11 +19,10 @@ namespace CipherListTerminal.Entities
 		// Highlight color
 		Color highlightColor = new Color(255, 255, 0, 128); // Semi-transparent yellow
 
-		public PuzzleMatrix(SpriteFont font, string[] possibleValues, Texture2D highlightTexture)
+		public PuzzleMatrix(SpriteFont font, string[] possibleValues)
 		{
 			_font = font;
 			_possibleValues = possibleValues;
-			_highlightTexture = highlightTexture;
 
 			// Initialize the matrix
 			for (int i = 0; i < 6; i++)
@@ -59,8 +57,8 @@ namespace CipherListTerminal.Entities
 
 			if (highlightColumn >= 0)
 			{
-				Rectangle highlightRectangle = new Rectangle(startX + highlightColumn * cellWidth, startY, cellWidth, cellHeight * 6);
-				_spriteBatch.Draw(_highlightTexture, highlightRectangle, highlightColor);
+				Rectangle highlightRectangle = new Rectangle((startX + highlightColumn * cellWidth) - (int)(10 * scale), startY - (int)(10 * scale), cellWidth, cellHeight * 6);
+				RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);				
 			}
 
 			// Draw the matrix
