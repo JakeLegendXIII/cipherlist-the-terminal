@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using CipherListTerminal.Entities;
 using System;
 using CipherListTerminal.Input;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace CipherListTerminal
 {
@@ -77,7 +78,7 @@ namespace CipherListTerminal
 				Exit();
 
 			// TODO: Add your update logic here
-			InputManager.Update(_renderDestination);
+			InputManager.Update(_renderDestination, _scale);
 
 			base.Update(gameTime);
 		}
@@ -91,11 +92,12 @@ namespace CipherListTerminal
 
 			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-			_matrix.Draw(_spriteBatch, gameTime, _renderDestination, _scale);
-			_terminalBuffer.Draw(_spriteBatch, gameTime);
-			_targetList1.Draw(_spriteBatch, gameTime);
-			_targetList2.Draw(_spriteBatch, gameTime);
-			_targetList3.Draw(_spriteBatch, gameTime);
+			_spriteBatch.DrawString(_font, "Scale: " + _scale.ToString(), new Vector2(600, 50), Color.White);
+			_matrix.Draw(_spriteBatch, gameTime, _scale);
+			_terminalBuffer.Draw(_spriteBatch, gameTime, _scale);
+			_targetList1.Draw(_spriteBatch, gameTime, _scale);
+			_targetList2.Draw(_spriteBatch, gameTime, _scale);
+			_targetList3.Draw(_spriteBatch, gameTime, _scale);
 
 			_spriteBatch.End();
 

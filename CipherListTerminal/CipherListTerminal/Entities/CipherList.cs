@@ -35,7 +35,7 @@ namespace CipherListTerminal.Entities
 			
 		}
 
-		public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
 			for (int i = 0; i < NumberOfValues; i++)
 			{

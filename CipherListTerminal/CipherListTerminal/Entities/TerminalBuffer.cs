@@ -16,7 +16,7 @@ namespace CipherListTerminal.Entities
 			_font = font;
 		}
 
-		public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
 			spriteBatch.DrawString(_font, Text, new Vector2(20, 10), Color.White);
 		}
