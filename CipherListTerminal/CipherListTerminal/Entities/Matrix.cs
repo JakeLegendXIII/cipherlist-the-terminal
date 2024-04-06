@@ -45,16 +45,19 @@ namespace CipherListTerminal.Entities
 			int highlightColumn = -1;
 
 			Vector2 transformedMousePosition = InputManager.GetTransformedMousePosition();
-			
-			// Need to also handle Y so it deselects when you move off the matrix
+						
 			if (transformedMousePosition.X >= 0 && transformedMousePosition.X < 6 * cellWidth)
 			{
-				highlightColumn = (int)(transformedMousePosition.X / cellWidth);
+				if (transformedMousePosition.Y >= 0 && transformedMousePosition.Y < 6 * cellHeight)
+				{
+					highlightColumn = (int)(transformedMousePosition.X / cellWidth);
+				}					
 			}
 
 			if (highlightColumn >= 0)
 			{
-				Rectangle highlightRectangle = new Rectangle((startX + highlightColumn * cellWidth) - (int)(10 * scale), startY - (int)(10 * scale), cellWidth, cellHeight * 6);
+				Rectangle highlightRectangle = new Rectangle((startX + highlightColumn * cellWidth) - (int)(10 * scale), 
+					startY - (int)(10 * scale), cellWidth, cellHeight * 6);
 				RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);				
 			}
 
