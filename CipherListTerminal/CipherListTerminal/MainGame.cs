@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Input;
 using CipherListTerminal.Entities;
 using System;
 using CipherListTerminal.Input;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace CipherListTerminal
 {
@@ -121,7 +120,6 @@ namespace CipherListTerminal
 				_isResizing = false;
 			}
 		}
-
 
 		private void CalculateRenderDestination()
 		{
