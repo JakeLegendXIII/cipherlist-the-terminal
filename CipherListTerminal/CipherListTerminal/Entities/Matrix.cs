@@ -1,5 +1,6 @@
 ﻿using CipherListTerminal.Input;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -15,7 +16,7 @@ namespace CipherListTerminal.Entities
 
 		public bool CurrentlyVertical { get; private set; }
 
-		private string _currentlySelectedValue = "__";
+		public string CurrentlySelectedValue { get; private set; } = "__";
 
 		private Random _random = new Random();
 		private int _cellWidth = 50;	
@@ -98,7 +99,7 @@ namespace CipherListTerminal.Entities
 
 			_spriteBatch.DrawString(_font, "CurrentlyVertical: " + CurrentlyVertical, new Vector2(100, 400), Color.White);
 			_spriteBatch.DrawString(_font, "ScaleValue: " + GetScaleValue(scale), new Vector2(100, 450), Color.White);
-			_spriteBatch.DrawString(_font, "CurrentlySelectedValue: " + _currentlySelectedValue, new Vector2(100, 500), Color.White);
+			_spriteBatch.DrawString(_font, "CurrentlySelectedValue: " + CurrentlySelectedValue, new Vector2(100, 500), Color.White);
 		}
 
 		public void Update(GameTime gameTime)
@@ -110,7 +111,10 @@ namespace CipherListTerminal.Entities
 			{
 				CurrentlyVertical = !CurrentlyVertical;
 
+				int columnIndex = (int)(mouseState.X / _cellWidth);
+				int rowIndex = (int)(mouseState.Y / _cellHeight);
 
+				CurrentlySelectedValue = _matrix[rowIndex, columnIndex];
 			}
 		}		
 
