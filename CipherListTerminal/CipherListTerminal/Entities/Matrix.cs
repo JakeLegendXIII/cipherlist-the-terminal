@@ -15,6 +15,11 @@ namespace CipherListTerminal.Entities
 		private bool _currentlyVertical = false;
 
 		private Random _random = new Random();
+		private int _cellWidth = 50;	
+		private int _cellHeight = 50;
+		private int _startX = 100;
+		private int _startY = 100;
+
 		// Highlight color
 		Color highlightColor = new Color(255, 255, 0, 128); // Semi-transparent yellow
 
@@ -36,26 +41,21 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch _spriteBatch, GameTime gameTime, float scale)
 		{
-			int cellWidth = 50;
-			int cellHeight = 50;
-			int startX = 100;
-			int startY = 100;
-
 			int highlightColumn = -1;
 
 			Vector2 transformedMousePosition = InputManager.GetTransformedMousePosition();
 						
-			if (transformedMousePosition.X >= 0 && transformedMousePosition.X < 6 * cellWidth)
+			if (transformedMousePosition.X >= 0 && transformedMousePosition.X < 6 * _cellWidth)
 			{
-				if (transformedMousePosition.Y >= 0 && transformedMousePosition.Y < 6 * cellHeight)
+				if (transformedMousePosition.Y >= 0 && transformedMousePosition.Y < 6 * _cellHeight)
 				{
 					if (_currentlyVertical)
 					{
-						highlightColumn = (int)(transformedMousePosition.X / cellWidth);
+						highlightColumn = (int)(transformedMousePosition.X / _cellWidth);
 					}
 					else
 					{
-						highlightColumn = (int)(transformedMousePosition.Y / cellHeight);
+						highlightColumn = (int)(transformedMousePosition.Y / _cellHeight);
 					}					
 				}					
 			}
@@ -65,13 +65,13 @@ namespace CipherListTerminal.Entities
 				Rectangle highlightRectangle;
 				if (_currentlyVertical)
 				{
-					highlightRectangle = new Rectangle((startX + highlightColumn * cellWidth) - (int)(10 * scale),
-					startY - (int)(10 * scale), cellWidth, cellHeight * 6);
+					highlightRectangle = new Rectangle((_startX + highlightColumn * _cellWidth) - (int)(10 * scale),
+					_startY - (int)(10 * scale), _cellWidth, _cellHeight * 6);
 				}
 				else
 				{
-					highlightRectangle = new Rectangle(startX - (int)(10 * scale),
-						(startY + highlightColumn * cellHeight) - (int)(10 * scale), cellWidth * 6, cellHeight);
+					highlightRectangle = new Rectangle(_startX - (int)(10 * scale),
+						(_startY + highlightColumn * _cellHeight) - (int)(10 * scale), _cellWidth * 6, _cellHeight);
 				}
 				
 				RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);				
