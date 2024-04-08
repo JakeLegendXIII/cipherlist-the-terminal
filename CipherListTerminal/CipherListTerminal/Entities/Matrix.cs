@@ -98,11 +98,14 @@ namespace CipherListTerminal.Entities
 		}
 
 		public void Update(GameTime gameTime)
-		{			
-			if (InputManager.IsLeftMouseButtonDown())
+		{		
+			var mouseState = InputManager.GetTransformedMousePosition();
+			if (InputManager.IsLeftMouseButtonDown() &&
+				 mouseState.X >= 0 && mouseState.X <_matrixWidth &&
+				 mouseState.Y >= 0 && mouseState.Y < _matrixHeight)
 			{
 				CurrentlyVertical = !CurrentlyVertical;
 			}
-		}
+		}		
 	}
 }
