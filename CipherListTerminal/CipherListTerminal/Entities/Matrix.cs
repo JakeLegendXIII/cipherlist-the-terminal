@@ -71,13 +71,13 @@ namespace CipherListTerminal.Entities
 				Rectangle highlightRectangle;
 				if (CurrentlyVertical)
 				{
-					highlightRectangle = new Rectangle((_startX + highlightColumn * _cellWidth) - (int)(10 * scale),
-					_startY - (int)(10 * scale), _cellWidth, _matrixHeight);
+					highlightRectangle = new Rectangle((_startX + highlightColumn * _cellWidth) - GetScaleValue(scale),
+					_startY - GetScaleValue(scale), _cellWidth, _matrixHeight);
 				}
 				else
 				{
-					highlightRectangle = new Rectangle(_startX - (int)(10 * scale),
-						(_startY + highlightColumn * _cellHeight) - (int)(10 * scale), _matrixWidth, _cellHeight);
+					highlightRectangle = new Rectangle(_startX - GetScaleValue(scale),
+						(_startY + highlightColumn * _cellHeight) - GetScaleValue(scale), _matrixWidth, _cellHeight);
 				}
 				
 				RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);				
@@ -95,6 +95,7 @@ namespace CipherListTerminal.Entities
 			}
 
 			_spriteBatch.DrawString(_font, "CurrentlyVertical: " + CurrentlyVertical, new Vector2(100, 400), Color.White);
+			_spriteBatch.DrawString(_font, "ScaleValue: " + GetScaleValue(scale), new Vector2(100, 450), Color.White);
 		}
 
 		public void Update(GameTime gameTime)
@@ -107,5 +108,15 @@ namespace CipherListTerminal.Entities
 				CurrentlyVertical = !CurrentlyVertical;
 			}
 		}		
+
+		private int GetScaleValue(float scale)
+		{
+			if (scale == 1f)
+			{
+				return (int)(10 * 1.5);
+			}
+
+			return (int)(10 * scale);
+		}
 	}
 }
