@@ -65,6 +65,8 @@ namespace CipherListTerminal
 			// Create the starting Matrix
 			_matrix = new PuzzleMatrix(_font, possibleValues);
 
+			_matrix.MatrixSelectionEvent += HandleSelectedMatrixEvent;
+
 			// Create the target CipherLists using the possibleValues
 			_targetList1 = new CipherList(_font, possibleValues, 3, 300, 1);
 			_targetList2 = new CipherList(_font, possibleValues, 4, 450, 2);
@@ -136,6 +138,25 @@ namespace CipherListTerminal
 
 			_renderDestination.X = (size.X - _renderDestination.Width) / 2;
 			_renderDestination.Y = (size.Y - _renderDestination.Height) / 2;			
+		}
+
+
+		private void HandleSelectedMatrixEvent(string selectedValue)
+		{
+			_terminalBuffer.Text = ReplaceFirstOccurrence(_terminalBuffer.Text, "__", selectedValue);
+		}
+
+		public string ReplaceFirstOccurrence(string source, string find, string replace)
+		{
+			int place = source.IndexOf(find);
+			if (place < 0)
+			{
+				// If the substring is not found, return the original string
+				return source;
+			}
+			// Remove the substring from the original string and insert the new substring
+			string result = source.Remove(place, find.Length).Insert(place, replace);
+			return result;
 		}
 	}
 }

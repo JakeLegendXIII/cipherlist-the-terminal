@@ -18,6 +18,9 @@ namespace CipherListTerminal.Entities
 
 		public string CurrentlySelectedValue { get; private set; } = "__";
 
+		public delegate void MatrixSelectionEventHandler(string selectedValue);
+		public event MatrixSelectionEventHandler MatrixSelectionEvent;
+
 		private Random _random = new Random();
 		private int _cellWidth = 50;	
 		private int _cellHeight = 50;
@@ -115,6 +118,8 @@ namespace CipherListTerminal.Entities
 				int rowIndex = (int)(mouseState.Y / _cellHeight);
 
 				CurrentlySelectedValue = _matrix[rowIndex, columnIndex];
+
+				MatrixSelectionEvent?.Invoke(CurrentlySelectedValue);
 			}
 		}		
 
