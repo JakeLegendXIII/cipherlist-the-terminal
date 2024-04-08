@@ -12,7 +12,7 @@ namespace CipherListTerminal.Entities
 		private string[] _possibleValues;
 		private SpriteFont _font;
 
-		private bool _currentlyVertical = true;
+		private bool _currentlyVertical = false;
 
 		private Random _random = new Random();
 		// Highlight color
@@ -49,14 +49,31 @@ namespace CipherListTerminal.Entities
 			{
 				if (transformedMousePosition.Y >= 0 && transformedMousePosition.Y < 6 * cellHeight)
 				{
-					highlightColumn = (int)(transformedMousePosition.X / cellWidth);
+					if (_currentlyVertical)
+					{
+						highlightColumn = (int)(transformedMousePosition.X / cellWidth);
+					}
+					else
+					{
+						highlightColumn = (int)(transformedMousePosition.Y / cellHeight);
+					}					
 				}					
 			}
 
 			if (highlightColumn >= 0)
 			{
-				Rectangle highlightRectangle = new Rectangle((startX + highlightColumn * cellWidth) - (int)(10 * scale), 
+				Rectangle highlightRectangle;
+				if (_currentlyVertical)
+				{
+					highlightRectangle = new Rectangle((startX + highlightColumn * cellWidth) - (int)(10 * scale),
 					startY - (int)(10 * scale), cellWidth, cellHeight * 6);
+				}
+				else
+				{
+					highlightRectangle = new Rectangle(startX - (int)(10 * scale),
+						(startY + highlightColumn * cellHeight) - (int)(10 * scale), cellWidth * 6, cellHeight);
+				}
+				
 				RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);				
 			}
 
