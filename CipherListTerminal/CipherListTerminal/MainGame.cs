@@ -146,7 +146,7 @@ namespace CipherListTerminal
 			_terminalBuffer.Text = ReplaceFirstOccurrence(_terminalBuffer.Text, "__", selectedValue);
 		}
 
-		public string ReplaceFirstOccurrence(string source, string find, string replace)
+		private string ReplaceFirstOccurrence(string source, string find, string replace)
 		{
 			int place = source.IndexOf(find);
 			if (place < 0)
