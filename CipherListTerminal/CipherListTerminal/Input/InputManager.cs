@@ -22,6 +22,11 @@ namespace CipherListTerminal.Input
 			return mouseState;
 		}
 
+		public static bool IsLeftMouseButtonDown()
+		{
+			return mouseState.LeftButton == ButtonState.Pressed && lastMouseState.LeftButton != ButtonState.Pressed;
+		}
+
 		public static Vector2 GetTransformedMousePosition()
 		{
 			Vector2 transformedMousePosition = new Vector2((mouseState.X - (_renderTarget.X + (100 * _scale))) / _scale,

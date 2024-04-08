@@ -78,6 +78,7 @@ namespace CipherListTerminal
 
 			// TODO: Add your update logic here
 			InputManager.Update(_renderDestination, _scale);
+			_matrix.Update(gameTime);
 
 			base.Update(gameTime);
 		}

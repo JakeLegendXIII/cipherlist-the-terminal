@@ -93,13 +93,13 @@ namespace CipherListTerminal.Entities
 					_spriteBatch.DrawString(_font, text, position, Color.White);
 				}
 			}
+
+			_spriteBatch.DrawString(_font, "CurrentlyVertical: " + CurrentlyVertical, new Vector2(100, 400), Color.White);
 		}
 
 		public void Update(GameTime gameTime)
-		{
-			MouseState mouseState = InputManager.GetMousePosition();
-
-			if (mouseState.LeftButton == ButtonState.Pressed)
+		{			
+			if (InputManager.IsLeftMouseButtonDown())
 			{
 				CurrentlyVertical = !CurrentlyVertical;
 			}
