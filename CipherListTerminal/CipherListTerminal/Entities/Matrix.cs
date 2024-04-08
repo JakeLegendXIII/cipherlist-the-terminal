@@ -15,6 +15,8 @@ namespace CipherListTerminal.Entities
 
 		public bool CurrentlyVertical { get; private set; }
 
+		private string _currentlySelectedValue = "__";
+
 		private Random _random = new Random();
 		private int _cellWidth = 50;	
 		private int _cellHeight = 50;
@@ -96,6 +98,7 @@ namespace CipherListTerminal.Entities
 
 			_spriteBatch.DrawString(_font, "CurrentlyVertical: " + CurrentlyVertical, new Vector2(100, 400), Color.White);
 			_spriteBatch.DrawString(_font, "ScaleValue: " + GetScaleValue(scale), new Vector2(100, 450), Color.White);
+			_spriteBatch.DrawString(_font, "CurrentlySelectedValue: " + _currentlySelectedValue, new Vector2(100, 500), Color.White);
 		}
 
 		public void Update(GameTime gameTime)
@@ -106,6 +109,8 @@ namespace CipherListTerminal.Entities
 				 mouseState.Y >= 0 && mouseState.Y < _matrixHeight)
 			{
 				CurrentlyVertical = !CurrentlyVertical;
+
+
 			}
 		}		
 
