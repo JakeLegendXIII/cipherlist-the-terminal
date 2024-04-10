@@ -10,6 +10,7 @@ namespace CipherListTerminal.Entities
 		public int PointValue { get; private set; }
 		public int NumberOfValues { get; private set; }
 		public string[] CipherListValues { get; private set; }
+		public bool IsCompleted { get; set; } = false;
 
 		private string[] _possibleValues;
 		private Random _random = new Random();
@@ -37,14 +38,15 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
+			Color color = IsCompleted ? Color.Green : Color.White;			
 			for (int i = 0; i < NumberOfValues; i++)
 			{
 				string text = CipherListValues[i];
 				Vector2 position = new Vector2(450 + i * 50, 100 + (_targetNumber * 50));
-				spriteBatch.DrawString(_font, text, position, Color.White);
+				spriteBatch.DrawString(_font, text, position, color);
 			}
 
-			spriteBatch.DrawString(_font, PointValue.ToString() + " POINTS", new Vector2(700, 100 + (_targetNumber * 50)), Color.White);
+			spriteBatch.DrawString(_font, PointValue.ToString() + " POINTS", new Vector2(700, 100 + (_targetNumber * 50)), color);
 		}
 
 		public void Update(GameTime gameTime)

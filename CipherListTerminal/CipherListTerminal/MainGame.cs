@@ -144,6 +144,48 @@ namespace CipherListTerminal
 		private void HandleSelectedMatrixEvent(string selectedValue)
 		{
 			_terminalBuffer.Text = ReplaceFirstOccurrence(_terminalBuffer.Text, "__", selectedValue);
+
+			if (!_terminalBuffer.Text.StartsWith("__ __ __"))
+			{
+				if (!_targetList1.IsCompleted)
+				{
+					string cipher1Text = "";
+					foreach (string cipher in _targetList1.CipherListValues)
+					{
+						cipher1Text += cipher + " ";
+					}
+					if (_terminalBuffer.Text.Contains(cipher1Text))
+					{
+						_targetList1.IsCompleted = true;
+					}
+				}
+				
+				if (!_targetList2.IsCompleted)
+				{
+					string cipher2Text = "";
+					foreach (string cipher in _targetList2.CipherListValues)
+					{
+						cipher2Text += cipher + " ";
+					}
+					if (_terminalBuffer.Text.Contains(cipher2Text))
+					{
+						_targetList2.IsCompleted = true;
+					}
+				}
+
+				if (!_targetList3.IsCompleted)
+				{
+					string cipher3Text = "";
+					foreach (string cipher in _targetList3.CipherListValues)
+					{
+						cipher3Text += cipher + " ";
+					}
+					if (_terminalBuffer.Text.Contains(cipher3Text))
+					{
+						_targetList3.IsCompleted = true;
+					}
+				}
+			}
 		}
 
 		private string ReplaceFirstOccurrence(string source, string find, string replace)
