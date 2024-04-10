@@ -53,6 +53,10 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch _spriteBatch, GameTime gameTime, float scale)
 		{
+			// Need to highlight the recently selected row/column until it is clicked and then we need to
+			// rotate the highlight and have it stuck on that row/column until the next selection
+			// first Selection requires two vertical picks every other turn will rotate between vertical and horizontal
+
 			int highlightColumn = -1;
 
 			Vector2 transformedMousePosition = InputManager.GetTransformedMousePosition();
