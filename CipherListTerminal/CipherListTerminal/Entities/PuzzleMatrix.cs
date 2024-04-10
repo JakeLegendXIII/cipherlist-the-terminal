@@ -14,8 +14,6 @@ namespace CipherListTerminal.Entities
 		private string[] _possibleValues;
 		private SpriteFont _font;
 
-		public bool CurrentlyVertical { get; private set; }
-		public bool FirstSelectionMade { get; private set; } = true;
 		public MatrixState State { get; set; }
 
 		public string CurrentlySelectedValue { get; private set; } = "__";
@@ -37,8 +35,7 @@ namespace CipherListTerminal.Entities
 		public PuzzleMatrix(SpriteFont font, string[] possibleValues)
 		{
 			_font = font;
-			_possibleValues = possibleValues;
-			CurrentlyVertical = true;
+			_possibleValues = possibleValues;			
 			_matrixWidth = _cellWidth * 6;
 			_matrixHeight = _cellHeight * 6;
 			State = MatrixState.FirstSelection;
@@ -103,9 +100,8 @@ namespace CipherListTerminal.Entities
 				}
 			}
 
-			_spriteBatch.DrawString(_font, "CurrentlyVertical: " + CurrentlyVertical, new Vector2(100, 400), Color.White);
-			_spriteBatch.DrawString(_font, "ScaleValue: " + GetScaleValue(scale), new Vector2(100, 450), Color.White);
-			_spriteBatch.DrawString(_font, "CurrentlySelectedValue: " + CurrentlySelectedValue, new Vector2(100, 500), Color.White);
+			_spriteBatch.DrawString(_font, "State: " + State, new Vector2(100, 400), Color.White);
+			_spriteBatch.DrawString(_font, "ScaleValue: " + GetScaleValue(scale), new Vector2(100, 450), Color.White);			
 		}
 
 		public void Update(GameTime gameTime)
@@ -116,19 +112,16 @@ namespace CipherListTerminal.Entities
 				 mouseState.Y >= 0 && mouseState.Y < _matrixHeight)
 			{
 				if (State == MatrixState.FirstSelection)
-				{
-					FirstSelectionMade = false;
+				{					
 					State = MatrixState.Vertical;
 				}
 				else if (State == MatrixState.Vertical)
 				{
-					State = MatrixState.Horizontal;
-					CurrentlyVertical = !CurrentlyVertical;
+					State = MatrixState.Horizontal;					
 				}
 				else if (State == MatrixState.Horizontal)
 				{
-					State = MatrixState.Vertical;
-					CurrentlyVertical = !CurrentlyVertical;
+					State = MatrixState.Vertical;					
 				}									
 				
 				int columnIndex = (int)(mouseState.X / _cellWidth);
