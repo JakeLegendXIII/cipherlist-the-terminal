@@ -64,7 +64,7 @@ namespace CipherListTerminal.Entities
 			{
 				if (transformedMousePosition.Y >= 0 && transformedMousePosition.Y < _matrixHeight)
 				{
-					if (CurrentlyVertical)
+					if (State == MatrixState.Vertical || State == MatrixState.FirstSelection)
 					{
 						highlightColumn = (int)(transformedMousePosition.X / _cellWidth);
 					}
@@ -78,7 +78,7 @@ namespace CipherListTerminal.Entities
 			if (highlightColumn >= 0)
 			{
 				Rectangle highlightRectangle;
-				if (CurrentlyVertical)
+				if (State == MatrixState.Vertical || State == MatrixState.FirstSelection)
 				{
 					highlightRectangle = new Rectangle((_startX + highlightColumn * _cellWidth) - GetScaleValue(scale),
 					_startY - GetScaleValue(scale), _cellWidth, _matrixHeight);
