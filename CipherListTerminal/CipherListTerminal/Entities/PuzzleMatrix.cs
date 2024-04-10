@@ -83,36 +83,40 @@ namespace CipherListTerminal.Entities
 				}
 
 				if (highlightColumn >= 0)
-				{					
-					if (State == MatrixState.Vertical || State == MatrixState.FirstSelection)
-					{
-						highlightRectangle = new Rectangle((_startX + highlightColumn * _cellWidth) - GetScaleValue(scale),
-						_startY - GetScaleValue(scale), _cellWidth, _matrixHeight);
-					}
-					else
-					{
-						highlightRectangle = new Rectangle(_startX - GetScaleValue(scale),
-							(_startY + highlightColumn * _cellHeight) - GetScaleValue(scale), _matrixWidth, _cellHeight);
-					}
+				{
+
+					highlightRectangle = new Rectangle((_startX + highlightColumn * _cellWidth) - GetScaleValue(scale),
+					_startY - GetScaleValue(scale), _cellWidth, _matrixHeight);
+
+					//if (State == MatrixState.Vertical || State == MatrixState.FirstSelection)
+					//{
+					
+					//}
+					//else
+					//{
+					//	highlightRectangle = new Rectangle(_startX - GetScaleValue(scale),
+					//		(_startY + highlightColumn * _cellHeight) - GetScaleValue(scale), _matrixWidth, _cellHeight);
+					//}
 
 					RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);
 				}
 			}	
 			else if (State == MatrixState.Vertical)
 			{				
-				highlightColumn = _selectedRowIndex;
+				highlightColumn = _selectedColumnIndex;
 
-				highlightRectangle = new Rectangle(_startX - GetScaleValue(scale),
-							(_startY + highlightColumn * _cellHeight) - GetScaleValue(scale), _matrixWidth, _cellHeight);
+				highlightRectangle = new Rectangle((_startX + highlightColumn * _cellWidth) - GetScaleValue(scale),
+					_startY - GetScaleValue(scale), _cellWidth, _matrixHeight);
+
 
 				RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);
 			}
 			else if (State == MatrixState.Horizontal)
 			{
-				highlightColumn = _selectedColumnIndex;
+				highlightColumn = _selectedRowIndex;
 
-				highlightRectangle = new Rectangle((_startX + highlightColumn * _cellWidth) - GetScaleValue(scale),
-					_startY - GetScaleValue(scale), _cellWidth, _matrixHeight);
+				highlightRectangle = new Rectangle(_startX - GetScaleValue(scale),
+							(_startY + highlightColumn * _cellHeight) - GetScaleValue(scale), _matrixWidth, _cellHeight);
 
 				RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);
 			}
@@ -122,9 +126,21 @@ namespace CipherListTerminal.Entities
 			{
 				for (int j = 0; j < 6; j++)
 				{
-					string text = _matrix[i, j];
+					Color color = Color.White;
+                    if (State == MatrixState.FirstSelection)
+                    {
+                    }
+					else if (State == MatrixState.Vertical && _selectedColumnIndex == j)
+					{
+						color = Color.Red;
+					}
+					else if (State == MatrixState.Horizontal && _selectedRowIndex == i)
+					{
+						color = Color.Red;
+					}
+                    string text = _matrix[i, j];
 					Vector2 position = new Vector2(100 + j * 50, 100 + i * 50);
-					_spriteBatch.DrawString(_font, text, position, Color.White);
+					_spriteBatch.DrawString(_font, text, position, color);
 				}
 			}
 
