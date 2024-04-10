@@ -29,6 +29,9 @@ namespace CipherListTerminal.Entities
 		private int _matrixWidth;
 		private int _matrixHeight;
 
+		private int _selectedRowIndex = -1;
+		private int _selectedColumnIndex = -1;
+
 		// Highlight color
 		Color highlightColor = new Color(255, 255, 0, 128); // Semi-transparent yellow
 
@@ -58,39 +61,60 @@ namespace CipherListTerminal.Entities
 			// first Selection requires two vertical picks every other turn will rotate between vertical and horizontal
 
 			int highlightColumn = -1;
+			Rectangle highlightRectangle;
 
-			Vector2 transformedMousePosition = InputManager.GetTransformedMousePosition();
-						
-			if (transformedMousePosition.X >= 0 && transformedMousePosition.X < _matrixWidth)
+			if (State == MatrixState.FirstSelection)
 			{
-				if (transformedMousePosition.Y >= 0 && transformedMousePosition.Y < _matrixHeight)
+				Vector2 transformedMousePosition = InputManager.GetTransformedMousePosition();
+
+				if (transformedMousePosition.X >= 0 && transformedMousePosition.X < _matrixWidth)
 				{
+					if (transformedMousePosition.Y >= 0 && transformedMousePosition.Y < _matrixHeight)
+					{
+						if (State == MatrixState.Vertical || State == MatrixState.FirstSelection)
+						{
+							highlightColumn = (int)(transformedMousePosition.X / _cellWidth);
+						}
+						else
+						{
+							highlightColumn = (int)(transformedMousePosition.Y / _cellHeight);
+						}
+					}
+				}
+
+				if (highlightColumn >= 0)
+				{					
 					if (State == MatrixState.Vertical || State == MatrixState.FirstSelection)
 					{
-						highlightColumn = (int)(transformedMousePosition.X / _cellWidth);
+						highlightRectangle = new Rectangle((_startX + highlightColumn * _cellWidth) - GetScaleValue(scale),
+						_startY - GetScaleValue(scale), _cellWidth, _matrixHeight);
 					}
 					else
 					{
-						highlightColumn = (int)(transformedMousePosition.Y / _cellHeight);
-					}					
-				}					
-			}
+						highlightRectangle = new Rectangle(_startX - GetScaleValue(scale),
+							(_startY + highlightColumn * _cellHeight) - GetScaleValue(scale), _matrixWidth, _cellHeight);
+					}
 
-			if (highlightColumn >= 0)
+					RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);
+				}
+			}	
+			else if (State == MatrixState.Vertical)
+			{				
+				highlightColumn = _selectedRowIndex;
+
+				highlightRectangle = new Rectangle(_startX - GetScaleValue(scale),
+							(_startY + highlightColumn * _cellHeight) - GetScaleValue(scale), _matrixWidth, _cellHeight);
+
+				RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);
+			}
+			else if (State == MatrixState.Horizontal)
 			{
-				Rectangle highlightRectangle;
-				if (State == MatrixState.Vertical || State == MatrixState.FirstSelection)
-				{
-					highlightRectangle = new Rectangle((_startX + highlightColumn * _cellWidth) - GetScaleValue(scale),
+				highlightColumn = _selectedColumnIndex;
+
+				highlightRectangle = new Rectangle((_startX + highlightColumn * _cellWidth) - GetScaleValue(scale),
 					_startY - GetScaleValue(scale), _cellWidth, _matrixHeight);
-				}
-				else
-				{
-					highlightRectangle = new Rectangle(_startX - GetScaleValue(scale),
-						(_startY + highlightColumn * _cellHeight) - GetScaleValue(scale), _matrixWidth, _cellHeight);
-				}
-				
-				RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);				
+
+				RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);
 			}
 
 			// Draw the matrix
@@ -105,7 +129,10 @@ namespace CipherListTerminal.Entities
 			}
 
 			_spriteBatch.DrawString(_font, "State: " + State, new Vector2(100, 400), Color.White);
-			_spriteBatch.DrawString(_font, "ScaleValue: " + GetScaleValue(scale), new Vector2(100, 450), Color.White);			
+			_spriteBatch.DrawString(_font, "ScaleValue: " + GetScaleValue(scale), new Vector2(100, 450), Color.White);		
+			_spriteBatch.DrawString(_font, "Currently Selected Value: " + CurrentlySelectedValue, new Vector2(100, 500), Color.White);
+			_spriteBatch.DrawString(_font, "Selected Row: " + _selectedRowIndex, new Vector2(100, 550), Color.White);
+			_spriteBatch.DrawString(_font, "Selected Column: " + _selectedColumnIndex, new Vector2(100, 600), Color.White);
 		}
 
 		public void Update(GameTime gameTime)
@@ -132,6 +159,8 @@ namespace CipherListTerminal.Entities
 				int rowIndex = (int)(mouseState.Y / _cellHeight);
 
 				CurrentlySelectedValue = _matrix[rowIndex, columnIndex];
+				_selectedRowIndex = rowIndex;
+				_selectedColumnIndex = columnIndex;
 
 				MatrixSelectionEvent?.Invoke(CurrentlySelectedValue);
 			}
