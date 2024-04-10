@@ -41,6 +41,7 @@ namespace CipherListTerminal.Entities
 			CurrentlyVertical = true;
 			_matrixWidth = _cellWidth * 6;
 			_matrixHeight = _cellHeight * 6;
+			State = MatrixState.FirstSelection;
 
 			// Initialize the matrix
 			for (int i = 0; i < 6; i++)
@@ -114,14 +115,21 @@ namespace CipherListTerminal.Entities
 				 mouseState.X >= 0 && mouseState.X <_matrixWidth &&
 				 mouseState.Y >= 0 && mouseState.Y < _matrixHeight)
 			{
-				if (FirstSelectionMade)
+				if (State == MatrixState.FirstSelection)
 				{
 					FirstSelectionMade = false;
+					State = MatrixState.Vertical;
 				}
-				else
+				else if (State == MatrixState.Vertical)
 				{
+					State = MatrixState.Horizontal;
 					CurrentlyVertical = !CurrentlyVertical;
 				}
+				else if (State == MatrixState.Horizontal)
+				{
+					State = MatrixState.Vertical;
+					CurrentlyVertical = !CurrentlyVertical;
+				}									
 				
 				int columnIndex = (int)(mouseState.X / _cellWidth);
 				int rowIndex = (int)(mouseState.Y / _cellHeight);
