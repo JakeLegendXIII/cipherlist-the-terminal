@@ -16,6 +16,7 @@ namespace CipherListTerminal.Entities
 
 		public bool CurrentlyVertical { get; private set; }
 		public bool FirstSelectionMade { get; private set; } = true;
+		public MatrixState State { get; set; }
 
 		public string CurrentlySelectedValue { get; private set; } = "__";
 
@@ -140,5 +141,12 @@ namespace CipherListTerminal.Entities
 
 			return (int)(10 * scale);
 		}
+	}
+
+	public enum MatrixState
+	{
+		FirstSelection,
+		Vertical,
+		Horizontal
 	}
 }
