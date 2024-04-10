@@ -6,7 +6,7 @@ namespace CipherListTerminal.Entities
 	public class TerminalBuffer : IGameEntity
 	{
 		protected SpriteFont _font;
-		public string Text { get; set; } = "__ __ __ __ __ __ __ __";
+		public string Text { get; set; } = "__ __ __ __ __ __ __ __ ";
 
 		public int DrawOrder => 100;
 

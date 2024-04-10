@@ -6,6 +6,7 @@ namespace CipherListTerminal.Input
 	public static class InputManager
 	{
 		private static MouseState mouseState, lastMouseState;
+		private static KeyboardState keyboardState, lastKeyboardState;
 		private static Rectangle _renderTarget;
 		private static float _scale;
 
@@ -13,6 +14,8 @@ namespace CipherListTerminal.Input
 		{
 			lastMouseState = mouseState;
 			mouseState = Mouse.GetState();
+			lastKeyboardState = keyboardState;
+			keyboardState = Keyboard.GetState();
 			_renderTarget = renderTarget;
 			_scale = scale;
 		}
@@ -25,6 +28,11 @@ namespace CipherListTerminal.Input
 		public static bool IsLeftMouseButtonDown()
 		{
 			return mouseState.LeftButton == ButtonState.Pressed && lastMouseState.LeftButton != ButtonState.Pressed;
+		}
+
+		public static bool IsF5Pressed()
+		{
+			return keyboardState.IsKeyDown(Keys.F5) && lastKeyboardState.IsKeyUp(Keys.F5);
 		}
 
 		public static Vector2 GetTransformedMousePosition()

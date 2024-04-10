@@ -58,8 +58,13 @@ namespace CipherListTerminal
 
 			_renderTarget = new RenderTarget2D(GraphicsDevice, _nativeWidth, _nativeHeight);
 
-			_font = Content.Load<SpriteFont>("TestFont");
+			_font = Content.Load<SpriteFont>("TestFont");			
 
+			SetupNewPuzzle();			
+		}
+
+		private void SetupNewPuzzle()
+		{
 			_terminalBuffer = new TerminalBuffer(_font);
 
 			// Create the starting Matrix
@@ -83,6 +88,11 @@ namespace CipherListTerminal
 			// TODO: Add your update logic here
 			InputManager.Update(_renderDestination, _scale);
 			_matrix.Update(gameTime);
+
+			if (InputManager.IsF5Pressed())
+			{
+				SetupNewPuzzle();
+			}
 
 			base.Update(gameTime);
 		}
