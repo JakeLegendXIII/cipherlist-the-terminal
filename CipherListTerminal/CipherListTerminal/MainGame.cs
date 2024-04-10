@@ -27,7 +27,7 @@ namespace CipherListTerminal
 		private CipherList _targetList1;
 		private CipherList _targetList2;
 		private CipherList _targetList3;
-
+		private ScoreBoard _scoreBoard;
 
 		public MainGame()
 		{
@@ -71,6 +71,8 @@ namespace CipherListTerminal
 			_targetList1 = new CipherList(_font, possibleValues, 3, 300, 1);
 			_targetList2 = new CipherList(_font, possibleValues, 4, 450, 2);
 			_targetList3 = new CipherList(_font, possibleValues, 5, 700, 3);
+
+			_scoreBoard = new ScoreBoard(_font);
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -100,6 +102,8 @@ namespace CipherListTerminal
 			_targetList1.Draw(_spriteBatch, gameTime, _scale);
 			_targetList2.Draw(_spriteBatch, gameTime, _scale);
 			_targetList3.Draw(_spriteBatch, gameTime, _scale);
+
+			_scoreBoard.Draw(_spriteBatch, gameTime, _scale);
 
 			_spriteBatch.End();
 
@@ -157,6 +161,7 @@ namespace CipherListTerminal
 					if (_terminalBuffer.Text.Contains(cipher1Text))
 					{
 						_targetList1.IsCompleted = true;
+						_scoreBoard.Score += _targetList1.PointValue;
 					}
 				}
 				
@@ -170,6 +175,7 @@ namespace CipherListTerminal
 					if (_terminalBuffer.Text.Contains(cipher2Text))
 					{
 						_targetList2.IsCompleted = true;
+						_scoreBoard.Score += _targetList2.PointValue;
 					}
 				}
 
@@ -183,6 +189,7 @@ namespace CipherListTerminal
 					if (_terminalBuffer.Text.Contains(cipher3Text))
 					{
 						_targetList3.IsCompleted = true;
+						_scoreBoard.Score += _targetList3.PointValue;
 					}
 				}
 			}
