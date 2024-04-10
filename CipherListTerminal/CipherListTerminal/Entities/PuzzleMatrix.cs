@@ -15,6 +15,7 @@ namespace CipherListTerminal.Entities
 		private SpriteFont _font;
 
 		public bool CurrentlyVertical { get; private set; }
+		public bool FirstSelectionMade { get; private set; } = true;
 
 		public string CurrentlySelectedValue { get; private set; } = "__";
 
@@ -112,8 +113,15 @@ namespace CipherListTerminal.Entities
 				 mouseState.X >= 0 && mouseState.X <_matrixWidth &&
 				 mouseState.Y >= 0 && mouseState.Y < _matrixHeight)
 			{
-				CurrentlyVertical = !CurrentlyVertical;
-
+				if (FirstSelectionMade)
+				{
+					FirstSelectionMade = false;
+				}
+				else
+				{
+					CurrentlyVertical = !CurrentlyVertical;
+				}
+				
 				int columnIndex = (int)(mouseState.X / _cellWidth);
 				int rowIndex = (int)(mouseState.Y / _cellHeight);
 
