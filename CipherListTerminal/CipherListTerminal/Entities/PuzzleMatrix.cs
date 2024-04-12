@@ -56,10 +56,6 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch _spriteBatch, GameTime gameTime, float scale)
 		{
-			// Need to highlight the recently selected row/column until it is clicked and then we need to
-			// rotate the highlight and have it stuck on that row/column until the next selection
-			// first Selection requires two vertical picks every other turn will rotate between vertical and horizontal
-
 			int highlightColumn = -1;
 			Rectangle highlightRectangle;
 
@@ -87,16 +83,6 @@ namespace CipherListTerminal.Entities
 
 					highlightRectangle = new Rectangle((_startX + highlightColumn * _cellWidth) - GetScaleValue(scale),
 					_startY - GetScaleValue(scale), _cellWidth, _matrixHeight);
-
-					//if (State == MatrixState.Vertical || State == MatrixState.FirstSelection)
-					//{
-					
-					//}
-					//else
-					//{
-					//	highlightRectangle = new Rectangle(_startX - GetScaleValue(scale),
-					//		(_startY + highlightColumn * _cellHeight) - GetScaleValue(scale), _matrixWidth, _cellHeight);
-					//}
 
 					RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);
 				}
