@@ -7,6 +7,7 @@ namespace CipherListTerminal.Entities
 	{
 		protected SpriteFont _font;
 		public string Text { get; set; } = "__ __ __ __ __ __ __ __ ";
+		public bool IsCompleted { get; set; } = false;
 
 		public int DrawOrder => 100;
 

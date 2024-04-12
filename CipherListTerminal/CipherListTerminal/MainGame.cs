@@ -29,6 +29,9 @@ namespace CipherListTerminal
 		private CipherList _targetList3;
 		private ScoreBoard _scoreBoard;
 
+		private const float _completedDelay = 2f;
+		private float _remainingDelay = _completedDelay;
+
 		public MainGame()
 		{
 			_graphics = new GraphicsDeviceManager(this);
@@ -43,7 +46,8 @@ namespace CipherListTerminal
 			Window.ClientSizeChanged += OnClientSizeChanged;
 
 			IsMouseVisible = true;
-		}	
+		}
+
 		protected override void Initialize()
 		{
 			base.Initialize();
@@ -56,8 +60,9 @@ namespace CipherListTerminal
 
 			_renderTarget = new RenderTarget2D(GraphicsDevice, _nativeWidth, _nativeHeight);
 
-			_font = Content.Load<SpriteFont>("TestFont");			
+			_font = Content.Load<SpriteFont>("TestFont");
 
+			_scoreBoard = new ScoreBoard(_font);
 			SetupNewPuzzle();			
 		}
 
@@ -73,9 +78,7 @@ namespace CipherListTerminal
 			// Create the target CipherLists using the possibleValues
 			_targetList1 = new CipherList(_font, possibleValues, 3, 300, 1);
 			_targetList2 = new CipherList(_font, possibleValues, 4, 450, 2);
-			_targetList3 = new CipherList(_font, possibleValues, 5, 700, 3);
-
-			_scoreBoard = new ScoreBoard(_font);
+			_targetList3 = new CipherList(_font, possibleValues, 5, 700, 3);			
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -90,6 +93,18 @@ namespace CipherListTerminal
 			if (InputManager.IsF5Pressed())
 			{
 				SetupNewPuzzle();
+			}
+
+			if (_terminalBuffer.IsCompleted)
+			{
+				_remainingDelay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+				if (_remainingDelay <= 0)
+				{
+					_remainingDelay = _completedDelay;
+					_terminalBuffer.IsCompleted = false;
+					SetupNewPuzzle();
+				}
 			}
 
 			base.Update(gameTime);
@@ -159,6 +174,11 @@ namespace CipherListTerminal
 
 			if (!_terminalBuffer.Text.StartsWith("__ __ __"))
 			{
+				if (!_terminalBuffer.Text.Contains("__"))
+				{
+					_terminalBuffer.IsCompleted = true;
+				}
+
 				if (!_targetList1.IsCompleted)
 				{
 					string cipher1Text = "";
