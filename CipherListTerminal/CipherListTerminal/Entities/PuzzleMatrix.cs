@@ -22,7 +22,7 @@ namespace CipherListTerminal.Entities
 		public event MatrixSelectionEventHandler MatrixSelectionEvent;
 
 		private Random _random = new Random();
-		private int _cellWidth = 50;	
+		private int _cellWidth = 50;
 		private int _cellHeight = 50;
 		private int _startX = 100;
 		private int _startY = 100;
@@ -38,7 +38,7 @@ namespace CipherListTerminal.Entities
 		public PuzzleMatrix(SpriteFont font, string[] possibleValues)
 		{
 			_font = font;
-			_possibleValues = possibleValues;			
+			_possibleValues = possibleValues;
 			_matrixWidth = _cellWidth * 6;
 			_matrixHeight = _cellHeight * 6;
 			State = MatrixState.FirstSelection;
@@ -86,9 +86,9 @@ namespace CipherListTerminal.Entities
 
 					RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);
 				}
-			}	
+			}
 			else if (State == MatrixState.Vertical)
-			{				
+			{
 				highlightColumn = _selectedColumnIndex;
 
 				highlightRectangle = new Rectangle((_startX + highlightColumn * _cellWidth) - GetScaleValue(scale),
@@ -113,9 +113,10 @@ namespace CipherListTerminal.Entities
 				for (int j = 0; j < 6; j++)
 				{
 					Color color = Color.White;
-                    if (State == MatrixState.FirstSelection)
-                    {
-                    }
+					if (State == MatrixState.FirstSelection && i == 0 && j == highlightColumn)
+					{
+						color = Color.Red;
+					}
 					else if (State == MatrixState.Vertical && _selectedColumnIndex == j)
 					{
 						color = Color.Red;
@@ -124,49 +125,59 @@ namespace CipherListTerminal.Entities
 					{
 						color = Color.Red;
 					}
-                    string text = _matrix[i, j];
+					string text = _matrix[i, j];
 					Vector2 position = new Vector2(100 + j * 50, 100 + i * 50);
 					_spriteBatch.DrawString(_font, text, position, color);
 				}
 			}
 
 			_spriteBatch.DrawString(_font, "State: " + State, new Vector2(100, 400), Color.White);
-			_spriteBatch.DrawString(_font, "ScaleValue: " + GetScaleValue(scale), new Vector2(100, 450), Color.White);		
+			_spriteBatch.DrawString(_font, "ScaleValue: " + GetScaleValue(scale), new Vector2(100, 450), Color.White);
 			_spriteBatch.DrawString(_font, "Currently Selected Value: " + CurrentlySelectedValue, new Vector2(100, 500), Color.White);
 			_spriteBatch.DrawString(_font, "Selected Row: " + _selectedRowIndex, new Vector2(100, 550), Color.White);
 			_spriteBatch.DrawString(_font, "Selected Column: " + _selectedColumnIndex, new Vector2(100, 600), Color.White);
 		}
 
 		public void Update(GameTime gameTime)
-		{		
+		{
 			var mouseState = InputManager.GetTransformedMousePosition();
 			if (InputManager.IsLeftMouseButtonDown() &&
-				 mouseState.X >= 0 && mouseState.X <_matrixWidth &&
+				 mouseState.X >= 0 && mouseState.X < _matrixWidth &&
 				 mouseState.Y >= 0 && mouseState.Y < _matrixHeight)
 			{
+				int columnIndex = (int)(mouseState.X / _cellWidth);
+				int rowIndex = (int)(mouseState.Y / _cellHeight);
+				bool select = false;
+
 				if (State == MatrixState.FirstSelection)
-				{					
-					State = MatrixState.Vertical;
+				{
+					if (columnIndex >= 0 && rowIndex == 0)
+					{
+						select = true;
+						State = MatrixState.Vertical;
+					}					
 				}
 				else if (State == MatrixState.Vertical)
 				{
-					State = MatrixState.Horizontal;					
+					State = MatrixState.Horizontal;
+					select = true;
 				}
 				else if (State == MatrixState.Horizontal)
 				{
-					State = MatrixState.Vertical;					
-				}									
+					State = MatrixState.Vertical;
+					select = true;
+				}
 				
-				int columnIndex = (int)(mouseState.X / _cellWidth);
-				int rowIndex = (int)(mouseState.Y / _cellHeight);
+				if (select)
+				{
+					CurrentlySelectedValue = _matrix[rowIndex, columnIndex];
+					_selectedRowIndex = rowIndex;
+					_selectedColumnIndex = columnIndex;
 
-				CurrentlySelectedValue = _matrix[rowIndex, columnIndex];
-				_selectedRowIndex = rowIndex;
-				_selectedColumnIndex = columnIndex;
-
-				MatrixSelectionEvent?.Invoke(CurrentlySelectedValue);
+					MatrixSelectionEvent?.Invoke(CurrentlySelectedValue);
+				}				
 			}
-		}		
+		}
 
 		private int GetScaleValue(float scale)
 		{
