@@ -159,13 +159,19 @@ namespace CipherListTerminal.Entities
 				}
 				else if (State == MatrixState.Vertical)
 				{
-					State = MatrixState.Horizontal;
-					select = true;
+					if (rowIndex >= 0 && columnIndex == _selectedColumnIndex)
+					{
+						select = true;
+						State = MatrixState.Horizontal;
+					}					
 				}
 				else if (State == MatrixState.Horizontal)
 				{
-					State = MatrixState.Vertical;
-					select = true;
+					if (columnIndex >= 0 && rowIndex == _selectedRowIndex)
+					{
+						select = true;
+						State = MatrixState.Vertical;
+					}					
 				}
 				
 				if (select)
