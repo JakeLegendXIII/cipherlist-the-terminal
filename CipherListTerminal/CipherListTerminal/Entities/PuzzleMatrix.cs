@@ -128,6 +128,12 @@ namespace CipherListTerminal.Entities
 					string text = _matrix[i, j];
 					Vector2 position = new Vector2(100 + j * 50, 100 + i * 50);
 					_spriteBatch.DrawString(_font, text, position, color);
+
+					//if (i == _selectedRowIndex && j == _selectedColumnIndex)
+					//{
+					//	RectangleSprite.DrawRectangle(_spriteBatch, new Rectangle((int)position.X - GetScaleValue(scale),
+					//									(int)position.Y - GetScaleValue(scale), _cellWidth, _cellHeight), Color.Red, 6);
+					//}
 				}
 			}
 
@@ -153,24 +159,34 @@ namespace CipherListTerminal.Entities
 				{
 					if (columnIndex >= 0 && rowIndex == 0)
 					{
-						select = true;
-						State = MatrixState.Vertical;
+						if (_matrix[rowIndex, columnIndex] != "__")
+						{
+							select = true;
+							State = MatrixState.Vertical;
+						}						
 					}					
 				}
 				else if (State == MatrixState.Vertical)
 				{
 					if (rowIndex >= 0 && columnIndex == _selectedColumnIndex)
 					{
-						select = true;
-						State = MatrixState.Horizontal;
+						if (_matrix[rowIndex, columnIndex] != "__")
+						{
+							select = true;
+							State = MatrixState.Horizontal;
+						}						
+						
 					}					
 				}
 				else if (State == MatrixState.Horizontal)
 				{
 					if (columnIndex >= 0 && rowIndex == _selectedRowIndex)
 					{
-						select = true;
-						State = MatrixState.Vertical;
+						if (_matrix[rowIndex, columnIndex] != "__")
+						{
+							select = true;
+							State = MatrixState.Vertical;
+						}						
 					}					
 				}
 				
@@ -179,6 +195,7 @@ namespace CipherListTerminal.Entities
 					CurrentlySelectedValue = _matrix[rowIndex, columnIndex];
 					_selectedRowIndex = rowIndex;
 					_selectedColumnIndex = columnIndex;
+					_matrix[rowIndex, columnIndex] = "__";
 
 					MatrixSelectionEvent?.Invoke(CurrentlySelectedValue);
 				}				
