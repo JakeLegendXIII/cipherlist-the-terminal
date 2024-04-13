@@ -22,6 +22,8 @@ namespace CipherListTerminal
 		string[] possibleValues = { "1C", "55", "BD", "FF", "E9", "1C", "55" };
 
 		private SpriteFont _font;
+		private Texture2D _backgroundTexture;
+
 		private TerminalBuffer _terminalBuffer;
 		private PuzzleMatrix _matrix;
 		private CipherList _targetList1;
@@ -61,6 +63,7 @@ namespace CipherListTerminal
 			_renderTarget = new RenderTarget2D(GraphicsDevice, _nativeWidth, _nativeHeight);
 
 			_font = Content.Load<SpriteFont>("TestFont");
+			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG");
 
 			_scoreBoard = new ScoreBoard(_font);
 			SetupNewPuzzle();			
@@ -118,6 +121,8 @@ namespace CipherListTerminal
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 
 			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
+			_spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _nativeWidth, _nativeHeight), Color.White);
 
 			_spriteBatch.DrawString(_font, "Scale: " + _scale.ToString(), new Vector2(600, 50), Color.White);
 			_matrix.Draw(_spriteBatch, gameTime, _scale);
