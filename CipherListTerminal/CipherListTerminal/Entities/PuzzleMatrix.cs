@@ -71,6 +71,7 @@ namespace CipherListTerminal.Entities
 						if (State == MatrixState.Vertical || State == MatrixState.FirstSelection)
 						{
 							highlightColumn = (int)(transformedMousePosition.X / _cellWidth);
+							highlightCell = (int)(transformedMousePosition.X / _cellWidth);
 						}
 						else
 						{
@@ -146,6 +147,11 @@ namespace CipherListTerminal.Entities
 					Vector2 position = new Vector2(100 + j * 50, 100 + i * 50);
 					_spriteBatch.DrawString(_font, text, position, color);
 
+					if (State == MatrixState.FirstSelection && i == 0 && j == highlightCell)
+					{
+						RectangleSprite.DrawRectangle(_spriteBatch, new Rectangle((int)position.X - GetScaleValue(scale),
+																					(int)position.Y - GetScaleValue(scale), _cellWidth, _cellHeight), Color.MonoGameOrange, 6);
+					}
 					if (State == MatrixState.Horizontal && i == _selectedRowIndex && j == highlightCell)
 					{
 						RectangleSprite.DrawRectangle(_spriteBatch, new Rectangle((int)position.X - GetScaleValue(scale),
