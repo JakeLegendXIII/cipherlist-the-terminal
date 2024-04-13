@@ -19,7 +19,7 @@ namespace CipherListTerminal
 		private int _nativeHeight = 800;
 		private bool _isResizing;
 
-		string[] possibleValues = { "1C", "55", "BD", "FF", "E9" };
+		string[] possibleValues = { "1C", "55", "BD", "FF", "E9", "1C", "55" };
 
 		private SpriteFont _font;
 		private TerminalBuffer _terminalBuffer;
