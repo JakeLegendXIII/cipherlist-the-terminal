@@ -133,15 +133,15 @@ namespace CipherListTerminal.Entities
 					Color color = Color.White;
 					if (State == MatrixState.FirstSelection && i == 0 && j == highlightColumn)
 					{
-						color = Color.Red;
+						color = Color.LightGreen;
 					}
 					else if (State == MatrixState.Vertical && _selectedColumnIndex == j)
 					{
-						color = Color.Red;
+						color = Color.LightGreen;
 					}
 					else if (State == MatrixState.Horizontal && _selectedRowIndex == i)
 					{
-						color = Color.Red;
+						color = Color.LightGreen;
 					}
 					string text = _matrix[i, j];
 					Vector2 position = new Vector2(100 + j * 50, 100 + i * 50);
@@ -150,17 +150,17 @@ namespace CipherListTerminal.Entities
 					if (State == MatrixState.FirstSelection && i == 0 && j == highlightCell)
 					{
 						RectangleSprite.DrawRectangle(_spriteBatch, new Rectangle((int)position.X - GetScaleValue(scale),
-																					(int)position.Y - GetScaleValue(scale), _cellWidth, _cellHeight), Color.MonoGameOrange, 6);
+																					(int)position.Y - GetScaleValue(scale), _cellWidth, _cellHeight), Color.Teal, 6);
 					}
 					if (State == MatrixState.Horizontal && i == _selectedRowIndex && j == highlightCell)
 					{
 						RectangleSprite.DrawRectangle(_spriteBatch, new Rectangle((int)position.X - GetScaleValue(scale),
-														(int)position.Y - GetScaleValue(scale), _cellWidth, _cellHeight), Color.MonoGameOrange, 6);
+														(int)position.Y - GetScaleValue(scale), _cellWidth, _cellHeight), Color.Teal, 6);
 					}
 					if (State == MatrixState.Vertical && i == highlightCell && j == _selectedColumnIndex)
 					{
 						RectangleSprite.DrawRectangle(_spriteBatch, new Rectangle((int)position.X - GetScaleValue(scale),
-																					(int)position.Y - GetScaleValue(scale), _cellWidth, _cellHeight), Color.MonoGameOrange, 6);
+																					(int)position.Y - GetScaleValue(scale), _cellWidth, _cellHeight), Color.Teal, 6);
 					}
 				}
 			}
