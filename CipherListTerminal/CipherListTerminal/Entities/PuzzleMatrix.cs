@@ -24,8 +24,8 @@ namespace CipherListTerminal.Entities
 		private Random _random = new Random();
 		private int _cellWidth = 50;
 		private int _cellHeight = 50;
-		private int _startX = 100;
-		private int _startY = 100;
+		private int _startX = 200;
+		private int _startY = 200;
 		private int _matrixWidth;
 		private int _matrixHeight;
 
@@ -144,7 +144,7 @@ namespace CipherListTerminal.Entities
 						color = Color.LightGreen;
 					}
 					string text = _matrix[i, j];
-					Vector2 position = new Vector2(100 + j * 50, 100 + i * 50);
+					Vector2 position = new Vector2(_startX + j * 50, _startY + i * 50);
 					_spriteBatch.DrawString(_font, text, position, color);
 
 					if (State == MatrixState.FirstSelection && i == 0 && j == highlightCell)

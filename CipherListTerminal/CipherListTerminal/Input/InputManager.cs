@@ -37,8 +37,8 @@ namespace CipherListTerminal.Input
 
 		public static Vector2 GetTransformedMousePosition()
 		{
-			Vector2 transformedMousePosition = new Vector2((mouseState.X - (_renderTarget.X + (100 * _scale))) / _scale,
-																		(mouseState.Y - (_renderTarget.Y + (100 * _scale))) / _scale);
+			Vector2 transformedMousePosition = new Vector2((mouseState.X - (_renderTarget.X + (200 * _scale))) / _scale,
+																		(mouseState.Y - (_renderTarget.Y + (200 * _scale))) / _scale);
 			return transformedMousePosition;
 		}
 	}

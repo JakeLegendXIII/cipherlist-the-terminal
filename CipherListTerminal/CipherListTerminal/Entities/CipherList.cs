@@ -42,11 +42,11 @@ namespace CipherListTerminal.Entities
 			for (int i = 0; i < NumberOfValues; i++)
 			{
 				string text = CipherListValues[i];
-				Vector2 position = new Vector2(450 + i * 50, 100 + (_targetNumber * 50));
+				Vector2 position = new Vector2(600 + i * 50, 200 + (_targetNumber * 50));
 				spriteBatch.DrawString(_font, text, position, color);
 			}
 
-			spriteBatch.DrawString(_font, PointValue.ToString() + " POINTS", new Vector2(700, 100 + (_targetNumber * 50)), color);
+			spriteBatch.DrawString(_font, PointValue.ToString() + " POINTS", new Vector2(850, 200 + (_targetNumber * 50)), color);
 		}
 
 		public void Update(GameTime gameTime)
