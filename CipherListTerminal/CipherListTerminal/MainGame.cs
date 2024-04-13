@@ -29,7 +29,7 @@ namespace CipherListTerminal
 		private CipherList _targetList3;
 		private ScoreBoard _scoreBoard;
 
-		private const float _completedDelay = 2f;
+		private const float _completedDelay = 1f;
 		private float _remainingDelay = _completedDelay;
 
 		public MainGame()
