@@ -7,6 +7,7 @@ namespace CipherListTerminal.Input
 	{
 		private static MouseState mouseState, lastMouseState;
 		private static KeyboardState keyboardState, lastKeyboardState;
+		private static GamePadState gamePadState, lastGamePadState;
 		private static Rectangle _renderTarget;
 		private static float _scale;
 
@@ -16,6 +17,9 @@ namespace CipherListTerminal.Input
 			mouseState = Mouse.GetState();
 			lastKeyboardState = keyboardState;
 			keyboardState = Keyboard.GetState();
+			lastGamePadState = gamePadState;
+			gamePadState = GamePad.GetState(PlayerIndex.One);
+
 			_renderTarget = renderTarget;
 			_scale = scale;
 		}
