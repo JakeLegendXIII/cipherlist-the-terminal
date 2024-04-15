@@ -45,5 +45,20 @@ namespace CipherListTerminal.Input
 																		(mouseState.Y - (_renderTarget.Y + (200 * _scale))) / _scale);
 			return transformedMousePosition;
 		}
+
+		public static bool IsGamePadConnected()
+		{
+			return gamePadState.IsConnected;
+		}
+
+		public static bool IsGamePadButtonPressed(Buttons button)
+		{
+			return gamePadState.IsButtonDown(button) && lastGamePadState.IsButtonUp(button);
+		}
+
+		public static GamePadState GetGamePadState()
+		{
+			return gamePadState;
+		}
 	}
 }
