@@ -206,12 +206,14 @@ namespace CipherListTerminal.Entities
 		public void Update(GameTime gameTime)
 		{
 			var mouseState = InputManager.GetTransformedMousePosition();
+			_displayColumnIndex = (int)(mouseState.X / _cellWidth);
+			_displayRowIndex = (int)(mouseState.Y / _cellHeight);
+
 			if (InputManager.IsLeftMouseButtonDown() &&
 				 mouseState.X >= 0 && mouseState.X < _matrixWidth &&
 				 mouseState.Y >= 0 && mouseState.Y < _matrixHeight)
 			{
-				_displayColumnIndex = (int)(mouseState.X / _cellWidth);
-				_displayRowIndex = (int)(mouseState.Y / _cellHeight);
+
 				bool select = false;
 
 				if (State == MatrixState.FirstSelection)
@@ -267,7 +269,9 @@ namespace CipherListTerminal.Entities
 
 				if (InputManager.IsGamePadButtonPressed(Buttons.A))
 				{
-					CurrentlySelectedValue = _matrix[_selectedRowIndex, _selectedColumnIndex];
+					CurrentlySelectedValue = _matrix[_displayRowIndex, _displayColumnIndex];
+					_selectedRowIndex = _displayRowIndex;
+					_selectedColumnIndex = _displayColumnIndex;
 					_matrix[_selectedRowIndex, _selectedColumnIndex] = "__";
 
 					MatrixSelectionEvent?.Invoke(CurrentlySelectedValue);
