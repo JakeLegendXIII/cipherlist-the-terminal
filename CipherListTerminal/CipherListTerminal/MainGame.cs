@@ -63,7 +63,7 @@ namespace CipherListTerminal
 			_renderTarget = new RenderTarget2D(GraphicsDevice, _nativeWidth, _nativeHeight);
 
 			_font = Content.Load<SpriteFont>("TestFont");
-			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG");
+			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG2");
 
 			_scoreBoard = new ScoreBoard(_font);
 			SetupNewPuzzle();			
