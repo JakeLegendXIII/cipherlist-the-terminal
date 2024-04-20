@@ -94,12 +94,12 @@ namespace CipherListTerminal
 			InputManager.Update(_renderDestination, _scale);
 			_matrix.Update(gameTime);
 
-			if (InputManager.IsF5Pressed())
+			if (InputManager.IsKeyPressed(Keys.F5))
 			{
 				SetupNewPuzzle();
 			}
 
-			if (InputManager.IsF11Pressed())
+			if (InputManager.IsKeyPressed(Keys.F11))
 			{
 				_graphics.ToggleFullScreen();
 				CalculateRenderDestination();

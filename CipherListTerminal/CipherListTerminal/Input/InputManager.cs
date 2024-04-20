@@ -34,14 +34,9 @@ namespace CipherListTerminal.Input
 			return mouseState.LeftButton == ButtonState.Pressed && lastMouseState.LeftButton != ButtonState.Pressed;
 		}
 
-		public static bool IsF5Pressed()
+		public static bool IsKeyPressed(Keys key)
 		{
-			return keyboardState.IsKeyDown(Keys.F5) && lastKeyboardState.IsKeyUp(Keys.F5);
-		}
-
-		public static bool IsF11Pressed()
-		{
-			return keyboardState.IsKeyDown(Keys.F11) && lastKeyboardState.IsKeyUp(Keys.F11);
+			return keyboardState.IsKeyDown(key) && lastKeyboardState.IsKeyUp(key);
 		}
 
 		public static Vector2 GetTransformedMousePosition()
