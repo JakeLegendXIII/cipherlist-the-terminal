@@ -90,8 +90,7 @@ namespace CipherListTerminal
 		{
 			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
 				Exit();
-
-			// TODO: Add your update logic here
+			
 			InputManager.Update(_renderDestination, _scale);
 			_matrix.Update(gameTime);
 
@@ -126,7 +125,7 @@ namespace CipherListTerminal
 
 			_spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _nativeWidth, _nativeHeight), Color.White);
 
-			_spriteBatch.DrawString(_font, "Scale: " + _scale.ToString(), new Vector2(600, 100), Color.White);
+			// _spriteBatch.DrawString(_font, "Scale: " + _scale.ToString(), new Vector2(600, 100), Color.White);
 			_matrix.Draw(_spriteBatch, gameTime, _scale);
 			_terminalBuffer.Draw(_spriteBatch, gameTime, _scale);
 			_targetList1.Draw(_spriteBatch, gameTime, _scale);

@@ -17,7 +17,7 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
-			spriteBatch.DrawString(_font, "Score: " + Score, new Vector2(600, 150), Color.White);
+			spriteBatch.DrawString(_font, "Score: " + Score, new Vector2(600, 100), Color.White);
 		}
 
 		public void Update(GameTime gameTime)
