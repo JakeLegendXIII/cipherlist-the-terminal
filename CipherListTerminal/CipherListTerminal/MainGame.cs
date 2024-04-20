@@ -99,6 +99,12 @@ namespace CipherListTerminal
 				SetupNewPuzzle();
 			}
 
+			if (InputManager.IsF11Pressed())
+			{
+				_graphics.ToggleFullScreen();
+				CalculateRenderDestination();
+			}
+
 			if (_terminalBuffer.IsCompleted)
 			{
 				_remainingDelay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
