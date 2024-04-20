@@ -13,6 +13,7 @@ namespace CipherListTerminal.Entities
 		private string[,] _matrix = new string[6, 6];
 		private string[] _possibleValues;
 		private SpriteFont _font;
+		private Texture2D _matrixUI;
 
 		public MatrixState State { get; set; }
 
@@ -37,9 +38,10 @@ namespace CipherListTerminal.Entities
 		// Highlight color
 		Color highlightColor = new Color(255, 255, 0, 128); // Semi-transparent yellow
 
-		public PuzzleMatrix(SpriteFont font, string[] possibleValues)
+		public PuzzleMatrix(SpriteFont font, Texture2D matrixUI, string[] possibleValues)
 		{
 			_font = font;
+			_matrixUI = matrixUI;
 			_possibleValues = possibleValues;
 			_matrixWidth = _cellWidth * 6;
 			_matrixHeight = _cellHeight * 6;
@@ -58,6 +60,10 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch _spriteBatch, GameTime gameTime, float scale)
 		{
+			// Draw the Background UI
+			_spriteBatch.Draw(_matrixUI, new Vector2(_startX - 30, _startY - 60), null, 
+				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
 			int highlightColumn = -1;
 			int highlightCell = -1;
 			Rectangle highlightRectangle;
@@ -154,7 +160,7 @@ namespace CipherListTerminal.Entities
 						highlightCell = (int)(transformedMousePosition.X / _cellWidth);
 					}
 				}
-			}
+			}			
 
 			// Draw the matrix
 			for (int i = 0; i < 6; i++)
@@ -202,7 +208,7 @@ namespace CipherListTerminal.Entities
 			//_spriteBatch.DrawString(_font, "Selected Row: " + _selectedRowIndex, new Vector2(100, 550), Color.White);
 			//_spriteBatch.DrawString(_font, "Selected Column: " + _selectedColumnIndex, new Vector2(100, 600), Color.White);
 		}
-
+	
 		public void Update(GameTime gameTime)
 		{
 			var mouseState = InputManager.GetTransformedMousePosition();
@@ -288,6 +294,7 @@ namespace CipherListTerminal.Entities
 
 			return (int)(10 * scale);
 		}
+
 	}
 
 	public enum MatrixState
