@@ -60,9 +60,11 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch _spriteBatch, GameTime gameTime, float scale)
 		{
-			// Draw the Background UI
-			_spriteBatch.Draw(_matrixUI, new Vector2(_startX - 30, _startY - 60), null, 
+			// Draw the Background UI			
+			_spriteBatch.Draw(_matrixUI, new Vector2(_startX - 30, _startY - 75), null, 
 				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			_spriteBatch.DrawString(_font, "Matrix", new Vector2(_startX + 100, _startY - 60), Color.White);
 
 			int highlightColumn = -1;
 			int highlightCell = -1;
