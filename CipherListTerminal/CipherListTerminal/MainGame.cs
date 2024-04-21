@@ -102,7 +102,7 @@ namespace CipherListTerminal
 			if (InputManager.IsKeyPressed(Keys.F11))
 			{
 				_graphics.ToggleFullScreen();
-				CalculateRenderDestination();
+				// CalculateRenderDestination();
 			}
 
 			if (_terminalBuffer.IsCompleted)
