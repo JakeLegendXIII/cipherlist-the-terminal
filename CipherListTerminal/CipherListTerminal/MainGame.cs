@@ -21,7 +21,8 @@ namespace CipherListTerminal
 
 		string[] possibleValues = { "1C", "55", "BD", "FF", "E9", "1C", "55" };
 
-		private SpriteFont _font;
+		private SpriteFont _armadaFont;
+		private SpriteFont _arialFont;
 		private Texture2D _backgroundTexture;
 		private Texture2D _matrixUI;
 		private Texture2D _bufferUI;
@@ -66,30 +67,31 @@ namespace CipherListTerminal
 
 			_renderTarget = new RenderTarget2D(GraphicsDevice, _nativeWidth, _nativeHeight);
 
-			_font = Content.Load<SpriteFont>("Fonts/ArmadaBold");
+			_armadaFont = Content.Load<SpriteFont>("Fonts/ArmadaBold");
+			_arialFont = Content.Load<SpriteFont>("TestFont");
 			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG3");
 			_matrixUI = Content.Load<Texture2D>("Sprites/MatrixUI");
 			_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
 			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI");
 			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
 
-			_scoreBoard = new ScoreBoard(_font, _scoreUI);
+			_scoreBoard = new ScoreBoard(_armadaFont, _scoreUI);
 			SetupNewPuzzle();			
 		}
 
 		private void SetupNewPuzzle()
 		{
-			_terminalBuffer = new TerminalBuffer(_font, _bufferUI);
+			_terminalBuffer = new TerminalBuffer(_armadaFont, _arialFont, _bufferUI);
 
 			// Create the starting Matrix
-			_matrix = new PuzzleMatrix(_font, _matrixUI, possibleValues);
+			_matrix = new PuzzleMatrix(_armadaFont, _matrixUI, possibleValues);
 
 			_matrix.MatrixSelectionEvent += HandleSelectedMatrixEvent;
 
 			// Create the target CipherLists using the possibleValues
-			_targetList1 = new CipherList(_font, possibleValues, 3, 300, 1);
-			_targetList2 = new CipherList(_font, possibleValues, 4, 450, 2);
-			_targetList3 = new CipherList(_font, possibleValues, 5, 700, 3);			
+			_targetList1 = new CipherList(_armadaFont, possibleValues, 3, 300, 1);
+			_targetList2 = new CipherList(_armadaFont, possibleValues, 4, 450, 2);
+			_targetList3 = new CipherList(_armadaFont, possibleValues, 5, 700, 3);			
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -143,7 +145,7 @@ namespace CipherListTerminal
 
 			_spriteBatch.Draw(_keysUI, new Vector2(580, 180), null,
 								Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-			_spriteBatch.DrawString(_font, "Target Keys:", new Vector2(590, 190), Color.White);
+			_spriteBatch.DrawString(_armadaFont, "Target Keys:", new Vector2(590, 190), Color.White);
 
 			_targetList1.Draw(_spriteBatch, gameTime, _scale);
 			_targetList2.Draw(_spriteBatch, gameTime, _scale);

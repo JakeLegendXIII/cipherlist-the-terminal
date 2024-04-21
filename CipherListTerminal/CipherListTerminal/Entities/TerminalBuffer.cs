@@ -5,16 +5,16 @@ namespace CipherListTerminal.Entities
 {
 	public class TerminalBuffer : IGameEntity
 	{
-		protected SpriteFont _font;
+		protected SpriteFont _armadaFont;		
 		private Texture2D _bufferUI;
 		public string Text { get; set; } = "__ __ __ __ __ __ __ __ ";
 		public bool IsCompleted { get; set; } = false;
 
 		public int DrawOrder => 100;
 
-		public TerminalBuffer(SpriteFont font, Texture2D bufferUI)
+		public TerminalBuffer(SpriteFont armadaFont, Texture2D bufferUI)
 		{
-			_font = font;
+			_armadaFont = armadaFont;			
 			_bufferUI = bufferUI;
 		}
 
@@ -24,9 +24,9 @@ namespace CipherListTerminal.Entities
 			spriteBatch.Draw(_bufferUI, new Vector2(160, 85), null,
 				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			spriteBatch.DrawString(_font, "Buffer:", new Vector2(170, 95), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Buffer:", new Vector2(170, 95), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			spriteBatch.DrawString(_font, Text, new Vector2(180, 150), Color.White);
+			spriteBatch.DrawString(_armadaFont, Text, new Vector2(180, 150), Color.White);
 		}
 
 		public void Update(GameTime gameTime)
