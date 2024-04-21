@@ -14,7 +14,7 @@ namespace CipherListTerminal.Entities
 
 		private string[] _possibleValues;
 		private Random _random = new Random();
-		private SpriteFont _font;
+		private SpriteFont _font;		
 		private int _targetNumber;
 
 		public CipherList(SpriteFont font, string[] possibleValues, int numberOfValues, int pointValue,

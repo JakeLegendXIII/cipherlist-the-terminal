@@ -25,6 +25,8 @@ namespace CipherListTerminal
 		private Texture2D _backgroundTexture;
 		private Texture2D _matrixUI;
 		private Texture2D _bufferUI;
+		private Texture2D _scoreUI;
+		private Texture2D _keysUI;
 
 		private TerminalBuffer _terminalBuffer;
 		private PuzzleMatrix _matrix;
@@ -68,8 +70,10 @@ namespace CipherListTerminal
 			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG3");
 			_matrixUI = Content.Load<Texture2D>("Sprites/MatrixUI");
 			_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
+			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI");
+			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
 
-			_scoreBoard = new ScoreBoard(_font);
+			_scoreBoard = new ScoreBoard(_font, _scoreUI);
 			SetupNewPuzzle();			
 		}
 
@@ -136,6 +140,11 @@ namespace CipherListTerminal
 			// _spriteBatch.DrawString(_font, "Scale: " + _scale.ToString(), new Vector2(600, 100), Color.White);
 			_matrix.Draw(_spriteBatch, gameTime, _scale);
 			_terminalBuffer.Draw(_spriteBatch, gameTime, _scale);
+
+			_spriteBatch.Draw(_keysUI, new Vector2(580, 180), null,
+								Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+			_spriteBatch.DrawString(_font, "Target Keys:", new Vector2(590, 190), Color.White);
+
 			_targetList1.Draw(_spriteBatch, gameTime, _scale);
 			_targetList2.Draw(_spriteBatch, gameTime, _scale);
 			_targetList3.Draw(_spriteBatch, gameTime, _scale);
