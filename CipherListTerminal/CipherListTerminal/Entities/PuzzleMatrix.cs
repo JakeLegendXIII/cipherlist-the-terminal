@@ -293,6 +293,10 @@ namespace CipherListTerminal.Entities
 			{
 				return (int)(10 * 1.5);
 			}
+			if (scale < 1f)
+			{
+				return (int)(10 * 1.5);
+			}
 
 			return (int)(10 * scale);
 		}
