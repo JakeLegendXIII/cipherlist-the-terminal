@@ -65,7 +65,7 @@ namespace CipherListTerminal
 			_renderTarget = new RenderTarget2D(GraphicsDevice, _nativeWidth, _nativeHeight);
 
 			_font = Content.Load<SpriteFont>("TestFont");
-			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG2");
+			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG3");
 			_matrixUI = Content.Load<Texture2D>("Sprites/MatrixUI");
 			_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
 

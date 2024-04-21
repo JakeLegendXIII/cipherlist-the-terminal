@@ -37,7 +37,7 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/MatrixUI.png
 
-#begin Sprites/RoughBG2.png
+#begin Sprites/RoughBG3.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -47,7 +47,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/RoughBG2.png
+/build:Sprites/RoughBG3.png
 
 #begin TestFont.spritefont
 /importer:FontDescriptionImporter
