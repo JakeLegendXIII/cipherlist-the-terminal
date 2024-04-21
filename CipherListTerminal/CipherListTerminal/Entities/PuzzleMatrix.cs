@@ -26,7 +26,7 @@ namespace CipherListTerminal.Entities
 		private int _cellWidth = 50;
 		private int _cellHeight = 50;
 		private int _startX = 200;
-		private int _startY = 250;
+		private int _startY = 290;
 		private int _matrixWidth;
 		private int _matrixHeight;
 

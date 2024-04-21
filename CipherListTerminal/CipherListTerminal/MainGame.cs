@@ -24,6 +24,7 @@ namespace CipherListTerminal
 		private SpriteFont _font;
 		private Texture2D _backgroundTexture;
 		private Texture2D _matrixUI;
+		private Texture2D _bufferUI;
 
 		private TerminalBuffer _terminalBuffer;
 		private PuzzleMatrix _matrix;
@@ -66,6 +67,7 @@ namespace CipherListTerminal
 			_font = Content.Load<SpriteFont>("TestFont");
 			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG2");
 			_matrixUI = Content.Load<Texture2D>("Sprites/MatrixUI");
+			_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
 
 			_scoreBoard = new ScoreBoard(_font);
 			SetupNewPuzzle();			
@@ -73,7 +75,7 @@ namespace CipherListTerminal
 
 		private void SetupNewPuzzle()
 		{
-			_terminalBuffer = new TerminalBuffer(_font);
+			_terminalBuffer = new TerminalBuffer(_font, _bufferUI);
 
 			// Create the starting Matrix
 			_matrix = new PuzzleMatrix(_font, _matrixUI, possibleValues);
