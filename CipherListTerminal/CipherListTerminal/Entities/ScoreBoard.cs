@@ -19,7 +19,7 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
-			spriteBatch.Draw(_scoreUI, new Vector2(580, 70), null,
+			spriteBatch.Draw(_scoreUI, new Vector2(580, 85), null,
 								Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			spriteBatch.DrawString(_font, "Score: " + Score, new Vector2(600, 100), Color.White);

@@ -81,7 +81,7 @@ namespace CipherListTerminal
 
 		private void SetupNewPuzzle()
 		{
-			_terminalBuffer = new TerminalBuffer(_armadaFont, _arialFont, _bufferUI);
+			_terminalBuffer = new TerminalBuffer(_armadaFont, _bufferUI);
 
 			// Create the starting Matrix
 			_matrix = new PuzzleMatrix(_armadaFont, _matrixUI, possibleValues);
@@ -143,9 +143,9 @@ namespace CipherListTerminal
 			_matrix.Draw(_spriteBatch, gameTime, _scale);
 			_terminalBuffer.Draw(_spriteBatch, gameTime, _scale);
 
-			_spriteBatch.Draw(_keysUI, new Vector2(580, 180), null,
+			_spriteBatch.Draw(_keysUI, new Vector2(580, 215), null,
 								Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-			_spriteBatch.DrawString(_armadaFont, "Target Keys:", new Vector2(590, 190), Color.White);
+			_spriteBatch.DrawString(_armadaFont, "Target Keys:", new Vector2(590, 225), Color.White);
 
 			_targetList1.Draw(_spriteBatch, gameTime, _scale);
 			_targetList2.Draw(_spriteBatch, gameTime, _scale);

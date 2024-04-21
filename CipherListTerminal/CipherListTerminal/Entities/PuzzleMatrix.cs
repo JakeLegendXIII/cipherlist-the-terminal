@@ -64,7 +64,7 @@ namespace CipherListTerminal.Entities
 			_spriteBatch.Draw(_matrixUI, new Vector2(_startX - 30, _startY - 75), null, 
 				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			_spriteBatch.DrawString(_font, "Matrix", new Vector2(_startX + 100, _startY - 60), Color.White);
+			_spriteBatch.DrawString(_font, "Matrix", new Vector2(_startX + 100, _startY - 65), Color.White);
 
 			int highlightColumn = -1;
 			int highlightCell = -1;
