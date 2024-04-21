@@ -23,6 +23,9 @@ namespace CipherListTerminal.Entities
 			// Draw the Background UI			
 			spriteBatch.Draw(_bufferUI, new Vector2(160, 85), null,
 				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			spriteBatch.DrawString(_font, "Buffer:", new Vector2(170, 95), Color.White);
+
 			spriteBatch.DrawString(_font, Text, new Vector2(180, 150), Color.White);
 		}
 
