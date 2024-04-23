@@ -25,6 +25,7 @@ namespace CipherListTerminal
 
 		private SpriteFont _armadaFont;
 		private SpriteFont _arialFont;
+		private Texture2D _menuLogo;
 		private Texture2D _backgroundTexture;
 		private Texture2D _matrixUI;
 		private Texture2D _bufferUI;
@@ -61,6 +62,7 @@ namespace CipherListTerminal
 		{
 			base.Initialize();
 			CalculateRenderDestination();
+			GameState = GameStates.Menu;
 		}
 
 		protected override void LoadContent()
@@ -71,6 +73,7 @@ namespace CipherListTerminal
 
 			_armadaFont = Content.Load<SpriteFont>("Fonts/ArmadaBold");
 			_arialFont = Content.Load<SpriteFont>("TestFont");
+			_menuLogo = Content.Load<Texture2D>("Sprites/RoughMenu");
 			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG3");
 			_matrixUI = Content.Load<Texture2D>("Sprites/MatrixUI");
 			_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
@@ -100,32 +103,44 @@ namespace CipherListTerminal
 		{
 			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
 				Exit();
-			
+
 			InputManager.Update(_renderDestination, _scale);
-			_matrix.Update(gameTime);
-
-			if (InputManager.IsKeyPressed(Keys.F5))
-			{
-				SetupNewPuzzle();
-			}
-
 			if (InputManager.IsKeyPressed(Keys.F11))
 			{
 				_graphics.ToggleFullScreen();
 				// CalculateRenderDestination();
 			}
 
-			if (_terminalBuffer.IsCompleted)
-			{
-				_remainingDelay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-				if (_remainingDelay <= 0)
+			if (GameState == GameStates.Menu)
+			{				
+				if (InputManager.IsKeyPressed(Keys.Enter))
 				{
-					_remainingDelay = _completedDelay;
-					_terminalBuffer.IsCompleted = false;
-					SetupNewPuzzle();
+					GameState = GameStates.FreePlay;
 				}
 			}
+			else if (GameState == GameStates.FreePlay)
+			{
+				
+				_matrix.Update(gameTime);
+
+				if (InputManager.IsKeyPressed(Keys.F5))
+				{
+					SetupNewPuzzle();
+				}
+			
+				if (_terminalBuffer.IsCompleted)
+				{
+					_remainingDelay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+					if (_remainingDelay <= 0)
+					{
+						_remainingDelay = _completedDelay;
+						_terminalBuffer.IsCompleted = false;
+						SetupNewPuzzle();
+					}
+				}
+			}			
 
 			base.Update(gameTime);
 		}
@@ -141,19 +156,26 @@ namespace CipherListTerminal
 
 			_spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _nativeWidth, _nativeHeight), Color.White);
 
-			// _spriteBatch.DrawString(_font, "Scale: " + _scale.ToString(), new Vector2(600, 100), Color.White);
-			_matrix.Draw(_spriteBatch, gameTime, _scale);
-			_terminalBuffer.Draw(_spriteBatch, gameTime, _scale);
+			if (GameState == GameStates.Menu)
+			{
+				_spriteBatch.Draw(_menuLogo, new Rectangle((_renderTarget.Width / 2) - 200, (_renderTarget.Height / 2) - 250, 500, 200), Color.White);
+			}
+			else if (GameState == GameStates.FreePlay)
+			{				
+				// _spriteBatch.DrawString(_font, "Scale: " + _scale.ToString(), new Vector2(600, 100), Color.White);
+				_matrix.Draw(_spriteBatch, gameTime, _scale);
+				_terminalBuffer.Draw(_spriteBatch, gameTime, _scale);
 
-			_spriteBatch.Draw(_keysUI, new Vector2(580, 215), null,
-								Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-			_spriteBatch.DrawString(_armadaFont, "Target Keys:", new Vector2(590, 225), Color.White);
+				_spriteBatch.Draw(_keysUI, new Vector2(580, 215), null,
+									Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+				_spriteBatch.DrawString(_armadaFont, "Target Keys:", new Vector2(590, 225), Color.White);
 
-			_targetList1.Draw(_spriteBatch, gameTime, _scale);
-			_targetList2.Draw(_spriteBatch, gameTime, _scale);
-			_targetList3.Draw(_spriteBatch, gameTime, _scale);
+				_targetList1.Draw(_spriteBatch, gameTime, _scale);
+				_targetList2.Draw(_spriteBatch, gameTime, _scale);
+				_targetList3.Draw(_spriteBatch, gameTime, _scale);
 
-			_scoreBoard.Draw(_spriteBatch, gameTime, _scale);
+				_scoreBoard.Draw(_spriteBatch, gameTime, _scale);
+			}			
 
 			_spriteBatch.End();
 
