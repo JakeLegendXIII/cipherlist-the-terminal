@@ -19,6 +19,8 @@ namespace CipherListTerminal
 		private int _nativeHeight = 800;
 		private bool _isResizing;
 
+		public GameStates GameState;
+
 		string[] possibleValues = { "1C", "55", "BD", "FF", "E9", "1C", "55" };
 
 		private SpriteFont _armadaFont;
@@ -48,7 +50,7 @@ namespace CipherListTerminal
 			_graphics.PreferredBackBufferHeight = _nativeHeight;
 			_graphics.ApplyChanges();
 
-
+			Window.Title = "CipherList: The Terminal";
 			Window.AllowUserResizing = true;
 			Window.ClientSizeChanged += OnClientSizeChanged;
 
