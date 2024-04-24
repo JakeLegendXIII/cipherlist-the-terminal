@@ -158,7 +158,7 @@ namespace CipherListTerminal
 
 			if (GameState == GameStates.Menu)
 			{
-				_spriteBatch.Draw(_menuLogo, new Rectangle((_renderTarget.Width / 2) - 200, (_renderTarget.Height / 2) - 250, 500, 200), Color.White);
+				_spriteBatch.Draw(_menuLogo, new Rectangle((_renderTarget.Width / 2) - 264, (_renderTarget.Height / 2) - 250, 500, 200), Color.White);
 			}
 			else if (GameState == GameStates.FreePlay)
 			{				
