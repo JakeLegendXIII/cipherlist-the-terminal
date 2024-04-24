@@ -5,6 +5,9 @@ using CipherListTerminal.Entities;
 using System;
 using CipherListTerminal.Input;
 using CipherListTerminal.Core;
+using System.Diagnostics;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CipherListTerminal
 {
@@ -19,6 +22,7 @@ namespace CipherListTerminal
 		private int _nativeWidth = 1280;
 		private int _nativeHeight = 800;
 		private bool _isResizing;
+		private const string SAVE_FILE_NAME = "Save.dat";
 
 		public GameStates GameState;
 
@@ -294,6 +298,63 @@ namespace CipherListTerminal
 			// Remove the substring from the original string and insert the new substring
 			string result = source.Remove(place, find.Length).Insert(place, replace);
 			return result;
+		}
+
+		public void SaveGame()
+		{
+			//SaveState saveState = new SaveState
+			//{
+			//	FreePlayHighscore = _scoreBoard.HighScore,
+			//	HighscoreDate = _highscoreDate
+			//};
+
+			//try
+			//{
+			//	using (FileStream fileStream = new FileStream(SAVE_FILE_NAME, FileMode.Create))
+			//	{
+			//		BinaryFormatter binaryFormatter = new BinaryFormatter();
+			//		binaryFormatter.Serialize(fileStream, saveState);
+			//	}
+			//}
+			//catch (Exception ex)
+			//{
+			//	Debug.WriteLine("An error occurred while saving the game: " + ex.Message);
+			//}
+
+		}
+
+		private void LoadSaveState()
+		{
+			//try
+			//{
+			//	using (FileStream fileStream = new FileStream(SAVE_FILE_NAME, FileMode.OpenOrCreate))
+			//	{
+			//		BinaryFormatter binaryFormatter = new BinaryFormatter();
+
+			//		if (binaryFormatter.Deserialize(fileStream) is SaveState saveState)
+			//		{
+			//			if (_scoreBoard != null)
+			//				_scoreBoard.HighScore = saveState.Highscore;
+
+			//			_highscoreDate = saveState.HighscoreDate;
+
+			//		}
+
+			//	}
+			//}
+			//catch (Exception ex)
+			//{
+			//	Debug.WriteLine("An error occurred while loading the game: " + ex.Message);
+			//}
+		}
+
+		private void ResetSaveState()
+		{
+			//_scoreBoard.HighScore = 0;
+			//_highscoreDate = default(DateTime);
+
+			//SaveGame();
+
 		}
 	}
 }

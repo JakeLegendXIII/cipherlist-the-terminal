@@ -5,7 +5,7 @@ namespace CipherListTerminal.Core
 	[Serializable]
 	public class SaveState
 	{
-		public int HighScore { get; set; }
-		public DateTime HighScoreDate { get; set; }
+		public int FreePlayHighScore { get; set; }
+		public DateTime FreePlayHighScoreDate { get; set; }
 	}
 }
