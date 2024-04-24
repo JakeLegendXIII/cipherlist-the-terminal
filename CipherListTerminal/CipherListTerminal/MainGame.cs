@@ -100,10 +100,7 @@ namespace CipherListTerminal
 		}
 
 		protected override void Update(GameTime gameTime)
-		{
-			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-				Exit();
-
+		{			
 			InputManager.Update(_renderDestination, _scale);
 			if (InputManager.IsKeyPressed(Keys.F11))
 			{
@@ -111,9 +108,11 @@ namespace CipherListTerminal
 				// CalculateRenderDestination();
 			}
 
-
 			if (GameState == GameStates.Menu)
-			{				
+			{
+				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
+					Exit();
+
 				if (InputManager.IsKeyPressed(Keys.Enter))
 				{
 					GameState = GameStates.FreePlay;
@@ -121,7 +120,11 @@ namespace CipherListTerminal
 			}
 			else if (GameState == GameStates.FreePlay)
 			{
-				
+				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
+				{
+					GameState = GameStates.Menu;
+				}
+
 				_matrix.Update(gameTime);
 
 				if (InputManager.IsKeyPressed(Keys.F5))
