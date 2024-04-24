@@ -4,10 +4,11 @@ using Microsoft.Xna.Framework.Input;
 using CipherListTerminal.Entities;
 using System;
 using CipherListTerminal.Input;
+using CipherListTerminal.Core;
 
 namespace CipherListTerminal
 {
-	public class MainGame : Game
+    public class MainGame : Game
 	{
 		private GraphicsDeviceManager _graphics;
 		private SpriteBatch _spriteBatch;
