@@ -81,7 +81,7 @@ namespace CipherListTerminal
 			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI");
 			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
 
-			_scoreBoard = new ScoreBoard(_armadaFont, _scoreUI);
+			SetupScoreBoard();
 			SetupNewPuzzle();			
 		}
 
@@ -98,6 +98,11 @@ namespace CipherListTerminal
 			_targetList1 = new CipherList(_armadaFont, possibleValues, 3, 300, 1);
 			_targetList2 = new CipherList(_armadaFont, possibleValues, 4, 450, 2);
 			_targetList3 = new CipherList(_armadaFont, possibleValues, 5, 700, 3);			
+		}
+
+		private void SetupScoreBoard()
+		{
+			_scoreBoard = new ScoreBoard(_armadaFont, _scoreUI);
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -124,6 +129,8 @@ namespace CipherListTerminal
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
 				{
 					GameState = GameStates.Menu;
+					SetupNewPuzzle();
+					SetupScoreBoard();
 				}
 
 				_matrix.Update(gameTime);
