@@ -7,7 +7,6 @@ using CipherListTerminal.Input;
 using CipherListTerminal.Core;
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CipherListTerminal
 {
@@ -25,6 +24,7 @@ namespace CipherListTerminal
 		private const string SAVE_FILE_NAME = "Save.dat";
 
 		public GameStates GameState;
+		public SaveState CurrentSaveState;
 
 		string[] possibleValues = { "1C", "55", "BD", "FF", "E9", "1C", "55" };
 
@@ -68,6 +68,7 @@ namespace CipherListTerminal
 			base.Initialize();
 			CalculateRenderDestination();
 			GameState = GameStates.Menu;
+			CurrentSaveState = LoadSaveState();
 		}
 
 		protected override void LoadContent()
@@ -142,6 +143,11 @@ namespace CipherListTerminal
 				if (InputManager.IsKeyPressed(Keys.F5))
 				{
 					SetupNewPuzzle();
+				}
+
+				if (InputManager.IsKeyPressed(Keys.F8))
+				{
+					ResetSaveState();
 				}
 			
 				if (_terminalBuffer.IsCompleted)
@@ -301,60 +307,47 @@ namespace CipherListTerminal
 		}
 
 		public void SaveGame()
-		{
-			//SaveState saveState = new SaveState
-			//{
-			//	FreePlayHighscore = _scoreBoard.HighScore,
-			//	HighscoreDate = _highscoreDate
-			//};
+		{			
+			try
+			{
+				using (StreamWriter writer = new StreamWriter(SAVE_FILE_NAME))
+				{					
+					string firstColumn = CurrentSaveState.FreePlayHighScore.ToString().PadRight(20);
+					string secondColumn = CurrentSaveState.FreePlayHighScoreDate.ToShortDateString().PadRight(10);
 
-			//try
-			//{
-			//	using (FileStream fileStream = new FileStream(SAVE_FILE_NAME, FileMode.Create))
-			//	{
-			//		BinaryFormatter binaryFormatter = new BinaryFormatter();
-			//		binaryFormatter.Serialize(fileStream, saveState);
-			//	}
-			//}
-			//catch (Exception ex)
-			//{
-			//	Debug.WriteLine("An error occurred while saving the game: " + ex.Message);
-			//}
-
+					writer.WriteLine($"{firstColumn}{secondColumn}");
+				}
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine("An error occurred while saving the game: " + ex.Message);
+			}
 		}
 
-		private void LoadSaveState()
+		private SaveState LoadSaveState()
 		{
-			//try
-			//{
-			//	using (FileStream fileStream = new FileStream(SAVE_FILE_NAME, FileMode.OpenOrCreate))
-			//	{
-			//		BinaryFormatter binaryFormatter = new BinaryFormatter();
+			SaveState saveState = new SaveState();
 
-			//		if (binaryFormatter.Deserialize(fileStream) is SaveState saveState)
-			//		{
-			//			if (_scoreBoard != null)
-			//				_scoreBoard.HighScore = saveState.Highscore;
+			try
+			{
+				
 
-			//			_highscoreDate = saveState.HighscoreDate;
-
-			//		}
-
-			//	}
-			//}
-			//catch (Exception ex)
-			//{
-			//	Debug.WriteLine("An error occurred while loading the game: " + ex.Message);
-			//}
+				return saveState;
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine("An error occurred while loading the game: " + ex.Message);
+				return saveState;
+			}
 		}
 
 		private void ResetSaveState()
 		{
-			//_scoreBoard.HighScore = 0;
-			//_highscoreDate = default(DateTime);
+			_scoreBoard.HighScore = 0;
+			CurrentSaveState.FreePlayHighScore = 0;
+			CurrentSaveState.FreePlayHighScoreDate = default(DateTime);			
 
-			//SaveGame();
-
+			SaveGame();
 		}
 	}
 }
