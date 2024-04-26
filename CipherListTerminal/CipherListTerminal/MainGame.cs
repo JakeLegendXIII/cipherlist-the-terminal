@@ -65,10 +65,10 @@ namespace CipherListTerminal
 
 		protected override void Initialize()
 		{
+			CurrentSaveState = LoadSaveState();
 			base.Initialize();
 			CalculateRenderDestination();
-			GameState = GameStates.Menu;
-			CurrentSaveState = LoadSaveState();
+			GameState = GameStates.Menu;						
 		}
 
 		protected override void LoadContent()
@@ -84,10 +84,7 @@ namespace CipherListTerminal
 			_matrixUI = Content.Load<Texture2D>("Sprites/MatrixUI");
 			_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
 			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI");
-			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
-
-			SetupScoreBoard();
-			SetupNewPuzzle();			
+			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");	
 		}
 
 		private void SetupNewPuzzle()
@@ -127,11 +124,13 @@ namespace CipherListTerminal
 
 				if (InputManager.IsKeyPressed(Keys.Enter))
 				{
+					SetupScoreBoard();
+					SetupNewPuzzle();
 					GameState = GameStates.FreePlay;
 				}
 			}
 			else if (GameState == GameStates.FreePlay)
-			{
+			{				
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
 				{
 					CheckScore();
@@ -343,7 +342,15 @@ namespace CipherListTerminal
 
 			try
 			{
-				
+				using (StreamReader reader = new StreamReader(SAVE_FILE_NAME))
+				{
+					string line = reader.ReadLine();
+					if (line != null)
+					{
+						saveState.FreePlayHighScore = int.Parse(line.Substring(0, 20).Trim());
+						saveState.FreePlayHighScoreDate = DateTime.Parse(line.Substring(20, 10).Trim());
+					}
+				}
 
 				return saveState;
 			}
