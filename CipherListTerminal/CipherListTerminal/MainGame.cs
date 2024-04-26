@@ -108,6 +108,7 @@ namespace CipherListTerminal
 		private void SetupScoreBoard()
 		{
 			_scoreBoard = new ScoreBoard(_armadaFont, _scoreUI);
+			_scoreBoard.HighScore = CurrentSaveState.FreePlayHighScore;
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -133,9 +134,10 @@ namespace CipherListTerminal
 			{
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
 				{
+					CheckScore();
 					GameState = GameStates.Menu;
 					SetupNewPuzzle();
-					SetupScoreBoard();
+					SetupScoreBoard();					
 				}
 
 				_matrix.Update(gameTime);
@@ -164,7 +166,7 @@ namespace CipherListTerminal
 			}			
 
 			base.Update(gameTime);
-		}
+		}	
 
 		protected override void Draw(GameTime gameTime)
 		{
@@ -304,6 +306,17 @@ namespace CipherListTerminal
 			// Remove the substring from the original string and insert the new substring
 			string result = source.Remove(place, find.Length).Insert(place, replace);
 			return result;
+		}
+
+		private void CheckScore()
+		{
+			if (_scoreBoard.Score > CurrentSaveState.FreePlayHighScore)
+			{
+				CurrentSaveState.FreePlayHighScore = _scoreBoard.Score;
+				CurrentSaveState.FreePlayHighScoreDate = DateTime.Now;
+
+				SaveGame();
+			}
 		}
 
 		public void SaveGame()
