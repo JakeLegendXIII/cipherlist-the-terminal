@@ -85,28 +85,7 @@ namespace CipherListTerminal
 			_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
 			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI");
 			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");	
-		}
-
-		private void SetupNewPuzzle()
-		{
-			_terminalBuffer = new TerminalBuffer(_armadaFont, _bufferUI);
-
-			// Create the starting Matrix
-			_matrix = new PuzzleMatrix(_armadaFont, _matrixUI, possibleValues);
-
-			_matrix.MatrixSelectionEvent += HandleSelectedMatrixEvent;
-
-			// Create the target CipherLists using the possibleValues
-			_targetList1 = new CipherList(_armadaFont, possibleValues, 3, 300, 1);
-			_targetList2 = new CipherList(_armadaFont, possibleValues, 4, 450, 2);
-			_targetList3 = new CipherList(_armadaFont, possibleValues, 5, 700, 3);			
-		}
-
-		private void SetupScoreBoard()
-		{
-			_scoreBoard = new ScoreBoard(_armadaFont, _scoreUI);
-			_scoreBoard.HighScore = CurrentSaveState.FreePlayHighScore;
-		}
+		}	
 
 		protected override void Update(GameTime gameTime)
 		{			
@@ -238,6 +217,26 @@ namespace CipherListTerminal
 			_renderDestination.Y = (size.Y - _renderDestination.Height) / 2;			
 		}
 
+		private void SetupNewPuzzle()
+		{
+			_terminalBuffer = new TerminalBuffer(_armadaFont, _bufferUI);
+
+			// Create the starting Matrix
+			_matrix = new PuzzleMatrix(_armadaFont, _matrixUI, possibleValues);
+
+			_matrix.MatrixSelectionEvent += HandleSelectedMatrixEvent;
+
+			// Create the target CipherLists using the possibleValues
+			_targetList1 = new CipherList(_armadaFont, possibleValues, 3, 300, 1);
+			_targetList2 = new CipherList(_armadaFont, possibleValues, 4, 450, 2);
+			_targetList3 = new CipherList(_armadaFont, possibleValues, 5, 700, 3);
+		}
+
+		private void SetupScoreBoard()
+		{
+			_scoreBoard = new ScoreBoard(_armadaFont, _scoreUI);
+			_scoreBoard.HighScore = CurrentSaveState.FreePlayHighScore;
+		}
 
 		private void HandleSelectedMatrixEvent(string selectedValue)
 		{
