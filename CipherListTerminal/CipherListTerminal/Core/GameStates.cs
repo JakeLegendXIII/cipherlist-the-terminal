@@ -4,5 +4,6 @@
     {
         Menu,
         FreePlay,
+        Summary,
     }
 }
