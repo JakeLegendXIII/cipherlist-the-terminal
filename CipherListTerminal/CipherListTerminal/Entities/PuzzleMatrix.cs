@@ -270,21 +270,21 @@ namespace CipherListTerminal.Entities
 				}				
 			}
 
-			if (InputManager.IsGamePadConnected())
-			{
-				GamePadState gamePadState = InputManager.GetGamePadState();
+			//if (InputManager.IsGamePadConnected())
+			//{
+			//	GamePadState gamePadState = InputManager.GetGamePadState();
 			
 
-				if (InputManager.IsGamePadButtonPressed(Buttons.A))
-				{
-					CurrentlySelectedValue = _matrix[_displayRowIndex, _displayColumnIndex];
-					_selectedRowIndex = _displayRowIndex;
-					_selectedColumnIndex = _displayColumnIndex;
-					_matrix[_selectedRowIndex, _selectedColumnIndex] = "__";
+			//	if (InputManager.IsGamePadButtonPressed(Buttons.A))
+			//	{
+			//		CurrentlySelectedValue = _matrix[_displayRowIndex, _displayColumnIndex];
+			//		_selectedRowIndex = _displayRowIndex;
+			//		_selectedColumnIndex = _displayColumnIndex;
+			//		_matrix[_selectedRowIndex, _selectedColumnIndex] = "__";
 
-					MatrixSelectionEvent?.Invoke(CurrentlySelectedValue);
-				}
-			}
+			//		MatrixSelectionEvent?.Invoke(CurrentlySelectedValue);
+			//	}
+			//}
 		}
 
 		private int GetScaleValue(float scale)

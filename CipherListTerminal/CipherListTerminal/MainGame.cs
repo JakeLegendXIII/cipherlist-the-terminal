@@ -224,16 +224,28 @@ namespace CipherListTerminal
 		{
 			_terminalBuffer = new TerminalBuffer(_armadaFont, _bufferUI);
 
+			// Create the possible values for the Matrix and CipherLists
+			int randomIndex = _random.Next(0, 99);
+			string[] possibleValue;
+			if (randomIndex > 90)
+			{
+				possibleValue = possibleValuesExpanded;
+			}
+			else
+			{
+				possibleValue = possibleValues;
+			}			
+
 			// Create the starting Matrix
-			_matrix = new PuzzleMatrix(_armadaFont, _matrixUI, possibleValues);
+			_matrix = new PuzzleMatrix(_armadaFont, _matrixUI, possibleValue);
 
 			_matrix.MatrixSelectionEvent += HandleSelectedMatrixEvent;
 
 			// Create the target CipherLists using the possibleValues
-			_targetList1 = new CipherList(_armadaFont, possibleValues, 3, 300, 1);
-			_targetList2 = new CipherList(_armadaFont, possibleValues, 4, 450, 2);
-			_targetList3 = new CipherList(_armadaFont, possibleValues, 5, 700, 3);
-		}
+			_targetList1 = new CipherList(_armadaFont, possibleValue, 3, 300, 1);
+			_targetList2 = new CipherList(_armadaFont, possibleValue, 4, 450, 2);
+			_targetList3 = new CipherList(_armadaFont, possibleValue, 5, 700, 3);
+		}	
 
 		private void SetupScoreBoard()
 		{
