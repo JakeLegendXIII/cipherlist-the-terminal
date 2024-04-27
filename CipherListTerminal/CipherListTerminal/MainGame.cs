@@ -27,6 +27,7 @@ namespace CipherListTerminal
 		public SaveState CurrentSaveState;
 
 		string[] possibleValues = { "1C", "55", "BD", "FF", "E9", "1C", "55" };
+		string[] possibleValuesExpanded = { "1C", "55", "BD", "FF", "E9", "7A", "1C", "55" };
 
 		private SpriteFont _armadaFont;
 		private SpriteFont _arialFont;
@@ -43,6 +44,8 @@ namespace CipherListTerminal
 		private CipherList _targetList2;
 		private CipherList _targetList3;
 		private ScoreBoard _scoreBoard;
+
+		private Random _random = new Random();
 
 		private const float _completedDelay = 1f;
 		private float _remainingDelay = _completedDelay;
