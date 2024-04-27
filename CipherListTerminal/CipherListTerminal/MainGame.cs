@@ -227,7 +227,7 @@ namespace CipherListTerminal
 			// Create the possible values for the Matrix and CipherLists
 			int randomIndex = _random.Next(0, 99);
 			string[] possibleValue;
-			if (randomIndex > 90)
+			if (randomIndex > 80)
 			{
 				possibleValue = possibleValuesExpanded;
 			}
