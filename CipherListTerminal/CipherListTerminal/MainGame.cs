@@ -81,7 +81,7 @@ namespace CipherListTerminal
 			_renderTarget = new RenderTarget2D(GraphicsDevice, _nativeWidth, _nativeHeight);
 
 			_armadaFont = Content.Load<SpriteFont>("Fonts/ArmadaBold");
-			_arialFont = Content.Load<SpriteFont>("TestFont");
+			_arialFont = Content.Load<SpriteFont>("Fonts/Arial");
 			_menuLogo = Content.Load<Texture2D>("Sprites/RoughMenu");
 			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG3");
 			_matrixUI = Content.Load<Texture2D>("Sprites/MatrixUI");
