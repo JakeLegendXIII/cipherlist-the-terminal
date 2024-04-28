@@ -279,7 +279,7 @@ namespace CipherListTerminal
 
 		private void SetupSummary()
 		{
-			_summary = new Summary(_matrixUI, _armadaFont, _farawayFont);
+			_summary = new Summary(_matrixUI, _armadaFont);
 			_summary.Score = _scoreBoard.Score;
 		}
 

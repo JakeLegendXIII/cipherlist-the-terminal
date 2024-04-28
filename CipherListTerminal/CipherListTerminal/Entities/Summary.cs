@@ -12,13 +12,11 @@ namespace CipherListTerminal.Entities
 		private Texture2D _summaryUI;
 
 		private SpriteFont _armadaFont;
-		private SpriteFont _farawayFont;
 
-		public Summary(Texture2D summaryUI, SpriteFont armadaFont, SpriteFont farawayFont)
+		public Summary(Texture2D summaryUI, SpriteFont armadaFont)
 		{
 			_summaryUI = summaryUI;
 			_armadaFont = armadaFont;
-			_farawayFont = farawayFont;
 		}
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
@@ -29,7 +27,7 @@ namespace CipherListTerminal.Entities
 			spriteBatch.DrawString(_armadaFont, "Summary", new Vector2(170, 95), Color.White, 
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			spriteBatch.DrawString(_farawayFont, "Score: " + Score, new Vector2(180, 150), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Score: " + Score, new Vector2(180, 150), Color.White);
 		}
 
 		public void Update(GameTime gameTime)
