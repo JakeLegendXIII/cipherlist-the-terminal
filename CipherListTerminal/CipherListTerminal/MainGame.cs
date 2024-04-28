@@ -86,13 +86,14 @@ namespace CipherListTerminal
 			_armadaFont = Content.Load<SpriteFont>("Fonts/ArmadaBold");
 			_arialFont = Content.Load<SpriteFont>("Fonts/Arial");
 			_farawayFont = Content.Load<SpriteFont>("Fonts/Faraway");
+
 			_menuLogo = Content.Load<Texture2D>("Sprites/RoughMenu");
 			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG3");
 			_matrixUI = Content.Load<Texture2D>("Sprites/MatrixUI");
 			_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
 			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI");
 			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");	
-		}	
+		}
 
 		protected override void Update(GameTime gameTime)
 		{			
@@ -120,9 +121,8 @@ namespace CipherListTerminal
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
 				{
 					CheckScore();
-					GameState = GameStates.Menu;
-					SetupNewPuzzle();
-					SetupScoreBoard();					
+					GameState = GameStates.Summary;
+					SetupSummary();				
 				}
 
 				_matrix.Update(gameTime);
@@ -151,11 +151,23 @@ namespace CipherListTerminal
 			}
 			else if (GameState == GameStates.Summary)
 			{
+				_summary.Update(gameTime);
 
+				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
+				{
+					GameState = GameStates.Menu;
+					SetupNewPuzzle();
+					SetupScoreBoard();
+				}
+
+				if (InputManager.IsKeyPressed(Keys.Enter))
+				{
+					GameState = GameStates.FreePlay;					
+				}
 			}
 
 			base.Update(gameTime);
-		}	
+		}
 
 		protected override void Draw(GameTime gameTime)
 		{
@@ -190,7 +202,7 @@ namespace CipherListTerminal
 			}
 			else if (GameState == GameStates.Summary)
 			{
-				_spriteBatch.DrawString(_armadaFont, "Game Over", new Vector2(300, 100), Color.White);
+				_summary.Draw(_spriteBatch, gameTime, _scale);
 			}
 
 			_spriteBatch.End();
@@ -263,6 +275,12 @@ namespace CipherListTerminal
 		{
 			_scoreBoard = new ScoreBoard(_armadaFont, _scoreUI);
 			_scoreBoard.HighScore = CurrentSaveState.FreePlayHighScore;
+		}
+
+		private void SetupSummary()
+		{
+			_summary = new Summary(_matrixUI, _armadaFont, _farawayFont);
+			_summary.Score = _scoreBoard.Score;
 		}
 
 		private void HandleSelectedMatrixEvent(string selectedValue)

@@ -7,16 +7,29 @@ namespace CipherListTerminal.Entities
 	{
 		public int DrawOrder => 0;
 
+		public int Score { get; set; } = 0;
+
 		private Texture2D _summaryUI;
 
-		public Summary(Texture2D summaryUI)
+		private SpriteFont _armadaFont;
+		private SpriteFont _farawayFont;
+
+		public Summary(Texture2D summaryUI, SpriteFont armadaFont, SpriteFont farawayFont)
 		{
 			_summaryUI = summaryUI;
+			_armadaFont = armadaFont;
+			_farawayFont = farawayFont;
 		}
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
-		{
+		{			
+			spriteBatch.Draw(_summaryUI, new Vector2(160, 85), null, Color.White, 
+				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
+			spriteBatch.DrawString(_armadaFont, "Summary", new Vector2(170, 95), Color.White, 
+				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			spriteBatch.DrawString(_farawayFont, "Score: " + Score, new Vector2(180, 150), Color.White);
 		}
 
 		public void Update(GameTime gameTime)
