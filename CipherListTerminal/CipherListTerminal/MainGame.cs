@@ -281,6 +281,8 @@ namespace CipherListTerminal
 		{
 			_summary = new Summary(_matrixUI, _armadaFont);
 			_summary.Score = _scoreBoard.Score;
+			_summary.HighScore = CurrentSaveState.FreePlayHighScore;
+			_summary.HighScoreDate = CurrentSaveState.FreePlayHighScoreDate;
 		}
 
 		private void HandleSelectedMatrixEvent(string selectedValue)
