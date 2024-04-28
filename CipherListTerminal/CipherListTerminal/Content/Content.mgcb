@@ -27,6 +27,13 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ArmadaBold.spritefont
 
+#begin Fonts/Faraway.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Faraway.spritefont
+
 #begin Sprites/BufferUI.png
 /importer:TextureImporter
 /processor:TextureProcessor

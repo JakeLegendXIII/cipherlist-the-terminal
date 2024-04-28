@@ -31,6 +31,8 @@ namespace CipherListTerminal
 
 		private SpriteFont _armadaFont;
 		private SpriteFont _arialFont;
+		private SpriteFont _farawayFont;
+
 		private Texture2D _menuLogo;
 		private Texture2D _backgroundTexture;
 		private Texture2D _matrixUI;
@@ -44,6 +46,7 @@ namespace CipherListTerminal
 		private CipherList _targetList2;
 		private CipherList _targetList3;
 		private ScoreBoard _scoreBoard;
+		private Summary _summary;
 
 		private Random _random = new Random();
 
@@ -82,6 +85,7 @@ namespace CipherListTerminal
 
 			_armadaFont = Content.Load<SpriteFont>("Fonts/ArmadaBold");
 			_arialFont = Content.Load<SpriteFont>("Fonts/Arial");
+			_farawayFont = Content.Load<SpriteFont>("Fonts/Faraway");
 			_menuLogo = Content.Load<Texture2D>("Sprites/RoughMenu");
 			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG3");
 			_matrixUI = Content.Load<Texture2D>("Sprites/MatrixUI");
@@ -144,7 +148,11 @@ namespace CipherListTerminal
 						SetupNewPuzzle();
 					}
 				}
-			}			
+			}
+			else if (GameState == GameStates.Summary)
+			{
+
+			}
 
 			base.Update(gameTime);
 		}	
@@ -179,7 +187,11 @@ namespace CipherListTerminal
 				_targetList3.Draw(_spriteBatch, gameTime, _scale);
 
 				_scoreBoard.Draw(_spriteBatch, gameTime, _scale);
-			}			
+			}
+			else if (GameState == GameStates.Summary)
+			{
+				_spriteBatch.DrawString(_armadaFont, "Game Over", new Vector2(300, 100), Color.White);
+			}
 
 			_spriteBatch.End();
 
