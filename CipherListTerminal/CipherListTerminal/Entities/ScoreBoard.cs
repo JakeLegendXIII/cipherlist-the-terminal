@@ -5,7 +5,6 @@ namespace CipherListTerminal.Entities
 {
 	internal class ScoreBoard : IGameEntity
 	{
-		public int DrawOrder => 0;
 		public int Score { get; set; } = 0;
 		public int HighScore { get; set; }
 

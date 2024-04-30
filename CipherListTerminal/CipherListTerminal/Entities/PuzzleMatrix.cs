@@ -9,7 +9,6 @@ namespace CipherListTerminal.Entities
 {
 	internal class PuzzleMatrix : IGameEntity
 	{
-		public int DrawOrder => 0;
 		private string[,] _matrix = new string[6, 6];
 		private string[] _possibleValues;
 		private SpriteFont _font;

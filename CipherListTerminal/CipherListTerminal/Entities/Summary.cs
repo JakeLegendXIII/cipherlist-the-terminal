@@ -6,8 +6,6 @@ namespace CipherListTerminal.Entities
 {
 	public class Summary : IGameEntity
 	{
-		public int DrawOrder => 0;
-
 		public int Score { get; set; } = 0;
 		public int HighScore { get; set; }
 		public DateTime HighScoreDate { get; set; }

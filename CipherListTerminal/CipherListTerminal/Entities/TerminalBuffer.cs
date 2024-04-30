@@ -10,8 +10,6 @@ namespace CipherListTerminal.Entities
 		public string Text { get; set; } = "__ __ __ __ __ __ __ __ ";
 		public bool IsCompleted { get; set; } = false;
 
-		public int DrawOrder => 100;
-
 		public TerminalBuffer(SpriteFont armadaFont, Texture2D bufferUI)
 		{
 			_armadaFont = armadaFont;			

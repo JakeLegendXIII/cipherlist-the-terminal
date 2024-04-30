@@ -6,7 +6,6 @@ namespace CipherListTerminal.Entities
 {
 	internal class CipherList : IGameEntity
 	{
-		public int DrawOrder => 0;
 		public int PointValue { get; private set; }
 		public int NumberOfValues { get; private set; }
 		public string[] CipherListValues { get; private set; }
