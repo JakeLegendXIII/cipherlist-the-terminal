@@ -98,7 +98,7 @@ namespace CipherListTerminal
 		protected override void Update(GameTime gameTime)
 		{			
 			InputManager.Update(_renderDestination, _scale);
-			if (InputManager.IsKeyPressed(Keys.F11))
+			if (InputManager.IsKeyDown(Keys.F11))
 			{
 				_graphics.ToggleFullScreen();
 				// CalculateRenderDestination();

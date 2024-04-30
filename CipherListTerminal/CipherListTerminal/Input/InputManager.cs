@@ -39,6 +39,11 @@ namespace CipherListTerminal.Input
 			return keyboardState.IsKeyDown(key) && lastKeyboardState.IsKeyUp(key);
 		}
 
+		public static bool IsKeyDown(Keys key)
+		{
+			return keyboardState.IsKeyDown(key);
+		}
+
 		public static Vector2 GetTransformedMousePosition()
 		{
 			Vector2 transformedMousePosition = new Vector2((mouseState.X - (_renderTarget.X + (200 * _scale))) / _scale,
