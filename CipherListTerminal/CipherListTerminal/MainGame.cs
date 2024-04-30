@@ -53,6 +53,9 @@ namespace CipherListTerminal
 		private const float _completedDelay = 1f;
 		private float _remainingDelay = _completedDelay;
 
+		private const float _singlePuzzleTimer = 60f;
+		private float _remainingPuzzleTime = _singlePuzzleTimer;
+
 		public MainGame()
 		{
 			_graphics = new GraphicsDeviceManager(this);
@@ -104,6 +107,11 @@ namespace CipherListTerminal
 				// CalculateRenderDestination();
 			}
 
+			if (InputManager.IsKeyPressed(Keys.F8))
+			{
+				ResetSaveState();
+			}
+
 			if (GameState == GameStates.Menu)
 			{
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
@@ -130,11 +138,6 @@ namespace CipherListTerminal
 				if (InputManager.IsKeyPressed(Keys.F5))
 				{
 					SetupNewPuzzle();
-				}
-
-				if (InputManager.IsKeyPressed(Keys.F8))
-				{
-					ResetSaveState();
 				}
 			
 				if (_terminalBuffer.IsCompleted)

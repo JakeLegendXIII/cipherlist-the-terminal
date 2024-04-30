@@ -4,6 +4,8 @@
     {
         Menu,
         FreePlay,
+        TimeTrial,
+        SinglePuzzleTimed,
         Summary,
     }
 }
