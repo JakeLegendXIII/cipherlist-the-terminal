@@ -5,6 +5,5 @@ Based on the breach protocol style matrix puzzles. The goal is to select values 
 
 Planned game modes:
 * Free play mode where you can just solve the puzzles for fun or practice.
-* Timed mode where you are given only 60 seconds per puzzle?
-* Timed mode where you get as many points as possible in 3-5minutes?
-* Tutorial with walk through steps.
+* Timed mode where you are given only 60 seconds per puzzle.
+* Timed mode where you get as many points as possible in 3-5minutes.
