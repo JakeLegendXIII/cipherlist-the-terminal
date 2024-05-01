@@ -21,6 +21,11 @@ namespace CipherListTerminal
 		private int _nativeWidth = 1280;
 		private int _nativeHeight = 800;
 		private bool _isResizing;
+		bool _isFullscreen = false;
+		bool _isBorderless = false;
+		int _width = 0;
+		int _height = 0;
+
 		private const string SAVE_FILE_NAME = "Save.dat";
 
 		public GameStates GameState;
@@ -103,7 +108,8 @@ namespace CipherListTerminal
 			InputManager.Update(_renderDestination, _scale);
 			if (InputManager.IsKeyDown(Keys.F11))
 			{
-				_graphics.ToggleFullScreen();
+				// _graphics.ToggleFullScreen();
+				ToggleFullscreen();
 				// CalculateRenderDestination();
 			}
 
@@ -417,6 +423,76 @@ namespace CipherListTerminal
 			CurrentSaveState.FreePlayHighScoreDate = default(DateTime);			
 
 			SaveGame();
+		}
+
+
+		// Learn MonoGame how-to Fullscreen and Borderless code
+		public void ToggleFullscreen()
+		{
+			bool oldIsFullscreen = _isFullscreen;
+
+			if (_isBorderless)
+			{
+				_isBorderless = false;
+			}
+			else
+			{
+				_isFullscreen = !_isFullscreen;
+			}
+
+			ApplyFullscreenChange(oldIsFullscreen);
+		}
+		public void ToggleBorderless()
+		{
+			bool oldIsFullscreen = _isFullscreen;
+
+			_isBorderless = !_isBorderless;
+			_isFullscreen = _isBorderless;
+
+			ApplyFullscreenChange(oldIsFullscreen);
+		}
+
+		private void ApplyFullscreenChange(bool oldIsFullscreen)
+		{
+			if (_isFullscreen)
+			{
+				if (oldIsFullscreen)
+				{
+					ApplyHardwareMode();
+				}
+				else
+				{
+					SetFullscreen();
+				}
+			}
+			else
+			{
+				UnsetFullscreen();
+			}
+		}
+		private void ApplyHardwareMode()
+		{
+			_graphics.HardwareModeSwitch = !_isBorderless;
+			_graphics.ApplyChanges();
+		}
+		private void SetFullscreen()
+		{
+			_width = Window.ClientBounds.Width;
+			_height = Window.ClientBounds.Height;
+
+			_graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+			_graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+			_graphics.HardwareModeSwitch = !_isBorderless;
+
+			_graphics.IsFullScreen = true;
+			_graphics.ApplyChanges();
+		}
+		private void UnsetFullscreen()
+		{
+			_graphics.PreferredBackBufferWidth = _width;
+			_graphics.PreferredBackBufferHeight = _height;
+			_graphics.IsFullScreen = false;
+			_graphics.ApplyChanges();
 		}
 	}
 }
