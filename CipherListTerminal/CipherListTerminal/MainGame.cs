@@ -10,7 +10,7 @@ using System.IO;
 
 namespace CipherListTerminal
 {
-    public class MainGame : Game
+	public class MainGame : Game
 	{
 		private GraphicsDeviceManager _graphics;
 		private SpriteBatch _spriteBatch;
@@ -77,7 +77,7 @@ namespace CipherListTerminal
 			CurrentSaveState = LoadSaveState();
 			base.Initialize();
 			CalculateRenderDestination();
-			GameState = GameStates.Menu;						
+			GameState = GameStates.Menu;
 		}
 
 		protected override void LoadContent()
@@ -95,11 +95,11 @@ namespace CipherListTerminal
 			_matrixUI = Content.Load<Texture2D>("Sprites/MatrixUI");
 			_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
 			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI");
-			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");	
+			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
 		}
 
 		protected override void Update(GameTime gameTime)
-		{			
+		{
 			InputManager.Update(_renderDestination, _scale);
 			if (InputManager.IsKeyDown(Keys.F11))
 			{
@@ -123,14 +123,21 @@ namespace CipherListTerminal
 					SetupNewPuzzle();
 					GameState = GameStates.FreePlay;
 				}
+
+				if (InputManager.IsKeyPressed(Keys.R))
+				{
+					SetupScoreBoard();
+					SetupNewPuzzle();
+					GameState = GameStates.SinglePuzzleTimed;
+				}
 			}
 			else if (GameState == GameStates.FreePlay)
-			{				
+			{
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
 				{
 					CheckScore();
 					GameState = GameStates.Summary;
-					SetupSummary();				
+					SetupSummary();
 				}
 
 				_matrix.Update(gameTime);
@@ -139,7 +146,7 @@ namespace CipherListTerminal
 				{
 					SetupNewPuzzle();
 				}
-			
+
 				if (_terminalBuffer.IsCompleted)
 				{
 					_remainingDelay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -147,6 +154,43 @@ namespace CipherListTerminal
 					if (_remainingDelay <= 0)
 					{
 						_remainingDelay = _completedDelay;
+						_terminalBuffer.IsCompleted = false;
+						SetupNewPuzzle();
+					}
+				}
+			}
+			else if (GameState == GameStates.SinglePuzzleTimed)
+			{
+				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
+				{
+					CheckScore();
+					GameState = GameStates.Summary;
+					SetupSummary();
+				}
+
+				_matrix.Update(gameTime);
+
+				if (InputManager.IsKeyPressed(Keys.F5))
+				{
+					SetupNewPuzzle();
+				}
+
+				_remainingPuzzleTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+				if (_remainingPuzzleTime <= 0)
+				{
+					_remainingPuzzleTime = _singlePuzzleTimer;
+					SetupNewPuzzle();
+				}
+
+				if (_terminalBuffer.IsCompleted)
+				{
+					_remainingDelay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+					if (_remainingDelay <= 0)
+					{
+						_remainingDelay = _completedDelay;
+						_remainingPuzzleTime = _singlePuzzleTimer;
 						_terminalBuffer.IsCompleted = false;
 						SetupNewPuzzle();
 					}
@@ -165,7 +209,7 @@ namespace CipherListTerminal
 
 				if (InputManager.IsKeyPressed(Keys.Enter))
 				{
-					GameState = GameStates.FreePlay;					
+					GameState = GameStates.FreePlay;
 				}
 			}
 
@@ -187,8 +231,8 @@ namespace CipherListTerminal
 			{
 				_spriteBatch.Draw(_menuLogo, new Rectangle((_renderTarget.Width / 2) - 264, (_renderTarget.Height / 2) - 250, 500, 200), Color.White);
 			}
-			else if (GameState == GameStates.FreePlay)
-			{				
+			else if (GameState == GameStates.FreePlay || GameState == GameStates.SinglePuzzleTimed)
+			{
 				// _spriteBatch.DrawString(_font, "Scale: " + _scale.ToString(), new Vector2(600, 100), Color.White);
 				_matrix.Draw(_spriteBatch, gameTime, _scale);
 				_terminalBuffer.Draw(_spriteBatch, gameTime, _scale);
@@ -197,11 +241,17 @@ namespace CipherListTerminal
 									Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 				_spriteBatch.DrawString(_armadaFont, "Target Keys:", new Vector2(590, 225), Color.White);
 
+
 				_targetList1.Draw(_spriteBatch, gameTime, _scale);
 				_targetList2.Draw(_spriteBatch, gameTime, _scale);
 				_targetList3.Draw(_spriteBatch, gameTime, _scale);
 
 				_scoreBoard.Draw(_spriteBatch, gameTime, _scale);
+				if (GameState == GameStates.SinglePuzzleTimed)
+				{
+					_spriteBatch.DrawString(_armadaFont, "Puzzle Time Remaining: " + _remainingPuzzleTime.ToString(), new Vector2(650, 65), Color.White);
+				}
+
 			}
 			else if (GameState == GameStates.Summary)
 			{
@@ -211,7 +261,7 @@ namespace CipherListTerminal
 			_spriteBatch.End();
 
 			GraphicsDevice.SetRenderTarget(null);
-			
+
 			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 			_spriteBatch.Draw(_renderTarget, _renderDestination, Color.White);
 			_spriteBatch.End();
@@ -233,7 +283,7 @@ namespace CipherListTerminal
 
 		private void CalculateRenderDestination()
 		{
-			Point size = GraphicsDevice.Viewport.Bounds.Size;			
+			Point size = GraphicsDevice.Viewport.Bounds.Size;
 
 			float scaleX = (float)size.X / _renderTarget.Width;
 			float scaleY = (float)size.Y / _renderTarget.Height;
@@ -244,7 +294,7 @@ namespace CipherListTerminal
 			_renderDestination.Height = (int)(_renderTarget.Height * _scale);
 
 			_renderDestination.X = (size.X - _renderDestination.Width) / 2;
-			_renderDestination.Y = (size.Y - _renderDestination.Height) / 2;			
+			_renderDestination.Y = (size.Y - _renderDestination.Height) / 2;
 		}
 
 		private void SetupNewPuzzle()
@@ -261,7 +311,7 @@ namespace CipherListTerminal
 			else
 			{
 				possibleValue = possibleValues;
-			}			
+			}
 
 			// Create the starting Matrix
 			_matrix = new PuzzleMatrix(_armadaFont, _matrixUI, possibleValue);
@@ -272,7 +322,7 @@ namespace CipherListTerminal
 			_targetList1 = new CipherList(_armadaFont, possibleValue, 3, 300, 1);
 			_targetList2 = new CipherList(_armadaFont, possibleValue, 4, 450, 2);
 			_targetList3 = new CipherList(_armadaFont, possibleValue, 5, 700, 3);
-		}	
+		}
 
 		private void SetupScoreBoard()
 		{
@@ -312,7 +362,7 @@ namespace CipherListTerminal
 						_scoreBoard.Score += _targetList1.PointValue;
 					}
 				}
-				
+
 				if (!_targetList2.IsCompleted)
 				{
 					string cipher2Text = "";
@@ -368,11 +418,11 @@ namespace CipherListTerminal
 		}
 
 		public void SaveGame()
-		{			
+		{
 			try
 			{
 				using (StreamWriter writer = new StreamWriter(SAVE_FILE_NAME))
-				{					
+				{
 					string firstColumn = CurrentSaveState.FreePlayHighScore.ToString().PadRight(20);
 					string secondColumn = CurrentSaveState.FreePlayHighScoreDate.ToShortDateString().PadRight(10);
 
@@ -414,7 +464,7 @@ namespace CipherListTerminal
 		{
 			_scoreBoard.HighScore = 0;
 			CurrentSaveState.FreePlayHighScore = 0;
-			CurrentSaveState.FreePlayHighScoreDate = default(DateTime);			
+			CurrentSaveState.FreePlayHighScoreDate = default(DateTime);
 
 			SaveGame();
 		}
