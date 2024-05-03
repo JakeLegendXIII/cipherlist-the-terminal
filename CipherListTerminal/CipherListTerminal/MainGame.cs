@@ -29,6 +29,7 @@ namespace CipherListTerminal
 		private const string SAVE_FILE_NAME = "Save.dat";
 
 		public GameStates GameState;
+		public GameStates PreviousGameState;
 		public SaveState CurrentSaveState;
 
 		string[] possibleValues = { "1C", "55", "BD", "FF", "E9", "1C", "55" };
@@ -128,6 +129,7 @@ namespace CipherListTerminal
 					SetupScoreBoard();
 					SetupNewPuzzle();
 					GameState = GameStates.FreePlay;
+					PreviousGameState = GameStates.Menu;
 				}
 
 				if (InputManager.IsKeyPressed(Keys.R))
@@ -135,6 +137,7 @@ namespace CipherListTerminal
 					SetupScoreBoard();
 					SetupNewPuzzle();
 					GameState = GameStates.SinglePuzzleTimed;
+					PreviousGameState = GameStates.Menu;
 				}
 			}
 			else if (GameState == GameStates.FreePlay)
@@ -143,6 +146,7 @@ namespace CipherListTerminal
 				{
 					CheckScore();
 					GameState = GameStates.Summary;
+					PreviousGameState = GameStates.FreePlay;
 					SetupSummary();
 				}
 
@@ -171,6 +175,7 @@ namespace CipherListTerminal
 				{
 					CheckScore();
 					GameState = GameStates.Summary;
+					PreviousGameState = GameStates.SinglePuzzleTimed;
 					SetupSummary();
 				}
 
@@ -215,7 +220,8 @@ namespace CipherListTerminal
 
 				if (InputManager.IsKeyPressed(Keys.Enter))
 				{
-					GameState = GameStates.FreePlay;
+					GameState = PreviousGameState;
+					PreviousGameState = GameStates.Summary;
 				}
 			}
 
