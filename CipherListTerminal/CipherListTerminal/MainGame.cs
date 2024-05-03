@@ -61,6 +61,8 @@ namespace CipherListTerminal
 
 		private const float _singlePuzzleTimer = 60f;
 		private float _remainingPuzzleTime = _singlePuzzleTimer;
+		private const int _puzzleCount = 10;
+		private int _remainingPuzzles = _puzzleCount;
 
 		public MainGame()
 		{
@@ -184,6 +186,7 @@ namespace CipherListTerminal
 				if (InputManager.IsKeyPressed(Keys.F5))
 				{
 					SetupNewPuzzle();
+					_remainingPuzzles--;
 				}
 
 				_remainingPuzzleTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -192,6 +195,7 @@ namespace CipherListTerminal
 				{
 					_remainingPuzzleTime = _singlePuzzleTimer;
 					SetupNewPuzzle();
+					_remainingPuzzles--;
 				}
 
 				if (_terminalBuffer.IsCompleted)
@@ -204,7 +208,18 @@ namespace CipherListTerminal
 						_remainingPuzzleTime = _singlePuzzleTimer;
 						_terminalBuffer.IsCompleted = false;
 						SetupNewPuzzle();
+						_remainingPuzzles--;
 					}
+				}
+
+				if (_remainingPuzzles <= 0)
+				{
+					CheckScore();
+					GameState = GameStates.Summary;
+					PreviousGameState = GameStates.SinglePuzzleTimed;
+					SetupSummary();
+
+					_remainingPuzzles = _puzzleCount;
 				}
 			}
 			else if (GameState == GameStates.Summary)
@@ -339,15 +354,32 @@ namespace CipherListTerminal
 		private void SetupScoreBoard()
 		{
 			_scoreBoard = new ScoreBoard(_armadaFont, _scoreUI);
-			_scoreBoard.HighScore = CurrentSaveState.FreePlayHighScore;
+
+			if (GameState == GameStates.FreePlay)
+			{
+				_scoreBoard.HighScore = CurrentSaveState.FreePlayHighScore;
+			}
+			else if (GameState == GameStates.SinglePuzzleTimed)
+			{
+				_scoreBoard.HighScore = CurrentSaveState.TimeTrialHighScore;
+			}
 		}
 
 		private void SetupSummary()
 		{
 			_summary = new Summary(_matrixUI, _armadaFont);
 			_summary.Score = _scoreBoard.Score;
-			_summary.HighScore = CurrentSaveState.FreePlayHighScore;
-			_summary.HighScoreDate = CurrentSaveState.FreePlayHighScoreDate;
+
+			if (GameState == GameStates.FreePlay)
+			{
+				_summary.HighScore = CurrentSaveState.FreePlayHighScore;
+				_summary.HighScoreDate = CurrentSaveState.FreePlayHighScoreDate;
+			}
+			else if (GameState == GameStates.SinglePuzzleTimed)
+			{
+				_summary.HighScore = CurrentSaveState.TimeTrialHighScore;
+				_summary.HighScoreDate = CurrentSaveState.TimeTrialHighScoreDate;
+			}
 		}
 
 		private void HandleSelectedMatrixEvent(string selectedValue)
@@ -420,13 +452,21 @@ namespace CipherListTerminal
 
 		private void CheckScore()
 		{
-			if (_scoreBoard.Score > CurrentSaveState.FreePlayHighScore)
+			if (GameState == GameStates.FreePlay && _scoreBoard.Score > CurrentSaveState.FreePlayHighScore)
 			{
 				CurrentSaveState.FreePlayHighScore = _scoreBoard.Score;
 				CurrentSaveState.FreePlayHighScoreDate = DateTime.Now;
 
 				SaveGame();
 			}
+			else if (GameState == GameStates.SinglePuzzleTimed && _scoreBoard.Score > CurrentSaveState.TimeTrialHighScore)
+			{
+				CurrentSaveState.FreePlayHighScore = _scoreBoard.Score;
+				CurrentSaveState.FreePlayHighScoreDate = DateTime.Now;
+
+				SaveGame();
+			}
+
 		}
 
 		public void SaveGame()
@@ -437,8 +477,10 @@ namespace CipherListTerminal
 				{
 					string firstColumn = CurrentSaveState.FreePlayHighScore.ToString().PadRight(20);
 					string secondColumn = CurrentSaveState.FreePlayHighScoreDate.ToShortDateString().PadRight(10);
+					string thirdColumn = CurrentSaveState.TimeTrialHighScore.ToString().PadRight(20);
+					string fourthColumn = CurrentSaveState.TimeTrialHighScoreDate.ToShortDateString().PadRight(10);
 
-					writer.WriteLine($"{firstColumn}{secondColumn}");
+					writer.WriteLine($"{firstColumn}{secondColumn}{thirdColumn}{fourthColumn}");
 				}
 			}
 			catch (Exception ex)
@@ -460,6 +502,8 @@ namespace CipherListTerminal
 					{
 						saveState.FreePlayHighScore = int.Parse(line.Substring(0, 20).Trim());
 						saveState.FreePlayHighScoreDate = DateTime.Parse(line.Substring(20, 10).Trim());
+						saveState.TimeTrialHighScore = int.Parse(line.Substring(30, 20).Trim());
+						saveState.TimeTrialHighScoreDate = DateTime.Parse(line.Substring(50, 10).Trim());
 					}
 				}
 
