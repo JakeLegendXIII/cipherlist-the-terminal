@@ -277,7 +277,7 @@ namespace CipherListTerminal
 				_scoreBoard.Draw(_spriteBatch, gameTime, _scale);
 				if (GameState == GameStates.SinglePuzzleTimed)
 				{
-					_spriteBatch.DrawString(_armadaFont, "Puzzle Time Remaining: " + _remainingPuzzleTime.ToString(), new Vector2(650, 65), Color.White);
+					_spriteBatch.DrawString(_armadaFont, "Time Left: " + _remainingPuzzleTime.ToString("0.00"), new Vector2(650, 65), Color.White);
 				}
 
 			}
