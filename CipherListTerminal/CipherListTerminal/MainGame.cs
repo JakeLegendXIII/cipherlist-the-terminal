@@ -177,9 +177,9 @@ namespace CipherListTerminal
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
 				{
 					CheckScore();
-					GameState = GameStates.Summary;
-					PreviousGameState = GameStates.SinglePuzzleTimed;
 					SetupSummary();
+					GameState = GameStates.Summary;
+					PreviousGameState = GameStates.SinglePuzzleTimed;					
 				}
 
 				_matrix.Update(gameTime);
@@ -229,9 +229,18 @@ namespace CipherListTerminal
 
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
 				{
+					if (PreviousGameState == GameStates.SinglePuzzleTimed)
+					{
+						_remainingPuzzleTime = _singlePuzzleTimer;
+						_remainingPuzzles = _puzzleCount;
+					}
+
 					GameState = GameStates.Menu;
+					PreviousGameState = GameStates.Summary;
 					SetupNewPuzzle();
 					SetupScoreBoard();
+
+
 				}
 
 				if (InputManager.IsKeyPressed(Keys.Enter))
