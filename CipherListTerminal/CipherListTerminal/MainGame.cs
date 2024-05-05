@@ -128,18 +128,19 @@ namespace CipherListTerminal
 
 				if (InputManager.IsKeyPressed(Keys.Enter))
 				{
-					SetupScoreBoard();
+					
 					SetupNewPuzzle();
 					GameState = GameStates.FreePlay;
 					PreviousGameState = GameStates.Menu;
+					SetupScoreBoard();
 				}
 
 				if (InputManager.IsKeyPressed(Keys.R))
-				{
-					SetupScoreBoard();
+				{					
 					SetupNewPuzzle();
 					GameState = GameStates.SinglePuzzleTimed;
 					PreviousGameState = GameStates.Menu;
+					SetupScoreBoard();
 				}
 			}
 			else if (GameState == GameStates.FreePlay)
@@ -215,10 +216,10 @@ namespace CipherListTerminal
 				if (_remainingPuzzles <= 0)
 				{
 					CheckScore();
+					SetupSummary();
 					GameState = GameStates.Summary;
 					PreviousGameState = GameStates.SinglePuzzleTimed;
-					SetupSummary();
-
+					
 					_remainingPuzzles = _puzzleCount;
 				}
 			}
@@ -299,7 +300,7 @@ namespace CipherListTerminal
 		private void OnClientSizeChanged(object sender, EventArgs e)
 		{
 			if (!_isResizing && Window.ClientBounds.Width > 0 && Window.ClientBounds.Height > 0)
-			{
+			{				
 				_isResizing = true;
 
 				CalculateRenderDestination();
@@ -461,8 +462,8 @@ namespace CipherListTerminal
 			}
 			else if (GameState == GameStates.SinglePuzzleTimed && _scoreBoard.Score > CurrentSaveState.TimeTrialHighScore)
 			{
-				CurrentSaveState.FreePlayHighScore = _scoreBoard.Score;
-				CurrentSaveState.FreePlayHighScoreDate = DateTime.Now;
+				CurrentSaveState.TimeTrialHighScore = _scoreBoard.Score;
+				CurrentSaveState.TimeTrialHighScoreDate = DateTime.Now;
 
 				SaveGame();
 			}
@@ -476,9 +477,9 @@ namespace CipherListTerminal
 				using (StreamWriter writer = new StreamWriter(SAVE_FILE_NAME))
 				{
 					string firstColumn = CurrentSaveState.FreePlayHighScore.ToString().PadRight(20);
-					string secondColumn = CurrentSaveState.FreePlayHighScoreDate.ToShortDateString().PadRight(10);
+					string secondColumn = CurrentSaveState.FreePlayHighScoreDate.ToString("MM/dd/yyyy").PadRight(10);
 					string thirdColumn = CurrentSaveState.TimeTrialHighScore.ToString().PadRight(20);
-					string fourthColumn = CurrentSaveState.TimeTrialHighScoreDate.ToShortDateString().PadRight(10);
+					string fourthColumn = CurrentSaveState.TimeTrialHighScoreDate.ToString("MM/dd/yyyy").PadRight(10);
 
 					writer.WriteLine($"{firstColumn}{secondColumn}{thirdColumn}{fourthColumn}");
 				}
