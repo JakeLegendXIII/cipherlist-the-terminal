@@ -82,6 +82,18 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/RoughBG3.png
 
+#begin Sprites/RoughButton.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/RoughButton.png
+
 #begin Sprites/RoughMenu.png
 /importer:TextureImporter
 /processor:TextureProcessor

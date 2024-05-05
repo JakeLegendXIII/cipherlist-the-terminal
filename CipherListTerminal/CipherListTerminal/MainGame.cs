@@ -45,6 +45,7 @@ namespace CipherListTerminal
 		private Texture2D _bufferUI;
 		private Texture2D _scoreUI;
 		private Texture2D _keysUI;
+		private Texture2D _buttonUI;
 
 		private TerminalBuffer _terminalBuffer;
 		private PuzzleMatrix _matrix;
@@ -104,6 +105,7 @@ namespace CipherListTerminal
 			_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
 			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI2");
 			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
+			_buttonUI = Content.Load<Texture2D>("Sprites/RoughButton");
 		}
 
 		protected override void Update(GameTime gameTime)
