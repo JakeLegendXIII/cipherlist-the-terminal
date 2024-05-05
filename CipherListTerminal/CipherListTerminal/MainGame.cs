@@ -102,7 +102,7 @@ namespace CipherListTerminal
 			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG3");
 			_matrixUI = Content.Load<Texture2D>("Sprites/MatrixUI");
 			_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
-			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI");
+			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI2");
 			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
 		}
 
@@ -148,9 +148,9 @@ namespace CipherListTerminal
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
 				{
 					CheckScore();
-					GameState = GameStates.Summary;
-					PreviousGameState = GameStates.FreePlay;
 					SetupSummary();
+					GameState = GameStates.Summary;
+					PreviousGameState = GameStates.FreePlay;					
 				}
 
 				_matrix.Update(gameTime);
