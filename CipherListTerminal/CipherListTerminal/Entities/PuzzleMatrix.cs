@@ -69,7 +69,7 @@ namespace CipherListTerminal.Entities
 			int highlightCell = -1;
 			Rectangle highlightRectangle;
 
-			Vector2 transformedMousePosition = InputManager.GetTransformedMousePosition();
+			Vector2 transformedMousePosition = InputManager.GetTransformedMousePosition(_startX, _startY);
 
 			if (State == MatrixState.FirstSelection)
 			{				
@@ -212,7 +212,7 @@ namespace CipherListTerminal.Entities
 	
 		public void Update(GameTime gameTime)
 		{
-			var mouseState = InputManager.GetTransformedMousePosition();
+			var mouseState = InputManager.GetTransformedMousePosition(_startX, _startY);
 			_displayColumnIndex = (int)(mouseState.X / _cellWidth);
 			_displayRowIndex = (int)(mouseState.Y / _cellHeight);
 

@@ -44,19 +44,12 @@ namespace CipherListTerminal.Input
 			return keyboardState.IsKeyDown(key);
 		}
 
-		public static Vector2 GetTransformedMousePosition()
+		public static Vector2 GetTransformedMousePosition(int startX, int startY)
 		{
-			Vector2 transformedMousePosition = new Vector2((mouseState.X - (_renderTarget.X + (200 * _scale))) / _scale,
-																		(mouseState.Y - (_renderTarget.Y + (290 * _scale))) / _scale);
+			Vector2 transformedMousePosition = new Vector2((mouseState.X - (_renderTarget.X + (startX * _scale))) / _scale,
+																		(mouseState.Y - (_renderTarget.Y + (startY * _scale))) / _scale);
 			return transformedMousePosition;
-		}
-
-		public static Vector2 GetMenuTransformedMousePosiiton()
-		{
-			Vector2 transformedMousePosition = new Vector2((mouseState.X - (_renderTarget.X + (200 * _scale))) / _scale,
-																		(mouseState.Y - (_renderTarget.Y + (200 * _scale))) / _scale);
-			return transformedMousePosition;
-		}
+		}		
 
 		public static bool IsGamePadConnected()
 		{

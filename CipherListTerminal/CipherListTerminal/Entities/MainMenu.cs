@@ -1,7 +1,6 @@
 ﻿using CipherListTerminal.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace CipherListTerminal.Entities
 {
@@ -28,32 +27,28 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
-			//Vector2 transformedMousePosition = InputManager.GetMenuTransformedMousePosiiton();
-			MouseState mouseState = InputManager.GetMousePosition();
-			Vector2 transformedMousePosition = new Vector2(mouseState.X, mouseState.Y);
+			Vector2 transformedMousePositionButton1 = InputManager.GetTransformedMousePosition(_buttonPosition1X, _buttonPosition1Y);
+			Vector2 transformedMousePositionButton2 = InputManager.GetTransformedMousePosition(_buttonPosition2X, _buttonPosition2Y);
 
 			spriteBatch.Draw(_menuLogo, new Vector2(400, 125), null,
 					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			spriteBatch.DrawString(_farawayFont, $"MousePos: X:{transformedMousePosition.X} Y:{transformedMousePosition.Y}", new Vector2(425, 150), Color.White);
-			
-			if (transformedMousePosition.X >= _buttonPosition1X && transformedMousePosition.X <= (_buttonPosition1X + 200) &&
-												transformedMousePosition.Y >= _buttonPosition1Y && transformedMousePosition.Y <= (_buttonPosition1Y + 200))
+			if (transformedMousePositionButton1.X >= 0 && transformedMousePositionButton1.X <= 200 &&
+				transformedMousePositionButton1.Y >= 0 && transformedMousePositionButton1.Y <= 200)
 			{
 				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition1X, _buttonPosition1Y), null,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 			else
 			{
-
 				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition1X, _buttonPosition1Y), null,
 					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
 			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(400, 460), Color.White);
 
-			if (transformedMousePosition.X >= _buttonPosition2X && transformedMousePosition.X <= (_buttonPosition2X + 200) &&
-								transformedMousePosition.Y >= _buttonPosition2Y && transformedMousePosition.Y <= (_buttonPosition2Y + 200))
+			if (transformedMousePositionButton2.X >= 0 && transformedMousePositionButton2.X <= 200 &&
+				transformedMousePositionButton2.Y >= 0 && transformedMousePositionButton2.Y <= 200)
 			{
 				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition2X, _buttonPosition2Y), null,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
@@ -69,7 +64,7 @@ namespace CipherListTerminal.Entities
 
 		public void Update(GameTime gameTime)
 		{
-			
+
 		}
 	}
 }
