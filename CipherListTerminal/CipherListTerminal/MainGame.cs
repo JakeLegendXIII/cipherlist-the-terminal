@@ -127,6 +127,8 @@ namespace CipherListTerminal
 
 			if (GameState == GameStates.Menu)
 			{
+				_mainMenu.Update(gameTime);
+
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
 					Exit();
 
@@ -270,7 +272,7 @@ namespace CipherListTerminal
 
 			if (GameState == GameStates.Menu)
 			{
-				_spriteBatch.Draw(_menuLogo, new Rectangle((_renderTarget.Width / 2) - 264, (_renderTarget.Height / 2) - 250, 500, 200), Color.White);
+				_mainMenu.Draw(_spriteBatch, gameTime, _scale);				
 			}
 			else if (GameState == GameStates.FreePlay || GameState == GameStates.SinglePuzzleTimed)
 			{
