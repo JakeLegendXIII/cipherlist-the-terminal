@@ -51,6 +51,13 @@ namespace CipherListTerminal.Input
 			return transformedMousePosition;
 		}
 
+		public static Vector2 GetMenuTransformedMousePosiiton()
+		{
+			Vector2 transformedMousePosition = new Vector2((mouseState.X - (_renderTarget.X + (200 * _scale))) / _scale,
+																		(mouseState.Y - (_renderTarget.Y + (200 * _scale))) / _scale);
+			return transformedMousePosition;
+		}
+
 		public static bool IsGamePadConnected()
 		{
 			return gamePadState.IsConnected;

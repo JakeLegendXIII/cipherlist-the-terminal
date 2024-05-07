@@ -1,6 +1,7 @@
 ﻿using CipherListTerminal.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace CipherListTerminal.Entities
 {
@@ -27,15 +28,17 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
-			Vector2 transformedMousePosition = InputManager.GetTransformedMousePosition();			
+			//Vector2 transformedMousePosition = InputManager.GetMenuTransformedMousePosiiton();
+			MouseState mouseState = InputManager.GetMousePosition();
+			Vector2 transformedMousePosition = new Vector2(mouseState.X, mouseState.Y);
 
 			spriteBatch.Draw(_menuLogo, new Vector2(400, 125), null,
 					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			spriteBatch.DrawString(_farawayFont, $"MousePos: X:{transformedMousePosition.X} Y:{transformedMousePosition.Y}", new Vector2(425, 150), Color.White);
-
-			if (transformedMousePosition.X >= 0 && transformedMousePosition.X < _buttonPosition1X &&
-								transformedMousePosition.Y >= 0 && transformedMousePosition.Y < _buttonPosition1Y)
+			
+			if (transformedMousePosition.X >= _buttonPosition1X && transformedMousePosition.X <= (_buttonPosition1X + 200) &&
+												transformedMousePosition.Y >= _buttonPosition1Y && transformedMousePosition.Y <= (_buttonPosition1Y + 200))
 			{
 				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition1X, _buttonPosition1Y), null,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
@@ -49,8 +52,8 @@ namespace CipherListTerminal.Entities
 
 			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(400, 460), Color.White);
 
-			if (transformedMousePosition.X >= _buttonPosition2X && transformedMousePosition.X < 1280 &&
-								transformedMousePosition.Y >= 0 && transformedMousePosition.Y < _buttonPosition2Y)
+			if (transformedMousePosition.X >= _buttonPosition2X && transformedMousePosition.X <= (_buttonPosition2X + 200) &&
+								transformedMousePosition.Y >= _buttonPosition2Y && transformedMousePosition.Y <= (_buttonPosition2Y + 200))
 			{
 				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition2X, _buttonPosition2Y), null,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
