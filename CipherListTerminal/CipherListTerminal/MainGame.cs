@@ -47,6 +47,7 @@ namespace CipherListTerminal
 		private Texture2D _keysUI;
 		private Texture2D _buttonUI;
 
+		private MainMenu _mainMenu;
 		private TerminalBuffer _terminalBuffer;
 		private PuzzleMatrix _matrix;
 		private CipherList _targetList1;
@@ -86,6 +87,7 @@ namespace CipherListTerminal
 			CurrentSaveState = LoadSaveState();
 			base.Initialize();
 			CalculateRenderDestination();
+			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _farawayFont);
 			GameState = GameStates.Menu;
 		}
 
