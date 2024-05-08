@@ -17,6 +17,9 @@ namespace CipherListTerminal.Entities
 		private int _buttonPosition2X = 650;
 		private int _buttonPosition2Y = 450;
 
+		public delegate void ButtonSelectedEventHandler();
+		public event ButtonSelectedEventHandler ButtonSelectionEvent;
+
 		public MainMenu(Texture2D menuLogo, Texture2D buttonUI, SpriteFont armadaFont, SpriteFont farawayFont)
 		{
 			_menuLogo = menuLogo;
