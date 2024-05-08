@@ -1,4 +1,5 @@
-﻿using CipherListTerminal.Input;
+﻿using CipherListTerminal.Core;
+using CipherListTerminal.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -17,7 +18,7 @@ namespace CipherListTerminal.Entities
 		private int _buttonPosition2X = 650;
 		private int _buttonPosition2Y = 450;
 
-		public delegate void ButtonSelectedEventHandler();
+		public delegate void ButtonSelectedEventHandler(GameStates newGameState);
 		public event ButtonSelectedEventHandler ButtonSelectionEvent;
 
 		public MainMenu(Texture2D menuLogo, Texture2D buttonUI, SpriteFont armadaFont, SpriteFont farawayFont)
@@ -67,7 +68,26 @@ namespace CipherListTerminal.Entities
 
 		public void Update(GameTime gameTime)
 		{
+			Vector2 transformedMousePositionButton1 = InputManager.GetTransformedMousePosition(_buttonPosition1X, _buttonPosition1Y);
+			Vector2 transformedMousePositionButton2 = InputManager.GetTransformedMousePosition(_buttonPosition2X, _buttonPosition2Y);
 
+			if (transformedMousePositionButton1.X >= 0 && transformedMousePositionButton1.X <= 200 &&
+				transformedMousePositionButton1.Y >= 0 && transformedMousePositionButton1.Y <= 200)
+			{
+				if (InputManager.IsLeftMouseButtonDown())
+				{
+					ButtonSelectionEvent?.Invoke(GameStates.FreePlay);
+				}
+			}
+
+			if (transformedMousePositionButton2.X >= 0 && transformedMousePositionButton2.X <= 200 &&
+								transformedMousePositionButton2.Y >= 0 && transformedMousePositionButton2.Y <= 200)
+			{
+				if (InputManager.IsLeftMouseButtonDown())
+				{
+					ButtonSelectionEvent?.Invoke(GameStates.TimeTrial);
+				}
+			}
 		}
 	}
 }
