@@ -18,6 +18,9 @@ namespace CipherListTerminal.Entities
 		private int _buttonPosition2X = 650;
 		private int _buttonPosition2Y = 450;
 
+		private int _buttonWidth = 200;
+		private int _buttonHeight = 200;
+
 		public delegate void MenuButtonSelectedEventHandler(GameStates newGameState);
 		public event MenuButtonSelectedEventHandler MenuButtonSelectionEvent;
 
@@ -37,8 +40,8 @@ namespace CipherListTerminal.Entities
 			spriteBatch.Draw(_menuLogo, new Vector2(400, 125), null,
 					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			if (transformedMousePositionButton1.X >= 0 && transformedMousePositionButton1.X <= 200 &&
-				transformedMousePositionButton1.Y >= 0 && transformedMousePositionButton1.Y <= 200)
+			if (transformedMousePositionButton1.X >= 0 && transformedMousePositionButton1.X <= _buttonWidth &&
+				transformedMousePositionButton1.Y >= 0 && transformedMousePositionButton1.Y <= _buttonHeight)
 			{
 				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition1X, _buttonPosition1Y), null,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
@@ -51,8 +54,8 @@ namespace CipherListTerminal.Entities
 
 			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(400, 460), Color.White);
 
-			if (transformedMousePositionButton2.X >= 0 && transformedMousePositionButton2.X <= 200 &&
-				transformedMousePositionButton2.Y >= 0 && transformedMousePositionButton2.Y <= 200)
+			if (transformedMousePositionButton2.X >= 0 && transformedMousePositionButton2.X <= _buttonWidth &&
+				transformedMousePositionButton2.Y >= 0 && transformedMousePositionButton2.Y <= _buttonHeight)
 			{
 				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition2X, _buttonPosition2Y), null,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
@@ -71,8 +74,8 @@ namespace CipherListTerminal.Entities
 			Vector2 transformedMousePositionButton1 = InputManager.GetTransformedMousePosition(_buttonPosition1X, _buttonPosition1Y);
 			Vector2 transformedMousePositionButton2 = InputManager.GetTransformedMousePosition(_buttonPosition2X, _buttonPosition2Y);
 
-			if (transformedMousePositionButton1.X >= 0 && transformedMousePositionButton1.X <= 200 &&
-				transformedMousePositionButton1.Y >= 0 && transformedMousePositionButton1.Y <= 200)
+			if (transformedMousePositionButton1.X >= 0 && transformedMousePositionButton1.X <= _buttonWidth &&
+				transformedMousePositionButton1.Y >= 0 && transformedMousePositionButton1.Y <= _buttonHeight)
 			{
 				if (InputManager.IsLeftMouseButtonDown())
 				{
@@ -80,8 +83,8 @@ namespace CipherListTerminal.Entities
 				}
 			}
 
-			if (transformedMousePositionButton2.X >= 0 && transformedMousePositionButton2.X <= 200 &&
-								transformedMousePositionButton2.Y >= 0 && transformedMousePositionButton2.Y <= 200)
+			if (transformedMousePositionButton2.X >= 0 && transformedMousePositionButton2.X <= _buttonWidth &&
+								transformedMousePositionButton2.Y >= 0 && transformedMousePositionButton2.Y <= _buttonHeight)
 			{
 				if (InputManager.IsLeftMouseButtonDown())
 				{
