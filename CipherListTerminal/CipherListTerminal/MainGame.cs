@@ -88,6 +88,7 @@ namespace CipherListTerminal
 			base.Initialize();
 			CalculateRenderDestination();
 			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _farawayFont);
+			_mainMenu.MenuButtonSelectionEvent += OnMenuButtonSelection;
 			GameState = GameStates.Menu;
 		}
 
@@ -397,6 +398,17 @@ namespace CipherListTerminal
 				_summary.HighScore = CurrentSaveState.TimeTrialHighScore;
 				_summary.HighScoreDate = CurrentSaveState.TimeTrialHighScoreDate;
 			}
+		}
+
+		private void OnMenuButtonSelection(GameStates newGameState)
+		{
+			if (newGameState == GameStates.SinglePuzzleTimed || newGameState == GameStates.FreePlay)
+			{
+				SetupNewPuzzle();
+				PreviousGameState = GameState;
+				GameState = newGameState;
+				SetupScoreBoard();
+			}			
 		}
 
 		private void HandleSelectedMatrixEvent(string selectedValue)

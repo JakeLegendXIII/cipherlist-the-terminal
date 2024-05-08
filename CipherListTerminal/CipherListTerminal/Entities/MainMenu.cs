@@ -18,8 +18,8 @@ namespace CipherListTerminal.Entities
 		private int _buttonPosition2X = 650;
 		private int _buttonPosition2Y = 450;
 
-		public delegate void ButtonSelectedEventHandler(GameStates newGameState);
-		public event ButtonSelectedEventHandler ButtonSelectionEvent;
+		public delegate void MenuButtonSelectedEventHandler(GameStates newGameState);
+		public event MenuButtonSelectedEventHandler MenuButtonSelectionEvent;
 
 		public MainMenu(Texture2D menuLogo, Texture2D buttonUI, SpriteFont armadaFont, SpriteFont farawayFont)
 		{
@@ -76,7 +76,7 @@ namespace CipherListTerminal.Entities
 			{
 				if (InputManager.IsLeftMouseButtonDown())
 				{
-					ButtonSelectionEvent?.Invoke(GameStates.FreePlay);
+					MenuButtonSelectionEvent?.Invoke(GameStates.FreePlay);
 				}
 			}
 
@@ -85,7 +85,7 @@ namespace CipherListTerminal.Entities
 			{
 				if (InputManager.IsLeftMouseButtonDown())
 				{
-					ButtonSelectionEvent?.Invoke(GameStates.TimeTrial);
+					MenuButtonSelectionEvent?.Invoke(GameStates.SinglePuzzleTimed);
 				}
 			}
 		}
