@@ -37,7 +37,7 @@ namespace CipherListTerminal.Entities
 			Vector2 transformedMousePositionButton1 = InputManager.GetTransformedMousePosition(_buttonPosition1X, _buttonPosition1Y);
 			Vector2 transformedMousePositionButton2 = InputManager.GetTransformedMousePosition(_buttonPosition2X, _buttonPosition2Y);
 
-			spriteBatch.Draw(_menuLogo, new Vector2(350, 125), null,
+			spriteBatch.Draw(_menuLogo, new Vector2(400, 125), null,
 					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			if (transformedMousePositionButton1.X >= 0 && transformedMousePositionButton1.X <= _buttonWidth &&
