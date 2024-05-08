@@ -65,6 +65,9 @@ namespace CipherListTerminal
 		private float _remainingPuzzleTime = _singlePuzzleTimer;
 		private const int _puzzleCount = 10;
 		private int _remainingPuzzles = _puzzleCount;
+		private const float _timeTrialTimer = 300f;
+		private float _remainingTime = _timeTrialTimer;
+		private int _completedPuzzles = 0;
 
 		public MainGame()
 		{
@@ -133,19 +136,26 @@ namespace CipherListTerminal
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
 					Exit();
 
-				if (InputManager.IsKeyPressed(Keys.Enter))
-				{
-					
+				if (InputManager.IsKeyPressed(Keys.F1))
+				{					
 					SetupNewPuzzle();
 					GameState = GameStates.FreePlay;
 					PreviousGameState = GameStates.Menu;
 					SetupScoreBoard();
 				}
 
-				if (InputManager.IsKeyPressed(Keys.R))
+				if (InputManager.IsKeyPressed(Keys.F2))
 				{					
 					SetupNewPuzzle();
 					GameState = GameStates.SinglePuzzleTimed;
+					PreviousGameState = GameStates.Menu;
+					SetupScoreBoard();
+				}
+
+				if (InputManager.IsKeyPressed(Keys.F3))
+				{
+					SetupNewPuzzle();
+					GameState = GameStates.TimeTrial;
 					PreviousGameState = GameStates.Menu;
 					SetupScoreBoard();
 				}
@@ -230,6 +240,49 @@ namespace CipherListTerminal
 					_remainingPuzzles = _puzzleCount;
 				}
 			}
+			else if (GameState == GameStates.TimeTrial)
+			{
+				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
+				{
+					CheckScore();
+					SetupSummary();
+					GameState = GameStates.Summary;
+					PreviousGameState = GameStates.TimeTrial;
+				}
+
+				_matrix.Update(gameTime);
+
+				if (InputManager.IsKeyPressed(Keys.F5))
+				{
+					SetupNewPuzzle();
+					_completedPuzzles++;
+				}
+
+				_remainingTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+				if (_terminalBuffer.IsCompleted)
+				{
+					_remainingDelay -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+					if (_remainingDelay <= 0)
+					{
+						_remainingDelay = _completedDelay;
+						_terminalBuffer.IsCompleted = false;
+						SetupNewPuzzle();
+						_completedPuzzles++;
+					}
+				}
+
+				if (_remainingTime <= 0)
+				{
+					CheckScore();
+					SetupSummary();
+					GameState = GameStates.Summary;
+					PreviousGameState = GameStates.TimeTrial;
+
+					_completedPuzzles = 0;
+				}
+			}
 			else if (GameState == GameStates.Summary)
 			{
 				_summary.Update(gameTime);
@@ -242,12 +295,16 @@ namespace CipherListTerminal
 						_remainingPuzzles = _puzzleCount;
 					}
 
+					if (PreviousGameState == GameStates.TimeTrial)
+					{
+						_remainingTime = _timeTrialTimer;
+						_completedPuzzles = 0;
+					}
+
 					GameState = GameStates.Menu;
 					PreviousGameState = GameStates.Summary;
 					SetupNewPuzzle();
 					SetupScoreBoard();
-
-
 				}
 
 				if (InputManager.IsKeyPressed(Keys.Enter))
@@ -275,7 +332,8 @@ namespace CipherListTerminal
 			{
 				_mainMenu.Draw(_spriteBatch, gameTime, _scale);				
 			}
-			else if (GameState == GameStates.FreePlay || GameState == GameStates.SinglePuzzleTimed)
+			else if (GameState == GameStates.FreePlay || GameState == GameStates.SinglePuzzleTimed ||
+				GameState == GameStates.TimeTrial)
 			{
 				// _spriteBatch.DrawString(_font, "Scale: " + _scale.ToString(), new Vector2(600, 100), Color.White);
 				_matrix.Draw(_spriteBatch, gameTime, _scale);
@@ -295,6 +353,11 @@ namespace CipherListTerminal
 				{
 					_spriteBatch.DrawString(_armadaFont, "Time Left: " + _remainingPuzzleTime.ToString("0.00"), new Vector2(600, 165), Color.White);
 					_spriteBatch.DrawString(_armadaFont, "Puzzles Left: " + _remainingPuzzles.ToString() + "/" + _puzzleCount.ToString(), new Vector2(800, 165), Color.White);
+				}
+				if (GameState == GameStates.TimeTrial)
+				{
+					_spriteBatch.DrawString(_armadaFont, "Time Left: " + _remainingPuzzleTime.ToString("0.00"), new Vector2(600, 165), Color.White);
+					_spriteBatch.DrawString(_armadaFont, "Puzzles Completed: " + _puzzleCount.ToString(), new Vector2(800, 165), Color.White);
 				}
 
 			}
@@ -379,7 +442,7 @@ namespace CipherListTerminal
 			}
 			else if (GameState == GameStates.SinglePuzzleTimed)
 			{
-				_scoreBoard.HighScore = CurrentSaveState.TimeTrialHighScore;
+				_scoreBoard.HighScore = CurrentSaveState.SinglePuzzleHighScore;
 			}
 		}
 
@@ -395,8 +458,8 @@ namespace CipherListTerminal
 			}
 			else if (GameState == GameStates.SinglePuzzleTimed)
 			{
-				_summary.HighScore = CurrentSaveState.TimeTrialHighScore;
-				_summary.HighScoreDate = CurrentSaveState.TimeTrialHighScoreDate;
+				_summary.HighScore = CurrentSaveState.SinglePuzzleHighScore;
+				_summary.HighScoreDate = CurrentSaveState.SinglePuzzleHighScoreDate;
 			}
 		}
 
@@ -488,10 +551,10 @@ namespace CipherListTerminal
 
 				SaveGame();
 			}
-			else if (GameState == GameStates.SinglePuzzleTimed && _scoreBoard.Score > CurrentSaveState.TimeTrialHighScore)
+			else if (GameState == GameStates.SinglePuzzleTimed && _scoreBoard.Score > CurrentSaveState.SinglePuzzleHighScore)
 			{
-				CurrentSaveState.TimeTrialHighScore = _scoreBoard.Score;
-				CurrentSaveState.TimeTrialHighScoreDate = DateTime.Now;
+				CurrentSaveState.SinglePuzzleHighScore = _scoreBoard.Score;
+				CurrentSaveState.SinglePuzzleHighScoreDate = DateTime.Now;
 
 				SaveGame();
 			}
@@ -506,10 +569,12 @@ namespace CipherListTerminal
 				{
 					string firstColumn = CurrentSaveState.FreePlayHighScore.ToString().PadRight(20);
 					string secondColumn = CurrentSaveState.FreePlayHighScoreDate.ToString("MM/dd/yyyy").PadRight(10);
-					string thirdColumn = CurrentSaveState.TimeTrialHighScore.ToString().PadRight(20);
-					string fourthColumn = CurrentSaveState.TimeTrialHighScoreDate.ToString("MM/dd/yyyy").PadRight(10);
+					string thirdColumn = CurrentSaveState.SinglePuzzleHighScore.ToString().PadRight(20);
+					string fourthColumn = CurrentSaveState.SinglePuzzleHighScoreDate.ToString("MM/dd/yyyy").PadRight(10);
+					string fifthColumn = CurrentSaveState.TimeTrialHighScore.ToString().PadRight(20);
+					string sixthColumn = CurrentSaveState.TimeTrialHighScoreDate.ToString("MM/dd/yyyy").PadRight(10);
 
-					writer.WriteLine($"{firstColumn}{secondColumn}{thirdColumn}{fourthColumn}");
+					writer.WriteLine($"{firstColumn}{secondColumn}{thirdColumn}{fourthColumn}{fifthColumn}{sixthColumn}");
 				}
 			}
 			catch (Exception ex)
@@ -531,8 +596,10 @@ namespace CipherListTerminal
 					{
 						saveState.FreePlayHighScore = int.Parse(line.Substring(0, 20).Trim());
 						saveState.FreePlayHighScoreDate = DateTime.Parse(line.Substring(20, 10).Trim());
-						saveState.TimeTrialHighScore = int.Parse(line.Substring(30, 20).Trim());
-						saveState.TimeTrialHighScoreDate = DateTime.Parse(line.Substring(50, 10).Trim());
+						saveState.SinglePuzzleHighScore = int.Parse(line.Substring(30, 20).Trim());
+						saveState.SinglePuzzleHighScoreDate = DateTime.Parse(line.Substring(50, 10).Trim());
+						saveState.TimeTrialHighScore = int.Parse(line.Substring(60, 20).Trim());
+						saveState.TimeTrialHighScoreDate = DateTime.Parse(line.Substring(80, 10).Trim());
 					}
 				}
 
