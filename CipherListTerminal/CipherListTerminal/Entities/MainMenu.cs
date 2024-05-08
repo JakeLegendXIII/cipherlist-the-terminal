@@ -12,11 +12,11 @@ namespace CipherListTerminal.Entities
 		private SpriteFont _armadaFont;
 		private SpriteFont _farawayFont;
 
-		private int _buttonPosition1X = 350;
-		private int _buttonPosition1Y = 450;
+		private int _buttonPosition1X = 300;
+		private int _buttonPosition1Y = 400;
 
-		private int _buttonPosition2X = 650;
-		private int _buttonPosition2Y = 450;
+		private int _buttonPosition2X = 600;
+		private int _buttonPosition2Y = 400;
 
 		private int _buttonWidth = 200;
 		private int _buttonHeight = 200;
@@ -37,7 +37,7 @@ namespace CipherListTerminal.Entities
 			Vector2 transformedMousePositionButton1 = InputManager.GetTransformedMousePosition(_buttonPosition1X, _buttonPosition1Y);
 			Vector2 transformedMousePositionButton2 = InputManager.GetTransformedMousePosition(_buttonPosition2X, _buttonPosition2Y);
 
-			spriteBatch.Draw(_menuLogo, new Vector2(400, 125), null,
+			spriteBatch.Draw(_menuLogo, new Vector2(350, 125), null,
 					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			if (transformedMousePositionButton1.X >= 0 && transformedMousePositionButton1.X <= _buttonWidth &&
@@ -52,7 +52,7 @@ namespace CipherListTerminal.Entities
 					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(400, 460), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(350, 460), Color.White);
 
 			if (transformedMousePositionButton2.X >= 0 && transformedMousePositionButton2.X <= _buttonWidth &&
 				transformedMousePositionButton2.Y >= 0 && transformedMousePositionButton2.Y <= _buttonHeight)
@@ -66,7 +66,7 @@ namespace CipherListTerminal.Entities
 										Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-			spriteBatch.DrawString(_armadaFont, "Time Trial", new Vector2(700, 460), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Time Trial", new Vector2(650, 460), Color.White);
 		}
 
 		public void Update(GameTime gameTime)

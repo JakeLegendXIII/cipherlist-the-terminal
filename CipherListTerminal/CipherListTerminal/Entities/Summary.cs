@@ -11,8 +11,10 @@ namespace CipherListTerminal.Entities
 		public DateTime HighScoreDate { get; set; }
 
 		private Texture2D _summaryUI;
-
 		private SpriteFont _armadaFont;
+
+		private int _summaryUIPositionX = 160;
+		private int _summaryUIPositionY = 85;		
 
 		public Summary(Texture2D summaryUI, SpriteFont armadaFont)
 		{
@@ -22,7 +24,7 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{			
-			spriteBatch.Draw(_summaryUI, new Vector2(160, 85), null, Color.White, 
+			spriteBatch.Draw(_summaryUI, new Vector2(_summaryUIPositionX, _summaryUIPositionY), null, Color.White, 
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			spriteBatch.DrawString(_armadaFont, "Session Summary", new Vector2(170, 95), Color.White, 
