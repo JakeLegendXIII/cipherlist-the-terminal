@@ -356,8 +356,8 @@ namespace CipherListTerminal
 				}
 				if (GameState == GameStates.TimeTrial)
 				{
-					_spriteBatch.DrawString(_armadaFont, "Time Left: " + _remainingPuzzleTime.ToString("0.00"), new Vector2(600, 165), Color.White);
-					_spriteBatch.DrawString(_armadaFont, "Puzzles Completed: " + _puzzleCount.ToString(), new Vector2(800, 165), Color.White);
+					_spriteBatch.DrawString(_armadaFont, "Time Left: " + _remainingTime.ToString("0.00"), new Vector2(600, 165), Color.White);
+					_spriteBatch.DrawString(_armadaFont, "Puzzles Completed: " + _completedPuzzles.ToString(), new Vector2(780, 130), Color.White);
 				}
 
 			}
@@ -444,6 +444,10 @@ namespace CipherListTerminal
 			{
 				_scoreBoard.HighScore = CurrentSaveState.SinglePuzzleHighScore;
 			}
+			else if (GameState == GameStates.TimeTrial)
+			{
+				_scoreBoard.HighScore = CurrentSaveState.TimeTrialHighScore;
+			}
 		}
 
 		private void SetupSummary()
@@ -461,11 +465,16 @@ namespace CipherListTerminal
 				_summary.HighScore = CurrentSaveState.SinglePuzzleHighScore;
 				_summary.HighScoreDate = CurrentSaveState.SinglePuzzleHighScoreDate;
 			}
+			else if (GameState == GameStates.TimeTrial)
+			{
+				_summary.HighScore = CurrentSaveState.TimeTrialHighScore;
+				_summary.HighScoreDate = CurrentSaveState.TimeTrialHighScoreDate;
+			}
 		}
 
 		private void OnMenuButtonSelection(GameStates newGameState)
 		{
-			if (newGameState == GameStates.SinglePuzzleTimed || newGameState == GameStates.FreePlay)
+			if (newGameState == GameStates.SinglePuzzleTimed || newGameState == GameStates.FreePlay || newGameState == GameStates.TimeTrial)
 			{
 				SetupNewPuzzle();
 				PreviousGameState = GameState;
@@ -555,6 +564,13 @@ namespace CipherListTerminal
 			{
 				CurrentSaveState.SinglePuzzleHighScore = _scoreBoard.Score;
 				CurrentSaveState.SinglePuzzleHighScoreDate = DateTime.Now;
+
+				SaveGame();
+			}
+			else if (GameState == GameStates.TimeTrial && _scoreBoard.Score > CurrentSaveState.TimeTrialHighScore)
+			{
+				CurrentSaveState.TimeTrialHighScore = _scoreBoard.Score;
+				CurrentSaveState.TimeTrialHighScoreDate = DateTime.Now;
 
 				SaveGame();
 			}
