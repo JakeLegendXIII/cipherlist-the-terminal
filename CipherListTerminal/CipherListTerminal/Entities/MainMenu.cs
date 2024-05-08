@@ -116,7 +116,7 @@ namespace CipherListTerminal.Entities
 			{
 				if (InputManager.IsLeftMouseButtonDown())
 				{
-					MenuButtonSelectionEvent?.Invoke(GameStates.SinglePuzzleTimed);
+					MenuButtonSelectionEvent?.Invoke(GameStates.TimeTrial);
 				}
 			}
 		}
