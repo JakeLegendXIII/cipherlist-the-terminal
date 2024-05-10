@@ -12,16 +12,16 @@ namespace CipherListTerminal.Entities
 		private SpriteFont _armadaFont;
 		private SpriteFont _farawayFont;
 
-		private int _buttonPosition1X = 250;
+		private int _buttonPosition1X = 150;
 		private int _buttonPosition1Y = 400;
 
-		private int _buttonPosition2X = 550;
+		private int _buttonPosition2X = 500;
 		private int _buttonPosition2Y = 400;
 
 		private int _buttonPosition3X = 850;
 		private int _buttonPosition3Y = 400;
 
-		private int _buttonWidth = 200;
+		private int _buttonWidth = 300;
 		private int _buttonHeight = 200;
 
 		public delegate void MenuButtonSelectedEventHandler(GameStates newGameState);
@@ -56,7 +56,7 @@ namespace CipherListTerminal.Entities
 					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(300, 460), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(250, 420), Color.White);
 
 			if (transformedMousePositionButton2.X >= 0 && transformedMousePositionButton2.X <= _buttonWidth &&
 				transformedMousePositionButton2.Y >= 0 && transformedMousePositionButton2.Y <= _buttonHeight)
@@ -70,7 +70,7 @@ namespace CipherListTerminal.Entities
 										Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-			spriteBatch.DrawString(_armadaFont, "Single Timed", new Vector2(585, 460), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Single Timed", new Vector2(585, 420), Color.White);
 
 			if (transformedMousePositionButton3.X >= 0 && transformedMousePositionButton3.X <= _buttonWidth &&
 			transformedMousePositionButton3.Y >= 0 && transformedMousePositionButton3.Y <= _buttonHeight)
@@ -84,7 +84,7 @@ namespace CipherListTerminal.Entities
 										Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-			spriteBatch.DrawString(_armadaFont, "Time Trial", new Vector2(900, 460), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Time Trial", new Vector2(950, 420), Color.White);
 		}
 
 		public void Update(GameTime gameTime)
