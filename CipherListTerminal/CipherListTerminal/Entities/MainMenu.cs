@@ -57,6 +57,8 @@ namespace CipherListTerminal.Entities
 			}
 
 			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(250, 420), Color.White);
+			spriteBatch.DrawString(_farawayFont, "No time or puzzle limits.", new Vector2(220, 520), Color.White);
+			spriteBatch.DrawString(_farawayFont, "Just have fun with it!", new Vector2(220, 540), Color.White);
 
 			if (transformedMousePositionButton2.X >= 0 && transformedMousePositionButton2.X <= _buttonWidth &&
 				transformedMousePositionButton2.Y >= 0 && transformedMousePositionButton2.Y <= _buttonHeight)
@@ -71,6 +73,8 @@ namespace CipherListTerminal.Entities
 			}
 
 			spriteBatch.DrawString(_armadaFont, "Single Timed", new Vector2(585, 420), Color.White);
+			spriteBatch.DrawString(_farawayFont, "60 seconds per puzzle.", new Vector2(575, 520), Color.White);
+			spriteBatch.DrawString(_farawayFont, "10 puzzles. Do your best!", new Vector2(575, 540), Color.White);
 
 			if (transformedMousePositionButton3.X >= 0 && transformedMousePositionButton3.X <= _buttonWidth &&
 			transformedMousePositionButton3.Y >= 0 && transformedMousePositionButton3.Y <= _buttonHeight)
@@ -85,6 +89,8 @@ namespace CipherListTerminal.Entities
 			}
 
 			spriteBatch.DrawString(_armadaFont, "Time Trial", new Vector2(950, 420), Color.White);
+			spriteBatch.DrawString(_farawayFont, "5 minutes total.", new Vector2(910, 520), Color.White);
+			spriteBatch.DrawString(_farawayFont, "As many puzzles as you can solve!", new Vector2(910, 540), Color.White);
 		}
 
 		public void Update(GameTime gameTime)
