@@ -72,7 +72,7 @@ namespace CipherListTerminal.Entities
 										Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-			spriteBatch.DrawString(_armadaFont, "Single Timed", new Vector2(585, 420), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Best of 10 Timed", new Vector2(555, 420), Color.White);
 			spriteBatch.DrawString(_farawayFont, "60 seconds per puzzle.", new Vector2(575, 520), Color.White);
 			spriteBatch.DrawString(_farawayFont, "10 puzzles. Do your best!", new Vector2(575, 540), Color.White);
 
