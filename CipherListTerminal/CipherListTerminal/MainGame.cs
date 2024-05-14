@@ -38,6 +38,7 @@ namespace CipherListTerminal
 		private SpriteFont _armadaFont;
 		private SpriteFont _arialFont;
 		private SpriteFont _farawayFont;
+		private SpriteFont _faraway16Font;
 
 		private Texture2D _menuLogo;
 		private Texture2D _backgroundTexture;
@@ -90,7 +91,7 @@ namespace CipherListTerminal
 			CurrentSaveState = LoadSaveState();
 			base.Initialize();
 			CalculateRenderDestination();
-			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _farawayFont);
+			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _faraway16Font);
 			_mainMenu.MenuButtonSelectionEvent += OnMenuButtonSelection;
 			GameState = GameStates.Menu;
 		}
@@ -104,6 +105,7 @@ namespace CipherListTerminal
 			_armadaFont = Content.Load<SpriteFont>("Fonts/ArmadaBold");
 			_arialFont = Content.Load<SpriteFont>("Fonts/Arial");
 			_farawayFont = Content.Load<SpriteFont>("Fonts/Faraway");
+			_faraway16Font = Content.Load<SpriteFont>("Fonts/Faraway16");
 
 			_menuLogo = Content.Load<Texture2D>("Sprites/RoughMenu");
 			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG3");
