@@ -27,6 +27,14 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ArmadaBold.spritefont
 
+#begin Fonts/ArmadaBold16.png
+/importer:TextureImporter
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:Fonts/ArmadaBold16.png
+
 #begin Fonts/Faraway.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

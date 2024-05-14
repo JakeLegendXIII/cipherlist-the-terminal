@@ -102,7 +102,7 @@ namespace CipherListTerminal
 
 			_renderTarget = new RenderTarget2D(GraphicsDevice, _nativeWidth, _nativeHeight);
 
-			_armadaFont = Content.Load<SpriteFont>("Fonts/ArmadaBold");
+			_armadaFont = Content.Load<SpriteFont>("Fonts/ArmadaBold16");
 			_arialFont = Content.Load<SpriteFont>("Fonts/Arial");
 			_farawayFont = Content.Load<SpriteFont>("Fonts/Faraway");
 			_faraway16Font = Content.Load<SpriteFont>("Fonts/Faraway16");
