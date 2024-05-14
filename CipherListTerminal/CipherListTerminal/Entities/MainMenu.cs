@@ -9,7 +9,6 @@ namespace CipherListTerminal.Entities
 	{
 		private Texture2D _menuLogo;
 		private Texture2D _buttonUI;
-		private Texture2D _freePlayButtonUI;
 		private SpriteFont _armadaFont;
 		private SpriteFont _farawayFont;
 
@@ -28,13 +27,12 @@ namespace CipherListTerminal.Entities
 		public delegate void MenuButtonSelectedEventHandler(GameStates newGameState);
 		public event MenuButtonSelectedEventHandler MenuButtonSelectionEvent;
 
-		public MainMenu(Texture2D menuLogo, Texture2D freePlayButton, Texture2D buttonUI, SpriteFont armadaFont, SpriteFont farawayFont)
+		public MainMenu(Texture2D menuLogo, Texture2D buttonUI, SpriteFont armadaFont, SpriteFont farawayFont)
 		{
 			_menuLogo = menuLogo;
 			_buttonUI = buttonUI;
 			_armadaFont = armadaFont;
-			_farawayFont = farawayFont;
-			_freePlayButtonUI = freePlayButton;
+			_farawayFont = farawayFont;			
 		}
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
@@ -49,18 +47,18 @@ namespace CipherListTerminal.Entities
 			if (transformedMousePositionButton1.X >= 0 && transformedMousePositionButton1.X <= _buttonWidth &&
 				transformedMousePositionButton1.Y >= 0 && transformedMousePositionButton1.Y <= _buttonHeight)
 			{
-				spriteBatch.Draw(_freePlayButtonUI, new Vector2(_buttonPosition1X, _buttonPosition1Y), null,
+				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition1X, _buttonPosition1Y), null,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 			else
 			{
-				spriteBatch.Draw(_freePlayButtonUI, new Vector2(_buttonPosition1X, _buttonPosition1Y), null,
+				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition1X, _buttonPosition1Y), null,
 					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-			//spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(250, 420), Color.White);
-			//spriteBatch.DrawString(_farawayFont, "No time or puzzle limits.", new Vector2(220, 520), Color.White);
-			//spriteBatch.DrawString(_farawayFont, "Just have fun with it!", new Vector2(220, 540), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(250, 420), Color.White);
+			spriteBatch.DrawString(_farawayFont, "No time or puzzle limits.", new Vector2(220, 520), Color.White);
+			spriteBatch.DrawString(_farawayFont, "Just have fun with it!", new Vector2(220, 540), Color.White);
 
 			if (transformedMousePositionButton2.X >= 0 && transformedMousePositionButton2.X <= _buttonWidth &&
 				transformedMousePositionButton2.Y >= 0 && transformedMousePositionButton2.Y <= _buttonHeight)

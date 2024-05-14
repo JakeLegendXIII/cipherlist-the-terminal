@@ -45,8 +45,7 @@ namespace CipherListTerminal
 		private Texture2D _bufferUI;
 		private Texture2D _scoreUI;
 		private Texture2D _keysUI;
-		private Texture2D _buttonUI;
-		private Texture2D _freePlayButtonUI;
+		private Texture2D _buttonUI;		
 
 		private MainMenu _mainMenu;
 		private TerminalBuffer _terminalBuffer;
@@ -91,7 +90,7 @@ namespace CipherListTerminal
 			CurrentSaveState = LoadSaveState();
 			base.Initialize();
 			CalculateRenderDestination();
-			_mainMenu = new MainMenu(_menuLogo, _freePlayButtonUI, _buttonUI, _armadaFont, _farawayFont);
+			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _farawayFont);
 			_mainMenu.MenuButtonSelectionEvent += OnMenuButtonSelection;
 			GameState = GameStates.Menu;
 		}
@@ -112,8 +111,7 @@ namespace CipherListTerminal
 			_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
 			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI2");
 			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
-			_buttonUI = Content.Load<Texture2D>("Sprites/RoughButton");
-			_freePlayButtonUI = Content.Load<Texture2D>("Sprites/FreePlayButton");
+			_buttonUI = Content.Load<Texture2D>("Sprites/RoughButton");			
 		}
 
 		protected override void Update(GameTime gameTime)
