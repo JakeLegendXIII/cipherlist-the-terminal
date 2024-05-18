@@ -30,7 +30,8 @@ namespace CipherListTerminal
 
 		public GameStates GameState;
 		public GameStates PreviousGameState;
-		public SaveState CurrentSaveState;
+		public SaveStates CurrentSaveState;
+		public InputStates CurrentInputState;
 
 		string[] possibleValues = { "1C", "55", "BD", "FF", "E9", "1C", "55" };
 		string[] possibleValuesExpanded = { "1C", "55", "BD", "FF", "E9", "7A", "1C", "55" };
@@ -605,9 +606,9 @@ namespace CipherListTerminal
 			}
 		}
 
-		private SaveState LoadSaveState()
+		private SaveStates LoadSaveState()
 		{
-			SaveState saveState = new SaveState();
+			SaveStates saveState = new SaveStates();
 
 			try
 			{

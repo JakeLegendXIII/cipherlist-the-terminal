@@ -42,7 +42,7 @@ namespace CipherListTerminal.Entities
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
 			spriteBatch.Draw(_menuLogo, new Vector2(400, 125), null,
-					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);						
 
 			if (_currentlySelectedButton == 1)
 			{

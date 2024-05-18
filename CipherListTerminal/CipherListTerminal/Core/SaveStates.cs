@@ -2,7 +2,7 @@
 
 namespace CipherListTerminal.Core
 {
-	public class SaveState
+	public class SaveStates
 	{
 		public int FreePlayHighScore { get; set; }
 		public DateTime FreePlayHighScoreDate { get; set; }
