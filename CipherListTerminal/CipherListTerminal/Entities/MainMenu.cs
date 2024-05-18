@@ -27,6 +27,8 @@ namespace CipherListTerminal.Entities
 		public delegate void MenuButtonSelectedEventHandler(GameStates newGameState);
 		public event MenuButtonSelectedEventHandler MenuButtonSelectionEvent;
 
+		private int _currentlySelectedButton = 1;
+
 		public MainMenu(Texture2D menuLogo, Texture2D buttonUI, SpriteFont armadaFont, SpriteFont farawayFont)
 		{
 			_menuLogo = menuLogo;
@@ -91,6 +93,8 @@ namespace CipherListTerminal.Entities
 			spriteBatch.DrawString(_armadaFont, "Time Trial", new Vector2(950, 420), Color.White);
 			spriteBatch.DrawString(_farawayFont, "5 minutes total.", new Vector2(910, 520), Color.White);
 			spriteBatch.DrawString(_farawayFont, "As many puzzles as you can solve!", new Vector2(910, 540), Color.White);
+
+			spriteBatch.DrawString(_armadaFont, $"Selected button: {_currentlySelectedButton}", new Vector2(450, 100), Color.White);
 		}
 
 		public void Update(GameTime gameTime)
@@ -102,6 +106,7 @@ namespace CipherListTerminal.Entities
 			if (transformedMousePositionButton1.X >= 0 && transformedMousePositionButton1.X <= _buttonWidth &&
 				transformedMousePositionButton1.Y >= 0 && transformedMousePositionButton1.Y <= _buttonHeight)
 			{
+				_currentlySelectedButton = 1;
 				if (InputManager.IsLeftMouseButtonDown())
 				{
 					MenuButtonSelectionEvent?.Invoke(GameStates.FreePlay);
@@ -111,6 +116,7 @@ namespace CipherListTerminal.Entities
 			if (transformedMousePositionButton2.X >= 0 && transformedMousePositionButton2.X <= _buttonWidth &&
 								transformedMousePositionButton2.Y >= 0 && transformedMousePositionButton2.Y <= _buttonHeight)
 			{
+				_currentlySelectedButton = 2;
 				if (InputManager.IsLeftMouseButtonDown())
 				{
 					MenuButtonSelectionEvent?.Invoke(GameStates.SinglePuzzleTimed);
@@ -120,6 +126,7 @@ namespace CipherListTerminal.Entities
 			if (transformedMousePositionButton3.X >= 0 && transformedMousePositionButton3.X <= _buttonWidth &&
 								transformedMousePositionButton3.Y >= 0 && transformedMousePositionButton3.Y <= _buttonHeight)
 			{
+				_currentlySelectedButton = 3;
 				if (InputManager.IsLeftMouseButtonDown())
 				{
 					MenuButtonSelectionEvent?.Invoke(GameStates.TimeTrial);
