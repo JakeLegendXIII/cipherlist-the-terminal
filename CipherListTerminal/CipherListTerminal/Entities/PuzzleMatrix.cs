@@ -213,78 +213,66 @@ namespace CipherListTerminal.Entities
 	
 		public void Update(GameTime gameTime, InputStates inputState)
 		{
-			var mouseState = InputManager.GetTransformedMousePosition(_startX, _startY);
-			_displayColumnIndex = (int)(mouseState.X / _cellWidth);
-			_displayRowIndex = (int)(mouseState.Y / _cellHeight);
-
-			if (InputManager.IsLeftMouseButtonDown() &&
-				 mouseState.X >= 0 && mouseState.X < _matrixWidth &&
-				 mouseState.Y >= 0 && mouseState.Y < _matrixHeight)
+			if (inputState == InputStates.MouseKeyboard)
 			{
+				var mouseState = InputManager.GetTransformedMousePosition(_startX, _startY);
+				_displayColumnIndex = (int)(mouseState.X / _cellWidth);
+				_displayRowIndex = (int)(mouseState.Y / _cellHeight);
 
-				bool select = false;
+				if (InputManager.IsLeftMouseButtonDown() &&
+					 mouseState.X >= 0 && mouseState.X < _matrixWidth &&
+					 mouseState.Y >= 0 && mouseState.Y < _matrixHeight)
+				{
 
-				if (State == MatrixState.FirstSelection)
-				{
-					if (_displayColumnIndex >= 0 && _displayRowIndex == 0)
-					{
-						if (_matrix[_displayRowIndex, _displayColumnIndex] != "__")
-						{
-							select = true;
-							State = MatrixState.Vertical;
-						}						
-					}					
-				}
-				else if (State == MatrixState.Vertical)
-				{
-					if (_displayRowIndex >= 0 && _displayColumnIndex == _selectedColumnIndex)
-					{
-						if (_matrix[_displayRowIndex, _displayColumnIndex] != "__")
-						{
-							select = true;
-							State = MatrixState.Horizontal;
-						}						
-						
-					}					
-				}
-				else if (State == MatrixState.Horizontal)
-				{
-					if (_displayColumnIndex >= 0 && _displayRowIndex == _selectedRowIndex)
-					{
-						if (_matrix[_displayRowIndex, _displayColumnIndex] != "__")
-						{
-							select = true;
-							State = MatrixState.Vertical;
-						}						
-					}					
-				}
-				
-				if (select)
-				{
-					CurrentlySelectedValue = _matrix[_displayRowIndex, _displayColumnIndex];
-					_selectedRowIndex = _displayRowIndex;
-					_selectedColumnIndex = _displayColumnIndex;
-					_matrix[_displayRowIndex, _displayColumnIndex] = "__";
+					bool select = false;
 
-					MatrixSelectionEvent?.Invoke(CurrentlySelectedValue);
-				}				
+					if (State == MatrixState.FirstSelection)
+					{
+						if (_displayColumnIndex >= 0 && _displayRowIndex == 0)
+						{
+							if (_matrix[_displayRowIndex, _displayColumnIndex] != "__")
+							{
+								select = true;
+								State = MatrixState.Vertical;
+							}
+						}
+					}
+					else if (State == MatrixState.Vertical)
+					{
+						if (_displayRowIndex >= 0 && _displayColumnIndex == _selectedColumnIndex)
+						{
+							if (_matrix[_displayRowIndex, _displayColumnIndex] != "__")
+							{
+								select = true;
+								State = MatrixState.Horizontal;
+							}
+
+						}
+					}
+					else if (State == MatrixState.Horizontal)
+					{
+						if (_displayColumnIndex >= 0 && _displayRowIndex == _selectedRowIndex)
+						{
+							if (_matrix[_displayRowIndex, _displayColumnIndex] != "__")
+							{
+								select = true;
+								State = MatrixState.Vertical;
+							}
+						}
+					}
+
+					if (select)
+					{
+						CurrentlySelectedValue = _matrix[_displayRowIndex, _displayColumnIndex];
+						_selectedRowIndex = _displayRowIndex;
+						_selectedColumnIndex = _displayColumnIndex;
+						_matrix[_displayRowIndex, _displayColumnIndex] = "__";
+
+						MatrixSelectionEvent?.Invoke(CurrentlySelectedValue);
+					}
+				}
 			}
-
-			//if (InputManager.IsGamePadConnected())
-			//{
-			//	GamePadState gamePadState = InputManager.GetGamePadState();
 			
-
-			//	if (InputManager.IsGamePadButtonPressed(Buttons.A))
-			//	{
-			//		CurrentlySelectedValue = _matrix[_displayRowIndex, _displayColumnIndex];
-			//		_selectedRowIndex = _displayRowIndex;
-			//		_selectedColumnIndex = _displayColumnIndex;
-			//		_matrix[_selectedRowIndex, _selectedColumnIndex] = "__";
-
-			//		MatrixSelectionEvent?.Invoke(CurrentlySelectedValue);
-			//	}
-			//}
 		}
 
 		private int GetScaleValue(float scale)
