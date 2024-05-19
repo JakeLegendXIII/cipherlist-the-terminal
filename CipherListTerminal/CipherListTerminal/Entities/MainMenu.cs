@@ -145,12 +145,14 @@ namespace CipherListTerminal.Entities
 			{
 				if (InputManager.IsGamePadConnected())
 				{
+					GamePadState gamePadState = InputManager.GetGamePadState();
+
 					if (_currentlySelectedButton > 3 || _currentlySelectedButton < 1)
 					{
 						_currentlySelectedButton = 1;
 					}
 
-					if (InputManager.IsGamePadButtonPressed(Buttons.DPadLeft))
+					if (InputManager.IsGamePadButtonPressed(Buttons.DPadLeft) || gamePadState.ThumbSticks.Left.Length() > 0.1f)
 					{
 						//_isGamePadLastUsed = true;
 						if (_currentlySelectedButton == 1)
@@ -163,7 +165,7 @@ namespace CipherListTerminal.Entities
 						}
 					}
 
-					if (InputManager.IsGamePadButtonPressed(Buttons.DPadRight))
+					if (InputManager.IsGamePadButtonPressed(Buttons.DPadRight) || gamePadState.ThumbSticks.Left.X < 0)
 					{
 						//_isGamePadLastUsed = true;
 						if (_currentlySelectedButton == 3)

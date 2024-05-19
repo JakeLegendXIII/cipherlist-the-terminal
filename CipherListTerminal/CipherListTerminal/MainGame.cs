@@ -94,7 +94,9 @@ namespace CipherListTerminal
 			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _farawayFont);
 			_mainMenu.MenuButtonSelectionEvent += OnMenuButtonSelection;
 			GameState = GameStates.Menu;
-			if (InputManager.IsGamePadConnected())
+
+			GamePadState gps = GamePad.GetState(PlayerIndex.One);
+			if (gps.IsConnected)
 				CurrentInputState = InputStates.GamePad;
 			else
 				CurrentInputState = InputStates.MouseKeyboard;
@@ -122,6 +124,15 @@ namespace CipherListTerminal
 		protected override void Update(GameTime gameTime)
 		{
 			InputManager.Update(_renderDestination, _scale);
+
+			if (CurrentInputState == InputStates.GamePad)
+			{				
+				if (InputManager.IsGamePadConnected())
+					CurrentInputState = InputStates.GamePad;
+				else
+					CurrentInputState = InputStates.MouseKeyboard;
+			}
+
 			if (InputManager.IsKeyDown(Keys.F11) || InputManager.IsGamePadButtonPressed(Buttons.LeftShoulder))
 			{
 				// _graphics.ToggleFullScreen();
@@ -343,6 +354,8 @@ namespace CipherListTerminal
 			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
 			_spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _nativeWidth, _nativeHeight), Color.White);
+
+			_spriteBatch.DrawString(_armadaFont, "InpuState: " + CurrentInputState, new Vector2(900, 100), Color.White);
 
 			if (GameState == GameStates.Menu)
 			{
