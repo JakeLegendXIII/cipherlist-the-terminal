@@ -180,7 +180,7 @@ namespace CipherListTerminal
 					PreviousGameState = GameStates.FreePlay;					
 				}
 
-				_matrix.Update(gameTime);
+				_matrix.Update(gameTime, CurrentInputState);
 
 				if (InputManager.IsKeyPressed(Keys.F5))
 				{
@@ -209,7 +209,7 @@ namespace CipherListTerminal
 					PreviousGameState = GameStates.SinglePuzzleTimed;					
 				}
 
-				_matrix.Update(gameTime);
+				_matrix.Update(gameTime, CurrentInputState);
 
 				if (InputManager.IsKeyPressed(Keys.F5))
 				{
@@ -260,7 +260,7 @@ namespace CipherListTerminal
 					PreviousGameState = GameStates.TimeTrial;
 				}
 
-				_matrix.Update(gameTime);
+				_matrix.Update(gameTime, CurrentInputState);
 
 				if (InputManager.IsKeyPressed(Keys.F5))
 				{
@@ -295,7 +295,7 @@ namespace CipherListTerminal
 			}
 			else if (GameState == GameStates.Summary)
 			{
-				_summary.Update(gameTime);
+				_summary.Update(gameTime, CurrentInputState);
 
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
 				{

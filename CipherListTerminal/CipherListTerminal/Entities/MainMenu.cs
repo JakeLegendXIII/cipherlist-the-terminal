@@ -29,7 +29,7 @@ namespace CipherListTerminal.Entities
 		public event MenuButtonSelectedEventHandler MenuButtonSelectionEvent;
 
 		private int _currentlySelectedButton = 1;
-		private bool _isGamePadLastUsed = false;
+		//private bool _isGamePadLastUsed = false;
 
 		public MainMenu(Texture2D menuLogo, Texture2D buttonUI, SpriteFont armadaFont, SpriteFont farawayFont)
 		{
@@ -94,95 +94,106 @@ namespace CipherListTerminal.Entities
 
 		public void Update(GameTime gameTime, InputStates inputState)
 		{
-			Vector2 transformedMousePositionButton1 = InputManager.GetTransformedMousePosition(_buttonPosition1X, _buttonPosition1Y);
-			Vector2 transformedMousePositionButton2 = InputManager.GetTransformedMousePosition(_buttonPosition2X, _buttonPosition2Y);
-			Vector2 transformedMousePositionButton3 = InputManager.GetTransformedMousePosition(_buttonPosition3X, _buttonPosition3Y);
 
-			if (transformedMousePositionButton1.X >= 0 && transformedMousePositionButton1.X <= _buttonWidth &&
-				transformedMousePositionButton1.Y >= 0 && transformedMousePositionButton1.Y <= _buttonHeight)
+			if (inputState == InputStates.MouseKeyboard)
 			{
-				_currentlySelectedButton = 1;
-				_isGamePadLastUsed = false;
-				if (InputManager.IsLeftMouseButtonDown())
-				{
-					MenuButtonSelectionEvent?.Invoke(GameStates.FreePlay);
-				}
-			}
-			else if (transformedMousePositionButton2.X >= 0 && transformedMousePositionButton2.X <= _buttonWidth &&
-								transformedMousePositionButton2.Y >= 0 && transformedMousePositionButton2.Y <= _buttonHeight)
-			{
-				_currentlySelectedButton = 2;
-				_isGamePadLastUsed = false;
-				if (InputManager.IsLeftMouseButtonDown())
-				{
-					MenuButtonSelectionEvent?.Invoke(GameStates.SinglePuzzleTimed);
-				}
-			}
+				Vector2 transformedMousePositionButton1 = InputManager.GetTransformedMousePosition(_buttonPosition1X, _buttonPosition1Y);
+				Vector2 transformedMousePositionButton2 = InputManager.GetTransformedMousePosition(_buttonPosition2X, _buttonPosition2Y);
+				Vector2 transformedMousePositionButton3 = InputManager.GetTransformedMousePosition(_buttonPosition3X, _buttonPosition3Y);
 
-			else if (transformedMousePositionButton3.X >= 0 && transformedMousePositionButton3.X <= _buttonWidth &&
-								transformedMousePositionButton3.Y >= 0 && transformedMousePositionButton3.Y <= _buttonHeight)
-			{
-				_currentlySelectedButton = 3;
-				_isGamePadLastUsed = false;
-				if (InputManager.IsLeftMouseButtonDown())
+				if (transformedMousePositionButton1.X >= 0 && transformedMousePositionButton1.X <= _buttonWidth &&
+					transformedMousePositionButton1.Y >= 0 && transformedMousePositionButton1.Y <= _buttonHeight)
 				{
-					MenuButtonSelectionEvent?.Invoke(GameStates.TimeTrial);
+					_currentlySelectedButton = 1;
+					//_isGamePadLastUsed = false;
+					if (InputManager.IsLeftMouseButtonDown())
+					{
+						MenuButtonSelectionEvent?.Invoke(GameStates.FreePlay);
+					}
 				}
-			}
-			else
-			{
-				if (!_isGamePadLastUsed)
+				else if (transformedMousePositionButton2.X >= 0 && transformedMousePositionButton2.X <= _buttonWidth &&
+									transformedMousePositionButton2.Y >= 0 && transformedMousePositionButton2.Y <= _buttonHeight)
+				{
+					_currentlySelectedButton = 2;
+					//_isGamePadLastUsed = false;
+					if (InputManager.IsLeftMouseButtonDown())
+					{
+						MenuButtonSelectionEvent?.Invoke(GameStates.SinglePuzzleTimed);
+					}
+				}
+
+				else if (transformedMousePositionButton3.X >= 0 && transformedMousePositionButton3.X <= _buttonWidth &&
+									transformedMousePositionButton3.Y >= 0 && transformedMousePositionButton3.Y <= _buttonHeight)
+				{
+					_currentlySelectedButton = 3;
+					//_isGamePadLastUsed = false;
+					if (InputManager.IsLeftMouseButtonDown())
+					{
+						MenuButtonSelectionEvent?.Invoke(GameStates.TimeTrial);
+					}
+				}
+				else
 				{
 					_currentlySelectedButton = 0;
+					//if (!_isGamePadLastUsed)
+					//{
+					//	_currentlySelectedButton = 0;
+					//}
 				}
 			}
-
-
-            if (InputManager.IsGamePadConnected())
-            {
-               if (InputManager.IsGamePadButtonPressed(Buttons.DPadLeft))
+			else if (inputState == InputStates.GamePad)
+			{
+				if (InputManager.IsGamePadConnected())
 				{
-					_isGamePadLastUsed = true;
-					if (_currentlySelectedButton == 1)
-					{
-						_currentlySelectedButton = 3;
-					}
-					else
-					{
-						_currentlySelectedButton--;
-					}
-				}
-
-				if (InputManager.IsGamePadButtonPressed(Buttons.DPadRight))
-				{
-					_isGamePadLastUsed = true;
-					if (_currentlySelectedButton == 3)
+					if (_currentlySelectedButton > 3 || _currentlySelectedButton < 1)
 					{
 						_currentlySelectedButton = 1;
 					}
-					else
+
+					if (InputManager.IsGamePadButtonPressed(Buttons.DPadLeft))
 					{
-						_currentlySelectedButton++;
+						//_isGamePadLastUsed = true;
+						if (_currentlySelectedButton == 1)
+						{
+							_currentlySelectedButton = 3;
+						}
+						else
+						{
+							_currentlySelectedButton--;
+						}
+					}
+
+					if (InputManager.IsGamePadButtonPressed(Buttons.DPadRight))
+					{
+						//_isGamePadLastUsed = true;
+						if (_currentlySelectedButton == 3)
+						{
+							_currentlySelectedButton = 1;
+						}
+						else
+						{
+							_currentlySelectedButton++;
+						}
+					}					
+
+					if (InputManager.IsGamePadButtonPressed(Buttons.A))
+					{
+						//_isGamePadLastUsed = true;
+						switch (_currentlySelectedButton)
+						{
+							case 1:
+								MenuButtonSelectionEvent?.Invoke(GameStates.FreePlay);
+								break;
+							case 2:
+								MenuButtonSelectionEvent?.Invoke(GameStates.SinglePuzzleTimed);
+								break;
+							case 3:
+								MenuButtonSelectionEvent?.Invoke(GameStates.TimeTrial);
+								break;
+						}
 					}
 				}
-
-				if (InputManager.IsGamePadButtonPressed(Buttons.A))
-				{
-					_isGamePadLastUsed = true;
-					switch (_currentlySelectedButton)
-					{
-						case 1:
-							MenuButtonSelectionEvent?.Invoke(GameStates.FreePlay);
-							break;
-						case 2:
-							MenuButtonSelectionEvent?.Invoke(GameStates.SinglePuzzleTimed);
-							break;
-						case 3:
-							MenuButtonSelectionEvent?.Invoke(GameStates.TimeTrial);
-							break;
-					}
-				}	
-            }
+			}          
         }
 	}
 }

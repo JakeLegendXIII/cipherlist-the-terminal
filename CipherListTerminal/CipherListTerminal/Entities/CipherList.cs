@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CipherListTerminal.Core;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
@@ -48,9 +49,6 @@ namespace CipherListTerminal.Entities
 			spriteBatch.DrawString(_font, PointValue.ToString() + " POINTS", new Vector2(850, 230 + (_targetNumber * 50)), color);
 		}
 
-		public void Update(GameTime gameTime)
-		{
-
-		}
+		public void Update(GameTime gameTime, InputStates inputState) { }
 	}	
 }

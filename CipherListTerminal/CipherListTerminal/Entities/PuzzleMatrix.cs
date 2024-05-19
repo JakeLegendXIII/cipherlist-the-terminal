@@ -1,4 +1,5 @@
-﻿using CipherListTerminal.Input;
+﻿using CipherListTerminal.Core;
+using CipherListTerminal.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -210,7 +211,7 @@ namespace CipherListTerminal.Entities
 			//_spriteBatch.DrawString(_font, "Selected Column: " + _selectedColumnIndex, new Vector2(100, 600), Color.White);
 		}
 	
-		public void Update(GameTime gameTime)
+		public void Update(GameTime gameTime, InputStates inputState)
 		{
 			var mouseState = InputManager.GetTransformedMousePosition(_startX, _startY);
 			_displayColumnIndex = (int)(mouseState.X / _cellWidth);

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CipherListTerminal.Core;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace CipherListTerminal.Entities
@@ -27,9 +28,6 @@ namespace CipherListTerminal.Entities
 			spriteBatch.DrawString(_armadaFont, Text, new Vector2(180, 150), Color.White);
 		}
 
-		public void Update(GameTime gameTime)
-		{
-			
-		}
+		public void Update(GameTime gameTime, InputStates inputState) { }
 	}
 }

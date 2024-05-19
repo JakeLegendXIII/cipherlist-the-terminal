@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CipherListTerminal.Core;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
@@ -35,9 +36,6 @@ namespace CipherListTerminal.Entities
 			spriteBatch.DrawString(_armadaFont, "Date Achieved: " + HighScoreDate.ToShortDateString(), new Vector2(180, 200), Color.White);
 		}
 
-		public void Update(GameTime gameTime)
-		{
-
-		}
+		public void Update(GameTime gameTime, InputStates inputState) { }
 	}
 }
