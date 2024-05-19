@@ -3,6 +3,7 @@ using CipherListTerminal.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace CipherListTerminal.Entities
 {
@@ -30,6 +31,7 @@ namespace CipherListTerminal.Entities
 
 		private int _currentlySelectedButton = 1;
 		//private bool _isGamePadLastUsed = false;
+		private bool thumbstickMoved = false;
 
 		public MainMenu(Texture2D menuLogo, Texture2D buttonUI, SpriteFont armadaFont, SpriteFont farawayFont)
 		{
@@ -152,31 +154,38 @@ namespace CipherListTerminal.Entities
 						_currentlySelectedButton = 1;
 					}
 
-					if (InputManager.IsGamePadButtonPressed(Buttons.DPadLeft) || gamePadState.ThumbSticks.Left.Length() > 0.1f)
+					if (InputManager.IsGamePadButtonPressed(Buttons.DPadLeft))
 					{
-						//_isGamePadLastUsed = true;
-						if (_currentlySelectedButton == 1)
-						{
-							_currentlySelectedButton = 3;
-						}
-						else
-						{
-							_currentlySelectedButton--;
-						}
+						MoveLeft();
+						//_isGamePadLastUsed = true;					
 					}
 
-					if (InputManager.IsGamePadButtonPressed(Buttons.DPadRight) || gamePadState.ThumbSticks.Left.X < 0)
+					if (InputManager.IsGamePadButtonPressed(Buttons.DPadRight))
 					{
 						//_isGamePadLastUsed = true;
-						if (_currentlySelectedButton == 3)
+						MoveRight();					
+					}
+
+					// Check if the thumbstick is moved to the right or left
+					if (Math.Abs(gamePadState.ThumbSticks.Left.X) > 0.5f)
+					{
+						if (!thumbstickMoved)
 						{
-							_currentlySelectedButton = 1;
+							if (gamePadState.ThumbSticks.Left.X > 0)
+							{
+								MoveRight();
+							}
+							else if (gamePadState.ThumbSticks.Left.X < 0)
+							{
+								MoveLeft();
+							}
+							thumbstickMoved = true;
 						}
-						else
-						{
-							_currentlySelectedButton++;
-						}
-					}					
+					}
+					else
+					{
+						thumbstickMoved = false;
+					}
 
 					if (InputManager.IsGamePadButtonPressed(Buttons.A))
 					{
@@ -197,5 +206,29 @@ namespace CipherListTerminal.Entities
 				}
 			}          
         }
+
+		private void MoveRight()
+		{
+			if (_currentlySelectedButton == 3)
+			{
+				_currentlySelectedButton = 1;
+			}
+			else
+			{
+				_currentlySelectedButton++;
+			}
+		}
+
+		private void MoveLeft()
+		{
+			if (_currentlySelectedButton == 1)
+			{
+				_currentlySelectedButton = 3;
+			}
+			else
+			{
+				_currentlySelectedButton--;
+			}
+		}
 	}
 }
