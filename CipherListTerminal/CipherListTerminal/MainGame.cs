@@ -94,6 +94,10 @@ namespace CipherListTerminal
 			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _farawayFont);
 			_mainMenu.MenuButtonSelectionEvent += OnMenuButtonSelection;
 			GameState = GameStates.Menu;
+			if (InputManager.IsGamePadConnected())
+				CurrentInputState = InputStates.GamePad;
+			else
+				CurrentInputState = InputStates.MouseKeyboard;
 		}
 
 		protected override void LoadContent()
@@ -118,21 +122,26 @@ namespace CipherListTerminal
 		protected override void Update(GameTime gameTime)
 		{
 			InputManager.Update(_renderDestination, _scale);
-			if (InputManager.IsKeyDown(Keys.F11))
+			if (InputManager.IsKeyDown(Keys.F11) || InputManager.IsGamePadButtonPressed(Buttons.LeftShoulder))
 			{
 				// _graphics.ToggleFullScreen();
 				ToggleFullscreen();
 				// CalculateRenderDestination();
 			}
 
-			if (InputManager.IsKeyPressed(Keys.F8))
+			if (InputManager.IsKeyPressed(Keys.F8) || InputManager.IsGamePadButtonPressed(Buttons.RightShoulder))
 			{
 				ResetSaveState();
 			}
 
+			if (InputManager.IsKeyPressed(Keys.F10) || InputManager.IsGamePadButtonPressed(Buttons.LeftTrigger))
+			{
+				ToggleInputState();
+			}
+
 			if (GameState == GameStates.Menu)
 			{
-				_mainMenu.Update(gameTime);
+				_mainMenu.Update(gameTime, CurrentInputState);
 
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
 					Exit();
@@ -644,6 +653,17 @@ namespace CipherListTerminal
 			SaveGame();
 		}
 
+		private void ToggleInputState()
+		{
+			if (CurrentInputState == InputStates.MouseKeyboard)
+			{
+				CurrentInputState = InputStates.GamePad;
+			}
+			else
+			{
+				CurrentInputState = InputStates.MouseKeyboard;
+			}
+		}
 
 		// Learn MonoGame how-to Fullscreen and Borderless code
 		public void ToggleFullscreen()

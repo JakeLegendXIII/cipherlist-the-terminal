@@ -92,7 +92,7 @@ namespace CipherListTerminal.Entities
 			spriteBatch.DrawString(_armadaFont, $"Selected button: {_currentlySelectedButton}", new Vector2(450, 100), Color.White);
 		}
 
-		public void Update(GameTime gameTime)
+		public void Update(GameTime gameTime, InputStates inputState)
 		{
 			Vector2 transformedMousePositionButton1 = InputManager.GetTransformedMousePosition(_buttonPosition1X, _buttonPosition1Y);
 			Vector2 transformedMousePositionButton2 = InputManager.GetTransformedMousePosition(_buttonPosition2X, _buttonPosition2Y);
