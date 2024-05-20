@@ -17,6 +17,7 @@ namespace CipherListTerminal.Entities
 		private Texture2D _matrixUI;
 
 		public MatrixState State { get; set; }
+		private InputStates CurrentInputState;
 
 		public string CurrentlySelectedValue { get; private set; } = "__";
 
@@ -76,50 +77,55 @@ namespace CipherListTerminal.Entities
 
 			if (State == MatrixState.FirstSelection)
 			{
-				if (transformedMousePosition.X >= 0 && transformedMousePosition.X < _matrixWidth)
+				if (CurrentInputState == InputStates.MouseKeyboard)
 				{
-					if (transformedMousePosition.Y >= 0 && transformedMousePosition.Y < _matrixHeight)
+					if (transformedMousePosition.X >= 0 && transformedMousePosition.X < _matrixWidth)
 					{
-						if (State == MatrixState.Vertical || State == MatrixState.FirstSelection)
+						if (transformedMousePosition.Y >= 0 && transformedMousePosition.Y < _matrixHeight)
 						{
-							_highlightColumn = (int)(transformedMousePosition.X / _cellWidth);
-							_highlightCell = (int)(transformedMousePosition.X / _cellWidth);
-						}
-						else
-						{
-							_highlightColumn = (int)(transformedMousePosition.Y / _cellHeight);
+							if (State == MatrixState.Vertical || State == MatrixState.FirstSelection)
+							{
+								_highlightColumn = (int)(transformedMousePosition.X / _cellWidth);
+								_highlightCell = (int)(transformedMousePosition.X / _cellWidth);
+							}
+							else
+							{
+								_highlightColumn = (int)(transformedMousePosition.Y / _cellHeight);
+							}
 						}
 					}
 				}
+				else if (CurrentInputState == InputStates.GamePad)
+				{
+					if (InputManager.IsGamePadConnected())
+					{
+						GamePadState gamePadState = InputManager.GetGamePadState();
 
-				//if (InputManager.IsGamePadConnected())
-				//{
-				//	GamePadState gamePadState = InputManager.GetGamePadState();
+						if (gamePadState.ThumbSticks.Left.X > 0 || gamePadState.DPad.Right == ButtonState.Pressed)
+						{
+							if (_highlightColumn < 5)
+							{
+								_highlightColumn++;
+							}
+							else if (_highlightColumn > 5)
+							{
+								_highlightColumn = 0;
+							}
 
-				//	if (gamePadState.ThumbSticks.Left.X > 0 || gamePadState.DPad.Right == ButtonState.Pressed)
-				//	{
-				//		if (highlightColumn < 5)
-				//		{
-				//			highlightColumn++;
-				//		}
-				//		else if (highlightColumn > 5)
-				//		{
-				//			highlightColumn = 0;
-				//		}
-
-				//	}
-				//	else if (gamePadState.ThumbSticks.Left.X < 0 || gamePadState.DPad.Left == ButtonState.Pressed)
-				//	{
-				//		if (highlightColumn > 0)
-				//		{
-				//			highlightColumn--;
-				//		}
-				//		else if (highlightColumn == 0)
-				//		{
-				//			highlightColumn = 5;
-				//		}
-				//	}
-				//}
+						}
+						else if (gamePadState.ThumbSticks.Left.X < 0 || gamePadState.DPad.Left == ButtonState.Pressed)
+						{
+							if (_highlightColumn > 0)
+							{
+								_highlightColumn--;
+							}
+							else if (_highlightColumn == 0)
+							{
+								_highlightColumn = 5;
+							}
+						}
+					}
+				}
 
 				if (_highlightColumn >= 0)
 				{
@@ -215,6 +221,8 @@ namespace CipherListTerminal.Entities
 	
 		public void Update(GameTime gameTime, InputStates inputState)
 		{
+			CurrentInputState = inputState;
+
 			if (inputState == InputStates.MouseKeyboard)
 			{
 				Vector2 mouseState = InputManager.GetTransformedMousePosition(_startX, _startY);

@@ -30,7 +30,6 @@ namespace CipherListTerminal.Entities
 		public event MenuButtonSelectedEventHandler MenuButtonSelectionEvent;
 
 		private int _currentlySelectedButton = 1;
-		//private bool _isGamePadLastUsed = false;
 		private bool thumbstickMoved = false;
 
 		public MainMenu(Texture2D menuLogo, Texture2D buttonUI, SpriteFont armadaFont, SpriteFont farawayFont)
@@ -107,7 +106,7 @@ namespace CipherListTerminal.Entities
 					transformedMousePositionButton1.Y >= 0 && transformedMousePositionButton1.Y <= _buttonHeight)
 				{
 					_currentlySelectedButton = 1;
-					//_isGamePadLastUsed = false;
+
 					if (InputManager.IsLeftMouseButtonDown())
 					{
 						MenuButtonSelectionEvent?.Invoke(GameStates.FreePlay);
@@ -117,7 +116,7 @@ namespace CipherListTerminal.Entities
 									transformedMousePositionButton2.Y >= 0 && transformedMousePositionButton2.Y <= _buttonHeight)
 				{
 					_currentlySelectedButton = 2;
-					//_isGamePadLastUsed = false;
+
 					if (InputManager.IsLeftMouseButtonDown())
 					{
 						MenuButtonSelectionEvent?.Invoke(GameStates.SinglePuzzleTimed);
@@ -128,7 +127,7 @@ namespace CipherListTerminal.Entities
 									transformedMousePositionButton3.Y >= 0 && transformedMousePositionButton3.Y <= _buttonHeight)
 				{
 					_currentlySelectedButton = 3;
-					//_isGamePadLastUsed = false;
+
 					if (InputManager.IsLeftMouseButtonDown())
 					{
 						MenuButtonSelectionEvent?.Invoke(GameStates.TimeTrial);
@@ -137,10 +136,6 @@ namespace CipherListTerminal.Entities
 				else
 				{
 					_currentlySelectedButton = 0;
-					//if (!_isGamePadLastUsed)
-					//{
-					//	_currentlySelectedButton = 0;
-					//}
 				}
 			}
 			else if (inputState == InputStates.GamePad)
@@ -156,13 +151,11 @@ namespace CipherListTerminal.Entities
 
 					if (InputManager.IsGamePadButtonPressed(Buttons.DPadLeft))
 					{
-						MoveLeft();
-						//_isGamePadLastUsed = true;					
+						MoveLeft();				
 					}
 
 					if (InputManager.IsGamePadButtonPressed(Buttons.DPadRight))
 					{
-						//_isGamePadLastUsed = true;
 						MoveRight();					
 					}
 
@@ -189,7 +182,6 @@ namespace CipherListTerminal.Entities
 
 					if (InputManager.IsGamePadButtonPressed(Buttons.A))
 					{
-						//_isGamePadLastUsed = true;
 						switch (_currentlySelectedButton)
 						{
 							case 1:
