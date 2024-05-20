@@ -337,6 +337,10 @@ namespace CipherListTerminal.Entities
 					}
 				}
 			}
+			else if (inputState == InputStates.GamePad)
+			{
+				
+			}
 			
 		}
 
