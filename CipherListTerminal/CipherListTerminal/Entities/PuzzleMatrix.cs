@@ -100,6 +100,15 @@ namespace CipherListTerminal.Entities
 				{
 					if (InputManager.IsGamePadConnected())
 					{
+						if (_highlightColumn == -1)
+						{
+							_highlightColumn = 0;
+						}
+						if (_highlightCell == -1)
+						{
+							_highlightCell = 0;
+						}
+
 						GamePadState gamePadState = InputManager.GetGamePadState();
 
 						if (InputManager.IsGamePadButtonPressed(Buttons.DPadLeft))
@@ -107,10 +116,12 @@ namespace CipherListTerminal.Entities
 							if (_highlightColumn > 0)
 							{
 								_highlightColumn--;
+								_highlightCell--;
 							}
 							else if (_highlightColumn <= 0)
 							{
 								_highlightColumn = 5;
+								_highlightCell = 5;
 							}
 						}
 
@@ -119,10 +130,12 @@ namespace CipherListTerminal.Entities
 							if (_highlightColumn < 5)
 							{
 								_highlightColumn++;
+								_highlightCell++;
 							}
 							else if (_highlightColumn >= 5)
 							{
 								_highlightColumn = 0;
+								_highlightCell = 0;
 							}
 						}
 
@@ -136,10 +149,12 @@ namespace CipherListTerminal.Entities
 									if (_highlightColumn < 5)
 									{
 										_highlightColumn++;
+										_highlightCell++;
 									}
 									else if (_highlightColumn >= 5)
 									{
 										_highlightColumn = 0;
+										_highlightCell = 0;
 									}
 								}
 								else if (gamePadState.ThumbSticks.Left.X < 0)
@@ -147,10 +162,12 @@ namespace CipherListTerminal.Entities
 									if (_highlightColumn > 0)
 									{
 										_highlightColumn--;
+										_highlightCell--;
 									}
 									else if (_highlightColumn <= 0)
 									{
 										_highlightColumn = 5;
+										_highlightCell = 5;
 									}
 								}
 								thumbstickMoved = true;
