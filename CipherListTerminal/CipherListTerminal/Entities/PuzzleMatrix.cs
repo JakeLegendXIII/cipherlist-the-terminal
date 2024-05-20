@@ -38,6 +38,7 @@ namespace CipherListTerminal.Entities
 		private int _displayColumnIndex = -1;
 		private int _highlightColumn = -1;
 		private int _highlightCell = -1;
+		private bool thumbstickMoved = false;
 
 		// Highlight color
 		Color highlightColor = new Color(255, 255, 0, 128); // Semi-transparent yellow
@@ -107,7 +108,7 @@ namespace CipherListTerminal.Entities
 							{
 								_highlightColumn--;
 							}
-							else if (_highlightColumn == 0)
+							else if (_highlightColumn <= 0)
 							{
 								_highlightColumn = 5;
 							}
@@ -119,11 +120,47 @@ namespace CipherListTerminal.Entities
 							{
 								_highlightColumn++;
 							}
-							else if (_highlightColumn > 5)
+							else if (_highlightColumn >= 5)
 							{
 								_highlightColumn = 0;
 							}
-						}						
+						}
+
+						// Check if the thumbstick is moved to the right or left
+						if (Math.Abs(gamePadState.ThumbSticks.Left.X) > 0.5f)
+						{
+							if (!thumbstickMoved)
+							{
+								if (gamePadState.ThumbSticks.Left.X > 0)
+								{
+									if (_highlightColumn < 5)
+									{
+										_highlightColumn++;
+									}
+									else if (_highlightColumn >= 5)
+									{
+										_highlightColumn = 0;
+									}
+								}
+								else if (gamePadState.ThumbSticks.Left.X < 0)
+								{
+									if (_highlightColumn > 0)
+									{
+										_highlightColumn--;
+									}
+									else if (_highlightColumn <= 0)
+									{
+										_highlightColumn = 5;
+									}
+								}
+								thumbstickMoved = true;
+							}
+						}
+						else
+						{
+							thumbstickMoved = false;
+						}
+
 					}
 				}
 
