@@ -101,19 +101,7 @@ namespace CipherListTerminal.Entities
 					{
 						GamePadState gamePadState = InputManager.GetGamePadState();
 
-						if (gamePadState.ThumbSticks.Left.X > 0 || gamePadState.DPad.Right == ButtonState.Pressed)
-						{
-							if (_highlightColumn < 5)
-							{
-								_highlightColumn++;
-							}
-							else if (_highlightColumn > 5)
-							{
-								_highlightColumn = 0;
-							}
-
-						}
-						else if (gamePadState.ThumbSticks.Left.X < 0 || gamePadState.DPad.Left == ButtonState.Pressed)
+						if (InputManager.IsGamePadButtonPressed(Buttons.DPadLeft))
 						{
 							if (_highlightColumn > 0)
 							{
@@ -124,6 +112,18 @@ namespace CipherListTerminal.Entities
 								_highlightColumn = 5;
 							}
 						}
+
+						if (InputManager.IsGamePadButtonPressed(Buttons.DPadRight))
+						{
+							if (_highlightColumn < 5)
+							{
+								_highlightColumn++;
+							}
+							else if (_highlightColumn > 5)
+							{
+								_highlightColumn = 0;
+							}
+						}						
 					}
 				}
 
