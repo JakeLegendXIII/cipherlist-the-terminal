@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace CipherListTerminal.Entities
 {
@@ -137,7 +136,7 @@ namespace CipherListTerminal.Entities
 								_highlightColumn = 0;
 								_highlightCell = 0;
 							}
-						}
+						}				
 
 						// Check if the thumbstick is moved to the right or left
 						if (Math.Abs(gamePadState.ThumbSticks.Left.X) > 0.5f)
@@ -199,14 +198,44 @@ namespace CipherListTerminal.Entities
 
 				RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);
 
-				if (transformedMousePosition.X >= 0 && transformedMousePosition.X < _matrixWidth)
+				if (CurrentInputState == InputStates.MouseKeyboard)
 				{
-					if (transformedMousePosition.Y >= 0 && transformedMousePosition.Y < _matrixHeight)
+					if (transformedMousePosition.X >= 0 && transformedMousePosition.X < _matrixWidth)
 					{
-						_highlightCell = (int)(transformedMousePosition.Y / _cellWidth);
+						if (transformedMousePosition.Y >= 0 && transformedMousePosition.Y < _matrixHeight)
+						{
+							_highlightCell = (int)(transformedMousePosition.Y / _cellWidth);
+						}
 					}
 				}
+				else if (CurrentInputState == InputStates.GamePad)
+				{
+					_highlightColumn = _selectedColumnIndex;
 
+					if (InputManager.IsGamePadButtonPressed(Buttons.DPadUp))
+					{
+						if (_highlightCell > 0)
+						{							
+							_highlightCell--;
+						}
+						else if (_highlightCell <= 0)
+						{							
+							_highlightCell = 5;
+						}
+					}
+
+					if (InputManager.IsGamePadButtonPressed(Buttons.DPadDown))
+					{
+						if (_highlightCell < 5)
+						{							
+							_highlightCell++;
+						}
+						else if (_highlightCell >= 5)
+						{							
+							_highlightCell = 0;
+						}
+					}
+				}				
 			}
 			else if (State == MatrixState.Horizontal)
 			{
@@ -339,7 +368,63 @@ namespace CipherListTerminal.Entities
 			}
 			else if (inputState == InputStates.GamePad)
 			{
-				
+				if (InputManager.IsGamePadConnected())
+				{
+					_displayColumnIndex = _highlightColumn;
+					_displayRowIndex = _highlightCell;
+
+					if (InputManager.IsGamePadButtonPressed(Buttons.A))
+					{
+
+						bool select = false;
+
+						if (State == MatrixState.FirstSelection)
+						{
+							if (_displayColumnIndex >= 0 && _displayRowIndex == 0)
+							{
+								if (_matrix[_displayRowIndex, _displayColumnIndex] != "__")
+								{
+									select = true;
+									State = MatrixState.Vertical;
+								}
+							}
+						}
+						else if (State == MatrixState.Vertical)
+						{
+							if (_displayRowIndex >= 0 && _displayColumnIndex == _selectedColumnIndex)
+							{
+								if (_matrix[_displayRowIndex, _displayColumnIndex] != "__")
+								{
+									select = true;
+									State = MatrixState.Horizontal;
+								}
+
+							}
+						}
+						else if (State == MatrixState.Horizontal)
+						{
+							if (_displayColumnIndex >= 0 && _displayRowIndex == _selectedRowIndex)
+							{
+								if (_matrix[_displayRowIndex, _displayColumnIndex] != "__")
+								{
+									select = true;
+									State = MatrixState.Vertical;
+								}
+							}
+						}
+
+						if (select)
+						{
+							CurrentlySelectedValue = _matrix[_displayRowIndex, _displayColumnIndex];
+							_selectedRowIndex = _displayRowIndex;
+							_selectedColumnIndex = _displayColumnIndex;
+							_matrix[_displayRowIndex, _displayColumnIndex] = "__";
+
+							MatrixSelectionEvent?.Invoke(CurrentlySelectedValue);
+						}
+					}
+				}				
+
 			}
 			
 		}
