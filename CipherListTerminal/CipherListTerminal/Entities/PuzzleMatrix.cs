@@ -155,13 +155,20 @@ namespace CipherListTerminal.Entities
 
 				RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);
 
-				if (transformedMousePosition.X >= 0 && transformedMousePosition.X < _matrixWidth)
+				if (CurrentInputState == InputStates.MouseKeyboard)
 				{
-					if (transformedMousePosition.Y >= 0 && transformedMousePosition.Y < _matrixHeight)
+					if (transformedMousePosition.X >= 0 && transformedMousePosition.X < _matrixWidth)
 					{
-						_highlightCell = (int)(transformedMousePosition.X / _cellWidth);
+						if (transformedMousePosition.Y >= 0 && transformedMousePosition.Y < _matrixHeight)
+						{
+							_highlightCell = (int)(transformedMousePosition.X / _cellWidth);
+						}
 					}
 				}
+				else if (CurrentInputState == InputStates.GamePad)
+				{
+					HandleGamePadLeftRightCell(gamePadState);
+				}				
 			}
 
 			// Draw the matrix
@@ -397,12 +404,7 @@ namespace CipherListTerminal.Entities
 			{
 				thumbstickMoved = false;
 			}
-		}
-
-		private void HandleGamePadLeftRightCell()
-		{
-
-		}
+		}		
 
 		private void MoveHighlightLeft()
 		{
@@ -428,6 +430,65 @@ namespace CipherListTerminal.Entities
 			else if (_highlightColumn >= 5)
 			{
 				_highlightColumn = 0;
+				_highlightCell = 0;
+			}
+		}
+
+		private void HandleGamePadLeftRightCell(GamePadState gamePadState)
+		{
+			if (InputManager.IsGamePadButtonPressed(Buttons.DPadLeft))
+			{
+				MoveHighlightCellLeft();
+			}
+
+			if (InputManager.IsGamePadButtonPressed(Buttons.DPadRight))
+			{
+				MoveHighlightCellRight();
+			}
+
+			// Check if the thumbstick is moved to the right or left
+			if (Math.Abs(gamePadState.ThumbSticks.Left.X) > 0.5f)
+			{
+				if (!thumbstickMoved)
+				{
+					if (gamePadState.ThumbSticks.Left.X > 0)
+					{
+						MoveHighlightCellRight();
+					}
+					else if (gamePadState.ThumbSticks.Left.X < 0)
+					{
+						MoveHighlightCellLeft();
+
+					}
+					thumbstickMoved = true;
+				}
+			}
+			else
+			{
+				thumbstickMoved = false;
+			}
+		}
+
+		private void MoveHighlightCellLeft()
+		{
+			if (_highlightCell > 0)
+			{				
+				_highlightCell--;
+			}
+			else if (_highlightCell <= 0)
+			{				
+				_highlightCell = 5;
+			}
+		}
+
+		private void MoveHighlightCellRight()
+		{
+			if (_highlightCell < 5)
+			{				
+				_highlightCell++;
+			}
+			else if (_highlightCell >= 5)
+			{				
 				_highlightCell = 0;
 			}
 		}
