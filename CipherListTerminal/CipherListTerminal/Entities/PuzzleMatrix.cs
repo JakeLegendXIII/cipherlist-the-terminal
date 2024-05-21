@@ -74,6 +74,7 @@ namespace CipherListTerminal.Entities
 			Rectangle highlightRectangle;
 
 			Vector2 transformedMousePosition = InputManager.GetTransformedMousePosition(_startX, _startY);
+			GamePadState gamePadState = InputManager.GetGamePadState();
 
 			if (State == MatrixState.FirstSelection)
 			{
@@ -106,41 +107,9 @@ namespace CipherListTerminal.Entities
 						if (_highlightCell == -1)
 						{
 							_highlightCell = 0;
-						}
+						}						
 
-						GamePadState gamePadState = InputManager.GetGamePadState();
-
-						if (InputManager.IsGamePadButtonPressed(Buttons.DPadLeft))
-						{
-							MoveHighlightLeft();
-						}
-
-						if (InputManager.IsGamePadButtonPressed(Buttons.DPadRight))
-						{
-							MoveHighlightRight();						
-						}
-
-						// Check if the thumbstick is moved to the right or left
-						if (Math.Abs(gamePadState.ThumbSticks.Left.X) > 0.5f)
-						{
-							if (!thumbstickMoved)
-							{
-								if (gamePadState.ThumbSticks.Left.X > 0)
-								{
-									MoveHighlightLeft();
-								}
-								else if (gamePadState.ThumbSticks.Left.X < 0)
-								{
-									MoveHighlightRight();
-								}
-								thumbstickMoved = true;
-							}
-						}
-						else
-						{
-							thumbstickMoved = false;
-						}
-
+						HandleGamePadLeftRightColumn(gamePadState);						
 					}
 				}
 
@@ -174,31 +143,7 @@ namespace CipherListTerminal.Entities
 				}
 				else if (CurrentInputState == InputStates.GamePad)
 				{
-					_highlightColumn = _selectedColumnIndex;
-
-					if (InputManager.IsGamePadButtonPressed(Buttons.DPadUp))
-					{
-						if (_highlightCell > 0)
-						{
-							_highlightCell--;
-						}
-						else if (_highlightCell <= 0)
-						{
-							_highlightCell = 5;
-						}
-					}
-
-					if (InputManager.IsGamePadButtonPressed(Buttons.DPadDown))
-					{
-						if (_highlightCell < 5)
-						{
-							_highlightCell++;
-						}
-						else if (_highlightCell >= 5)
-						{
-							_highlightCell = 0;
-						}
-					}
+					HandleGamePadUpDown(gamePadState);				
 				}
 			}
 			else if (State == MatrixState.Horizontal)
@@ -309,7 +254,6 @@ namespace CipherListTerminal.Entities
 				}
 
 			}
-
 		}
 
 		private void ManageSelectedInput()
@@ -360,6 +304,104 @@ namespace CipherListTerminal.Entities
 
 				MatrixSelectionEvent?.Invoke(CurrentlySelectedValue);
 			}
+		}
+
+		private void HandleGamePadUpDown(GamePadState gamePadState)
+		{
+			if (InputManager.IsGamePadButtonPressed(Buttons.DPadUp))
+			{
+				GamePadMoveHighlightCellUp();
+			}
+
+			if (InputManager.IsGamePadButtonPressed(Buttons.DPadDown))
+			{
+				GamePadMoveHighlightCellDown();
+			}
+
+			// Check if the thumbstick is moved to the up or down
+			if (Math.Abs(gamePadState.ThumbSticks.Left.Y) > 0.5f)
+			{
+				if (!thumbstickMoved)
+				{
+					if (gamePadState.ThumbSticks.Left.Y > 0)
+					{
+						GamePadMoveHighlightCellUp();
+					}
+					else if (gamePadState.ThumbSticks.Left.Y < 0)
+					{
+						GamePadMoveHighlightCellDown();
+					}
+					thumbstickMoved = true;
+				}
+			}
+			else
+			{
+				thumbstickMoved = false;
+			}
+		}
+
+		private void GamePadMoveHighlightCellDown()
+		{
+			if (_highlightCell < 5)
+			{
+				_highlightCell++;
+			}
+			else if (_highlightCell >= 5)
+			{
+				_highlightCell = 0;
+			}
+		}
+
+		private void GamePadMoveHighlightCellUp()
+		{
+			if (_highlightCell > 0)
+			{
+				_highlightCell--;
+			}
+			else if (_highlightCell <= 0)
+			{
+				_highlightCell = 5;
+			}
+		}
+
+		private void HandleGamePadLeftRightColumn(GamePadState gamePadState)
+		{
+			if (InputManager.IsGamePadButtonPressed(Buttons.DPadLeft))
+			{
+				MoveHighlightLeft();
+			}
+
+			if (InputManager.IsGamePadButtonPressed(Buttons.DPadRight))
+			{
+				MoveHighlightRight();
+			}
+
+			// Check if the thumbstick is moved to the right or left
+			if (Math.Abs(gamePadState.ThumbSticks.Left.X) > 0.5f)
+			{
+				if (!thumbstickMoved)
+				{
+					if (gamePadState.ThumbSticks.Left.X > 0)
+					{
+						MoveHighlightRight();
+					}
+					else if (gamePadState.ThumbSticks.Left.X < 0)
+					{
+						MoveHighlightLeft();
+
+					}
+					thumbstickMoved = true;
+				}
+			}
+			else
+			{
+				thumbstickMoved = false;
+			}
+		}
+
+		private void HandleGamePadLeftRightCell()
+		{
+
 		}
 
 		private void MoveHighlightLeft()
