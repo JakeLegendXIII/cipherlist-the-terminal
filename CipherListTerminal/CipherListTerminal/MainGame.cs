@@ -56,6 +56,7 @@ namespace CipherListTerminal
 		private CipherList _targetList3;
 		private ScoreBoard _scoreBoard;
 		private Summary _summary;
+		private InputStateIndicator _inputStateIndicator;
 
 		private Random _random = new Random();
 
@@ -93,6 +94,7 @@ namespace CipherListTerminal
 			CalculateRenderDestination();
 			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _farawayFont);
 			_mainMenu.MenuButtonSelectionEvent += OnMenuButtonSelection;
+			_inputStateIndicator = new InputStateIndicator();
 			GameState = GameStates.Menu;
 
 			GamePadState gps = GamePad.GetState(PlayerIndex.One);
@@ -125,13 +127,7 @@ namespace CipherListTerminal
 		{
 			InputManager.Update(_renderDestination, _scale);
 
-			if (CurrentInputState == InputStates.GamePad)
-			{				
-				if (InputManager.IsGamePadConnected())
-					CurrentInputState = InputStates.GamePad;
-				else
-					CurrentInputState = InputStates.MouseKeyboard;
-			}
+			_inputStateIndicator.Update(gameTime, CurrentInputState);
 
 			if (InputManager.IsKeyDown(Keys.F11) || InputManager.IsGamePadButtonPressed(Buttons.LeftShoulder))
 			{
