@@ -69,6 +69,8 @@ namespace CipherListTerminal.Entities
 				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			_spriteBatch.DrawString(_font, "Matrix", new Vector2(_startX + 100, _startY - 65), Color.White);
+			_spriteBatch.DrawString(_font, $"display info: col {_displayColumnIndex} row {_displayRowIndex}", new Vector2(50, 10), Color.White);
+			_spriteBatch.DrawString(_font, $"highlight info: col {_highlightColumn}  cell{_highlightCell}", new Vector2(50, 40), Color.White);
 
 
 			Rectangle highlightRectangle;
@@ -107,7 +109,15 @@ namespace CipherListTerminal.Entities
 						if (_highlightCell == -1)
 						{
 							_highlightCell = 0;
-						}						
+						}
+						if (_displayRowIndex == -1)
+						{
+							_displayRowIndex = 0;
+						}
+						if (_displayColumnIndex == -1)
+						{
+							_displayColumnIndex = 0;
+						}
 
 						HandleGamePadLeftRightColumn(gamePadState);						
 					}
@@ -233,7 +243,6 @@ namespace CipherListTerminal.Entities
 					 mouseState.X >= 0 && mouseState.X < _matrixWidth &&
 					 mouseState.Y >= 0 && mouseState.Y < _matrixHeight)
 				{
-
 					ManageSelectedInput();
 				}
 			}
@@ -241,15 +250,14 @@ namespace CipherListTerminal.Entities
 			{
 				if (InputManager.IsGamePadConnected())
 				{
-					_displayColumnIndex = _highlightColumn;
-					_displayRowIndex = _highlightCell;
+					//_displayColumnIndex = _highlightColumn;
+					//_displayRowIndex = _highlightCell;					
 
 					if (InputManager.IsGamePadButtonPressed(Buttons.A))
 					{
 						ManageSelectedInput();					
 					}
 				}
-
 			}
 		}
 
@@ -347,6 +355,15 @@ namespace CipherListTerminal.Entities
 			{
 				_highlightCell = 0;
 			}
+
+			if (_displayRowIndex < 5)
+			{
+				_displayRowIndex++;
+			}
+			else if (_displayRowIndex >= 5)
+			{		
+				_displayRowIndex = 0;
+			}
 		}
 
 		private void GamePadMoveHighlightCellUp()
@@ -358,6 +375,15 @@ namespace CipherListTerminal.Entities
 			else if (_highlightCell <= 0)
 			{
 				_highlightCell = 5;
+			}
+
+			if (_displayRowIndex > 0)
+			{
+				_displayRowIndex--;
+			}
+			else if (_displayRowIndex <= 0)
+			{
+				_displayRowIndex = 5;
 			}
 		}
 
@@ -408,6 +434,15 @@ namespace CipherListTerminal.Entities
 				_highlightColumn = 5;
 				_highlightCell = 5;
 			}
+
+			if (_displayColumnIndex > 0)
+			{
+				_displayColumnIndex--;
+			}
+			else if (_displayColumnIndex <= 0)
+			{
+				_displayColumnIndex = 5;
+			}
 		}
 
 		private void MoveHighlightRight()
@@ -421,6 +456,15 @@ namespace CipherListTerminal.Entities
 			{
 				_highlightColumn = 0;
 				_highlightCell = 0;
+			}
+
+			if (_displayColumnIndex < 5)
+			{
+				_displayColumnIndex++;
+			}
+			else if (_displayColumnIndex >= 5)
+			{
+				_displayColumnIndex = 0;
 			}
 		}
 
@@ -469,6 +513,15 @@ namespace CipherListTerminal.Entities
 			{				
 				_highlightCell = 5;
 			}
+
+			if (_displayColumnIndex > 0)
+			{
+				_displayColumnIndex--;
+			}
+			else if (_displayColumnIndex <= 0)
+			{
+				_displayColumnIndex = 5;
+			}
 		}
 
 		private void MoveHighlightCellRight()
@@ -480,6 +533,15 @@ namespace CipherListTerminal.Entities
 			else if (_highlightCell >= 5)
 			{				
 				_highlightCell = 0;
+			}
+
+			if (_displayColumnIndex < 5)
+			{
+				_displayColumnIndex++;
+			}
+			else if (_displayColumnIndex >= 5)
+			{
+				_displayColumnIndex = 0;
 			}
 		}
 
