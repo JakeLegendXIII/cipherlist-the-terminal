@@ -241,15 +241,6 @@ namespace CipherListTerminal.Entities
 			{
 				if (InputManager.IsGamePadConnected())
 				{
-					//if (_highlightCell == -1)
-					//{
-					//	_highlightCell = 0;
-					//}
-					//if (_highlightColumn == -1)
-					//{
-					//	_highlightColumn = 0;
-					//}
-
 					_displayColumnIndex = _highlightColumn;
 					_displayRowIndex = _highlightCell;
 
