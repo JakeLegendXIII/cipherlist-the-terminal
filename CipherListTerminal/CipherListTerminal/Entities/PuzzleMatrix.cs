@@ -153,6 +153,8 @@ namespace CipherListTerminal.Entities
 				}
 				else if (CurrentInputState == InputStates.GamePad)
 				{
+					_displayColumnIndex = _selectedColumnIndex;
+
 					HandleGamePadUpDown(gamePadState);				
 				}
 			}
@@ -177,6 +179,8 @@ namespace CipherListTerminal.Entities
 				}
 				else if (CurrentInputState == InputStates.GamePad)
 				{
+					_displayRowIndex = _selectedRowIndex;
+
 					HandleGamePadLeftRightCell(gamePadState);
 				}				
 			}
