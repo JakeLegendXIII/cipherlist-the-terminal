@@ -35,6 +35,7 @@ namespace CipherListTerminal.Entities
 		private int _selectedColumnIndex = -1;
 		private int _displayRowIndex = -1;
 		private int _displayColumnIndex = -1;
+		private int _highlightRow = -1;
 		private int _highlightColumn = -1;
 		private int _highlightCell = -1;
 		private bool thumbstickMoved = false;
@@ -119,7 +120,6 @@ namespace CipherListTerminal.Entities
 
 				if (_highlightColumn >= 0)
 				{
-
 					highlightRectangle = new Rectangle((_startX + _highlightColumn * _cellWidth) - GetScaleValue(scale),
 					_startY - GetScaleValue(scale), _cellWidth, _matrixHeight);
 
@@ -304,19 +304,21 @@ namespace CipherListTerminal.Entities
 				_selectedRowIndex = _displayRowIndex;
 				_selectedColumnIndex = _displayColumnIndex;
 
-				//if (State == MatrixState.FirstSelection)
-				//{
-				//	_highlightColumn = _selectedRowIndex;
-				//	_highlightCell = _selectedColumnIndex;
-				//}
-				//else if (State == MatrixState.Horizontal)
-				//{
-
-				//}
-				//else if (State == MatrixState.Vertical)
-				//{
-
-				//}
+				if (State == MatrixState.FirstSelection)
+				{
+					_highlightColumn = _selectedRowIndex;
+					_highlightCell = _selectedColumnIndex;
+				}
+				else if (State == MatrixState.Horizontal)
+				{
+					_highlightColumn = _selectedRowIndex;
+					_highlightCell = _selectedColumnIndex;
+				}
+				else if (State == MatrixState.Vertical)
+				{
+					_highlightColumn = _selectedColumnIndex;
+					_highlightCell = _selectedRowIndex;
+				}
 
 				_matrix[_displayRowIndex, _displayColumnIndex] = "__";
 
