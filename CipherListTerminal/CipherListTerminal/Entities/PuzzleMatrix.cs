@@ -42,7 +42,7 @@ namespace CipherListTerminal.Entities
 		// Highlight color
 		Color highlightColor = new Color(255, 255, 0, 128); // Semi-transparent yellow
 
-		public PuzzleMatrix(SpriteFont font, Texture2D matrixUI, string[] possibleValues)
+		public PuzzleMatrix(SpriteFont font, Texture2D matrixUI, string[] possibleValues, InputStates inputState)
 		{
 			_font = font;
 			_matrixUI = matrixUI;
@@ -50,6 +50,7 @@ namespace CipherListTerminal.Entities
 			_matrixWidth = _cellWidth * 6;
 			_matrixHeight = _cellHeight * 6;
 			State = MatrixState.FirstSelection;
+			CurrentInputState = inputState;
 
 			// Initialize the matrix
 			for (int i = 0; i < 6; i++)
