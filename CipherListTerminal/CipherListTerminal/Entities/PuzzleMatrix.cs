@@ -70,6 +70,7 @@ namespace CipherListTerminal.Entities
 
 			_spriteBatch.DrawString(_font, "Matrix", new Vector2(_startX + 100, _startY - 65), Color.White);
 			_spriteBatch.DrawString(_font, $"display info: col {_displayColumnIndex} row {_displayRowIndex}", new Vector2(50, 10), Color.White);
+			_spriteBatch.DrawString(_font, $"selected info: col {_selectedColumnIndex} row {_selectedRowIndex}", new Vector2(150, 10), Color.White);
 			_spriteBatch.DrawString(_font, $"highlight info: col {_highlightColumn}  cell{_highlightCell}", new Vector2(50, 40), Color.White);
 
 
@@ -309,6 +310,21 @@ namespace CipherListTerminal.Entities
 				CurrentlySelectedValue = _matrix[_displayRowIndex, _displayColumnIndex];
 				_selectedRowIndex = _displayRowIndex;
 				_selectedColumnIndex = _displayColumnIndex;
+
+				//if (State == MatrixState.FirstSelection)
+				//{
+				//	_highlightColumn = _selectedRowIndex;
+				//	_highlightCell = _selectedColumnIndex;
+				//}
+				//else if (State == MatrixState.Horizontal)
+				//{
+
+				//}
+				//else if (State == MatrixState.Vertical)
+				//{
+
+				//}
+
 				_matrix[_displayRowIndex, _displayColumnIndex] = "__";
 
 				MatrixSelectionEvent?.Invoke(CurrentlySelectedValue);
