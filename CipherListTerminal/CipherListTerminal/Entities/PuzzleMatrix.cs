@@ -35,7 +35,6 @@ namespace CipherListTerminal.Entities
 		private int _selectedColumnIndex = -1;
 		private int _displayRowIndex = -1;
 		private int _displayColumnIndex = -1;
-		private int _highlightRow = -1;
 		private int _highlightColumn = -1;
 		private int _highlightCell = -1;
 		private bool thumbstickMoved = false;
