@@ -8,7 +8,6 @@ namespace CipherListTerminal.Entities
 	internal class InputStateIndicator : IGameEntity
 	{
 		private SpriteFont _armadaFont;
-
 		InputStates CurrentInputState;
 
         public InputStateIndicator(SpriteFont armadaFont, InputStates inputState)
@@ -19,7 +18,10 @@ namespace CipherListTerminal.Entities
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
-			spriteBatch.DrawString(_armadaFont, "InpuState: " + CurrentInputState, new Vector2(900, 100), Color.White);
+			if (InputManager.IsGamePadConnected())
+			{
+				spriteBatch.DrawString(_armadaFont, "InpuState: " + CurrentInputState, new Vector2(900, 100), Color.White);
+			}			
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState)
