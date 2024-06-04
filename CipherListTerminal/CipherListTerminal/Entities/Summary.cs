@@ -14,7 +14,7 @@ namespace CipherListTerminal.Entities
 		private Texture2D _summaryUI;
 		private SpriteFont _armadaFont;
 
-		private int _summaryUIPositionX = 160;
+		private int _summaryUIPositionX = 260;
 		private int _summaryUIPositionY = 85;		
 
 		public Summary(Texture2D summaryUI, SpriteFont armadaFont)
@@ -28,12 +28,12 @@ namespace CipherListTerminal.Entities
 			spriteBatch.Draw(_summaryUI, new Vector2(_summaryUIPositionX, _summaryUIPositionY), null, Color.White, 
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			spriteBatch.DrawString(_armadaFont, "Session Summary", new Vector2(170, 95), Color.White, 
+			spriteBatch.DrawString(_armadaFont, "Session Summary", new Vector2(270, 95), Color.White, 
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			spriteBatch.DrawString(_armadaFont, "Score: " + Score, new Vector2(180, 150), Color.White);
-			spriteBatch.DrawString(_armadaFont, "High Score: " + HighScore, new Vector2(180, 175), Color.White);
-			spriteBatch.DrawString(_armadaFont, "Date Achieved: " + HighScoreDate.ToShortDateString(), new Vector2(180, 200), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Score: " + Score, new Vector2(280, 150), Color.White);
+			spriteBatch.DrawString(_armadaFont, "High Score: " + HighScore, new Vector2(280, 175), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Date Achieved: " + HighScoreDate.ToShortDateString(), new Vector2(280, 200), Color.White);
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState) { }
