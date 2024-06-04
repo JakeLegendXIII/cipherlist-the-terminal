@@ -227,6 +227,10 @@ namespace CipherListTerminal.Entities
 
 		public void Update(GameTime gameTime, InputStates inputState)
 		{
+			// TODO : When input state changes due to Gamepad is disconnected 
+			// we need to correct the displayRowIndex and displayColumnIndex based on last highlighted
+			// adjusting accorindingly based on the MatrixState
+
 			CurrentInputState = inputState;
 
 			if (inputState == InputStates.MouseKeyboard)
