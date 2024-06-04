@@ -664,12 +664,15 @@ namespace CipherListTerminal
 		}
 
 		private void ToggleInputState()
-		{
-			if (CurrentInputState == InputStates.MouseKeyboard)
+		{		
+			if (CurrentInputState == InputStates.GamePad)
 			{
-				CurrentInputState = InputStates.GamePad;
+				if (InputManager.IsGamePadConnected())
+					CurrentInputState = InputStates.GamePad;
+				else
+					CurrentInputState = InputStates.MouseKeyboard;
 			}
-			else
+			else if (CurrentInputState == InputStates.MouseKeyboard)
 			{
 				CurrentInputState = InputStates.MouseKeyboard;
 			}
