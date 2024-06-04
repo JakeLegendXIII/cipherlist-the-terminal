@@ -56,6 +56,11 @@ namespace CipherListTerminal.Input
 			return gamePadState.IsConnected;
 		}
 
+		public static bool PreviousGamePadConnected()
+		{
+			return lastGamePadState.IsConnected;
+		}
+
 		public static bool IsGamePadButtonPressed(Buttons button)
 		{
 			return gamePadState.IsButtonDown(button) && lastGamePadState.IsButtonUp(button);

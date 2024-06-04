@@ -127,9 +127,7 @@ namespace CipherListTerminal
 		protected override void Update(GameTime gameTime)
 		{
 			InputManager.Update(_renderDestination, _scale);
-
-			_inputStateIndicator.Update(gameTime, CurrentInputState);
-
+			
 			if (InputManager.IsKeyDown(Keys.F11) || InputManager.IsGamePadButtonPressed(Buttons.LeftShoulder))
 			{
 				// _graphics.ToggleFullScreen();
@@ -146,6 +144,13 @@ namespace CipherListTerminal
 			{
 				ToggleInputState();
 			}
+
+			if (InputManager.PreviousGamePadConnected() && !InputManager.IsGamePadConnected() && CurrentInputState == InputStates.GamePad)
+			{
+				ToggleInputState();
+			}
+
+			_inputStateIndicator.Update(gameTime, CurrentInputState);
 
 			if (GameState == GameStates.Menu)
 			{
@@ -667,14 +672,14 @@ namespace CipherListTerminal
 		{		
 			if (CurrentInputState == InputStates.GamePad)
 			{
-				if (InputManager.IsGamePadConnected())
-					CurrentInputState = InputStates.GamePad;
-				else
-					CurrentInputState = InputStates.MouseKeyboard;
+				CurrentInputState = InputStates.MouseKeyboard;
 			}
 			else if (CurrentInputState == InputStates.MouseKeyboard)
 			{
-				CurrentInputState = InputStates.MouseKeyboard;
+				if (InputManager.IsGamePadConnected())
+					CurrentInputState = InputStates.GamePad;
+				else
+					CurrentInputState = InputStates.MouseKeyboard;				
 			}
 		}
 
