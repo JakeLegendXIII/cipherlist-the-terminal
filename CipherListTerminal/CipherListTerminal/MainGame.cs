@@ -355,9 +355,7 @@ namespace CipherListTerminal
 
 			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-			_spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _nativeWidth, _nativeHeight), Color.White);
-			
-			_inputStateIndicator.Draw(_spriteBatch, gameTime, _scale);
+			_spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _nativeWidth, _nativeHeight), Color.White);					
 
 			if (GameState == GameStates.Menu)
 			{
@@ -396,6 +394,8 @@ namespace CipherListTerminal
 			{
 				_summary.Draw(_spriteBatch, gameTime, _scale);
 			}
+
+			_inputStateIndicator.Draw(_spriteBatch, gameTime, _scale);
 
 			_spriteBatch.End();
 
