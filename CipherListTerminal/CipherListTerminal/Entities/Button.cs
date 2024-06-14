@@ -11,14 +11,12 @@ namespace CipherListTerminal.Entities
 		private string _buttonHeader;
 		private string _keyboardMouse;
 		private string _gamePad;
-		private Vector2 _position;
 
 		private InputStates _state;
 
-        public Button(Texture2D buttonUI, Vector2 position, string buttonHeader, string keyboardMouse, string gamePad)
+        public Button(Texture2D buttonUI, string buttonHeader, string keyboardMouse, string gamePad)
         {
             _buttonUI = buttonUI;
-			_position = position;
 			_buttonHeader = buttonHeader;
 			_keyboardMouse = keyboardMouse;
 			_gamePad = gamePad;

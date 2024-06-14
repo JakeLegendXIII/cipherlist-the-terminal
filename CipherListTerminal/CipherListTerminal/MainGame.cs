@@ -58,7 +58,7 @@ namespace CipherListTerminal
 		private ScoreBoard _scoreBoard;
 		private Summary _summary;
 		private InputStateIndicator _inputStateIndicator;
-		private Button _button;
+		private ButtonManager _buttonManager;
 
 		private Random _random = new Random();
 
