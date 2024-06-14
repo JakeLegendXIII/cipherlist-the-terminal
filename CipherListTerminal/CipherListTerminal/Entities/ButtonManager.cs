@@ -13,6 +13,7 @@ namespace CipherListTerminal.Entities
 
 		public ButtonManager()
 		{
+			// Pre-load the various buttons for each game mode need to figure out handling positions
 			_buttons = new List<Button>();
 		}
 
