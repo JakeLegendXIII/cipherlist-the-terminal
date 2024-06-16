@@ -12,10 +12,16 @@ namespace CipherListTerminal.Entities
 		private List<Button> _buttons;
 
 		private Texture2D _buttonUI;
+		private SpriteFont _font;
 
-		public ButtonManager()
+		public ButtonManager(Texture2D buttonUI, SpriteFont font, InputStates inputState, GameStates gameState)
 		{
-			// Pre-load the various buttons for each game mode need to figure out handling positions
+			_buttonUI = buttonUI;
+			_inputState = inputState;
+			_gameState = gameState;
+			_font = font;
+
+			// Pre-load the various buttons for each game mode
 			_buttons = [
 				new Button(_buttonUI, "Back", "ESC", "Back"),
 				new Button(_buttonUI, "Next Puzzle", "F5", "RT"),
@@ -27,7 +33,10 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
-			
+			if (_gameState == GameStates.FreePlay)
+			{
+				_buttons[0].Draw(spriteBatch, gameTime, scale, _font, new Vector2(150, 400));
+			}
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState) {}

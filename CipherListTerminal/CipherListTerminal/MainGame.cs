@@ -105,7 +105,7 @@ namespace CipherListTerminal
 				CurrentInputState = InputStates.MouseKeyboard;
 
 			_inputStateIndicator = new InputStateIndicator(_armadaFont, CurrentInputState);
-			_buttonManager = new ButtonManager();
+			_buttonManager = new ButtonManager(_pfButtonUI,_farawayFont, CurrentInputState, GameState);
 		}
 
 		protected override void LoadContent()
