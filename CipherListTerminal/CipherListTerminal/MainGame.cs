@@ -155,6 +155,7 @@ namespace CipherListTerminal
 			}
 
 			_inputStateIndicator.Update(gameTime, CurrentInputState);
+			_buttonManager.Update(gameTime, CurrentInputState, GameState);
 
 			if (GameState == GameStates.Menu)
 			{

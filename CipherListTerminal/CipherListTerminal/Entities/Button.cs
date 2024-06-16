@@ -1,4 +1,5 @@
 ﻿using CipherListTerminal.Core;
+using CipherListTerminal.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -30,6 +31,14 @@ namespace CipherListTerminal.Entities
 				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			spriteBatch.DrawString(font, _buttonHeader, position + new Vector2(10, 10), Color.White);
+			if (InputManager.IsGamePadConnected())
+			{
+				spriteBatch.DrawString(font, _keyboardMouse + " " + _gamePad, position + new Vector2(10, 40), Color.White);
+			}
+			else
+			{
+				spriteBatch.DrawString(font, _keyboardMouse, position + new Vector2(10, 40), Color.White);
+			}						
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState)
