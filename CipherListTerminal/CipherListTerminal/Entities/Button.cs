@@ -22,9 +22,11 @@ namespace CipherListTerminal.Entities
 			_gamePad = gamePad;
         }
 
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale) { }
+
+		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale, Vector2 position)
 		{
-			
+
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState)

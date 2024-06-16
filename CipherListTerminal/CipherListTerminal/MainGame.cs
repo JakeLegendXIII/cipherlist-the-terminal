@@ -105,6 +105,7 @@ namespace CipherListTerminal
 				CurrentInputState = InputStates.MouseKeyboard;
 
 			_inputStateIndicator = new InputStateIndicator(_armadaFont, CurrentInputState);
+			_buttonManager = new ButtonManager();
 		}
 
 		protected override void LoadContent()
@@ -399,6 +400,8 @@ namespace CipherListTerminal
 			}
 
 			_inputStateIndicator.Draw(_spriteBatch, gameTime, _scale);
+
+			_buttonManager.Draw(_spriteBatch, gameTime, _scale);
 
 			_spriteBatch.End();
 
