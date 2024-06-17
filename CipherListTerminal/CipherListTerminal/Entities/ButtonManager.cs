@@ -36,6 +36,8 @@ namespace CipherListTerminal.Entities
 			if (_gameState == GameStates.FreePlay)
 			{
 				_buttons[0].Draw(spriteBatch, gameTime, scale, _font, new Vector2(150, 610));
+
+				_buttons[1].Draw(spriteBatch, gameTime, scale, _font, new Vector2(350, 610));
 			}
 		}
 
