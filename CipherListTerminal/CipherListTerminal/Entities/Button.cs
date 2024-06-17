@@ -25,10 +25,10 @@ namespace CipherListTerminal.Entities
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale) { }
 
-		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale, SpriteFont font, Vector2 position)
+		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale, SpriteFont font, Vector2 position, Color color)
 		{
 			spriteBatch.Draw(_buttonUI, position, null,
-				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+				color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			spriteBatch.DrawString(font, _buttonHeader, position + new Vector2(10, 10), Color.White);
 			if (InputManager.IsGamePadConnected())
