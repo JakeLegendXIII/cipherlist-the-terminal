@@ -35,7 +35,7 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
-			if (_gameState == GameStates.FreePlay)
+			if (_gameState == GameStates.FreePlay || _gameState == GameStates.SinglePuzzleTimed || _gameState == GameStates.TimeTrial)
 			{
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
 				{
@@ -59,6 +59,11 @@ namespace CipherListTerminal.Entities
 				_buttons[2].Draw(spriteBatch, gameTime, scale, _font, new Vector2(650, 610), Color.White);
 
 				_buttons[4].Draw(spriteBatch, gameTime, scale, _font, new Vector2(850, 610), Color.White);
+			}
+
+			if (_gameState == GameStates.Summary)
+			{
+				// 0 and 3
 			}
 		}
 
