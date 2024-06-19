@@ -62,8 +62,14 @@ namespace CipherListTerminal.Entities
 			}
 
 			if (_gameState == GameStates.Summary)
-			{
-				// 0 and 3
+			{				
+				_buttons[0].Draw(spriteBatch, gameTime, scale, _font, new Vector2(250, 610), Color.White);
+
+				_buttons[3].Draw(spriteBatch, gameTime, scale, _font, new Vector2(450, 610), Color.White);
+
+				_buttons[2].Draw(spriteBatch, gameTime, scale, _font, new Vector2(650, 610), Color.White);
+
+				_buttons[4].Draw(spriteBatch, gameTime, scale, _font, new Vector2(850, 610), Color.White);
 			}
 		}
 
