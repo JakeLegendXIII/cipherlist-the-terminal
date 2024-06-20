@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace CipherListTerminal.Entities
 {
@@ -37,48 +38,64 @@ namespace CipherListTerminal.Entities
 		{
 			if (_gameState == GameStates.FreePlay || _gameState == GameStates.SinglePuzzleTimed || _gameState == GameStates.TimeTrial)
 			{
-				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
-				{
-					_buttons[0].Draw(spriteBatch, gameTime, scale, _font, new Vector2(250, 610), Color.Gray);
-				}
-				else
-				{
-					_buttons[0].Draw(spriteBatch, gameTime, scale, _font, new Vector2(250, 610), Color.White);
-				}
 
-				if (InputManager.IsGamePadButtonPressed(Buttons.RightTrigger) || InputManager.IsKeyPressed(Keys.F5))
-                {
-					_buttons[1].Draw(spriteBatch, gameTime, scale, _font, new Vector2(450, 610), Color.Gray);
-				}
-				else
-				{
-					_buttons[1].Draw(spriteBatch, gameTime, scale, _font, new Vector2(450, 610), Color.White);
-				}
-                
+				_buttons[0].Draw(spriteBatch, gameTime, scale, _font, new Vector2(250, 610));
 
-				_buttons[2].Draw(spriteBatch, gameTime, scale, _font, new Vector2(650, 610), Color.White);
+				_buttons[1].Draw(spriteBatch, gameTime, scale, _font, new Vector2(450, 610));
 
-				_buttons[4].Draw(spriteBatch, gameTime, scale, _font, new Vector2(850, 610), Color.White);
+				_buttons[2].Draw(spriteBatch, gameTime, scale, _font, new Vector2(650, 610));
+
+				_buttons[4].Draw(spriteBatch, gameTime, scale, _font, new Vector2(850, 610));
 			}
 
 			if (_gameState == GameStates.Summary)
-			{				
-				_buttons[0].Draw(spriteBatch, gameTime, scale, _font, new Vector2(250, 610), Color.White);
+			{
+				_buttons[0].Draw(spriteBatch, gameTime, scale, _font, new Vector2(250, 610));
 
-				_buttons[3].Draw(spriteBatch, gameTime, scale, _font, new Vector2(450, 610), Color.White);
+				_buttons[3].Draw(spriteBatch, gameTime, scale, _font, new Vector2(450, 610));
 
-				_buttons[2].Draw(spriteBatch, gameTime, scale, _font, new Vector2(650, 610), Color.White);
+				_buttons[2].Draw(spriteBatch, gameTime, scale, _font, new Vector2(650, 610));
 
-				_buttons[4].Draw(spriteBatch, gameTime, scale, _font, new Vector2(850, 610), Color.White);
+				_buttons[4].Draw(spriteBatch, gameTime, scale, _font, new Vector2(850, 610));
 			}
 		}
 
-		public void Update(GameTime gameTime, InputStates inputState) {}
+		public void Update(GameTime gameTime, InputStates inputState) { }
 
 		public void Update(GameTime gameTime, InputStates inputState, GameStates gameState)
 		{
 			_inputState = inputState;
 			_gameState = gameState;
+
+			if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
+			{
+				_buttons[0].SetColor(Color.Gray);
+			}
+
+			if (InputManager.IsGamePadButtonPressed(Buttons.RightTrigger) || InputManager.IsKeyPressed(Keys.F5))
+			{
+				_buttons[1].SetColor(Color.Gray);
+			}
+
+			if (InputManager.IsGamePadButtonPressed(Buttons.LeftTrigger) || InputManager.IsKeyPressed(Keys.F10))
+			{
+				_buttons[2].SetColor(Color.Gray);
+			}
+
+			if (InputManager.IsGamePadButtonPressed(Buttons.A) || InputManager.IsKeyPressed(Keys.Enter))
+			{
+				_buttons[3].SetColor(Color.Gray);
+			}
+
+			if (InputManager.IsGamePadButtonPressed(Buttons.Y) || InputManager.IsKeyPressed(Keys.F11))
+			{
+				_buttons[4].SetColor(Color.Gray);
+			}
+
+			for (var i = 0; i < _buttons.Count; i++)
+			{
+				_buttons[i].Update(gameTime, inputState);
+			}
 		}
 	}
 }
