@@ -13,6 +13,9 @@ namespace CipherListTerminal.Entities
 		private string _keyboardMouse;
 		private string _gamePad;
 
+		private Color _color;
+		private Color _originalColor = Color.White;
+
 		private InputStates _state;
 
         public Button(Texture2D buttonUI, string buttonHeader, string keyboardMouse, string gamePad)
@@ -21,6 +24,7 @@ namespace CipherListTerminal.Entities
 			_buttonHeader = buttonHeader;
 			_keyboardMouse = keyboardMouse;
 			_gamePad = gamePad;
+			_color = _originalColor;
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale) { }
@@ -30,7 +34,7 @@ namespace CipherListTerminal.Entities
 			spriteBatch.Draw(_buttonUI, position, null,
 				color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			spriteBatch.DrawString(font, _buttonHeader, position + new Vector2(10, 10), Color.White);
+			spriteBatch.DrawString(font, _buttonHeader, position + new Vector2(10, 10), _color);
 			if (InputManager.IsGamePadConnected())
 			{
 				spriteBatch.DrawString(font, _keyboardMouse + " " + _gamePad, position + new Vector2(10, 40), Color.White);
@@ -44,6 +48,16 @@ namespace CipherListTerminal.Entities
 		public void Update(GameTime gameTime, InputStates inputState)
 		{
 			_state = inputState;
+		}
+
+		public void SetColor(Color color)
+		{
+			_color = color;
+		}
+
+		public void ResetColor()
+		{
+			_color = _originalColor;
 		}
 	}
 }
