@@ -17,7 +17,7 @@ namespace CipherListTerminal.Entities
 		private Color _originalColor = Color.White;
 
 		private double colorChangeTime;
-		private double colorChangeDuration = 0.5; // Duration in seconds
+		private double colorChangeDuration = 0.25; // Duration in seconds
 
 		private InputStates _state;
 
