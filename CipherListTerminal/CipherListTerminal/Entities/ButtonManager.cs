@@ -67,34 +67,37 @@ namespace CipherListTerminal.Entities
 			_inputState = inputState;
 			_gameState = gameState;
 
-			if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
+			if (_gameState != GameStates.Menu)
 			{
-				_buttons[0].SetColor(Color.Gray);
-			}
+				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
+				{
+					_buttons[0].SetColor(Color.Gray);
+				}
 
-			if (InputManager.IsGamePadButtonPressed(Buttons.RightTrigger) || InputManager.IsKeyPressed(Keys.F5))
-			{
-				_buttons[1].SetColor(Color.Gray);
-			}
+				if (InputManager.IsGamePadButtonPressed(Buttons.RightTrigger) || InputManager.IsKeyPressed(Keys.F5))
+				{
+					_buttons[1].SetColor(Color.Gray);
+				}
 
-			if (InputManager.IsGamePadButtonPressed(Buttons.LeftTrigger) || InputManager.IsKeyPressed(Keys.F10))
-			{
-				_buttons[2].SetColor(Color.Gray);
-			}
+				if (InputManager.IsGamePadButtonPressed(Buttons.LeftTrigger) || InputManager.IsKeyPressed(Keys.F10))
+				{
+					_buttons[2].SetColor(Color.Gray);
+				}
 
-			if (InputManager.IsGamePadButtonPressed(Buttons.A) || InputManager.IsKeyPressed(Keys.Enter))
-			{
-				_buttons[3].SetColor(Color.Gray);
-			}
+				if (InputManager.IsGamePadButtonPressed(Buttons.A) || InputManager.IsKeyPressed(Keys.Enter))
+				{
+					_buttons[3].SetColor(Color.Gray);
+				}
 
-			if (InputManager.IsGamePadButtonPressed(Buttons.Y) || InputManager.IsKeyPressed(Keys.F11))
-			{
-				_buttons[4].SetColor(Color.Gray);
-			}
+				if (InputManager.IsGamePadButtonPressed(Buttons.Y) || InputManager.IsKeyPressed(Keys.F11))
+				{
+					_buttons[4].SetColor(Color.Gray);
+				}
 
-			for (var i = 0; i < _buttons.Count; i++)
-			{
-				_buttons[i].Update(gameTime, inputState);
+				for (var i = 0; i < _buttons.Count; i++)
+				{
+					_buttons[i].Update(gameTime, inputState);
+				}
 			}
 		}
 	}
