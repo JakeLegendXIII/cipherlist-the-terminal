@@ -42,9 +42,17 @@ namespace CipherListTerminal.Entities
 
 				_buttons[1].Draw(spriteBatch, gameTime, scale, _font, new Vector2(450, 610));
 
-				_buttons[2].Draw(spriteBatch, gameTime, scale, _font, new Vector2(650, 610));
+				if (InputManager.IsGamePadConnected())
+				{
+					_buttons[2].Draw(spriteBatch, gameTime, scale, _font, new Vector2(650, 610));
 
-				_buttons[4].Draw(spriteBatch, gameTime, scale, _font, new Vector2(850, 610));
+					_buttons[4].Draw(spriteBatch, gameTime, scale, _font, new Vector2(850, 610));
+				}
+				else
+				{
+					_buttons[4].Draw(spriteBatch, gameTime, scale, _font, new Vector2(650, 610));
+				}
+				
 			}
 
 			if (_gameState == GameStates.Summary)
@@ -53,9 +61,16 @@ namespace CipherListTerminal.Entities
 
 				_buttons[3].Draw(spriteBatch, gameTime, scale, _font, new Vector2(450, 610));
 
-				_buttons[2].Draw(spriteBatch, gameTime, scale, _font, new Vector2(650, 610));
+				if (InputManager.IsGamePadConnected())
+				{
+					_buttons[2].Draw(spriteBatch, gameTime, scale, _font, new Vector2(650, 610));
 
-				_buttons[4].Draw(spriteBatch, gameTime, scale, _font, new Vector2(850, 610));
+					_buttons[4].Draw(spriteBatch, gameTime, scale, _font, new Vector2(850, 610));
+				}
+				else
+				{
+					_buttons[4].Draw(spriteBatch, gameTime, scale, _font, new Vector2(650, 610));
+				}
 			}
 		}
 
