@@ -2,7 +2,6 @@
 using CipherListTerminal.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace CipherListTerminal.Entities
 {
