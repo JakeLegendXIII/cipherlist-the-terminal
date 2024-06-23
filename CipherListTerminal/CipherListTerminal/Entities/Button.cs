@@ -8,6 +8,7 @@ namespace CipherListTerminal.Entities
 	internal class Button : IGameEntity
 	{
 		private Texture2D _buttonUI;
+		private SpriteFont _headerFont;
 		private string _buttonHeader;
 		private string _keyboardMouse;
 		private string _gamePad;
@@ -20,31 +21,34 @@ namespace CipherListTerminal.Entities
 
 		private InputStates _state;
 
-        public Button(Texture2D buttonUI, string buttonHeader, string keyboardMouse, string gamePad)
-        {
-            _buttonUI = buttonUI;
+		public Button(Texture2D buttonUI, SpriteFont headerFont, 
+			string buttonHeader, string keyboardMouse, string gamePad)
+		{
+			_buttonUI = buttonUI;
+			_headerFont = headerFont;
 			_buttonHeader = buttonHeader;
 			_keyboardMouse = keyboardMouse;
 			_gamePad = gamePad;
 			_color = _originalColor;
-        }
+		}
 
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale) { }
+		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale) { }
 
-		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale, SpriteFont font, Vector2 position)
+		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale, Vector2 position)
 		{
 			spriteBatch.Draw(_buttonUI, position, null,
 				_color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			spriteBatch.DrawString(font, _buttonHeader, position + new Vector2(10, 10), Color.White);
 			if (InputManager.IsGamePadConnected())
 			{
-				spriteBatch.DrawString(font, _keyboardMouse + " " + _gamePad, position + new Vector2(10, 40), Color.White);
+				spriteBatch.DrawString(_headerFont, _keyboardMouse + " " + _gamePad, position + new Vector2(10, 10), Color.White);
 			}
 			else
 			{
-				spriteBatch.DrawString(font, _keyboardMouse, position + new Vector2(10, 40), Color.White);
-			}						
+				spriteBatch.DrawString(_headerFont, _keyboardMouse, position + new Vector2(10, 10), Color.White);
+			}
+
+			spriteBatch.DrawString(_headerFont, _buttonHeader, position + new Vector2(10, 40), Color.White);
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState)

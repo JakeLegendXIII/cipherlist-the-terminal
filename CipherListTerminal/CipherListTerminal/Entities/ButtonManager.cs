@@ -25,11 +25,11 @@ namespace CipherListTerminal.Entities
 
 			// Pre-load the various buttons for each game mode
 			_buttons = [
-				new Button(_buttonUI, "Back", "ESC", "Back"),
-				new Button(_buttonUI, "Next Puzzle", "F5", "RT"),
-				new Button(_buttonUI, "Switch Input", "F10", "LT"),
-				new Button(_buttonUI, "Continue", "Enter", "A"),
-				new Button(_buttonUI, "Full Screen", "F11", "Y"),
+				new Button(_buttonUI, _font, "Back", "ESC", "Back"),
+				new Button(_buttonUI, _font, "Next Puzzle", "F5", "RT"),
+				new Button(_buttonUI, _font, "Switch Input", "F10", "LT"),
+				new Button(_buttonUI, _font, "Continue", "Enter", "A"),
+				new Button(_buttonUI, _font, "Full Screen", "F11", "Y"),
 			];
 		}
 
@@ -38,38 +38,38 @@ namespace CipherListTerminal.Entities
 			if (_gameState == GameStates.FreePlay || _gameState == GameStates.SinglePuzzleTimed || _gameState == GameStates.TimeTrial)
 			{
 
-				_buttons[0].Draw(spriteBatch, gameTime, scale, _font, new Vector2(250, 610));
+				_buttons[0].Draw(spriteBatch, gameTime, scale, new Vector2(250, 610));
 
-				_buttons[1].Draw(spriteBatch, gameTime, scale, _font, new Vector2(450, 610));
+				_buttons[1].Draw(spriteBatch, gameTime, scale, new Vector2(450, 610));
 
 				if (InputManager.IsGamePadConnected())
 				{
-					_buttons[2].Draw(spriteBatch, gameTime, scale, _font, new Vector2(650, 610));
+					_buttons[2].Draw(spriteBatch, gameTime, scale, new Vector2(650, 610));
 
-					_buttons[4].Draw(spriteBatch, gameTime, scale, _font, new Vector2(850, 610));
+					_buttons[4].Draw(spriteBatch, gameTime, scale, new Vector2(850, 610));
 				}
 				else
 				{
-					_buttons[4].Draw(spriteBatch, gameTime, scale, _font, new Vector2(650, 610));
+					_buttons[4].Draw(spriteBatch, gameTime, scale, new Vector2(650, 610));
 				}
 				
 			}
 
 			if (_gameState == GameStates.Summary)
 			{
-				_buttons[0].Draw(spriteBatch, gameTime, scale, _font, new Vector2(250, 610));
+				_buttons[0].Draw(spriteBatch, gameTime, scale, new Vector2(250, 610));
 
-				_buttons[3].Draw(spriteBatch, gameTime, scale, _font, new Vector2(450, 610));
+				_buttons[3].Draw(spriteBatch, gameTime, scale, new Vector2(450, 610));
 
 				if (InputManager.IsGamePadConnected())
 				{
-					_buttons[2].Draw(spriteBatch, gameTime, scale, _font, new Vector2(650, 610));
+					_buttons[2].Draw(spriteBatch, gameTime, scale, new Vector2(650, 610));
 
-					_buttons[4].Draw(spriteBatch, gameTime, scale, _font, new Vector2(850, 610));
+					_buttons[4].Draw(spriteBatch, gameTime, scale, new Vector2(850, 610));
 				}
 				else
 				{
-					_buttons[4].Draw(spriteBatch, gameTime, scale, _font, new Vector2(650, 610));
+					_buttons[4].Draw(spriteBatch, gameTime, scale, new Vector2(650, 610));
 				}
 			}
 		}
