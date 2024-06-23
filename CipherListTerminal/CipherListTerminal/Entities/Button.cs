@@ -21,7 +21,7 @@ namespace CipherListTerminal.Entities
 
 		private InputStates _state;
 
-		public Button(Texture2D buttonUI, SpriteFont headerFont, 
+		public Button(Texture2D buttonUI, SpriteFont headerFont,
 			string buttonHeader, string keyboardMouse, string gamePad)
 		{
 			_buttonUI = buttonUI;
@@ -39,16 +39,29 @@ namespace CipherListTerminal.Entities
 			spriteBatch.Draw(_buttonUI, position, null,
 				_color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
+			// Measure the size of the text
+			Vector2 headerTextSize = _headerFont.MeasureString(_buttonHeader);
+
+			// Calculate the position to center the text on the button
+			Vector2 headerTextPosition = position
+				+ new Vector2((_buttonUI.Width - headerTextSize.X) / 2, 40);
+
+			string inputText = _keyboardMouse;
+
 			if (InputManager.IsGamePadConnected())
 			{
-				spriteBatch.DrawString(_headerFont, _keyboardMouse + " " + _gamePad, position + new Vector2(10, 10), Color.White);
-			}
-			else
-			{
-				spriteBatch.DrawString(_headerFont, _keyboardMouse, position + new Vector2(10, 10), Color.White);
+				inputText += " " + _gamePad;
 			}
 
-			spriteBatch.DrawString(_headerFont, _buttonHeader, position + new Vector2(10, 40), Color.White);
+			Vector2 inputTextSize = _headerFont.MeasureString(inputText);
+
+			// Calculate the position to center the text on the button
+			Vector2 inputTextPosition = position
+				+ new Vector2((_buttonUI.Width - inputTextSize.X) / 2, 10);
+
+			spriteBatch.DrawString(_headerFont, inputText, inputTextPosition, Color.White);
+
+			spriteBatch.DrawString(_headerFont, _buttonHeader, headerTextPosition, Color.White);
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState)
