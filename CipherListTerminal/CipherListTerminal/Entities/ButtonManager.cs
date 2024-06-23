@@ -16,6 +16,11 @@ namespace CipherListTerminal.Entities
 		private Texture2D _buttonUI;
 		private SpriteFont _font;
 
+		private Vector2 _firstButtonPosition = new Vector2(250, 610);
+		private Vector2 _secondButtonPosition = new Vector2(450, 610);
+		private Vector2 _thirdButtonPosition = new Vector2(650, 610);
+		private Vector2 _fourthButtonPosition = new Vector2(850, 610);
+
 		public ButtonManager(Texture2D buttonUI, SpriteFont font, InputStates inputState, GameStates gameState)
 		{
 			_buttonUI = buttonUI;
@@ -38,38 +43,38 @@ namespace CipherListTerminal.Entities
 			if (_gameState == GameStates.FreePlay || _gameState == GameStates.SinglePuzzleTimed || _gameState == GameStates.TimeTrial)
 			{
 
-				_buttons[0].Draw(spriteBatch, gameTime, scale, new Vector2(250, 610));
+				_buttons[0].Draw(spriteBatch, gameTime, scale, _firstButtonPosition);
 
-				_buttons[1].Draw(spriteBatch, gameTime, scale, new Vector2(450, 610));
+				_buttons[1].Draw(spriteBatch, gameTime, scale, _secondButtonPosition);
 
 				if (InputManager.IsGamePadConnected())
 				{
-					_buttons[2].Draw(spriteBatch, gameTime, scale, new Vector2(650, 610));
+					_buttons[2].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
 
-					_buttons[4].Draw(spriteBatch, gameTime, scale, new Vector2(850, 610));
+					_buttons[4].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
 				}
 				else
 				{
-					_buttons[4].Draw(spriteBatch, gameTime, scale, new Vector2(650, 610));
+					_buttons[4].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
 				}
 				
 			}
 
 			if (_gameState == GameStates.Summary)
 			{
-				_buttons[0].Draw(spriteBatch, gameTime, scale, new Vector2(250, 610));
+				_buttons[0].Draw(spriteBatch, gameTime, scale, _firstButtonPosition);
 
-				_buttons[3].Draw(spriteBatch, gameTime, scale, new Vector2(450, 610));
+				_buttons[3].Draw(spriteBatch, gameTime, scale, _secondButtonPosition);
 
 				if (InputManager.IsGamePadConnected())
 				{
-					_buttons[2].Draw(spriteBatch, gameTime, scale, new Vector2(650, 610));
+					_buttons[2].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
 
-					_buttons[4].Draw(spriteBatch, gameTime, scale, new Vector2(850, 610));
+					_buttons[4].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
 				}
 				else
 				{
-					_buttons[4].Draw(spriteBatch, gameTime, scale, new Vector2(650, 610));
+					_buttons[4].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
 				}
 			}
 		}
