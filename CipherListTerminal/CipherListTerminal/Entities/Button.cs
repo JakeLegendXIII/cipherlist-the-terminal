@@ -75,9 +75,9 @@ namespace CipherListTerminal.Entities
 			Vector2 inputTextPosition = position
 				+ new Vector2(((_buttonUI.Width - inputTextSize.X) / 2), 10);
 
-			spriteBatch.DrawString(_headerFont, inputText, inputTextPosition, Color.White);
+			spriteBatch.DrawString(_headerFont, inputText, position + new Vector2(10, 10), Color.White);
 
-			spriteBatch.DrawString(_headerFont, _buttonHeader, headerTextPosition, Color.White);
+			spriteBatch.DrawString(_headerFont, _buttonHeader, position + new Vector2(10 , 40), Color.White);
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState)

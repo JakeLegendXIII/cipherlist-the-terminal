@@ -335,7 +335,7 @@ namespace CipherListTerminal
 					SetupScoreBoard();
 				}
 
-				if (InputManager.IsKeyPressed(Keys.Enter))
+				if (InputManager.IsKeyPressed(Keys.Enter) || InputManager.IsGamePadButtonPressed(Buttons.A))
 				{
 					if (PreviousGameState == GameStates.TimeTrial && _remainingTime <= 0)
 					{
