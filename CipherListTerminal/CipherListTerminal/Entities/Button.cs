@@ -55,25 +55,25 @@ namespace CipherListTerminal.Entities
 			spriteBatch.Draw(_buttonUI, position, null,
 				_color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			// Measure the size of the text
-			Vector2 headerTextSize = _headerFont.MeasureString(_buttonHeader);
+			//// Measure the size of the text
+			//Vector2 headerTextSize = _headerFont.MeasureString(_buttonHeader);
 
-			// Calculate the position to center the text on the button
-			Vector2 headerTextPosition = position
-				+ new Vector2(((_buttonUI.Width - headerTextSize.X) / 2), 40);
+			//// Calculate the position to center the text on the button
+			//Vector2 headerTextPosition = position
+			//	+ new Vector2(((_buttonUI.Width - headerTextSize.X) / 2), 40);
 
 			string inputText = _keyboardMouse;
 
 			if (InputManager.IsGamePadConnected())
 			{
-				inputText += " " + _gamePad;
+				inputText += "  |  " + _gamePad;
 			}
 
-			Vector2 inputTextSize = _headerFont.MeasureString(inputText);
+			//Vector2 inputTextSize = _headerFont.MeasureString(inputText);
 
-			// Calculate the position to center the text on the button
-			Vector2 inputTextPosition = position
-				+ new Vector2(((_buttonUI.Width - inputTextSize.X) / 2), 10);
+			//// Calculate the position to center the text on the button
+			//Vector2 inputTextPosition = position
+			//	+ new Vector2(((_buttonUI.Width - inputTextSize.X) / 2), 10);
 
 			spriteBatch.DrawString(_headerFont, inputText, position + new Vector2(10, 10), Color.White);
 
