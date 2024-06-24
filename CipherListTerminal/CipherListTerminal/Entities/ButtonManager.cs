@@ -34,7 +34,7 @@ namespace CipherListTerminal.Entities
 				new Button(_buttonUI, _font, "Next Puzzle", "F5", "RT"),
 				new Button(_buttonUI, _font, "Switch Input", "F10", "LT"),
 				new Button(_buttonUI, _font, "Continue", "Enter", "A"),
-				new Button(_buttonUI, _font, "Full Screen", "F11", "Y"),
+				new Button(_buttonUI, _font, "Full Screen", "F11", "LB"),
 			];
 		}
 
