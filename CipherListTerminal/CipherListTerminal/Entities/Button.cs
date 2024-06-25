@@ -22,11 +22,11 @@ namespace CipherListTerminal.Entities
 		private InputStates _state;
 
 		//private Vector2 _headerTextSize;
-		//private Vector2 _headerTextPositionOffset;
+		private Vector2 _headerTextPositionOffset;
 
 		//private Vector2 _inputTextSize;
 		//private Vector2 _inputTextWithGamePadSize;
-		//private Vector2 _inputTextPositionOffset;
+		private Vector2 _inputTextPositionOffset;
 		//private Vector2 _inputTextWithGamePadPositionOffset;
 
 		public Button(Texture2D buttonUI, SpriteFont headerFont,
@@ -41,10 +41,12 @@ namespace CipherListTerminal.Entities
 
 			//_headerTextSize = _headerFont.MeasureString(_buttonHeader);
 			//_headerTextPositionOffset = new Vector2((_buttonUI.Width - _headerTextSize.X) / 2, 40);
+			_headerTextPositionOffset = new Vector2(10, 40);
 
 			//_inputTextSize = _headerFont.MeasureString(_keyboardMouse);
 			//_inputTextWithGamePadSize = _headerFont.MeasureString(_keyboardMouse + " " + _gamePad);
 			//_inputTextPositionOffset = new Vector2((_buttonUI.Width - _inputTextSize.X) / 2, 10);
+			_inputTextPositionOffset = new Vector2(10, 10);
 			//_inputTextWithGamePadPositionOffset = new Vector2((_buttonUI.Width - _inputTextWithGamePadSize.X) / 2, 10);
 		}
 
@@ -75,9 +77,9 @@ namespace CipherListTerminal.Entities
 			//Vector2 inputTextPosition = position
 			//	+ new Vector2(((_buttonUI.Width - inputTextSize.X) / 2), 10);
 
-			spriteBatch.DrawString(_headerFont, inputText, position + new Vector2(10, 10), Color.White);
+			spriteBatch.DrawString(_headerFont, inputText, position + _inputTextPositionOffset, Color.White);
 
-			spriteBatch.DrawString(_headerFont, _buttonHeader, position + new Vector2(10 , 40), Color.White);
+			spriteBatch.DrawString(_headerFont, _buttonHeader, position + _headerTextPositionOffset, Color.White);
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState)
