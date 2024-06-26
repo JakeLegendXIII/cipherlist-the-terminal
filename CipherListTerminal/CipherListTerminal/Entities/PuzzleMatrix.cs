@@ -252,7 +252,7 @@ namespace CipherListTerminal.Entities
 				if (InputManager.IsGamePadConnected())
 				{
 					//_displayColumnIndex = _highlightColumn;
-					//_displayRowIndex = _highlightCell;					
+					//_displayRowIndex = _highlightCell;
 
 					if (InputManager.IsGamePadButtonPressed(Buttons.A))
 					{
