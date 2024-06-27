@@ -97,7 +97,7 @@ namespace CipherListTerminal
 			CurrentSaveState = LoadSaveState();
 			base.Initialize();
 			CalculateRenderDestination();
-			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _farawayFont);
+			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _farawayFont, _flickingASwitch);
 			_mainMenu.MenuButtonSelectionEvent += OnMenuButtonSelection;			
 			GameState = GameStates.Menu;
 

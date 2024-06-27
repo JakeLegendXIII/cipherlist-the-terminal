@@ -1,6 +1,7 @@
 ﻿using CipherListTerminal.Core;
 using CipherListTerminal.Input;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -13,6 +14,8 @@ namespace CipherListTerminal.Entities
 		private Texture2D _buttonUI;
 		private SpriteFont _armadaFont;
 		private SpriteFont _farawayFont;
+
+		private SoundEffect _flickingASwitch;
 
 		private int _buttonPosition1X = 150;
 		private int _buttonPosition1Y = 400;
@@ -32,12 +35,13 @@ namespace CipherListTerminal.Entities
 		private int _currentlySelectedButton = 1;
 		private bool thumbstickMoved = false;
 
-		public MainMenu(Texture2D menuLogo, Texture2D buttonUI, SpriteFont armadaFont, SpriteFont farawayFont)
+		public MainMenu(Texture2D menuLogo, Texture2D buttonUI, SpriteFont armadaFont, SpriteFont farawayFont, SoundEffect flickingASwitch)
 		{
 			_menuLogo = menuLogo;
 			_buttonUI = buttonUI;
 			_armadaFont = armadaFont;
-			_farawayFont = farawayFont;			
+			_farawayFont = farawayFont;
+			_flickingASwitch = flickingASwitch;
 		}
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
@@ -109,6 +113,7 @@ namespace CipherListTerminal.Entities
 
 					if (InputManager.IsLeftMouseButtonDown())
 					{
+						_flickingASwitch.Play();
 						MenuButtonSelectionEvent?.Invoke(GameStates.FreePlay);
 					}
 				}
@@ -119,6 +124,7 @@ namespace CipherListTerminal.Entities
 
 					if (InputManager.IsLeftMouseButtonDown())
 					{
+						_flickingASwitch.Play();
 						MenuButtonSelectionEvent?.Invoke(GameStates.SinglePuzzleTimed);
 					}
 				}
@@ -130,6 +136,7 @@ namespace CipherListTerminal.Entities
 
 					if (InputManager.IsLeftMouseButtonDown())
 					{
+						_flickingASwitch.Play();
 						MenuButtonSelectionEvent?.Invoke(GameStates.TimeTrial);
 					}
 				}
@@ -182,6 +189,7 @@ namespace CipherListTerminal.Entities
 
 					if (InputManager.IsGamePadButtonPressed(Buttons.A))
 					{
+						_flickingASwitch.Play();
 						switch (_currentlySelectedButton)
 						{
 							case 1:

@@ -109,11 +109,14 @@ namespace CipherListTerminal.Entities
 					_buttons[2].SetColor(Color.Gray);
 				}
 
-				if (InputManager.IsGamePadButtonPressed(Buttons.A) || InputManager.IsKeyPressed(Keys.Enter))
+				if (_gameState == GameStates.Summary)
 				{
-					_flickingASwitch.Play();
-					_buttons[3].SetColor(Color.Gray);
-				}
+					if (InputManager.IsGamePadButtonPressed(Buttons.A) || InputManager.IsKeyPressed(Keys.Enter))
+					{
+						_flickingASwitch.Play();
+						_buttons[3].SetColor(Color.Gray);
+					}
+				}				
 
 				if (InputManager.IsGamePadButtonPressed(Buttons.Y) || InputManager.IsKeyPressed(Keys.F11))
 				{
