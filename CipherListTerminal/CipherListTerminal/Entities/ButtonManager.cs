@@ -1,6 +1,7 @@
 ﻿using CipherListTerminal.Core;
 using CipherListTerminal.Input;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -15,18 +16,20 @@ namespace CipherListTerminal.Entities
 
 		private Texture2D _buttonUI;
 		private SpriteFont _font;
+		private SoundEffect _flickingASwitch;
 
 		private Vector2 _firstButtonPosition = new Vector2(250, 610);
 		private Vector2 _secondButtonPosition = new Vector2(450, 610);
 		private Vector2 _thirdButtonPosition = new Vector2(650, 610);
 		private Vector2 _fourthButtonPosition = new Vector2(850, 610);
 
-		public ButtonManager(Texture2D buttonUI, SpriteFont font, InputStates inputState, GameStates gameState)
+		public ButtonManager(Texture2D buttonUI, SpriteFont font, InputStates inputState, GameStates gameState, SoundEffect flickingASwitch)
 		{
 			_buttonUI = buttonUI;
 			_inputState = inputState;
 			_gameState = gameState;
 			_font = font;
+			_flickingASwitch = flickingASwitch;
 
 			// Pre-load the various buttons for each game mode
 			_buttons = [
@@ -90,26 +93,31 @@ namespace CipherListTerminal.Entities
 			{
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
 				{
+					_flickingASwitch.Play();
 					_buttons[0].SetColor(Color.Gray);
 				}
 
 				if (InputManager.IsGamePadButtonPressed(Buttons.RightTrigger) || InputManager.IsKeyPressed(Keys.F5))
 				{
+					_flickingASwitch.Play();
 					_buttons[1].SetColor(Color.Gray);
 				}
 
 				if (InputManager.IsGamePadButtonPressed(Buttons.LeftTrigger) || InputManager.IsKeyPressed(Keys.F10))
 				{
+					_flickingASwitch.Play();
 					_buttons[2].SetColor(Color.Gray);
 				}
 
 				if (InputManager.IsGamePadButtonPressed(Buttons.A) || InputManager.IsKeyPressed(Keys.Enter))
 				{
+					_flickingASwitch.Play();
 					_buttons[3].SetColor(Color.Gray);
 				}
 
 				if (InputManager.IsGamePadButtonPressed(Buttons.Y) || InputManager.IsKeyPressed(Keys.F11))
 				{
+					_flickingASwitch.Play();
 					_buttons[4].SetColor(Color.Gray);
 				}
 

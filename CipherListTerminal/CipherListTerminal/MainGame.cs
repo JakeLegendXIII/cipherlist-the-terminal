@@ -7,6 +7,7 @@ using CipherListTerminal.Input;
 using CipherListTerminal.Core;
 using System.Diagnostics;
 using System.IO;
+using Microsoft.Xna.Framework.Audio;
 
 namespace CipherListTerminal
 {
@@ -48,6 +49,8 @@ namespace CipherListTerminal
 		private Texture2D _keysUI;
 		private Texture2D _buttonUI;
 		private Texture2D _pfButtonUI;
+
+		private SoundEffect _flickingASwitch;
 
 		private MainMenu _mainMenu;
 		private TerminalBuffer _terminalBuffer;
@@ -105,7 +108,7 @@ namespace CipherListTerminal
 				CurrentInputState = InputStates.MouseKeyboard;
 
 			_inputStateIndicator = new InputStateIndicator(_armadaFont, CurrentInputState);
-			_buttonManager = new ButtonManager(_pfButtonUI, _armadaFont, CurrentInputState, GameState);
+			_buttonManager = new ButtonManager(_pfButtonUI, _armadaFont, CurrentInputState, GameState, _flickingASwitch);
 		}
 
 		protected override void LoadContent()
@@ -126,6 +129,8 @@ namespace CipherListTerminal
 			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
 			_buttonUI = Content.Load<Texture2D>("Sprites/RoughButton");	
 			_pfButtonUI = Content.Load<Texture2D>("Sprites/PFButton");
+
+			_flickingASwitch = Content.Load<SoundEffect>("SFX/flickingaswitch");
 		}
 
 		protected override void Update(GameTime gameTime)
