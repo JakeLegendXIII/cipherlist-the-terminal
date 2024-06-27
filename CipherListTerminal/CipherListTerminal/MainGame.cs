@@ -51,6 +51,7 @@ namespace CipherListTerminal
 		private Texture2D _pfButtonUI;
 
 		private SoundEffect _flickingASwitch;
+		private SoundEffect _buttonPress;
 
 		private MainMenu _mainMenu;
 		private TerminalBuffer _terminalBuffer;
@@ -97,7 +98,7 @@ namespace CipherListTerminal
 			CurrentSaveState = LoadSaveState();
 			base.Initialize();
 			CalculateRenderDestination();
-			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _farawayFont, _flickingASwitch);
+			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _farawayFont, _buttonPress, _flickingASwitch);
 			_mainMenu.MenuButtonSelectionEvent += OnMenuButtonSelection;			
 			GameState = GameStates.Menu;
 
@@ -108,7 +109,7 @@ namespace CipherListTerminal
 				CurrentInputState = InputStates.MouseKeyboard;
 
 			_inputStateIndicator = new InputStateIndicator(_armadaFont, CurrentInputState);
-			_buttonManager = new ButtonManager(_pfButtonUI, _armadaFont, CurrentInputState, GameState, _flickingASwitch);
+			_buttonManager = new ButtonManager(_pfButtonUI, _armadaFont, CurrentInputState, GameState, _buttonPress);
 		}
 
 		protected override void LoadContent()
@@ -131,6 +132,7 @@ namespace CipherListTerminal
 			_pfButtonUI = Content.Load<Texture2D>("Sprites/PFButton");
 
 			_flickingASwitch = Content.Load<SoundEffect>("SFX/flickingaswitch");
+			_buttonPress = Content.Load<SoundEffect>("SFX/buttonpress");
 		}
 
 		protected override void Update(GameTime gameTime)

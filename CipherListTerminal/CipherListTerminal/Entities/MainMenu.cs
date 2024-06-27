@@ -15,6 +15,7 @@ namespace CipherListTerminal.Entities
 		private SpriteFont _armadaFont;
 		private SpriteFont _farawayFont;
 
+		private SoundEffect _buttonPress;
 		private SoundEffect _flickingASwitch;
 
 		private int _buttonPosition1X = 150;
@@ -35,12 +36,14 @@ namespace CipherListTerminal.Entities
 		private int _currentlySelectedButton = 1;
 		private bool thumbstickMoved = false;
 
-		public MainMenu(Texture2D menuLogo, Texture2D buttonUI, SpriteFont armadaFont, SpriteFont farawayFont, SoundEffect flickingASwitch)
+		public MainMenu(Texture2D menuLogo, Texture2D buttonUI, SpriteFont armadaFont, SpriteFont farawayFont, 
+			SoundEffect buttonPress, SoundEffect flickingASwitch)
 		{
 			_menuLogo = menuLogo;
 			_buttonUI = buttonUI;
 			_armadaFont = armadaFont;
 			_farawayFont = farawayFont;
+			_buttonPress = buttonPress;
 			_flickingASwitch = flickingASwitch;
 		}
 
@@ -113,7 +116,7 @@ namespace CipherListTerminal.Entities
 
 					if (InputManager.IsLeftMouseButtonDown())
 					{
-						_flickingASwitch.Play();
+						_buttonPress.Play();
 						MenuButtonSelectionEvent?.Invoke(GameStates.FreePlay);
 					}
 				}
@@ -124,7 +127,7 @@ namespace CipherListTerminal.Entities
 
 					if (InputManager.IsLeftMouseButtonDown())
 					{
-						_flickingASwitch.Play();
+						_buttonPress.Play();
 						MenuButtonSelectionEvent?.Invoke(GameStates.SinglePuzzleTimed);
 					}
 				}
@@ -136,7 +139,7 @@ namespace CipherListTerminal.Entities
 
 					if (InputManager.IsLeftMouseButtonDown())
 					{
-						_flickingASwitch.Play();
+						_buttonPress.Play();
 						MenuButtonSelectionEvent?.Invoke(GameStates.TimeTrial);
 					}
 				}
@@ -189,7 +192,7 @@ namespace CipherListTerminal.Entities
 
 					if (InputManager.IsGamePadButtonPressed(Buttons.A))
 					{
-						_flickingASwitch.Play();
+						_buttonPress.Play();
 						switch (_currentlySelectedButton)
 						{
 							case 1:
