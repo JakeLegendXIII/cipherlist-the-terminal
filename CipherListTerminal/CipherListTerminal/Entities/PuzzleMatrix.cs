@@ -1,6 +1,7 @@
 ﻿using CipherListTerminal.Core;
 using CipherListTerminal.Input;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -14,6 +15,9 @@ namespace CipherListTerminal.Entities
 		private string[] _possibleValues;
 		private SpriteFont _font;
 		private Texture2D _matrixUI;
+
+		private SoundEffect _buttonPress;
+		private SoundEffect _flickingASwitch;
 
 		public MatrixState State { get; set; }
 		private InputStates CurrentInputState;
@@ -42,7 +46,8 @@ namespace CipherListTerminal.Entities
 		// Highlight color
 		Color highlightColor = new Color(255, 255, 0, 128); // Semi-transparent yellow
 
-		public PuzzleMatrix(SpriteFont font, Texture2D matrixUI, string[] possibleValues, InputStates inputState)
+		public PuzzleMatrix(SpriteFont font, Texture2D matrixUI, string[] possibleValues, InputStates inputState, 
+			SoundEffect flickingASwitch, SoundEffect buttonPress)
 		{
 			_font = font;
 			_matrixUI = matrixUI;
@@ -51,6 +56,8 @@ namespace CipherListTerminal.Entities
 			_matrixHeight = _cellHeight * 6;
 			State = MatrixState.FirstSelection;
 			CurrentInputState = inputState;
+			_flickingASwitch = flickingASwitch;
+			_buttonPress = buttonPress;
 
 			// Initialize the matrix
 			for (int i = 0; i < 6; i++)
@@ -60,7 +67,7 @@ namespace CipherListTerminal.Entities
 					int randomIndex = _random.Next(0, possibleValues.Length - 1);
 					_matrix[i, j] = possibleValues[randomIndex];
 				}
-			}
+			}			
 		}
 
 		public void Draw(SpriteBatch _spriteBatch, GameTime gameTime, float scale)
@@ -70,9 +77,10 @@ namespace CipherListTerminal.Entities
 				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			_spriteBatch.DrawString(_font, "Matrix", new Vector2(_startX + 100, _startY - 65), Color.White);
-			_spriteBatch.DrawString(_font, $"display info: col {_displayColumnIndex} row {_displayRowIndex}", new Vector2(50, 10), Color.White);
-			_spriteBatch.DrawString(_font, $"selected info: col {_selectedColumnIndex} row {_selectedRowIndex}", new Vector2(350, 10), Color.White);
-			_spriteBatch.DrawString(_font, $"highlight info: col {_highlightColumn}  cell{_highlightCell}", new Vector2(50, 40), Color.White);
+			// DEBUG values
+			//_spriteBatch.DrawString(_font, $"display info: col {_displayColumnIndex} row {_displayRowIndex}", new Vector2(50, 10), Color.White);
+			//_spriteBatch.DrawString(_font, $"selected info: col {_selectedColumnIndex} row {_selectedRowIndex}", new Vector2(350, 10), Color.White);
+			//_spriteBatch.DrawString(_font, $"highlight info: col {_highlightColumn}  cell{_highlightCell}", new Vector2(50, 40), Color.White);
 
 			Rectangle highlightRectangle;
 
@@ -324,6 +332,8 @@ namespace CipherListTerminal.Entities
 					_highlightCell = _selectedRowIndex;
 				}
 
+				_buttonPress.Play();
+
 				_matrix[_displayRowIndex, _displayColumnIndex] = "__";
 
 				MatrixSelectionEvent?.Invoke(CurrentlySelectedValue);
@@ -334,11 +344,13 @@ namespace CipherListTerminal.Entities
 		{
 			if (InputManager.IsGamePadButtonPressed(Buttons.DPadUp))
 			{
+				_flickingASwitch.Play();
 				GamePadMoveHighlightCellUp();
 			}
 
 			if (InputManager.IsGamePadButtonPressed(Buttons.DPadDown))
 			{
+				_flickingASwitch.Play();
 				GamePadMoveHighlightCellDown();
 			}
 
@@ -349,10 +361,12 @@ namespace CipherListTerminal.Entities
 				{
 					if (gamePadState.ThumbSticks.Left.Y > 0)
 					{
+						_flickingASwitch.Play();
 						GamePadMoveHighlightCellUp();
 					}
 					else if (gamePadState.ThumbSticks.Left.Y < 0)
 					{
+						_flickingASwitch.Play();
 						GamePadMoveHighlightCellDown();
 					}
 					thumbstickMoved = true;
@@ -410,11 +424,13 @@ namespace CipherListTerminal.Entities
 		{
 			if (InputManager.IsGamePadButtonPressed(Buttons.DPadLeft))
 			{
+				_flickingASwitch.Play();
 				MoveHighlightLeft();
 			}
 
 			if (InputManager.IsGamePadButtonPressed(Buttons.DPadRight))
 			{
+				_flickingASwitch.Play();
 				MoveHighlightRight();
 			}
 
@@ -425,12 +441,13 @@ namespace CipherListTerminal.Entities
 				{
 					if (gamePadState.ThumbSticks.Left.X > 0)
 					{
+						_flickingASwitch.Play();
 						MoveHighlightRight();
 					}
 					else if (gamePadState.ThumbSticks.Left.X < 0)
 					{
+						_flickingASwitch.Play();
 						MoveHighlightLeft();
-
 					}
 					thumbstickMoved = true;
 				}
@@ -491,11 +508,13 @@ namespace CipherListTerminal.Entities
 		{
 			if (InputManager.IsGamePadButtonPressed(Buttons.DPadLeft))
 			{
+				_flickingASwitch.Play();
 				MoveHighlightCellLeft();
 			}
 
 			if (InputManager.IsGamePadButtonPressed(Buttons.DPadRight))
 			{
+				_flickingASwitch.Play();
 				MoveHighlightCellRight();
 			}
 
@@ -506,12 +525,13 @@ namespace CipherListTerminal.Entities
 				{
 					if (gamePadState.ThumbSticks.Left.X > 0)
 					{
+						_flickingASwitch.Play();
 						MoveHighlightCellRight();
 					}
 					else if (gamePadState.ThumbSticks.Left.X < 0)
 					{
+						_flickingASwitch.Play();
 						MoveHighlightCellLeft();
-
 					}
 					thumbstickMoved = true;
 				}

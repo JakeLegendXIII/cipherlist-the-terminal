@@ -467,7 +467,7 @@ namespace CipherListTerminal
 			}
 
 			// Create the starting Matrix
-			_matrix = new PuzzleMatrix(_armadaFont, _matrixUI, possibleValue, CurrentInputState);
+			_matrix = new PuzzleMatrix(_armadaFont, _matrixUI, possibleValue, CurrentInputState, _flickingASwitch, _buttonPress);
 
 			_matrix.MatrixSelectionEvent += HandleSelectedMatrixEvent;
 
