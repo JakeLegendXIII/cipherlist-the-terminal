@@ -230,6 +230,7 @@ namespace CipherListTerminal.Entities
 			// TODO : When input state changes due to Gamepad is disconnected 
 			// we need to correct the displayRowIndex and displayColumnIndex based on last highlighted
 			// adjusting accorindingly based on the MatrixState
+			// Not sure the best way to handle this maybe come back to it later
 
 			CurrentInputState = inputState;
 

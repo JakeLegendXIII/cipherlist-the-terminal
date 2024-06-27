@@ -50,6 +50,12 @@
 /processorParam:TextureFormat=Color
 /build:Fonts/Faraway16.png
 
+#begin SFX/flickingaswitch.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/flickingaswitch.wav
+
 #begin Sprites/BufferUI.png
 /importer:TextureImporter
 /processor:TextureProcessor
