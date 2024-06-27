@@ -161,11 +161,13 @@ namespace CipherListTerminal.Entities
 
 					if (InputManager.IsGamePadButtonPressed(Buttons.DPadLeft))
 					{
+						_flickingASwitch.Play();
 						MoveLeft();				
 					}
 
 					if (InputManager.IsGamePadButtonPressed(Buttons.DPadRight))
 					{
+						_flickingASwitch.Play();
 						MoveRight();					
 					}
 
@@ -176,10 +178,12 @@ namespace CipherListTerminal.Entities
 						{
 							if (gamePadState.ThumbSticks.Left.X > 0)
 							{
+								_flickingASwitch.Play();
 								MoveRight();
 							}
 							else if (gamePadState.ThumbSticks.Left.X < 0)
 							{
+								_flickingASwitch.Play();
 								MoveLeft();
 							}
 							thumbstickMoved = true;
