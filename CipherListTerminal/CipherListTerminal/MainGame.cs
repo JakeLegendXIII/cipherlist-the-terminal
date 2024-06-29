@@ -403,15 +403,14 @@ namespace CipherListTerminal
 					_spriteBatch.DrawString(_armadaFont, "Puzzles: " + _completedPuzzles.ToString(), new Vector2(830, 165), Color.White);
 				}
 
+				_buttonManager.Draw(_spriteBatch, gameTime, _scale);
 			}
 			else if (GameState == GameStates.Summary)
 			{
 				_summary.Draw(_spriteBatch, gameTime, _scale);
 			}
 
-			_inputStateIndicator.Draw(_spriteBatch, gameTime, _scale);
-
-			_buttonManager.Draw(_spriteBatch, gameTime, _scale);
+			_inputStateIndicator.Draw(_spriteBatch, gameTime, _scale);			
 
 			_spriteBatch.End();
 

@@ -18,12 +18,10 @@ namespace CipherListTerminal.Entities
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
-			spriteBatch.DrawString(_armadaFont, "InputState: ", new Vector2(930, 100), Color.White);
-			spriteBatch.DrawString(_armadaFont, CurrentInputState.ToString(), new Vector2(930, 120), Color.White);
-
 			if (InputManager.IsGamePadConnected())
 			{
-				
+				spriteBatch.DrawString(_armadaFont, "InputState: ", new Vector2(930, 100), Color.White);
+				spriteBatch.DrawString(_armadaFont, CurrentInputState.ToString(), new Vector2(930, 120), Color.White);
 			}			
 		}
 
