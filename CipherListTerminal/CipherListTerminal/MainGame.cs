@@ -410,7 +410,10 @@ namespace CipherListTerminal
 				_summary.Draw(_spriteBatch, gameTime, _scale);
 			}
 
-			_inputStateIndicator.Draw(_spriteBatch, gameTime, _scale);			
+			if (InputManager.IsGamePadConnected())
+			{
+				_inputStateIndicator.Draw(_spriteBatch, gameTime, _scale);
+			}			
 
 			_spriteBatch.End();
 

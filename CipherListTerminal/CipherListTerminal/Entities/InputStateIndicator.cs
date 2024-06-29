@@ -10,19 +10,18 @@ namespace CipherListTerminal.Entities
 		private SpriteFont _armadaFont;
 		InputStates CurrentInputState;
 
-        public InputStateIndicator(SpriteFont armadaFont, InputStates inputState)
-        {
-			_armadaFont = armadaFont;
-            CurrentInputState = inputState;
-        }
-
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
+		public InputStateIndicator(SpriteFont armadaFont, InputStates inputState)
 		{
-			if (InputManager.IsGamePadConnected())
-			{
-				spriteBatch.DrawString(_armadaFont, "InputState: ", new Vector2(930, 100), Color.White);
-				spriteBatch.DrawString(_armadaFont, CurrentInputState.ToString(), new Vector2(930, 120), Color.White);
-			}			
+			_armadaFont = armadaFont;
+			CurrentInputState = inputState;
+		}
+
+		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
+		{
+
+			spriteBatch.DrawString(_armadaFont, "InputState: ", new Vector2(930, 100), Color.White);
+			spriteBatch.DrawString(_armadaFont, CurrentInputState.ToString(), new Vector2(930, 120), Color.White);
+
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState)
