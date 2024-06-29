@@ -408,6 +408,7 @@ namespace CipherListTerminal
 			else if (GameState == GameStates.Summary)
 			{
 				_summary.Draw(_spriteBatch, gameTime, _scale);
+				_buttonManager.Draw(_spriteBatch, gameTime, _scale);
 			}
 
 			if (InputManager.IsGamePadConnected())
