@@ -33,11 +33,11 @@ namespace CipherListTerminal.Entities
 
 			// Pre-load the various buttons for each game mode
 			_buttons = [
-				new Button(_buttonUI, _font, "Back", "ESC", "Back"),
-				new Button(_buttonUI, _font, "Next Puzzle", "F5", "RT"),
-				new Button(_buttonUI, _font, "Switch Input", "F10", "LT"),
-				new Button(_buttonUI, _font, "Continue", "Enter", "A"),
-				new Button(_buttonUI, _font, "Full Screen", "F11", "LB"),
+				new Button(_buttonUI, _font, "Back", "ESC", "Back", true),
+				new Button(_buttonUI, _font, "Next Puzzle", "F5", "RT", false),
+				new Button(_buttonUI, _font, "Switch Input", "F10", "LT", false),
+				new Button(_buttonUI, _font, "Continue", "Enter", "A", true),
+				new Button(_buttonUI, _font, "Full Screen", "F11", "LB", false),
 			];
 		}
 
