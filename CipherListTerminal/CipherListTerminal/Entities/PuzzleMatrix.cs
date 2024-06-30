@@ -18,6 +18,7 @@ namespace CipherListTerminal.Entities
 
 		private SoundEffect _buttonPress;
 		private SoundEffect _flickingASwitch;
+		private SoundEffect _uiWrong;
 
 		public MatrixState State { get; set; }
 		private InputStates CurrentInputState;
@@ -47,7 +48,7 @@ namespace CipherListTerminal.Entities
 		Color highlightColor = new Color(255, 255, 0, 128); // Semi-transparent yellow
 
 		public PuzzleMatrix(SpriteFont font, Texture2D matrixUI, string[] possibleValues, InputStates inputState, 
-			SoundEffect flickingASwitch, SoundEffect buttonPress)
+			SoundEffect flickingASwitch, SoundEffect buttonPress, SoundEffect uiWrong)
 		{
 			_font = font;
 			_matrixUI = matrixUI;
@@ -58,6 +59,7 @@ namespace CipherListTerminal.Entities
 			CurrentInputState = inputState;
 			_flickingASwitch = flickingASwitch;
 			_buttonPress = buttonPress;
+			_uiWrong = uiWrong;
 
 			// Initialize the matrix
 			for (int i = 0; i < 6; i++)
@@ -284,6 +286,10 @@ namespace CipherListTerminal.Entities
 						select = true;
 						State = MatrixState.Vertical;
 					}
+					else
+					{
+						_uiWrong.Play();
+					}
 				}
 			}
 			else if (State == MatrixState.Vertical)
@@ -294,6 +300,10 @@ namespace CipherListTerminal.Entities
 					{
 						select = true;
 						State = MatrixState.Horizontal;
+					}
+					else
+					{
+						_uiWrong.Play();
 					}
 
 				}
@@ -306,6 +316,10 @@ namespace CipherListTerminal.Entities
 					{
 						select = true;
 						State = MatrixState.Vertical;
+					}
+					else
+					{
+						_uiWrong.Play();
 					}
 				}
 			}

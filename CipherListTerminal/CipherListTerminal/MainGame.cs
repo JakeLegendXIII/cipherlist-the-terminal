@@ -53,6 +53,7 @@ namespace CipherListTerminal
 		private SoundEffect _flickingASwitch;
 		private SoundEffect _buttonPress;		
 		private SoundEffect _positiveBlip;
+		private SoundEffect _uiWrong;
 
 		private MainMenu _mainMenu;
 		private TerminalBuffer _terminalBuffer;
@@ -135,6 +136,7 @@ namespace CipherListTerminal
 			_flickingASwitch = Content.Load<SoundEffect>("SFX/flickingaswitch");
 			_buttonPress = Content.Load<SoundEffect>("SFX/buttonpress");			
 			_positiveBlip = Content.Load<SoundEffect>("SFX/positiveblip");
+			_uiWrong = Content.Load<SoundEffect>("SFX/uiwrong");
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -472,7 +474,7 @@ namespace CipherListTerminal
 			}
 
 			// Create the starting Matrix
-			_matrix = new PuzzleMatrix(_armadaFont, _matrixUI, possibleValue, CurrentInputState, _flickingASwitch, _buttonPress);
+			_matrix = new PuzzleMatrix(_armadaFont, _matrixUI, possibleValue, CurrentInputState, _flickingASwitch, _buttonPress, _uiWrong);
 
 			_matrix.MatrixSelectionEvent += HandleSelectedMatrixEvent;
 
