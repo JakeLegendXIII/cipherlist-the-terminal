@@ -50,12 +50,6 @@
 /processorParam:TextureFormat=Color
 /build:Fonts/Faraway16.png
 
-#begin SFX/approvalbellsynth.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SFX/approvalbellsynth.wav
-
 #begin SFX/buttonpress.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

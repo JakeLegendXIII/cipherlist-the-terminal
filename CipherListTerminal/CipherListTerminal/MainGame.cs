@@ -51,8 +51,8 @@ namespace CipherListTerminal
 		private Texture2D _pfButtonUI;
 
 		private SoundEffect _flickingASwitch;
-		private SoundEffect _buttonPress;
-		private SoundEffect _approvalBellSynth;
+		private SoundEffect _buttonPress;		
+		private SoundEffect _positiveBlip;
 
 		private MainMenu _mainMenu;
 		private TerminalBuffer _terminalBuffer;
@@ -133,8 +133,8 @@ namespace CipherListTerminal
 			_pfButtonUI = Content.Load<Texture2D>("Sprites/PFButton");
 
 			_flickingASwitch = Content.Load<SoundEffect>("SFX/flickingaswitch");
-			_buttonPress = Content.Load<SoundEffect>("SFX/buttonpress");
-			_approvalBellSynth = Content.Load<SoundEffect>("SFX/approvalbellsynth");
+			_buttonPress = Content.Load<SoundEffect>("SFX/buttonpress");			
+			_positiveBlip = Content.Load<SoundEffect>("SFX/positiveblip");
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -554,7 +554,7 @@ namespace CipherListTerminal
 					if (_terminalBuffer.Text.Contains(cipher1Text))
 					{
 						_targetList1.IsCompleted = true;
-						_approvalBellSynth.Play();
+						_positiveBlip.Play();
 						_scoreBoard.Score += _targetList1.PointValue;
 					}
 				}
@@ -569,7 +569,7 @@ namespace CipherListTerminal
 					if (_terminalBuffer.Text.Contains(cipher2Text))
 					{
 						_targetList2.IsCompleted = true;
-						_approvalBellSynth.Play();
+						_positiveBlip.Play();
 						_scoreBoard.Score += _targetList2.PointValue;
 					}
 				}
@@ -584,7 +584,7 @@ namespace CipherListTerminal
 					if (_terminalBuffer.Text.Contains(cipher3Text))
 					{
 						_targetList3.IsCompleted = true;
-						_approvalBellSynth.Play();
+						_positiveBlip.Play();
 						_scoreBoard.Score += _targetList3.PointValue;
 					}
 				}
