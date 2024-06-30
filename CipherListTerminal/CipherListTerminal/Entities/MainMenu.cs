@@ -97,7 +97,7 @@ namespace CipherListTerminal.Entities
 			spriteBatch.DrawString(_farawayFont, "5 minutes total.", new Vector2(910, 520), Color.White);
 			spriteBatch.DrawString(_farawayFont, "As many puzzles as you can solve!", new Vector2(910, 540), Color.White);
 
-			spriteBatch.DrawString(_armadaFont, $"Selected button: {_currentlySelectedButton}", new Vector2(450, 100), Color.White);
+			// spriteBatch.DrawString(_armadaFont, $"Selected button: {_currentlySelectedButton}", new Vector2(450, 100), Color.White);
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState)
