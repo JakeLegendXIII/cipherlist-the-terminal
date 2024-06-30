@@ -68,6 +68,12 @@
 /processorParam:Quality=Best
 /build:SFX/flickingaswitch.wav
 
+#begin SFX/positiveblip.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/positiveblip.wav
+
 #begin Sprites/BufferUI.png
 /importer:TextureImporter
 /processor:TextureProcessor
