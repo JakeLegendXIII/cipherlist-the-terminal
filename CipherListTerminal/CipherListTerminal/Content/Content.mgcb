@@ -68,6 +68,12 @@
 /processorParam:Quality=Best
 /build:SFX/positiveblip.wav
 
+#begin SFX/uiwrong.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/uiwrong.wav
+
 #begin Sprites/BufferUI.png
 /importer:TextureImporter
 /processor:TextureProcessor
