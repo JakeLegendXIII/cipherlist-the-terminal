@@ -68,6 +68,12 @@
 /processorParam:Quality=Best
 /build:SFX/positiveblip.wav
 
+#begin SFX/rolanddrop.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/rolanddrop.wav
+
 #begin SFX/uiwrong.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
