@@ -54,6 +54,7 @@ namespace CipherListTerminal
 		private SoundEffect _buttonPress;		
 		private SoundEffect _positiveBlip;
 		private SoundEffect _uiWrong;
+		private SoundEffect _drop;
 
 		private MainMenu _mainMenu;
 		private TerminalBuffer _terminalBuffer;
@@ -137,6 +138,7 @@ namespace CipherListTerminal
 			_buttonPress = Content.Load<SoundEffect>("SFX/buttonpress");			
 			_positiveBlip = Content.Load<SoundEffect>("SFX/positiveblip");
 			_uiWrong = Content.Load<SoundEffect>("SFX/uiwrong");
+			_drop = Content.Load<SoundEffect>("SFX/rolanddrop");
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -544,6 +546,7 @@ namespace CipherListTerminal
 				if (!_terminalBuffer.Text.Contains("__"))
 				{
 					_terminalBuffer.IsCompleted = true;
+					// _drop.Play();
 				}
 
 				if (!_targetList1.IsCompleted)
