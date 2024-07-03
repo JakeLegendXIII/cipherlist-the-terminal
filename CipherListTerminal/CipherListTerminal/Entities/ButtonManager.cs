@@ -22,6 +22,7 @@ namespace CipherListTerminal.Entities
 		private Vector2 _secondButtonPosition = new Vector2(450, 610);
 		private Vector2 _thirdButtonPosition = new Vector2(650, 610);
 		private Vector2 _fourthButtonPosition = new Vector2(850, 610);
+		private Vector2 _fifthButtonPosition = new Vector2(1050, 610);
 
 		public ButtonManager(Texture2D buttonUI, SpriteFont font, InputStates inputState, GameStates gameState, SoundEffect flickingASwitch)
 		{
@@ -35,6 +36,7 @@ namespace CipherListTerminal.Entities
 			_buttons = [
 				new Button(_buttonUI, _font, "Back", "ESC", "Back", true),
 				new Button(_buttonUI, _font, "Next Puzzle", "F5", "RT", false),
+				new Button(_buttonUI, _font, "Clear Save Data", "F8", "X", false),
 				new Button(_buttonUI, _font, "Switch Input", "F10", "LT", false),
 				new Button(_buttonUI, _font, "Continue", "Enter", "A", true),
 				new Button(_buttonUI, _font, "Full Screen", "F11", "LB", false),
