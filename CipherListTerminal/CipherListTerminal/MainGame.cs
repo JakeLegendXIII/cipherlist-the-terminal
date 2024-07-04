@@ -360,6 +360,7 @@ namespace CipherListTerminal
 					{
 						_remainingPuzzleTime = _singlePuzzleTimer;
 						_remainingPuzzles = _puzzleCount;
+						_scoreBoard.Score = 0;
 					}
 
 					GameState = PreviousGameState;
