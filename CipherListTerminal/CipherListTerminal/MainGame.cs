@@ -356,6 +356,8 @@ namespace CipherListTerminal
 						_completedPuzzles = 0;
 					}
 
+
+					// TODO bug is not fixed yet
 					if (PreviousGameState == GameStates.SinglePuzzleTimed && _remainingPuzzles <= 0)
 					{
 						_remainingPuzzleTime = _singlePuzzleTimer;
