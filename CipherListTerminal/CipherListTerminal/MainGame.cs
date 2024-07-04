@@ -356,6 +356,12 @@ namespace CipherListTerminal
 						_completedPuzzles = 0;
 					}
 
+					if (PreviousGameState == GameStates.SinglePuzzleTimed && _remainingPuzzles <= 0)
+					{
+						_remainingPuzzleTime = _singlePuzzleTimer;
+						_remainingPuzzles = _puzzleCount;
+					}
+
 					GameState = PreviousGameState;
 					PreviousGameState = GameStates.Summary;
 				}
