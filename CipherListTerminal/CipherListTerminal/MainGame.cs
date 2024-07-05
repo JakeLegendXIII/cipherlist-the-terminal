@@ -356,13 +356,12 @@ namespace CipherListTerminal
 						_completedPuzzles = 0;
 					}
 
-
-					// TODO bug is not fixed yet
-					if (PreviousGameState == GameStates.SinglePuzzleTimed && _remainingPuzzles <= 0)
+					// TODO bug is not fixed yet doesn't trigger _remainingPuzzles is 10
+					if (PreviousGameState == GameStates.SinglePuzzleTimed && _remainingPuzzles == 10)
 					{
 						_remainingPuzzleTime = _singlePuzzleTimer;
 						_remainingPuzzles = _puzzleCount;
-						_scoreBoard.Score = 0;
+						_scoreBoard.Score = 0;						
 					}
 
 					GameState = PreviousGameState;
