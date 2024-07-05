@@ -107,6 +107,12 @@ namespace CipherListTerminal.Entities
 					_buttons[1].SetColor(Color.Gray);
 				}
 
+				if (InputManager.IsGamePadButtonPressed(Buttons.RightShoulder) || InputManager.IsKeyPressed(Keys.F8))
+				{
+					_buttonPress.Play();
+					_buttons[2].SetColor(Color.Gray);
+				}
+
 				if (InputManager.IsGamePadButtonPressed(Buttons.LeftTrigger) || InputManager.IsKeyPressed(Keys.F10))
 				{
 					_buttonPress.Play();
