@@ -246,6 +246,7 @@ namespace CipherListTerminal
 				{
 					SetupNewPuzzle();
 					_remainingPuzzles--;
+					_remainingPuzzleTime = _singlePuzzleTimer;
 				}
 
 				_remainingPuzzleTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -278,7 +279,7 @@ namespace CipherListTerminal
 					GameState = GameStates.Summary;
 					PreviousGameState = GameStates.SinglePuzzleTimed;
 					
-					_remainingPuzzles = _puzzleCount;
+					// _remainingPuzzles = _puzzleCount;
 				}
 			}
 			else if (GameState == GameStates.TimeTrial)
@@ -356,12 +357,13 @@ namespace CipherListTerminal
 						_completedPuzzles = 0;
 					}
 
-					// TODO bug is not fixed yet doesn't trigger _remainingPuzzles is 10
-					if (PreviousGameState == GameStates.SinglePuzzleTimed && _remainingPuzzles == 10)
+					if (PreviousGameState == GameStates.SinglePuzzleTimed && _remainingPuzzles <= 0)
 					{
 						_remainingPuzzleTime = _singlePuzzleTimer;
 						_remainingPuzzles = _puzzleCount;
-						_scoreBoard.Score = 0;						
+
+						SetupNewPuzzle();
+						SetupScoreBoard();					
 					}
 
 					GameState = PreviousGameState;
