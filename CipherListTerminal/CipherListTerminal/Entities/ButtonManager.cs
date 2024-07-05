@@ -110,7 +110,7 @@ namespace CipherListTerminal.Entities
 				if (InputManager.IsGamePadButtonPressed(Buttons.LeftTrigger) || InputManager.IsKeyPressed(Keys.F10))
 				{
 					_buttonPress.Play();
-					_buttons[2].SetColor(Color.Gray);
+					_buttons[3].SetColor(Color.Gray);
 				}
 
 				if (_gameState == GameStates.Summary)
@@ -118,14 +118,14 @@ namespace CipherListTerminal.Entities
 					if (InputManager.IsGamePadButtonPressed(Buttons.A) || InputManager.IsKeyPressed(Keys.Enter))
 					{
 						_buttonPress.Play();
-						_buttons[3].SetColor(Color.Gray);
+						_buttons[4].SetColor(Color.Gray);
 					}
 				}				
 
 				if (InputManager.IsGamePadButtonPressed(Buttons.Y) || InputManager.IsKeyPressed(Keys.F11))
 				{
 					_buttonPress.Play();
-					_buttons[4].SetColor(Color.Gray);
+					_buttons[5].SetColor(Color.Gray);
 				}
 
 				for (var i = 0; i < _buttons.Count; i++)
