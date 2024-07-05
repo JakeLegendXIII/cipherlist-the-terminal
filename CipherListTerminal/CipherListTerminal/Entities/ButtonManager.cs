@@ -18,11 +18,11 @@ namespace CipherListTerminal.Entities
 		private SpriteFont _font;
 		private SoundEffect _buttonPress;
 
-		private Vector2 _firstButtonPosition = new Vector2(250, 610);
-		private Vector2 _secondButtonPosition = new Vector2(450, 610);
-		private Vector2 _thirdButtonPosition = new Vector2(650, 610);
-		private Vector2 _fourthButtonPosition = new Vector2(850, 610);
-		private Vector2 _fifthButtonPosition = new Vector2(1050, 610);
+		private Vector2 _firstButtonPosition = new Vector2(200, 610);
+		private Vector2 _secondButtonPosition = new Vector2(400, 610);
+		private Vector2 _thirdButtonPosition = new Vector2(600, 610);
+		private Vector2 _fourthButtonPosition = new Vector2(800, 610);
+		private Vector2 _fifthButtonPosition = new Vector2(1000, 610);
 
 		public ButtonManager(Texture2D buttonUI, SpriteFont font, InputStates inputState, GameStates gameState, SoundEffect flickingASwitch)
 		{
@@ -36,7 +36,7 @@ namespace CipherListTerminal.Entities
 			_buttons = [
 				new Button(_buttonUI, _font, "Back", "ESC", "Back", true),
 				new Button(_buttonUI, _font, "Next Puzzle", "F5", "RT", false),
-				new Button(_buttonUI, _font, "Clear Save Data", "F8", "X", false),
+				new Button(_buttonUI, _font, "Clear Saves", "F8", "RB", false),
 				new Button(_buttonUI, _font, "Switch Input", "F10", "LT", false),
 				new Button(_buttonUI, _font, "Continue", "Enter", "A", true),
 				new Button(_buttonUI, _font, "Full Screen", "F11", "LB", false),
@@ -52,15 +52,17 @@ namespace CipherListTerminal.Entities
 
 				_buttons[1].Draw(spriteBatch, gameTime, scale, _secondButtonPosition);
 
+				_buttons[2].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
+
 				if (InputManager.IsGamePadConnected())
 				{
-					_buttons[3].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
+					_buttons[3].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
 
-					_buttons[5].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
+					_buttons[5].Draw(spriteBatch, gameTime, scale, _fifthButtonPosition);
 				}
 				else
 				{
-					_buttons[5].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
+					_buttons[5].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
 				}
 				
 			}
