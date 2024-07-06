@@ -351,13 +351,14 @@ namespace CipherListTerminal
 
 				if (InputManager.IsKeyPressed(Keys.Enter) || InputManager.IsGamePadButtonPressed(Buttons.A))
 				{
+					// TODO : need to fix the issue with not showing High Score during restart if it was first score save?
 					if (PreviousGameState == GameStates.TimeTrial && _remainingTime <= 0)
 					{
 						_remainingTime = _timeTrialTimer;
 						_completedPuzzles = 0;
 
 						SetupNewPuzzle();
-						SetupScoreBoard();
+						SetupScoreBoardPrevious();
 					}
 
 					if (PreviousGameState == GameStates.SinglePuzzleTimed && _remainingPuzzles <= 0)
@@ -366,7 +367,7 @@ namespace CipherListTerminal
 						_remainingPuzzles = _puzzleCount;
 
 						SetupNewPuzzle();
-						SetupScoreBoard();					
+						SetupScoreBoardPrevious();					
 					}
 
 					GameState = PreviousGameState;
@@ -512,6 +513,24 @@ namespace CipherListTerminal
 				_scoreBoard.HighScore = CurrentSaveState.SinglePuzzleHighScore;
 			}
 			else if (GameState == GameStates.TimeTrial)
+			{
+				_scoreBoard.HighScore = CurrentSaveState.TimeTrialHighScore;
+			}
+		}
+
+		private void SetupScoreBoardPrevious()
+		{
+			_scoreBoard = new ScoreBoard(_armadaFont, _scoreUI);
+
+			if (PreviousGameState == GameStates.FreePlay)
+			{
+				_scoreBoard.HighScore = CurrentSaveState.FreePlayHighScore;
+			}
+			else if (PreviousGameState == GameStates.SinglePuzzleTimed)
+			{
+				_scoreBoard.HighScore = CurrentSaveState.SinglePuzzleHighScore;
+			}
+			else if (PreviousGameState == GameStates.TimeTrial)
 			{
 				_scoreBoard.HighScore = CurrentSaveState.TimeTrialHighScore;
 			}
