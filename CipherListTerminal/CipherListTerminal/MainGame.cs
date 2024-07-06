@@ -355,6 +355,9 @@ namespace CipherListTerminal
 					{
 						_remainingTime = _timeTrialTimer;
 						_completedPuzzles = 0;
+
+						SetupNewPuzzle();
+						SetupScoreBoard();
 					}
 
 					if (PreviousGameState == GameStates.SinglePuzzleTimed && _remainingPuzzles <= 0)
