@@ -50,6 +50,12 @@
 /processorParam:TextureFormat=Color
 /build:Fonts/Faraway16.png
 
+#begin Music/DemoTrack.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/DemoTrack.wav
+
 #begin SFX/buttonpress.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
