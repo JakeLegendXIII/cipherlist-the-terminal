@@ -62,6 +62,8 @@ namespace CipherListTerminal
 		private SoundEffect _uiWrong;
 		private SoundEffect _drop;
 
+		private Effect _effect;
+
 		private MainMenu _mainMenu;
 		private TerminalBuffer _terminalBuffer;
 		private PuzzleMatrix _matrix;

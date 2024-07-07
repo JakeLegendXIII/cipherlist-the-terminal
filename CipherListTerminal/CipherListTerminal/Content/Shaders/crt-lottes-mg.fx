@@ -325,6 +325,6 @@ technique
 {
     pass
     {
-        PixelShader = compile PS_SHADERMODELmain_fragment();
+        PixelShader = compile PS_SHADERMODEL main_fragment();
     }
 }
