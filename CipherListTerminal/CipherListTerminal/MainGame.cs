@@ -8,6 +8,8 @@ using CipherListTerminal.Core;
 using System.Diagnostics;
 using System.IO;
 using Microsoft.Xna.Framework.Audio;
+using CipherListTerminal.Sound;
+using System.Collections.Generic;
 
 namespace CipherListTerminal
 {
@@ -50,6 +52,10 @@ namespace CipherListTerminal
 		private Texture2D _buttonUI;
 		private Texture2D _pfButtonUI;
 
+		// Music
+		private SoundEffect _demoTrack;
+
+		//SFX
 		private SoundEffect _flickingASwitch;
 		private SoundEffect _buttonPress;		
 		private SoundEffect _positiveBlip;
@@ -66,6 +72,7 @@ namespace CipherListTerminal
 		private Summary _summary;
 		private InputStateIndicator _inputStateIndicator;
 		private ButtonManager _buttonManager;
+		private SoundManager _soundManager;
 
 		private Random _random = new Random();
 
@@ -139,10 +146,18 @@ namespace CipherListTerminal
 			_positiveBlip = Content.Load<SoundEffect>("SFX/positiveblip");
 			_uiWrong = Content.Load<SoundEffect>("SFX/uiwrong");
 			_drop = Content.Load<SoundEffect>("SFX/rolanddrop");
+
+			_demoTrack = Content.Load<SoundEffect>("Music/DemoTrack");
+
+			_soundManager = new SoundManager();
+			var track1 = _demoTrack.CreateInstance();
+			_soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1 });
 		}
 
 		protected override void Update(GameTime gameTime)
 		{
+			_soundManager.PlaySoundtrack();
+
 			InputManager.Update(_renderDestination, _scale);
 			
 			if (InputManager.IsKeyDown(Keys.F11) || InputManager.IsGamePadButtonPressed(Buttons.LeftShoulder))
