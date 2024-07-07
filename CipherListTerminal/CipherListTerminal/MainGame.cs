@@ -149,6 +149,9 @@ namespace CipherListTerminal
 			_uiWrong = Content.Load<SoundEffect>("SFX/uiwrong");
 			_drop = Content.Load<SoundEffect>("SFX/rolanddrop");
 
+			_effect = Content.Load<Effect>("Shaders/crt-lottes-mg");
+			_effect.Parameters["brightboost"].SetValue(0.92f);
+
 			_demoTrack = Content.Load<SoundEffect>("Music/DemoTrack");
 
 			_soundManager = new SoundManager();
@@ -402,9 +405,13 @@ namespace CipherListTerminal
 
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 
+			//_spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _effect);
+			//_spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _nativeWidth, _nativeHeight), Color.White);
+			//_spriteBatch.End();
+
 			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-			_spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _nativeWidth, _nativeHeight), Color.White);					
+			_spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _nativeWidth, _nativeHeight), Color.White);
 
 			if (GameState == GameStates.Menu)
 			{
