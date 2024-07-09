@@ -151,6 +151,11 @@ namespace CipherListTerminal
 
 			_effect = Content.Load<Effect>("Shaders/crt-lottes-mg");
 			_effect.Parameters["brightboost"].SetValue(0.92f);
+			var texSize = new Vector2(_nativeWidth, _nativeHeight);
+			_effect.Parameters["textureSize"]?.SetValue(texSize);
+			_effect.Parameters["videoSize"]?.SetValue(texSize);
+			var outSize = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+			_effect.Parameters["outputSize"]?.SetValue(outSize);
 
 			_demoTrack = Content.Load<SoundEffect>("Music/DemoTrack");
 
@@ -409,7 +414,7 @@ namespace CipherListTerminal
 			//_spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _nativeWidth, _nativeHeight), Color.White);
 			//_spriteBatch.End();
 
-			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+			_spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _effect);
 
 			_spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _nativeWidth, _nativeHeight), Color.White);
 

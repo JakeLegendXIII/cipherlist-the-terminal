@@ -326,6 +326,5 @@ technique
     pass
     {
         PixelShader = compile PS_SHADERMODEL main_fragment();
-       // VertexShader = compile VS_SHADERMODEL main_fragment();
     }
 }
