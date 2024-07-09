@@ -79,7 +79,7 @@ float4x4 modelViewProj;
 //------------------------------------------------------------------------
 
 // sRGB to Linear.
-// Assuing using sRGB typed textures this should not be needed.
+// Assmuing using sRGB typed textures this should not be needed.
 #if SIMPLE_LINEAR_GAMMA > 0
 
 float3 ToSrgb(float3 c)

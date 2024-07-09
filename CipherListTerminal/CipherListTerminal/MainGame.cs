@@ -57,7 +57,7 @@ namespace CipherListTerminal
 
 		//SFX
 		private SoundEffect _flickingASwitch;
-		private SoundEffect _buttonPress;		
+		private SoundEffect _buttonPress;
 		private SoundEffect _positiveBlip;
 		private SoundEffect _uiWrong;
 		private SoundEffect _drop;
@@ -111,7 +111,7 @@ namespace CipherListTerminal
 			base.Initialize();
 			CalculateRenderDestination();
 			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _farawayFont, _buttonPress, _flickingASwitch);
-			_mainMenu.MenuButtonSelectionEvent += OnMenuButtonSelection;			
+			_mainMenu.MenuButtonSelectionEvent += OnMenuButtonSelection;
 			GameState = GameStates.Menu;
 
 			GamePadState gps = GamePad.GetState(PlayerIndex.One);
@@ -140,17 +140,17 @@ namespace CipherListTerminal
 			_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
 			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI2");
 			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
-			_buttonUI = Content.Load<Texture2D>("Sprites/RoughButton");	
+			_buttonUI = Content.Load<Texture2D>("Sprites/RoughButton");
 			_pfButtonUI = Content.Load<Texture2D>("Sprites/PFButton");
 
 			_flickingASwitch = Content.Load<SoundEffect>("SFX/flickingaswitch");
-			_buttonPress = Content.Load<SoundEffect>("SFX/buttonpress");			
+			_buttonPress = Content.Load<SoundEffect>("SFX/buttonpress");
 			_positiveBlip = Content.Load<SoundEffect>("SFX/positiveblip");
 			_uiWrong = Content.Load<SoundEffect>("SFX/uiwrong");
 			_drop = Content.Load<SoundEffect>("SFX/rolanddrop");
 
 			_effect = Content.Load<Effect>("Shaders/crt-lottes-mg");
-			_effect.Parameters["brightboost"].SetValue(0.92f);
+			_effect.Parameters["brightboost"].SetValue(1.25f);
 			var texSize = new Vector2(_nativeWidth, _nativeHeight);
 			_effect.Parameters["textureSize"]?.SetValue(texSize);
 			_effect.Parameters["videoSize"]?.SetValue(texSize);
@@ -169,7 +169,7 @@ namespace CipherListTerminal
 			_soundManager.PlaySoundtrack();
 
 			InputManager.Update(_renderDestination, _scale);
-			
+
 			if (InputManager.IsKeyDown(Keys.F11) || InputManager.IsGamePadButtonPressed(Buttons.LeftShoulder))
 			{
 				// _graphics.ToggleFullScreen();
@@ -203,7 +203,7 @@ namespace CipherListTerminal
 					Exit();
 
 				if (InputManager.IsKeyPressed(Keys.F1))
-				{					
+				{
 					SetupNewPuzzle();
 					GameState = GameStates.FreePlay;
 					PreviousGameState = GameStates.Menu;
@@ -211,7 +211,7 @@ namespace CipherListTerminal
 				}
 
 				if (InputManager.IsKeyPressed(Keys.F2))
-				{					
+				{
 					SetupNewPuzzle();
 					GameState = GameStates.SinglePuzzleTimed;
 					PreviousGameState = GameStates.Menu;
@@ -233,7 +233,7 @@ namespace CipherListTerminal
 					CheckScore();
 					SetupSummary();
 					GameState = GameStates.Summary;
-					PreviousGameState = GameStates.FreePlay;					
+					PreviousGameState = GameStates.FreePlay;
 				}
 
 				_matrix.Update(gameTime, CurrentInputState);
@@ -262,7 +262,7 @@ namespace CipherListTerminal
 					CheckScore();
 					SetupSummary();
 					GameState = GameStates.Summary;
-					PreviousGameState = GameStates.SinglePuzzleTimed;					
+					PreviousGameState = GameStates.SinglePuzzleTimed;
 				}
 
 				_matrix.Update(gameTime, CurrentInputState);
@@ -303,7 +303,7 @@ namespace CipherListTerminal
 					SetupSummary();
 					GameState = GameStates.Summary;
 					PreviousGameState = GameStates.SinglePuzzleTimed;
-					
+
 					// _remainingPuzzles = _puzzleCount;
 				}
 			}
@@ -392,7 +392,7 @@ namespace CipherListTerminal
 						_remainingPuzzles = _puzzleCount;
 
 						SetupNewPuzzle();
-						SetupScoreBoardPrevious();					
+						SetupScoreBoardPrevious();
 					}
 
 					GameState = PreviousGameState;
@@ -410,8 +410,12 @@ namespace CipherListTerminal
 
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 
-			_spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _effect);
+			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 			_spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _nativeWidth, _nativeHeight), Color.White);
+			_spriteBatch.End();
+
+			_spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _effect);
+			_spriteBatch.Draw(_backgroundTexture, new Rectangle(80, 62, 1123, 630), new Rectangle(80, 62, 1123, 630), Color.White);
 			_spriteBatch.End();
 
 			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
@@ -420,7 +424,7 @@ namespace CipherListTerminal
 
 			if (GameState == GameStates.Menu)
 			{
-				_mainMenu.Draw(_spriteBatch, gameTime, _scale);				
+				_mainMenu.Draw(_spriteBatch, gameTime, _scale);
 			}
 			else if (GameState == GameStates.FreePlay || GameState == GameStates.SinglePuzzleTimed ||
 				GameState == GameStates.TimeTrial)
@@ -461,7 +465,7 @@ namespace CipherListTerminal
 			if (InputManager.IsGamePadConnected())
 			{
 				_inputStateIndicator.Draw(_spriteBatch, gameTime, _scale);
-			}			
+			}
 
 			_spriteBatch.End();
 
@@ -477,7 +481,7 @@ namespace CipherListTerminal
 		private void OnClientSizeChanged(object sender, EventArgs e)
 		{
 			if (!_isResizing && Window.ClientBounds.Width > 0 && Window.ClientBounds.Height > 0)
-			{				
+			{
 				_isResizing = true;
 
 				CalculateRenderDestination();
@@ -500,6 +504,16 @@ namespace CipherListTerminal
 
 			_renderDestination.X = (size.X - _renderDestination.Width) / 2;
 			_renderDestination.Y = (size.Y - _renderDestination.Height) / 2;
+
+			//_effect.Parameters["textureSize"]?.SetValue(new Vector2(size.X - 250, size.Y - 250));
+			//_effect.Parameters["outputSize"]?.SetValue(new Vector2(size.X - 250, size.Y - 250));
+			//_effect.Parameters["videoSize"]?.SetValue(new Vector2(size.X - 250, size.Y - 250));
+
+			//var texSize = new Vector2(_renderDestination.Width, _renderDestination.Height);
+			//_effect.Parameters["textureSize"]?.SetValue(texSize);
+			//_effect.Parameters["videoSize"]?.SetValue(texSize);
+			//var outSize = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+			//_effect.Parameters["outputSize"]?.SetValue(outSize);
 		}
 
 		private void SetupNewPuzzle()
@@ -595,7 +609,7 @@ namespace CipherListTerminal
 				PreviousGameState = GameState;
 				GameState = newGameState;
 				SetupScoreBoard();
-			}			
+			}
 		}
 
 		private void HandleSelectedMatrixEvent(string selectedValue)
@@ -757,7 +771,7 @@ namespace CipherListTerminal
 		}
 
 		private void ToggleInputState()
-		{		
+		{
 			if (CurrentInputState == InputStates.GamePad)
 			{
 				CurrentInputState = InputStates.MouseKeyboard;
@@ -767,7 +781,7 @@ namespace CipherListTerminal
 				if (InputManager.IsGamePadConnected())
 					CurrentInputState = InputStates.GamePad;
 				else
-					CurrentInputState = InputStates.MouseKeyboard;				
+					CurrentInputState = InputStates.MouseKeyboard;
 			}
 		}
 
