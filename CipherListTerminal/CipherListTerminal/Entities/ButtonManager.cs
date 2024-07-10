@@ -40,6 +40,7 @@ namespace CipherListTerminal.Entities
 				new Button(_buttonUI, _font, "Switch Input", "F10", "LT", false),
 				new Button(_buttonUI, _font, "Continue", "Enter", "A", true),
 				new Button(_buttonUI, _font, "Full Screen", "F11", "LB", false),
+				new Button(_buttonUI, _font, "Clear FX", "F12", "X", true)
 			];
 		}
 
