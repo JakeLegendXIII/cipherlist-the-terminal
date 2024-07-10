@@ -56,6 +56,12 @@
 /processorParam:Quality=Best
 /build:Music/DemoTrack.wav
 
+#begin Music/DemoTrack2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/DemoTrack2.wav
+
 #begin SFX/buttonpress.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

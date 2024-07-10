@@ -157,7 +157,7 @@ namespace CipherListTerminal
 			var outSize = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
 			_effect.Parameters["outputSize"]?.SetValue(outSize);
 
-			_demoTrack = Content.Load<SoundEffect>("Music/DemoTrack");
+			_demoTrack = Content.Load<SoundEffect>("Music/DemoTrack2");
 
 			_soundManager = new SoundManager();
 			var track1 = _demoTrack.CreateInstance();
