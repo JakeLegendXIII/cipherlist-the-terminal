@@ -18,14 +18,17 @@ namespace CipherListTerminal.Entities
 		private SoundEffect _buttonPress;
 		private SoundEffect _flickingASwitch;
 
-		private int _buttonPosition1X = 150;
+		private int _buttonPosition1X = 100;
 		private int _buttonPosition1Y = 375;
 
-		private int _buttonPosition2X = 500;
+		private int _buttonPosition2X = 450;
 		private int _buttonPosition2Y = 375;
 
-		private int _buttonPosition3X = 850;
+		private int _buttonPosition3X = 800;
 		private int _buttonPosition3Y = 375;
+
+		private int _buttonPosition4X = 1150;
+		private int _buttonPosition4Y = 375;
 
 		private int _buttonWidth = 300;
 		private int _buttonHeight = 200;
@@ -63,9 +66,9 @@ namespace CipherListTerminal.Entities
 					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(250, 420), Color.White);
-			spriteBatch.DrawString(_farawayFont, "No time or puzzle limits.", new Vector2(240, 520), Color.White);
-			spriteBatch.DrawString(_farawayFont, "Just have fun with it!", new Vector2(240, 540), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(200, 420), Color.White);
+			spriteBatch.DrawString(_farawayFont, "No time or puzzle limits.", new Vector2(190, 520), Color.White);
+			spriteBatch.DrawString(_farawayFont, "Just have fun with it!", new Vector2(190, 540), Color.White);
 
 			if (_currentlySelectedButton == 2)
 			{
@@ -78,9 +81,9 @@ namespace CipherListTerminal.Entities
 										Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-			spriteBatch.DrawString(_armadaFont, "Best of 10 Timed", new Vector2(575, 420), Color.White);
-			spriteBatch.DrawString(_farawayFont, "60 seconds per puzzle.", new Vector2(595, 520), Color.White);
-			spriteBatch.DrawString(_farawayFont, "10 puzzles. Do your best!", new Vector2(595, 540), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Best of 10 Timed", new Vector2(525, 420), Color.White);
+			spriteBatch.DrawString(_farawayFont, "60 seconds per puzzle.", new Vector2(545, 520), Color.White);
+			spriteBatch.DrawString(_farawayFont, "10 puzzles. Do your best!", new Vector2(545, 540), Color.White);
 
 			if (_currentlySelectedButton == 3)
 			{
@@ -93,9 +96,23 @@ namespace CipherListTerminal.Entities
 										Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-			spriteBatch.DrawString(_armadaFont, "Time Trial", new Vector2(950, 420), Color.White);
-			spriteBatch.DrawString(_farawayFont, "5 minutes total.", new Vector2(910, 520), Color.White);
-			spriteBatch.DrawString(_farawayFont, "As many puzzles as you can solve!", new Vector2(910, 540), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Time Trial", new Vector2(900, 420), Color.White);
+			spriteBatch.DrawString(_farawayFont, "5 minutes total.", new Vector2(860, 520), Color.White);
+			spriteBatch.DrawString(_farawayFont, "As many puzzles as you can solve!", new Vector2(860, 540), Color.White);
+
+
+			if (_currentlySelectedButton == 3)
+			{
+				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition4X, _buttonPosition4Y), null,
+										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+			}
+			else
+			{
+				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition4X, _buttonPosition4Y), null,
+										Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+			}
+
+			spriteBatch.DrawString(_armadaFont, "Settings", new Vector2(1050, 420), Color.White);			
 
 			// spriteBatch.DrawString(_armadaFont, $"Selected button: {_currentlySelectedButton}", new Vector2(450, 100), Color.White);
 		}

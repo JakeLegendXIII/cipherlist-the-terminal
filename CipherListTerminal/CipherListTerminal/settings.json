@@ -1,0 +1,14 @@
+{
+  "highScores": {
+    "freePlay": 8800,
+    "freePlayRecordDate": "06/10/2024",
+    "bestOf10Timed": 8000,
+    "bestOf10TimedRecordDate": "05/08/2024",
+    "timeTrial": 8350,
+    "timeTrialRecordDate": "05/08/2024"
+  },
+  "settings": {
+    "displayMode": "windowed",
+    "crtShader": true 
+  }
+}
