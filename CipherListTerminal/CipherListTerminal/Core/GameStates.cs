@@ -7,6 +7,6 @@
         TimeTrial,
         SinglePuzzleTimed,
         Summary,
-        Confirmation,
+        Settings,
     }
 }

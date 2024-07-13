@@ -19,13 +19,13 @@ namespace CipherListTerminal.Entities
 		private SoundEffect _flickingASwitch;
 
 		private int _buttonPosition1X = 150;
-		private int _buttonPosition1Y = 400;
+		private int _buttonPosition1Y = 375;
 
 		private int _buttonPosition2X = 500;
-		private int _buttonPosition2Y = 400;
+		private int _buttonPosition2Y = 375;
 
 		private int _buttonPosition3X = 850;
-		private int _buttonPosition3Y = 400;
+		private int _buttonPosition3Y = 375;
 
 		private int _buttonWidth = 300;
 		private int _buttonHeight = 200;
@@ -49,7 +49,7 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
-			spriteBatch.Draw(_menuLogo, new Vector2(400, 125), null,
+			spriteBatch.Draw(_menuLogo, new Vector2(400, 100), null,
 					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);						
 
 			if (_currentlySelectedButton == 1)

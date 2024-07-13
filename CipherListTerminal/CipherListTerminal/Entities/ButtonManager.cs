@@ -18,11 +18,12 @@ namespace CipherListTerminal.Entities
 		private SpriteFont _font;
 		private SoundEffect _buttonPress;
 
-		private Vector2 _firstButtonPosition = new Vector2(200, 610);
-		private Vector2 _secondButtonPosition = new Vector2(400, 610);
-		private Vector2 _thirdButtonPosition = new Vector2(600, 610);
-		private Vector2 _fourthButtonPosition = new Vector2(800, 610);
-		private Vector2 _fifthButtonPosition = new Vector2(1000, 610);
+		private Vector2 _firstButtonPosition = new Vector2(150, 610);
+		private Vector2 _secondButtonPosition = new Vector2(350, 610);
+		private Vector2 _thirdButtonPosition = new Vector2(550, 610);
+		private Vector2 _fourthButtonPosition = new Vector2(750, 610);
+		private Vector2 _fifthButtonPosition = new Vector2(950, 610);
+		private Vector2 _sixthButtonPosition = new Vector2(1150, 610);
 
 		public ButtonManager(Texture2D buttonUI, SpriteFont font, InputStates inputState, GameStates gameState, SoundEffect flickingASwitch)
 		{
@@ -60,10 +61,14 @@ namespace CipherListTerminal.Entities
 					_buttons[3].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
 
 					_buttons[5].Draw(spriteBatch, gameTime, scale, _fifthButtonPosition);
+
+					_buttons[6].Draw(spriteBatch, gameTime, scale, _sixthButtonPosition);
 				}
 				else
 				{
 					_buttons[5].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
+
+					_buttons[6].Draw(spriteBatch, gameTime, scale, _fifthButtonPosition);
 				}
 				
 			}
