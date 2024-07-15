@@ -107,6 +107,7 @@ namespace CipherListTerminal
 
 		protected override void Initialize()
 		{
+			// TODO : SaveState becomes settings JSON
 			CurrentSaveState = LoadSaveState();
 			base.Initialize();
 			CalculateRenderDestination();
