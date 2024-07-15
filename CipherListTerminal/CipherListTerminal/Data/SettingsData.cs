@@ -20,5 +20,6 @@
 	{
 		public string displayMode { get; set; }
 		public bool crtShader { get; set; }
+		public bool music { get; set; }
 	}
 }

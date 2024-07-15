@@ -9,6 +9,8 @@
   },
   "settings": {
     "displayMode": "windowed",
-    "crtShader": true 
+    "crtShader": true,
+    "music": true
   }
+
 }
