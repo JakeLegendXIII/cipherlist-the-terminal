@@ -112,7 +112,7 @@ namespace CipherListTerminal
 		protected override void Initialize()
 		{
 			// TODO : SaveState becomes settings JSON
-			LoadSettingsFile();		
+			LoadSettingsFile();
 
 			CurrentSaveState = LoadSaveState();
 			base.Initialize();
@@ -173,7 +173,8 @@ namespace CipherListTerminal
 
 		protected override void Update(GameTime gameTime)
 		{
-			_soundManager.PlaySoundtrack();
+			if (SettingsData.settings.music)
+				_soundManager.PlaySoundtrack();			
 
 			InputManager.Update(_renderDestination, _scale);
 
@@ -421,13 +422,14 @@ namespace CipherListTerminal
 			_spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _nativeWidth, _nativeHeight), Color.White);
 			_spriteBatch.End();
 
-			_spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _effect);
-			_spriteBatch.Draw(_backgroundTexture, new Rectangle(80, 62, 1123, 630), new Rectangle(80, 62, 1123, 630), Color.White);
-			_spriteBatch.End();
-
-			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-
-			//_spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, _nativeWidth, _nativeHeight), Color.White);
+			if (SettingsData.settings.crtShader)
+			{
+				_spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _effect);
+				_spriteBatch.Draw(_backgroundTexture, new Rectangle(80, 62, 1123, 630), new Rectangle(80, 62, 1123, 630), Color.White);
+				_spriteBatch.End();
+			}
+			
+			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);			
 
 			if (GameState == GameStates.Menu)
 			{
@@ -780,13 +782,41 @@ namespace CipherListTerminal
 				}
 				else
 				{
+					CreateDefaultSettings();
 
+					// Serialize the default object to JSON
+					string defaultJsonData = JsonSerializer.Serialize(SettingsData, new JsonSerializerOptions { WriteIndented = true });
+
+					// Write JSON to file
+					File.WriteAllText(SETTINGS_FILE_NAME, defaultJsonData);
 				}
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				Debug.WriteLine("An error occurred while loading the settings file: " + ex.Message);
-			}		
+			}
+		}
+
+		private void CreateDefaultSettings()
+		{
+			SettingsData = new SettingsData
+			{
+				highScores = new Highscores
+				{
+					freePlay = 0,
+					freePlayRecordDate = DateTime.Now.ToString("yyyy-MM-dd"),
+					bestOf10Timed = 0,
+					bestOf10TimedRecordDate = DateTime.Now.ToString("yyyy-MM-dd"),
+					timeTrial = 0,
+					timeTrialRecordDate = DateTime.Now.ToString("yyyy-MM-dd")
+				},
+				settings = new Settings
+				{
+					displayMode = "Windowed",
+					crtShader = true,
+					music = true
+				}
+			};
 		}
 
 		private void ResetSaveState()
