@@ -32,7 +32,7 @@ namespace CipherListTerminal
 		int _height = 0;
 
 		private const string SAVE_FILE_NAME = "Save.dat";
-		private const string SETTINFS_FILE_NAME = "settings.json";
+		private const string SETTINGS_FILE_NAME = "settings.json";
 
 		public GameStates GameState;
 		public GameStates PreviousGameState;
@@ -112,12 +112,7 @@ namespace CipherListTerminal
 		protected override void Initialize()
 		{
 			// TODO : SaveState becomes settings JSON
-			if (File.Exists(SETTINFS_FILE_NAME))
-			{
-				string jsonData = File.ReadAllText(SETTINFS_FILE_NAME);
-
-				SettingsData = JsonSerializer.Deserialize<SettingsData>(jsonData);
-			}
+			LoadSettingsFile();		
 
 			CurrentSaveState = LoadSaveState();
 			base.Initialize();
@@ -771,6 +766,27 @@ namespace CipherListTerminal
 				Debug.WriteLine("An error occurred while loading the game: " + ex.Message);
 				return saveState;
 			}
+		}
+
+		private void LoadSettingsFile()
+		{
+			try
+			{
+				if (File.Exists(SETTINGS_FILE_NAME))
+				{
+					string jsonData = File.ReadAllText(SETTINGS_FILE_NAME);
+
+					SettingsData = JsonSerializer.Deserialize<SettingsData>(jsonData);
+				}
+				else
+				{
+
+				}
+			}
+			catch(Exception ex)
+			{
+				Debug.WriteLine("An error occurred while loading the settings file: " + ex.Message);
+			}		
 		}
 
 		private void ResetSaveState()
