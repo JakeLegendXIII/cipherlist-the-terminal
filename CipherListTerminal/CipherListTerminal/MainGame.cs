@@ -10,6 +10,8 @@ using System.IO;
 using Microsoft.Xna.Framework.Audio;
 using CipherListTerminal.Sound;
 using System.Collections.Generic;
+using CipherListTerminal.Data;
+using System.Text.Json;
 
 namespace CipherListTerminal
 {
@@ -30,10 +32,12 @@ namespace CipherListTerminal
 		int _height = 0;
 
 		private const string SAVE_FILE_NAME = "Save.dat";
+		private const string SETTINFS_FILE_NAME = "settings.json";
 
 		public GameStates GameState;
 		public GameStates PreviousGameState;
 		public SaveStates CurrentSaveState;
+		public SettingsData SettingsData;
 		public InputStates CurrentInputState;
 
 		string[] possibleValues = { "1C", "55", "BD", "FF", "E9", "1C", "55" };
@@ -108,6 +112,13 @@ namespace CipherListTerminal
 		protected override void Initialize()
 		{
 			// TODO : SaveState becomes settings JSON
+			if (File.Exists(SETTINFS_FILE_NAME))
+			{
+				string jsonData = File.ReadAllText(SETTINFS_FILE_NAME);
+
+				SettingsData = JsonSerializer.Deserialize<SettingsData>(jsonData);
+			}
+
 			CurrentSaveState = LoadSaveState();
 			base.Initialize();
 			CalculateRenderDestination();
