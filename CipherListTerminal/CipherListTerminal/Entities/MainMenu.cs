@@ -27,9 +27,6 @@ namespace CipherListTerminal.Entities
 		private int _buttonPosition3X = 850;
 		private int _buttonPosition3Y = 400;
 
-		private int _buttonPosition4X = 1150;
-		private int _buttonPosition4Y = 400;
-
 		private int _buttonWidth = 300;
 		private int _buttonHeight = 200;
 
@@ -99,21 +96,7 @@ namespace CipherListTerminal.Entities
 			spriteBatch.DrawString(_armadaFont, "Time Trial", new Vector2(950, 420), Color.White);
 			spriteBatch.DrawString(_farawayFont, "5 minutes total.", new Vector2(910, 520), Color.White);
 			spriteBatch.DrawString(_farawayFont, "As many puzzles as you can solve!", new Vector2(910, 540), Color.White);
-
-			// TODO : Settings button
-			//if (_currentlySelectedButton == 4)
-			//{
-			//	spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition4X, _buttonPosition4Y), null,
-			//							Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-			//}
-			//else
-			//{
-			//	spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition4X, _buttonPosition4Y), null,
-			//							Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-			//}
-
-			//spriteBatch.DrawString(_armadaFont, "Settings", new Vector2(1050, 420), Color.White);			
-
+			
 			// spriteBatch.DrawString(_armadaFont, $"Selected button: {_currentlySelectedButton}", new Vector2(450, 100), Color.White);
 		}
 
