@@ -58,6 +58,7 @@ namespace CipherListTerminal
 
 		// Music
 		private SoundEffect _demoTrack;
+		private SoundEffect _neonThump;
 
 		//SFX
 		private SoundEffect _flickingASwitch;
@@ -165,10 +166,12 @@ namespace CipherListTerminal
 			_effect.Parameters["outputSize"]?.SetValue(outSize);
 
 			_demoTrack = Content.Load<SoundEffect>("Music/DemoTrack3");
+			_neonThump = Content.Load<SoundEffect>("Music/NeonThump1");
 
 			_soundManager = new SoundManager();
 			var track1 = _demoTrack.CreateInstance();
-			_soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1 });
+			var track2 = _neonThump.CreateInstance();
+			_soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
 		}
 
 		protected override void Update(GameTime gameTime)
