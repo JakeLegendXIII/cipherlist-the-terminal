@@ -44,7 +44,6 @@ namespace CipherListTerminal
 		string[] possibleValuesExpanded = { "1C", "55", "BD", "FF", "E9", "7K", "1C", "55" };
 
 		private SpriteFont _armadaFont;
-		private SpriteFont _arialFont;
 		private SpriteFont _farawayFont;
 
 		private Texture2D _menuLogo;
@@ -139,7 +138,6 @@ namespace CipherListTerminal
 			_renderTarget = new RenderTarget2D(GraphicsDevice, _nativeWidth, _nativeHeight);
 
 			_armadaFont = Content.Load<SpriteFont>("Fonts/ArmadaBold16");
-			_arialFont = Content.Load<SpriteFont>("Fonts/Arial");
 			_farawayFont = Content.Load<SpriteFont>("Fonts/Faraway16");
 
 			_menuLogo = Content.Load<Texture2D>("Sprites/RoughMenu");
