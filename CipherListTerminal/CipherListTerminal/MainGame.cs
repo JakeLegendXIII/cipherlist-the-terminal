@@ -164,7 +164,7 @@ namespace CipherListTerminal
 			_effect.Parameters["outputSize"]?.SetValue(outSize);
 
 			_demoTrack = Content.Load<SoundEffect>("Music/DemoTrack3");
-			_neonThump = Content.Load<SoundEffect>("Music/NeonThump1");
+			_neonThump = Content.Load<SoundEffect>("Music/NeonThump2");
 
 			_soundManager = new SoundManager();
 			var track1 = _demoTrack.CreateInstance();
