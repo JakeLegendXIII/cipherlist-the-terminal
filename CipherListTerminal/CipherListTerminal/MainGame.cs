@@ -748,7 +748,9 @@ namespace CipherListTerminal
 		{
 			try
 			{
+				string defaultJsonData = JsonSerializer.Serialize(SettingsData, new JsonSerializerOptions { WriteIndented = true });
 
+				File.WriteAllText(SETTINGS_FILE_NAME, defaultJsonData);
 
 				//using (StreamWriter writer = new StreamWriter(SAVE_FILE_NAME))
 				//{
@@ -768,34 +770,34 @@ namespace CipherListTerminal
 			}
 		}
 
-		private SaveStates LoadSaveState()
-		{
-			SaveStates saveState = new SaveStates();
+		//private SaveStates LoadSaveState()
+		//{
+		//	SaveStates saveState = new SaveStates();
 
-			try
-			{
-				using (StreamReader reader = new StreamReader(SAVE_FILE_NAME))
-				{
-					string line = reader.ReadLine();
-					if (line != null)
-					{
-						saveState.FreePlayHighScore = int.Parse(line.Substring(0, 20).Trim());
-						saveState.FreePlayHighScoreDate = DateTime.Parse(line.Substring(20, 10).Trim());
-						saveState.SinglePuzzleHighScore = int.Parse(line.Substring(30, 20).Trim());
-						saveState.SinglePuzzleHighScoreDate = DateTime.Parse(line.Substring(50, 10).Trim());
-						saveState.TimeTrialHighScore = int.Parse(line.Substring(60, 20).Trim());
-						saveState.TimeTrialHighScoreDate = DateTime.Parse(line.Substring(80, 10).Trim());
-					}
-				}
+		//	try
+		//	{
+		//		using (StreamReader reader = new StreamReader(SAVE_FILE_NAME))
+		//		{
+		//			string line = reader.ReadLine();
+		//			if (line != null)
+		//			{
+		//				saveState.FreePlayHighScore = int.Parse(line.Substring(0, 20).Trim());
+		//				saveState.FreePlayHighScoreDate = DateTime.Parse(line.Substring(20, 10).Trim());
+		//				saveState.SinglePuzzleHighScore = int.Parse(line.Substring(30, 20).Trim());
+		//				saveState.SinglePuzzleHighScoreDate = DateTime.Parse(line.Substring(50, 10).Trim());
+		//				saveState.TimeTrialHighScore = int.Parse(line.Substring(60, 20).Trim());
+		//				saveState.TimeTrialHighScoreDate = DateTime.Parse(line.Substring(80, 10).Trim());
+		//			}
+		//		}
 
-				return saveState;
-			}
-			catch (Exception ex)
-			{
-				Debug.WriteLine("An error occurred while loading the game: " + ex.Message);
-				return saveState;
-			}
-		}
+		//		return saveState;
+		//	}
+		//	catch (Exception ex)
+		//	{
+		//		Debug.WriteLine("An error occurred while loading the game: " + ex.Message);
+		//		return saveState;
+		//	}
+		//}
 
 		private void LoadSettingsFile()
 		{
