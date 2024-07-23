@@ -559,15 +559,18 @@ namespace CipherListTerminal
 
 			if (GameState == GameStates.FreePlay)
 			{
-				_scoreBoard.HighScore = CurrentSaveState.FreePlayHighScore;
+				_scoreBoard.HighScore = SettingsData.highScores.freePlay;
+				// _scoreBoard.HighScore = CurrentSaveState.FreePlayHighScore;
 			}
 			else if (GameState == GameStates.SinglePuzzleTimed)
 			{
-				_scoreBoard.HighScore = CurrentSaveState.SinglePuzzleHighScore;
+				_scoreBoard.HighScore = SettingsData.highScores.bestOf10Timed;
+				// _scoreBoard.HighScore = CurrentSaveState.SinglePuzzleHighScore;
 			}
 			else if (GameState == GameStates.TimeTrial)
 			{
-				_scoreBoard.HighScore = CurrentSaveState.TimeTrialHighScore;
+				_scoreBoard.HighScore = SettingsData.highScores.timeTrial;
+				// _scoreBoard.HighScore = CurrentSaveState.TimeTrialHighScore;
 			}
 		}
 
@@ -698,6 +701,9 @@ namespace CipherListTerminal
 		{
 			if (GameState == GameStates.FreePlay && _scoreBoard.Score > CurrentSaveState.FreePlayHighScore)
 			{
+				SettingsData.highScores.freePlay = _scoreBoard.Score;
+				SettingsData.highScores.freePlayRecordDate = DateTime.Now.ToString("yyyy-MM-dd");
+
 				CurrentSaveState.FreePlayHighScore = _scoreBoard.Score;
 				CurrentSaveState.FreePlayHighScoreDate = DateTime.Now;
 
@@ -705,6 +711,9 @@ namespace CipherListTerminal
 			}
 			else if (GameState == GameStates.SinglePuzzleTimed && _scoreBoard.Score > CurrentSaveState.SinglePuzzleHighScore)
 			{
+				SettingsData.highScores.bestOf10Timed = _scoreBoard.Score;
+				SettingsData.highScores.bestOf10TimedRecordDate = DateTime.Now.ToString("yyyy-MM-dd");
+
 				CurrentSaveState.SinglePuzzleHighScore = _scoreBoard.Score;
 				CurrentSaveState.SinglePuzzleHighScoreDate = DateTime.Now;
 
@@ -712,6 +721,9 @@ namespace CipherListTerminal
 			}
 			else if (GameState == GameStates.TimeTrial && _scoreBoard.Score > CurrentSaveState.TimeTrialHighScore)
 			{
+				SettingsData.highScores.timeTrial = _scoreBoard.Score;
+				SettingsData.highScores.bestOf10TimedRecordDate = DateTime.Now.ToString("yyyy-MM-dd");
+
 				CurrentSaveState.TimeTrialHighScore = _scoreBoard.Score;
 				CurrentSaveState.TimeTrialHighScoreDate = DateTime.Now;
 
