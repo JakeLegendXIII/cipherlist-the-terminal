@@ -31,12 +31,10 @@ namespace CipherListTerminal
 		int _width = 0;
 		int _height = 0;
 
-		private const string SAVE_FILE_NAME = "Save.dat";
 		private const string SETTINGS_FILE_NAME = "settings.json";
 
 		public GameStates GameState;
 		public GameStates PreviousGameState;
-		//public SaveStates CurrentSaveState;
 		public SettingsData SettingsData;
 		public InputStates CurrentInputState;
 
@@ -111,10 +109,8 @@ namespace CipherListTerminal
 
 		protected override void Initialize()
 		{
-			// TODO : SaveState becomes settings JSON
 			LoadSettingsFile();
 
-			// CurrentSaveState = LoadSaveState();
 			base.Initialize();
 			CalculateRenderDestination();
 			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _farawayFont, _buttonPress, _flickingASwitch);
@@ -560,17 +556,14 @@ namespace CipherListTerminal
 			if (GameState == GameStates.FreePlay)
 			{
 				_scoreBoard.HighScore = SettingsData.highScores.freePlay;
-				// _scoreBoard.HighScore = CurrentSaveState.FreePlayHighScore;
 			}
 			else if (GameState == GameStates.SinglePuzzleTimed)
 			{
 				_scoreBoard.HighScore = SettingsData.highScores.bestOf10Timed;
-				// _scoreBoard.HighScore = CurrentSaveState.SinglePuzzleHighScore;
 			}
 			else if (GameState == GameStates.TimeTrial)
 			{
 				_scoreBoard.HighScore = SettingsData.highScores.timeTrial;
-				// _scoreBoard.HighScore = CurrentSaveState.TimeTrialHighScore;
 			}
 		}
 
@@ -581,17 +574,14 @@ namespace CipherListTerminal
 			if (PreviousGameState == GameStates.FreePlay)
 			{
 				_scoreBoard.HighScore = SettingsData.highScores.freePlay;
-				// _scoreBoard.HighScore = CurrentSaveState.FreePlayHighScore;
 			}
 			else if (PreviousGameState == GameStates.SinglePuzzleTimed)
 			{
 				_scoreBoard.HighScore = SettingsData.highScores.bestOf10Timed;
-				// _scoreBoard.HighScore = CurrentSaveState.SinglePuzzleHighScore;
 			}
 			else if (PreviousGameState == GameStates.TimeTrial)
 			{
 				_scoreBoard.HighScore = SettingsData.highScores.timeTrial;
-				// _scoreBoard.HighScore = CurrentSaveState.TimeTrialHighScore;
 			}
 		}
 
@@ -604,25 +594,16 @@ namespace CipherListTerminal
 			{
 				_summary.HighScore = SettingsData.highScores.freePlay;
 				_summary.HighScoreDate = DateTime.Parse(SettingsData.highScores.freePlayRecordDate);
-
-				//_summary.HighScore = CurrentSaveState.FreePlayHighScore;
-				//_summary.HighScoreDate = CurrentSaveState.FreePlayHighScoreDate;
 			}
 			else if (GameState == GameStates.SinglePuzzleTimed)
 			{
 				_summary.HighScore = SettingsData.highScores.bestOf10Timed;
 				_summary.HighScoreDate = DateTime.Parse(SettingsData.highScores.bestOf10TimedRecordDate);
-
-				//_summary.HighScore = CurrentSaveState.SinglePuzzleHighScore;
-				//_summary.HighScoreDate = CurrentSaveState.SinglePuzzleHighScoreDate;
 			}
 			else if (GameState == GameStates.TimeTrial)
 			{
 				_summary.HighScore = SettingsData.highScores.timeTrial;
 				_summary.HighScoreDate = DateTime.Parse(SettingsData.highScores.timeTrialRecordDate);
-
-				//_summary.HighScore = CurrentSaveState.TimeTrialHighScore;
-				//_summary.HighScoreDate = CurrentSaveState.TimeTrialHighScoreDate;
 			}
 		}
 
@@ -716,9 +697,6 @@ namespace CipherListTerminal
 				SettingsData.highScores.freePlay = _scoreBoard.Score;
 				SettingsData.highScores.freePlayRecordDate = DateTime.Now.ToString("yyyy-MM-dd");
 
-				//CurrentSaveState.FreePlayHighScore = _scoreBoard.Score;
-				//CurrentSaveState.FreePlayHighScoreDate = DateTime.Now;
-
 				SaveGame();
 			}
 			else if (GameState == GameStates.SinglePuzzleTimed && _scoreBoard.Score > SettingsData.highScores.bestOf10Timed)
@@ -726,18 +704,12 @@ namespace CipherListTerminal
 				SettingsData.highScores.bestOf10Timed = _scoreBoard.Score;
 				SettingsData.highScores.bestOf10TimedRecordDate = DateTime.Now.ToString("yyyy-MM-dd");
 
-				//CurrentSaveState.SinglePuzzleHighScore = _scoreBoard.Score;
-				//CurrentSaveState.SinglePuzzleHighScoreDate = DateTime.Now;
-
 				SaveGame();
 			}
 			else if (GameState == GameStates.TimeTrial && _scoreBoard.Score > SettingsData.highScores.timeTrial)
 			{
 				SettingsData.highScores.timeTrial = _scoreBoard.Score;
 				SettingsData.highScores.bestOf10TimedRecordDate = DateTime.Now.ToString("yyyy-MM-dd");
-
-				//CurrentSaveState.TimeTrialHighScore = _scoreBoard.Score;
-				//CurrentSaveState.TimeTrialHighScoreDate = DateTime.Now;
 
 				SaveGame();
 			}
@@ -751,53 +723,12 @@ namespace CipherListTerminal
 				string defaultJsonData = JsonSerializer.Serialize(SettingsData, new JsonSerializerOptions { WriteIndented = true });
 
 				File.WriteAllText(SETTINGS_FILE_NAME, defaultJsonData);
-
-				//using (StreamWriter writer = new StreamWriter(SAVE_FILE_NAME))
-				//{
-				//	string firstColumn = CurrentSaveState.FreePlayHighScore.ToString().PadRight(20);
-				//	string secondColumn = CurrentSaveState.FreePlayHighScoreDate.ToString("MM/dd/yyyy").PadRight(10);
-				//	string thirdColumn = CurrentSaveState.SinglePuzzleHighScore.ToString().PadRight(20);
-				//	string fourthColumn = CurrentSaveState.SinglePuzzleHighScoreDate.ToString("MM/dd/yyyy").PadRight(10);
-				//	string fifthColumn = CurrentSaveState.TimeTrialHighScore.ToString().PadRight(20);
-				//	string sixthColumn = CurrentSaveState.TimeTrialHighScoreDate.ToString("MM/dd/yyyy").PadRight(10);
-
-				//	writer.WriteLine($"{firstColumn}{secondColumn}{thirdColumn}{fourthColumn}{fifthColumn}{sixthColumn}");
-				//}
 			}
 			catch (Exception ex)
 			{
 				Debug.WriteLine("An error occurred while saving the game: " + ex.Message);
 			}
 		}
-
-		//private SaveStates LoadSaveState()
-		//{
-		//	SaveStates saveState = new SaveStates();
-
-		//	try
-		//	{
-		//		using (StreamReader reader = new StreamReader(SAVE_FILE_NAME))
-		//		{
-		//			string line = reader.ReadLine();
-		//			if (line != null)
-		//			{
-		//				saveState.FreePlayHighScore = int.Parse(line.Substring(0, 20).Trim());
-		//				saveState.FreePlayHighScoreDate = DateTime.Parse(line.Substring(20, 10).Trim());
-		//				saveState.SinglePuzzleHighScore = int.Parse(line.Substring(30, 20).Trim());
-		//				saveState.SinglePuzzleHighScoreDate = DateTime.Parse(line.Substring(50, 10).Trim());
-		//				saveState.TimeTrialHighScore = int.Parse(line.Substring(60, 20).Trim());
-		//				saveState.TimeTrialHighScoreDate = DateTime.Parse(line.Substring(80, 10).Trim());
-		//			}
-		//		}
-
-		//		return saveState;
-		//	}
-		//	catch (Exception ex)
-		//	{
-		//		Debug.WriteLine("An error occurred while loading the game: " + ex.Message);
-		//		return saveState;
-		//	}
-		//}
 
 		private void LoadSettingsFile()
 		{
