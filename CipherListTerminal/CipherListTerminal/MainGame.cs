@@ -36,7 +36,7 @@ namespace CipherListTerminal
 
 		public GameStates GameState;
 		public GameStates PreviousGameState;
-		public SaveStates CurrentSaveState;
+		//public SaveStates CurrentSaveState;
 		public SettingsData SettingsData;
 		public InputStates CurrentInputState;
 
@@ -114,7 +114,7 @@ namespace CipherListTerminal
 			// TODO : SaveState becomes settings JSON
 			LoadSettingsFile();
 
-			CurrentSaveState = LoadSaveState();
+			// CurrentSaveState = LoadSaveState();
 			base.Initialize();
 			CalculateRenderDestination();
 			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _farawayFont, _buttonPress, _flickingASwitch);
@@ -580,15 +580,18 @@ namespace CipherListTerminal
 
 			if (PreviousGameState == GameStates.FreePlay)
 			{
-				_scoreBoard.HighScore = CurrentSaveState.FreePlayHighScore;
+				_scoreBoard.HighScore = SettingsData.highScores.freePlay;
+				// _scoreBoard.HighScore = CurrentSaveState.FreePlayHighScore;
 			}
 			else if (PreviousGameState == GameStates.SinglePuzzleTimed)
 			{
-				_scoreBoard.HighScore = CurrentSaveState.SinglePuzzleHighScore;
+				_scoreBoard.HighScore = SettingsData.highScores.bestOf10Timed;
+				// _scoreBoard.HighScore = CurrentSaveState.SinglePuzzleHighScore;
 			}
 			else if (PreviousGameState == GameStates.TimeTrial)
 			{
-				_scoreBoard.HighScore = CurrentSaveState.TimeTrialHighScore;
+				_scoreBoard.HighScore = SettingsData.highScores.timeTrial;
+				// _scoreBoard.HighScore = CurrentSaveState.TimeTrialHighScore;
 			}
 		}
 
@@ -599,18 +602,27 @@ namespace CipherListTerminal
 
 			if (GameState == GameStates.FreePlay)
 			{
-				_summary.HighScore = CurrentSaveState.FreePlayHighScore;
-				_summary.HighScoreDate = CurrentSaveState.FreePlayHighScoreDate;
+				_summary.HighScore = SettingsData.highScores.freePlay;
+				_summary.HighScoreDate = DateTime.Parse(SettingsData.highScores.freePlayRecordDate);
+
+				//_summary.HighScore = CurrentSaveState.FreePlayHighScore;
+				//_summary.HighScoreDate = CurrentSaveState.FreePlayHighScoreDate;
 			}
 			else if (GameState == GameStates.SinglePuzzleTimed)
 			{
-				_summary.HighScore = CurrentSaveState.SinglePuzzleHighScore;
-				_summary.HighScoreDate = CurrentSaveState.SinglePuzzleHighScoreDate;
+				_summary.HighScore = SettingsData.highScores.bestOf10Timed;
+				_summary.HighScoreDate = DateTime.Parse(SettingsData.highScores.bestOf10TimedRecordDate);
+
+				//_summary.HighScore = CurrentSaveState.SinglePuzzleHighScore;
+				//_summary.HighScoreDate = CurrentSaveState.SinglePuzzleHighScoreDate;
 			}
 			else if (GameState == GameStates.TimeTrial)
 			{
-				_summary.HighScore = CurrentSaveState.TimeTrialHighScore;
-				_summary.HighScoreDate = CurrentSaveState.TimeTrialHighScoreDate;
+				_summary.HighScore = SettingsData.highScores.timeTrial;
+				_summary.HighScoreDate = DateTime.Parse(SettingsData.highScores.timeTrialRecordDate);
+
+				//_summary.HighScore = CurrentSaveState.TimeTrialHighScore;
+				//_summary.HighScoreDate = CurrentSaveState.TimeTrialHighScoreDate;
 			}
 		}
 
@@ -699,33 +711,33 @@ namespace CipherListTerminal
 
 		private void CheckScore()
 		{
-			if (GameState == GameStates.FreePlay && _scoreBoard.Score > CurrentSaveState.FreePlayHighScore)
+			if (GameState == GameStates.FreePlay && _scoreBoard.Score > SettingsData.highScores.freePlay)
 			{
 				SettingsData.highScores.freePlay = _scoreBoard.Score;
 				SettingsData.highScores.freePlayRecordDate = DateTime.Now.ToString("yyyy-MM-dd");
 
-				CurrentSaveState.FreePlayHighScore = _scoreBoard.Score;
-				CurrentSaveState.FreePlayHighScoreDate = DateTime.Now;
+				//CurrentSaveState.FreePlayHighScore = _scoreBoard.Score;
+				//CurrentSaveState.FreePlayHighScoreDate = DateTime.Now;
 
 				SaveGame();
 			}
-			else if (GameState == GameStates.SinglePuzzleTimed && _scoreBoard.Score > CurrentSaveState.SinglePuzzleHighScore)
+			else if (GameState == GameStates.SinglePuzzleTimed && _scoreBoard.Score > SettingsData.highScores.bestOf10Timed)
 			{
 				SettingsData.highScores.bestOf10Timed = _scoreBoard.Score;
 				SettingsData.highScores.bestOf10TimedRecordDate = DateTime.Now.ToString("yyyy-MM-dd");
 
-				CurrentSaveState.SinglePuzzleHighScore = _scoreBoard.Score;
-				CurrentSaveState.SinglePuzzleHighScoreDate = DateTime.Now;
+				//CurrentSaveState.SinglePuzzleHighScore = _scoreBoard.Score;
+				//CurrentSaveState.SinglePuzzleHighScoreDate = DateTime.Now;
 
 				SaveGame();
 			}
-			else if (GameState == GameStates.TimeTrial && _scoreBoard.Score > CurrentSaveState.TimeTrialHighScore)
+			else if (GameState == GameStates.TimeTrial && _scoreBoard.Score > SettingsData.highScores.timeTrial)
 			{
 				SettingsData.highScores.timeTrial = _scoreBoard.Score;
 				SettingsData.highScores.bestOf10TimedRecordDate = DateTime.Now.ToString("yyyy-MM-dd");
 
-				CurrentSaveState.TimeTrialHighScore = _scoreBoard.Score;
-				CurrentSaveState.TimeTrialHighScoreDate = DateTime.Now;
+				//CurrentSaveState.TimeTrialHighScore = _scoreBoard.Score;
+				//CurrentSaveState.TimeTrialHighScoreDate = DateTime.Now;
 
 				SaveGame();
 			}
@@ -736,17 +748,19 @@ namespace CipherListTerminal
 		{
 			try
 			{
-				using (StreamWriter writer = new StreamWriter(SAVE_FILE_NAME))
-				{
-					string firstColumn = CurrentSaveState.FreePlayHighScore.ToString().PadRight(20);
-					string secondColumn = CurrentSaveState.FreePlayHighScoreDate.ToString("MM/dd/yyyy").PadRight(10);
-					string thirdColumn = CurrentSaveState.SinglePuzzleHighScore.ToString().PadRight(20);
-					string fourthColumn = CurrentSaveState.SinglePuzzleHighScoreDate.ToString("MM/dd/yyyy").PadRight(10);
-					string fifthColumn = CurrentSaveState.TimeTrialHighScore.ToString().PadRight(20);
-					string sixthColumn = CurrentSaveState.TimeTrialHighScoreDate.ToString("MM/dd/yyyy").PadRight(10);
 
-					writer.WriteLine($"{firstColumn}{secondColumn}{thirdColumn}{fourthColumn}{fifthColumn}{sixthColumn}");
-				}
+
+				//using (StreamWriter writer = new StreamWriter(SAVE_FILE_NAME))
+				//{
+				//	string firstColumn = CurrentSaveState.FreePlayHighScore.ToString().PadRight(20);
+				//	string secondColumn = CurrentSaveState.FreePlayHighScoreDate.ToString("MM/dd/yyyy").PadRight(10);
+				//	string thirdColumn = CurrentSaveState.SinglePuzzleHighScore.ToString().PadRight(20);
+				//	string fourthColumn = CurrentSaveState.SinglePuzzleHighScoreDate.ToString("MM/dd/yyyy").PadRight(10);
+				//	string fifthColumn = CurrentSaveState.TimeTrialHighScore.ToString().PadRight(20);
+				//	string sixthColumn = CurrentSaveState.TimeTrialHighScoreDate.ToString("MM/dd/yyyy").PadRight(10);
+
+				//	writer.WriteLine($"{firstColumn}{secondColumn}{thirdColumn}{fourthColumn}{fifthColumn}{sixthColumn}");
+				//}
 			}
 			catch (Exception ex)
 			{
@@ -835,8 +849,8 @@ namespace CipherListTerminal
 		private void ResetSaveState()
 		{
 			_scoreBoard.HighScore = 0;
-			CurrentSaveState.FreePlayHighScore = 0;
-			CurrentSaveState.FreePlayHighScoreDate = default(DateTime);
+			//CurrentSaveState.FreePlayHighScore = 0;
+			//CurrentSaveState.FreePlayHighScoreDate = default(DateTime);
 
 			SaveGame();
 		}
