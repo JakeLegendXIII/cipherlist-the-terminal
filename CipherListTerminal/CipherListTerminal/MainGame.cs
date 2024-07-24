@@ -182,10 +182,10 @@ namespace CipherListTerminal
 				// CalculateRenderDestination();
 			}
 
-			if (InputManager.IsKeyPressed(Keys.F8) || InputManager.IsGamePadButtonPressed(Buttons.RightShoulder))
-			{
-				ResetSaveState();
-			}
+			//if (InputManager.IsKeyPressed(Keys.F8) || InputManager.IsGamePadButtonPressed(Buttons.RightShoulder))
+			//{
+			//	ResetSaveState();
+			//}
 
 			if (InputManager.IsKeyPressed(Keys.F10) || InputManager.IsGamePadButtonPressed(Buttons.LeftTrigger))
 			{
@@ -779,14 +779,14 @@ namespace CipherListTerminal
 			};
 		}
 
-		private void ResetSaveState()
-		{
-			_scoreBoard.HighScore = 0;
-			//CurrentSaveState.FreePlayHighScore = 0;
-			//CurrentSaveState.FreePlayHighScoreDate = default(DateTime);
+		//private void ResetSaveState()
+		//{
+		//	_scoreBoard.HighScore = 0;
+		//	//CurrentSaveState.FreePlayHighScore = 0;
+		//	//CurrentSaveState.FreePlayHighScoreDate = default(DateTime);
 
-			SaveGame();
-		}
+		//	SaveGame();
+		//}
 
 		private void ToggleInputState()
 		{
