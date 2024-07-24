@@ -96,21 +96,40 @@ namespace CipherListTerminal
 			_graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 
-			_graphics.PreferredBackBufferWidth = _nativeWidth;
-			_graphics.PreferredBackBufferHeight = _nativeHeight;
-			_graphics.ApplyChanges();
+			LoadSettingsFile();
+
+			if (SettingsData.settings.fullScreen)
+			{
+				// SetFullscreen();
+				_width = _nativeWidth;     // Window.ClientBounds.Width;
+				_height = _nativeHeight;  // Window.ClientBounds.Height;
+
+				_graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+				_graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+				_graphics.HardwareModeSwitch = !_isBorderless;
+
+				_graphics.IsFullScreen = true;
+				_graphics.ApplyChanges();
+			}
+			else
+			{
+				UnsetFullscreen();
+				//_graphics.PreferredBackBufferWidth = _nativeWidth;
+				//_graphics.PreferredBackBufferHeight = _nativeHeight;
+				//_graphics.ApplyChanges();
+			}
 
 			Window.Title = "CipherList: The Terminal";
 			Window.AllowUserResizing = true;
 			Window.ClientSizeChanged += OnClientSizeChanged;
 
 			IsMouseVisible = true;
+
+			_renderTarget = new RenderTarget2D(GraphicsDevice, _nativeWidth, _nativeHeight);
 		}
 
 		protected override void Initialize()
-		{
-			LoadSettingsFile();
-
+		{			
 			base.Initialize();
 			CalculateRenderDestination();
 			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _farawayFont, _buttonPress, _flickingASwitch);
@@ -129,9 +148,7 @@ namespace CipherListTerminal
 
 		protected override void LoadContent()
 		{
-			_spriteBatch = new SpriteBatch(GraphicsDevice);
-
-			_renderTarget = new RenderTarget2D(GraphicsDevice, _nativeWidth, _nativeHeight);
+			_spriteBatch = new SpriteBatch(GraphicsDevice);			
 
 			_armadaFont = Content.Load<SpriteFont>("Fonts/ArmadaBold16");
 			_farawayFont = Content.Load<SpriteFont>("Fonts/Faraway16");
