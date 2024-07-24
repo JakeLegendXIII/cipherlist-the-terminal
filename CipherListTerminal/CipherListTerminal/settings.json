@@ -8,7 +8,7 @@
     "timeTrialRecordDate": "2024-05-08"
   },
   "settings": {
-    "displayMode": "windowed",
+    "fullScreen": false,
     "crtShader": true,
     "music": true
   }

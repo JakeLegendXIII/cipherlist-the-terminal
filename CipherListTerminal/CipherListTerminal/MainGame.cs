@@ -772,7 +772,7 @@ namespace CipherListTerminal
 				},
 				settings = new Settings
 				{
-					displayMode = "Windowed",
+					fullScreen = false,
 					crtShader = true,
 					music = true
 				}
@@ -866,8 +866,9 @@ namespace CipherListTerminal
 		}
 		private void UnsetFullscreen()
 		{
-			_graphics.PreferredBackBufferWidth = _width;
-			_graphics.PreferredBackBufferHeight = _height;
+			// Reset to default resolution, but we do have the previous Width and Height just tweaky if somebody resized
+			_graphics.PreferredBackBufferWidth = _nativeWidth;
+			_graphics.PreferredBackBufferHeight = _nativeHeight;
 			_graphics.IsFullScreen = false;
 			_graphics.ApplyChanges();
 		}
