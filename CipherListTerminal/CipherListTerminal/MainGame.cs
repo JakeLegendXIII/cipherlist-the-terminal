@@ -75,6 +75,7 @@ namespace CipherListTerminal
 		private ScoreBoard _scoreBoard;
 		private Summary _summary;
 		private InputStateIndicator _inputStateIndicator;
+		private SettingsManager _settingsManager;
 		private ButtonManager _buttonManager;
 		private SoundManager _soundManager;
 
@@ -183,6 +184,8 @@ namespace CipherListTerminal
 			var track1 = _demoTrack.CreateInstance();
 			var track2 = _neonThump.CreateInstance();
 			_soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
+
+			_settingsManager = new SettingsManager();
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -448,6 +451,10 @@ namespace CipherListTerminal
 			if (GameState == GameStates.Menu)
 			{
 				_mainMenu.Draw(_spriteBatch, gameTime, _scale);
+			}
+			else if (GameState == GameStates.Settings)
+			{
+				_settingsManager.Draw(_spriteBatch, gameTime, _scale);
 			}
 			else if (GameState == GameStates.FreePlay || GameState == GameStates.SinglePuzzleTimed ||
 				GameState == GameStates.TimeTrial)
