@@ -185,7 +185,7 @@ namespace CipherListTerminal
 			var track2 = _neonThump.CreateInstance();
 			_soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
 
-			_settingsManager = new SettingsManager();
+			_settingsManager = new SettingsManager(_matrixUI, _armadaFont);
 		}
 
 		protected override void Update(GameTime gameTime)
