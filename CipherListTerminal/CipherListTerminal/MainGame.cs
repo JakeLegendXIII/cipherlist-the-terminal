@@ -110,14 +110,14 @@ namespace CipherListTerminal
 				_graphics.HardwareModeSwitch = !_isBorderless;
 
 				_graphics.IsFullScreen = true;
-				_graphics.ApplyChanges();
+				_graphics.ApplyChanges();				
 			}
 			else
 			{
 				UnsetFullscreen();
 				//_graphics.PreferredBackBufferWidth = _nativeWidth;
 				//_graphics.PreferredBackBufferHeight = _nativeHeight;
-				//_graphics.ApplyChanges();
+				//_graphics.ApplyChanges();				
 			}
 
 			Window.Title = "CipherList: The Terminal";
@@ -127,12 +127,17 @@ namespace CipherListTerminal
 			IsMouseVisible = true;
 
 			_renderTarget = new RenderTarget2D(GraphicsDevice, _nativeWidth, _nativeHeight);
+
+			_effect = Content.Load<Effect>("Shaders/crt-lottes-mg");
+			_effect.Parameters["brightboost"].SetValue(1.25f);
 		}
 
 		protected override void Initialize()
 		{			
-			base.Initialize();
+			base.Initialize();		
+
 			CalculateRenderDestination();
+
 			_mainMenu = new MainMenu(_menuLogo, _buttonUI, _armadaFont, _farawayFont, _buttonPress, _flickingASwitch);
 			_mainMenu.MenuButtonSelectionEvent += OnMenuButtonSelection;
 			GameState = GameStates.Menu;
@@ -167,15 +172,7 @@ namespace CipherListTerminal
 			_buttonPress = Content.Load<SoundEffect>("SFX/buttonpress");
 			_positiveBlip = Content.Load<SoundEffect>("SFX/positiveblip");
 			_uiWrong = Content.Load<SoundEffect>("SFX/uiwrong");
-			_drop = Content.Load<SoundEffect>("SFX/rolanddrop");
-
-			_effect = Content.Load<Effect>("Shaders/crt-lottes-mg");
-			_effect.Parameters["brightboost"].SetValue(1.25f);
-			var texSize = new Vector2(_nativeWidth, _nativeHeight);
-			_effect.Parameters["textureSize"]?.SetValue(texSize);
-			_effect.Parameters["videoSize"]?.SetValue(texSize);
-			var outSize = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
-			_effect.Parameters["outputSize"]?.SetValue(outSize);
+			_drop = Content.Load<SoundEffect>("SFX/rolanddrop");			
 
 			_demoTrack = Content.Load<SoundEffect>("Music/DemoTrack3");
 			_neonThump = Content.Load<SoundEffect>("Music/NeonThump2");
@@ -226,6 +223,12 @@ namespace CipherListTerminal
 
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
 					Exit();
+
+				if (InputManager.IsKeyPressed(Keys.F5))
+				{
+					GameState = GameStates.Settings;
+					PreviousGameState = GameStates.Menu;
+				}
 
 				if (InputManager.IsKeyPressed(Keys.F1))
 				{
@@ -424,6 +427,10 @@ namespace CipherListTerminal
 					PreviousGameState = GameStates.Summary;
 				}
 			}
+			else if (GameState == GameStates.Settings)
+			{
+
+			}
 
 			base.Update(gameTime);
 		}
@@ -539,11 +546,11 @@ namespace CipherListTerminal
 			//_effect.Parameters["outputSize"]?.SetValue(new Vector2(size.X - 250, size.Y - 250));
 			//_effect.Parameters["videoSize"]?.SetValue(new Vector2(size.X - 250, size.Y - 250));
 
-			//var texSize = new Vector2(_renderDestination.Width, _renderDestination.Height);
-			//_effect.Parameters["textureSize"]?.SetValue(texSize);
-			//_effect.Parameters["videoSize"]?.SetValue(texSize);
-			//var outSize = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
-			//_effect.Parameters["outputSize"]?.SetValue(outSize);
+			var texSize = new Vector2(_renderDestination.Width, _renderDestination.Height);
+			_effect.Parameters["textureSize"]?.SetValue(texSize);
+			_effect.Parameters["videoSize"]?.SetValue(texSize);
+			var outSize = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+			_effect.Parameters["outputSize"]?.SetValue(outSize);
 		}
 
 		private void SetupNewPuzzle()
