@@ -429,7 +429,13 @@ namespace CipherListTerminal
 			}
 			else if (GameState == GameStates.Settings)
 			{
+				_settingsManager.Update(gameTime, CurrentInputState);
 
+				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
+				{				
+					GameState = GameStates.Menu;
+					PreviousGameState = GameStates.Summary;										
+				}
 			}
 
 			base.Update(gameTime);
@@ -458,11 +464,7 @@ namespace CipherListTerminal
 			if (GameState == GameStates.Menu)
 			{
 				_mainMenu.Draw(_spriteBatch, gameTime, _scale);
-			}
-			else if (GameState == GameStates.Settings)
-			{
-				_settingsManager.Draw(_spriteBatch, gameTime, _scale);
-			}
+			}			
 			else if (GameState == GameStates.FreePlay || GameState == GameStates.SinglePuzzleTimed ||
 				GameState == GameStates.TimeTrial)
 			{
@@ -496,6 +498,11 @@ namespace CipherListTerminal
 			else if (GameState == GameStates.Summary)
 			{
 				_summary.Draw(_spriteBatch, gameTime, _scale);
+				_buttonManager.Draw(_spriteBatch, gameTime, _scale);
+			}
+			else if (GameState == GameStates.Settings)
+			{
+				_settingsManager.Draw(_spriteBatch, gameTime, _scale);
 				_buttonManager.Draw(_spriteBatch, gameTime, _scale);
 			}
 

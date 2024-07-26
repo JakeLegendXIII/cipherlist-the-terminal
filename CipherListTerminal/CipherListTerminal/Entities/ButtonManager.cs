@@ -90,6 +90,24 @@ namespace CipherListTerminal.Entities
 					_buttons[5].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
 				}
 			}
+
+			if (_gameState == GameStates.Settings)
+			{
+				_buttons[0].Draw(spriteBatch, gameTime, scale, _firstButtonPosition);
+
+				_buttons[4].Draw(spriteBatch, gameTime, scale, _secondButtonPosition);
+
+				if (InputManager.IsGamePadConnected())
+				{
+					_buttons[3].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
+
+					_buttons[5].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
+				}
+				else
+				{
+					_buttons[5].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
+				}
+			}
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState) { }
