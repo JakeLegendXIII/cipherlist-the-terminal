@@ -66,9 +66,9 @@ namespace CipherListTerminal.Entities
 					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(160, 445), Color.White);
-			spriteBatch.DrawString(_farawayFont, "No time or puzzle limits.", new Vector2(150, 520), Color.White);
-			spriteBatch.DrawString(_farawayFont, "Just have fun with it!", new Vector2(150, 535), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(180, 445), Color.White);
+			spriteBatch.DrawString(_farawayFont, "No time or puzzle limits.", new Vector2(170, 520), Color.White);
+			spriteBatch.DrawString(_farawayFont, "Just have fun with it!", new Vector2(170, 535), Color.White);
 
 			if (_currentlySelectedButton == 2)
 			{
@@ -81,9 +81,9 @@ namespace CipherListTerminal.Entities
 										Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-			spriteBatch.DrawString(_armadaFont, "Best of 10 Timed", new Vector2(575, 420), Color.White);
-			spriteBatch.DrawString(_farawayFont, "60 seconds per puzzle.", new Vector2(595, 520), Color.White);
-			spriteBatch.DrawString(_farawayFont, "10 puzzles. Do your best!", new Vector2(595, 540), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Best of 10 Timed", new Vector2(435, 445), Color.White);
+			spriteBatch.DrawString(_farawayFont, "60 seconds per puzzle.", new Vector2(445, 520), Color.White);
+			spriteBatch.DrawString(_farawayFont, "10 puzzles. Do your best!", new Vector2(445, 535), Color.White);
 
 			if (_currentlySelectedButton == 3)
 			{
@@ -96,9 +96,9 @@ namespace CipherListTerminal.Entities
 										Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-			spriteBatch.DrawString(_armadaFont, "Time Trial", new Vector2(950, 420), Color.White);
-			spriteBatch.DrawString(_farawayFont, "5 minutes total.", new Vector2(910, 520), Color.White);
-			spriteBatch.DrawString(_farawayFont, "As many puzzles as you can solve!", new Vector2(910, 540), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Time Trial", new Vector2(720, 445), Color.White);
+			spriteBatch.DrawString(_farawayFont, "5 minutes total.", new Vector2(700, 520), Color.White);
+			spriteBatch.DrawString(_farawayFont, "As many puzzles as you can solve!", new Vector2(700, 535), Color.White);
 			
 			// spriteBatch.DrawString(_armadaFont, $"Selected button: {_currentlySelectedButton}", new Vector2(450, 100), Color.White);
 		}
