@@ -108,6 +108,25 @@ namespace CipherListTerminal.Entities
 					_buttons[5].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
 				}
 			}
+
+			if (_gameState == GameStates.Menu)
+			{
+
+				_buttons[0].Draw(spriteBatch, gameTime, scale, _firstButtonPosition);
+
+				_buttons[4].Draw(spriteBatch, gameTime, scale, _secondButtonPosition);
+
+				if (InputManager.IsGamePadConnected())
+				{
+					_buttons[3].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
+
+					_buttons[5].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
+				}
+				else
+				{
+					_buttons[5].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
+				}
+			}
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState) { }
@@ -161,6 +180,14 @@ namespace CipherListTerminal.Entities
 				for (var i = 0; i < _buttons.Count; i++)
 				{
 					_buttons[i].Update(gameTime, inputState);
+				}
+			}
+			else
+			{
+				if (InputManager.IsGamePadButtonPressed(Buttons.RightTrigger) || InputManager.IsKeyPressed(Keys.F5))
+				{
+					_buttonPress.Play();
+					_buttons[1].SetColor(Color.Gray);
 				}
 			}
 		}
