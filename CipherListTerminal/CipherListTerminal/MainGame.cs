@@ -165,7 +165,7 @@ namespace CipherListTerminal
 			_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
 			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI2");
 			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
-			_buttonUI = Content.Load<Texture2D>("Sprites/RoughButton");
+			_buttonUI = Content.Load<Texture2D>("Sprites/RoughButton2");
 			_pfButtonUI = Content.Load<Texture2D>("Sprites/PFButton");
 
 			_flickingASwitch = Content.Load<SoundEffect>("SFX/flickingaswitch");

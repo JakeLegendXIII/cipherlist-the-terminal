@@ -18,17 +18,20 @@ namespace CipherListTerminal.Entities
 		private SoundEffect _buttonPress;
 		private SoundEffect _flickingASwitch;
 
-		private int _buttonPosition1X = 150;
-		private int _buttonPosition1Y = 400;
+		private int _buttonPosition1X = 100;
+		private int _buttonPosition1Y = 425;
 
-		private int _buttonPosition2X = 500;
-		private int _buttonPosition2Y = 400;
+		private int _buttonPosition2X = 375;
+		private int _buttonPosition2Y = 425;
 
-		private int _buttonPosition3X = 850;
-		private int _buttonPosition3Y = 400;
+		private int _buttonPosition3X = 650;
+		private int _buttonPosition3Y = 425;
 
-		private int _buttonWidth = 300;
-		private int _buttonHeight = 200;
+		private int _buttonPosition4X = 925;
+		private int _buttonPosition4Y = 425;
+
+		private int _buttonWidth = 250;
+		private int _buttonHeight = 150;
 
 		public delegate void MenuButtonSelectedEventHandler(GameStates newGameState);
 		public event MenuButtonSelectedEventHandler MenuButtonSelectionEvent;
@@ -63,9 +66,9 @@ namespace CipherListTerminal.Entities
 					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(250, 420), Color.White);
-			spriteBatch.DrawString(_farawayFont, "No time or puzzle limits.", new Vector2(240, 520), Color.White);
-			spriteBatch.DrawString(_farawayFont, "Just have fun with it!", new Vector2(240, 540), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(160, 445), Color.White);
+			spriteBatch.DrawString(_farawayFont, "No time or puzzle limits.", new Vector2(150, 520), Color.White);
+			spriteBatch.DrawString(_farawayFont, "Just have fun with it!", new Vector2(150, 535), Color.White);
 
 			if (_currentlySelectedButton == 2)
 			{
