@@ -81,7 +81,7 @@ namespace CipherListTerminal.Entities
 										Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-			spriteBatch.DrawString(_armadaFont, "Best of 10 Timed", new Vector2(435, 445), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Best of 10 Timed", new Vector2(425, 445), Color.White);
 			spriteBatch.DrawString(_farawayFont, "60 seconds per puzzle.", new Vector2(445, 520), Color.White);
 			spriteBatch.DrawString(_farawayFont, "10 puzzles. Do your best!", new Vector2(445, 535), Color.White);
 
@@ -96,10 +96,25 @@ namespace CipherListTerminal.Entities
 										Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-			spriteBatch.DrawString(_armadaFont, "Time Trial", new Vector2(720, 445), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Time Trial", new Vector2(730, 445), Color.White);
 			spriteBatch.DrawString(_farawayFont, "5 minutes total.", new Vector2(700, 520), Color.White);
 			spriteBatch.DrawString(_farawayFont, "As many puzzles as you can solve!", new Vector2(700, 535), Color.White);
-			
+
+			if (_currentlySelectedButton == 4)
+			{
+				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition4X, _buttonPosition4Y), null,
+										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+			}
+			else
+			{
+				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition4X, _buttonPosition4Y), null,
+										Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+			}
+
+			spriteBatch.DrawString(_armadaFont, "Settings", new Vector2(1005, 445), Color.White);
+			spriteBatch.DrawString(_farawayFont, "Update game settings.", new Vector2(1000, 520), Color.White);
+			spriteBatch.DrawString(_farawayFont, "Review High Scores.", new Vector2(1000, 535), Color.White);
+
 			// spriteBatch.DrawString(_armadaFont, $"Selected button: {_currentlySelectedButton}", new Vector2(450, 100), Color.White);
 		}
 
@@ -111,6 +126,7 @@ namespace CipherListTerminal.Entities
 				Vector2 transformedMousePositionButton1 = InputManager.GetTransformedMousePosition(_buttonPosition1X, _buttonPosition1Y);
 				Vector2 transformedMousePositionButton2 = InputManager.GetTransformedMousePosition(_buttonPosition2X, _buttonPosition2Y);
 				Vector2 transformedMousePositionButton3 = InputManager.GetTransformedMousePosition(_buttonPosition3X, _buttonPosition3Y);
+				Vector2 transformedMousePositionButton4 = InputManager.GetTransformedMousePosition(_buttonPosition4X, _buttonPosition4Y);
 
 				if (transformedMousePositionButton1.X >= 0 && transformedMousePositionButton1.X <= _buttonWidth &&
 					transformedMousePositionButton1.Y >= 0 && transformedMousePositionButton1.Y <= _buttonHeight)
@@ -134,7 +150,6 @@ namespace CipherListTerminal.Entities
 						MenuButtonSelectionEvent?.Invoke(GameStates.SinglePuzzleTimed);
 					}
 				}
-
 				else if (transformedMousePositionButton3.X >= 0 && transformedMousePositionButton3.X <= _buttonWidth &&
 									transformedMousePositionButton3.Y >= 0 && transformedMousePositionButton3.Y <= _buttonHeight)
 				{
@@ -144,6 +159,17 @@ namespace CipherListTerminal.Entities
 					{
 						_buttonPress.Play();
 						MenuButtonSelectionEvent?.Invoke(GameStates.TimeTrial);
+					}
+				}
+				else if (transformedMousePositionButton4.X >= 0 && transformedMousePositionButton4.X <= _buttonWidth &&
+					transformedMousePositionButton4.Y >= 0 && transformedMousePositionButton4.Y <= _buttonHeight)
+				{
+					_currentlySelectedButton = 4;
+
+					if (InputManager.IsLeftMouseButtonDown())
+					{
+						_buttonPress.Play();
+						MenuButtonSelectionEvent?.Invoke(GameStates.Settings);
 					}
 				}
 				else
@@ -157,7 +183,7 @@ namespace CipherListTerminal.Entities
 				{
 					GamePadState gamePadState = InputManager.GetGamePadState();
 
-					if (_currentlySelectedButton > 3 || _currentlySelectedButton < 1)
+					if (_currentlySelectedButton > 4 || _currentlySelectedButton < 1)
 					{
 						_currentlySelectedButton = 1;
 					}
@@ -211,6 +237,9 @@ namespace CipherListTerminal.Entities
 							case 3:
 								MenuButtonSelectionEvent?.Invoke(GameStates.TimeTrial);
 								break;
+							case 4:
+								MenuButtonSelectionEvent?.Invoke(GameStates.Settings);
+								break;
 						}
 					}
 				}
@@ -219,7 +248,7 @@ namespace CipherListTerminal.Entities
 
 		private void MoveRight()
 		{
-			if (_currentlySelectedButton == 3)
+			if (_currentlySelectedButton == 4)
 			{
 				_currentlySelectedButton = 1;
 			}
@@ -233,7 +262,7 @@ namespace CipherListTerminal.Entities
 		{
 			if (_currentlySelectedButton == 1)
 			{
-				_currentlySelectedButton = 3;
+				_currentlySelectedButton = 4;
 			}
 			else
 			{
