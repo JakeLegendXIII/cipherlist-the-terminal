@@ -41,7 +41,8 @@ namespace CipherListTerminal.Entities
 				new Button(_buttonUI, _font, "Switch Input", "F10", "LT", false),
 				new Button(_buttonUI, _font, "Continue", "Enter", "A", true),
 				new Button(_buttonUI, _font, "Full Screen", "F11", "LB", false),
-				new Button(_buttonUI, _font, "Clear FX", "F12", "X", true)
+				new Button(_buttonUI, _font, "Clear FX", "F12", "X", true),
+				new Button(_buttonUI, _font, "Music", "F7", "Y", false)
 			];
 		}
 
@@ -97,34 +98,19 @@ namespace CipherListTerminal.Entities
 
 				_buttons[4].Draw(spriteBatch, gameTime, scale, _secondButtonPosition);
 
-				if (InputManager.IsGamePadConnected())
-				{
-					_buttons[3].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
-
-					_buttons[5].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
-				}
-				else
-				{
-					_buttons[5].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
-				}
-			}
-
-			if (_gameState == GameStates.Menu)
-			{
-
-				_buttons[0].Draw(spriteBatch, gameTime, scale, _firstButtonPosition);
-
-				_buttons[4].Draw(spriteBatch, gameTime, scale, _secondButtonPosition);
+				_buttons[7].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
 
 				if (InputManager.IsGamePadConnected())
 				{
-					_buttons[3].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
+					_buttons[3].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
 
-					_buttons[5].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
+					_buttons[5].Draw(spriteBatch, gameTime, scale, _fifthButtonPosition);
 				}
 				else
 				{
-					_buttons[5].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
+					_buttons[5].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
+
+					_buttons[6].Draw(spriteBatch, gameTime, scale, _fifthButtonPosition);
 				}
 			}
 		}

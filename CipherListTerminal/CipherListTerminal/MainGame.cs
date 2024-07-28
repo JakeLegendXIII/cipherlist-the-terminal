@@ -222,13 +222,7 @@ namespace CipherListTerminal
 				_mainMenu.Update(gameTime, CurrentInputState);
 
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
-					Exit();
-
-				if (InputManager.IsKeyPressed(Keys.F5))
-				{
-					GameState = GameStates.Settings;
-					PreviousGameState = GameStates.Menu;
-				}
+					Exit();				
 
 				if (InputManager.IsKeyPressed(Keys.F1))
 				{
@@ -252,6 +246,12 @@ namespace CipherListTerminal
 					GameState = GameStates.TimeTrial;
 					PreviousGameState = GameStates.Menu;
 					SetupScoreBoard();
+				}
+
+				if (InputManager.IsKeyPressed(Keys.F4))
+				{
+					GameState = GameStates.Settings;
+					PreviousGameState = GameStates.Menu;
 				}
 			}
 			else if (GameState == GameStates.FreePlay)
