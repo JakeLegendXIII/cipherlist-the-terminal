@@ -12,6 +12,9 @@ namespace CipherListTerminal.Entities
 		private int _settingsUIPositionX = 260;
 		private int _settingsUIPositionY = 85;
 
+		private int _highScoreUIPositionX = 650;
+		private int _highScoreUIPositionY = 85;
+
         public SettingsManager(Texture2D summaryUI, SpriteFont armadaFont)
         {
 			_settingsUI = summaryUI;
@@ -24,6 +27,12 @@ namespace CipherListTerminal.Entities
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			spriteBatch.DrawString(_armadaFont, "Settings", new Vector2(270, 95), Color.White,
+				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			spriteBatch.Draw(_settingsUI, new Vector2(_highScoreUIPositionX, _highScoreUIPositionY), null, Color.White,
+				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			spriteBatch.DrawString(_armadaFont, "High Scores", new Vector2(660, 95), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 		}
 
