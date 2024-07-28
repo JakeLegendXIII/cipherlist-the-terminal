@@ -36,6 +36,7 @@ namespace CipherListTerminal
 		public GameStates GameState;
 		public GameStates PreviousGameState;
 		public SettingsData SettingsData;
+		public SettingsData DefaultSettingsData;
 		public InputStates CurrentInputState;
 
 		string[] possibleValues = { "1C", "55", "BD", "FF", "E9", "1C", "55" };
@@ -110,7 +111,7 @@ namespace CipherListTerminal
 				_graphics.HardwareModeSwitch = !_isBorderless;
 
 				_graphics.IsFullScreen = true;
-				_graphics.ApplyChanges();				
+				_graphics.ApplyChanges();
 			}
 			else
 			{
@@ -133,8 +134,8 @@ namespace CipherListTerminal
 		}
 
 		protected override void Initialize()
-		{			
-			base.Initialize();		
+		{
+			base.Initialize();
 
 			CalculateRenderDestination();
 
@@ -150,11 +151,13 @@ namespace CipherListTerminal
 
 			_inputStateIndicator = new InputStateIndicator(_armadaFont, CurrentInputState);
 			_buttonManager = new ButtonManager(_pfButtonUI, _armadaFont, CurrentInputState, GameState, _buttonPress);
+
+			DefaultSettingsData = CreateDefaultSettings();
 		}
 
 		protected override void LoadContent()
 		{
-			_spriteBatch = new SpriteBatch(GraphicsDevice);			
+			_spriteBatch = new SpriteBatch(GraphicsDevice);
 
 			_armadaFont = Content.Load<SpriteFont>("Fonts/ArmadaBold16");
 			_farawayFont = Content.Load<SpriteFont>("Fonts/Faraway16");
@@ -172,7 +175,7 @@ namespace CipherListTerminal
 			_buttonPress = Content.Load<SoundEffect>("SFX/buttonpress");
 			_positiveBlip = Content.Load<SoundEffect>("SFX/positiveblip");
 			_uiWrong = Content.Load<SoundEffect>("SFX/uiwrong");
-			_drop = Content.Load<SoundEffect>("SFX/rolanddrop");			
+			_drop = Content.Load<SoundEffect>("SFX/rolanddrop");
 
 			_demoTrack = Content.Load<SoundEffect>("Music/DemoTrack3");
 			_neonThump = Content.Load<SoundEffect>("Music/NeonThump2");
@@ -188,7 +191,7 @@ namespace CipherListTerminal
 		protected override void Update(GameTime gameTime)
 		{
 			if (SettingsData.settings.music)
-				_soundManager.PlaySoundtrack();			
+				_soundManager.PlaySoundtrack();
 
 			InputManager.Update(_renderDestination, _scale);
 
@@ -222,7 +225,7 @@ namespace CipherListTerminal
 				_mainMenu.Update(gameTime, CurrentInputState);
 
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
-					Exit();				
+					Exit();
 
 				if (InputManager.IsKeyPressed(Keys.F1))
 				{
@@ -432,9 +435,9 @@ namespace CipherListTerminal
 				_settingsManager.Update(gameTime, CurrentInputState);
 
 				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
-				{				
+				{
 					GameState = GameStates.Menu;
-					PreviousGameState = GameStates.Summary;										
+					PreviousGameState = GameStates.Summary;
 				}
 			}
 
@@ -458,13 +461,13 @@ namespace CipherListTerminal
 				_spriteBatch.Draw(_backgroundTexture, new Rectangle(80, 62, 1123, 630), new Rectangle(80, 62, 1123, 630), Color.White);
 				_spriteBatch.End();
 			}
-			
-			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);			
+
+			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
 			if (GameState == GameStates.Menu)
 			{
 				_mainMenu.Draw(_spriteBatch, gameTime, _scale);
-			}			
+			}
 			else if (GameState == GameStates.FreePlay || GameState == GameStates.SinglePuzzleTimed ||
 				GameState == GameStates.TimeTrial)
 			{
@@ -748,7 +751,7 @@ namespace CipherListTerminal
 				}
 				else
 				{
-					CreateDefaultSettings();
+					SettingsData = CreateDefaultSettings();
 
 					// Serialize the default object to JSON
 					string defaultJsonData = JsonSerializer.Serialize(SettingsData, new JsonSerializerOptions { WriteIndented = true });
@@ -763,9 +766,9 @@ namespace CipherListTerminal
 			}
 		}
 
-		private void CreateDefaultSettings()
+		private SettingsData CreateDefaultSettings()
 		{
-			SettingsData = new SettingsData
+			var settingsData = new SettingsData
 			{
 				highScores = new Highscores
 				{
@@ -783,6 +786,8 @@ namespace CipherListTerminal
 					music = true
 				}
 			};
+
+			return settingsData;
 		}
 
 		//private void ResetSaveState()
