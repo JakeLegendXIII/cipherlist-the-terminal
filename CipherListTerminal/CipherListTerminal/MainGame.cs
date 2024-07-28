@@ -522,44 +522,6 @@ namespace CipherListTerminal
 			base.Draw(gameTime);
 		}
 
-		private void OnClientSizeChanged(object sender, EventArgs e)
-		{
-			if (!_isResizing && Window.ClientBounds.Width > 0 && Window.ClientBounds.Height > 0)
-			{
-				_isResizing = true;
-
-				CalculateRenderDestination();
-
-				_isResizing = false;
-			}
-		}
-
-		private void CalculateRenderDestination()
-		{
-			Point size = GraphicsDevice.Viewport.Bounds.Size;
-
-			float scaleX = (float)size.X / _renderTarget.Width;
-			float scaleY = (float)size.Y / _renderTarget.Height;
-
-			_scale = Math.Min(scaleX, scaleY);
-
-			_renderDestination.Width = (int)(_renderTarget.Width * _scale);
-			_renderDestination.Height = (int)(_renderTarget.Height * _scale);
-
-			_renderDestination.X = (size.X - _renderDestination.Width) / 2;
-			_renderDestination.Y = (size.Y - _renderDestination.Height) / 2;
-
-			//_effect.Parameters["textureSize"]?.SetValue(new Vector2(size.X - 250, size.Y - 250));
-			//_effect.Parameters["outputSize"]?.SetValue(new Vector2(size.X - 250, size.Y - 250));
-			//_effect.Parameters["videoSize"]?.SetValue(new Vector2(size.X - 250, size.Y - 250));
-
-			var texSize = new Vector2(_renderDestination.Width, _renderDestination.Height);
-			_effect.Parameters["textureSize"]?.SetValue(texSize);
-			_effect.Parameters["videoSize"]?.SetValue(texSize);
-			var outSize = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
-			_effect.Parameters["outputSize"]?.SetValue(outSize);
-		}
-
 		private void SetupNewPuzzle()
 		{
 			_terminalBuffer = new TerminalBuffer(_armadaFont, _bufferUI);
@@ -845,6 +807,44 @@ namespace CipherListTerminal
 				else
 					CurrentInputState = InputStates.MouseKeyboard;
 			}
+		}
+
+		private void OnClientSizeChanged(object sender, EventArgs e)
+		{
+			if (!_isResizing && Window.ClientBounds.Width > 0 && Window.ClientBounds.Height > 0)
+			{
+				_isResizing = true;
+
+				CalculateRenderDestination();
+
+				_isResizing = false;
+			}
+		}
+
+		private void CalculateRenderDestination()
+		{
+			Point size = GraphicsDevice.Viewport.Bounds.Size;
+
+			float scaleX = (float)size.X / _renderTarget.Width;
+			float scaleY = (float)size.Y / _renderTarget.Height;
+
+			_scale = Math.Min(scaleX, scaleY);
+
+			_renderDestination.Width = (int)(_renderTarget.Width * _scale);
+			_renderDestination.Height = (int)(_renderTarget.Height * _scale);
+
+			_renderDestination.X = (size.X - _renderDestination.Width) / 2;
+			_renderDestination.Y = (size.Y - _renderDestination.Height) / 2;
+
+			//_effect.Parameters["textureSize"]?.SetValue(new Vector2(size.X - 250, size.Y - 250));
+			//_effect.Parameters["outputSize"]?.SetValue(new Vector2(size.X - 250, size.Y - 250));
+			//_effect.Parameters["videoSize"]?.SetValue(new Vector2(size.X - 250, size.Y - 250));
+
+			var texSize = new Vector2(_renderDestination.Width, _renderDestination.Height);
+			_effect.Parameters["textureSize"]?.SetValue(texSize);
+			_effect.Parameters["videoSize"]?.SetValue(texSize);
+			var outSize = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+			_effect.Parameters["outputSize"]?.SetValue(outSize);
 		}
 
 		// Learn MonoGame how-to Fullscreen and Borderless code
