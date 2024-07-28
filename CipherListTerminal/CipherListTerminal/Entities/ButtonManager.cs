@@ -181,15 +181,7 @@ namespace CipherListTerminal.Entities
 				{
 					_buttons[i].Update(gameTime, inputState);
 				}
-			}
-			else
-			{
-				if (InputManager.IsGamePadButtonPressed(Buttons.RightTrigger) || InputManager.IsKeyPressed(Keys.F5))
-				{
-					_buttonPress.Play();
-					_buttons[1].SetColor(Color.Gray);
-				}
-			}
+			}			
 		}
 	}
 }
