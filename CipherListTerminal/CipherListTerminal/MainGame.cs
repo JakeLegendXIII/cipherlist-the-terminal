@@ -654,6 +654,12 @@ namespace CipherListTerminal
 				GameState = newGameState;
 				SetupScoreBoard();
 			}
+
+			if (newGameState == GameStates.Settings)
+			{
+				PreviousGameState = GameState;
+				GameState = newGameState;
+			}
 		}
 
 		private void HandleSelectedMatrixEvent(string selectedValue)
