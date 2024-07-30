@@ -85,6 +85,24 @@ namespace CipherListTerminal.Entities
 
 			spriteBatch.DrawString(_armadaFont, "High Scores", new Vector2(660, 95), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(660, 155), Color.White,
+				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			spriteBatch.DrawString(_armadaFont, _settingsData.highScores.freePlay.ToString(), new Vector2(860, 155), Color.White,
+				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			spriteBatch.DrawString(_armadaFont, "Best of 10", new Vector2(660, 185), Color.White,
+				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			spriteBatch.DrawString(_armadaFont, _settingsData.highScores.bestOf10Timed.ToString(), new Vector2(860, 185), Color.White,
+				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			spriteBatch.DrawString(_armadaFont, "TimeTrial", new Vector2(660, 215), Color.White,
+				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			spriteBatch.DrawString(_armadaFont, _settingsData.highScores.timeTrial.ToString(), new Vector2(860, 215), Color.White,
+				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState)
