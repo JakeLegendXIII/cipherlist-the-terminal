@@ -253,8 +253,9 @@ namespace CipherListTerminal
 
 				if (InputManager.IsKeyPressed(Keys.F4))
 				{
+					_settingsManager.SetSettingsData(SettingsData);
 					GameState = GameStates.Settings;
-					PreviousGameState = GameStates.Menu;
+					PreviousGameState = GameStates.Menu;					
 				}
 			}
 			else if (GameState == GameStates.FreePlay)
@@ -622,8 +623,9 @@ namespace CipherListTerminal
 
 			if (newGameState == GameStates.Settings)
 			{
+				_settingsManager.SetSettingsData(SettingsData);
 				PreviousGameState = GameState;
-				GameState = newGameState;
+				GameState = newGameState;				
 			}
 		}
 

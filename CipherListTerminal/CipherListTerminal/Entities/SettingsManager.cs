@@ -1,4 +1,5 @@
 ﻿using CipherListTerminal.Core;
+using CipherListTerminal.Data;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -15,20 +16,52 @@ namespace CipherListTerminal.Entities
 		private int _highScoreUIPositionX = 650;
 		private int _highScoreUIPositionY = 85;
 
-        public SettingsManager(Texture2D summaryUI, SpriteFont armadaFont)
-        {
-			_settingsUI = summaryUI;
-            _armadaFont = armadaFont;
-        }
+		private SettingsData _settingsData;
 
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
+		public SettingsManager(Texture2D summaryUI, SpriteFont armadaFont)
 		{
-			spriteBatch.Draw(_settingsUI, new Vector2(_settingsUIPositionX, _settingsUIPositionY), null, Color.White, 
-				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+			_settingsUI = summaryUI;
+			_armadaFont = armadaFont;
+		}
+
+		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
+		{
+			// Settings			
+			spriteBatch.Draw(_settingsUI, new Vector2(_settingsUIPositionX, _settingsUIPositionY), null, Color.White,
+			0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			spriteBatch.DrawString(_armadaFont, "Settings", new Vector2(270, 95), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
+			spriteBatch.DrawString(_armadaFont, "CRT Shader", new Vector2(270, 155), Color.White,
+				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			if (_settingsData.settings.crtShader)
+			{
+				spriteBatch.DrawString(_armadaFont, "[ Enabled  ]", new Vector2(470, 155), Color.Green,
+					0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+			}
+			else
+			{
+				spriteBatch.DrawString(_armadaFont, "[ Disabled ]", new Vector2(470, 155), Color.Red,
+					0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+			}
+
+
+			spriteBatch.DrawString(_armadaFont, "CRT Shader", new Vector2(270, 155), Color.White,
+				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			spriteBatch.DrawString(_armadaFont, "Music", new Vector2(270, 185), Color.White,
+				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			spriteBatch.DrawString(_armadaFont, "FullScreen", new Vector2(270, 215), Color.White,
+				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+
+			spriteBatch.DrawString(_armadaFont, "(not recommended)", new Vector2(270, 235), Color.White,
+				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			// High Score
 			spriteBatch.Draw(_settingsUI, new Vector2(_highScoreUIPositionX, _highScoreUIPositionY), null, Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
@@ -38,7 +71,12 @@ namespace CipherListTerminal.Entities
 
 		public void Update(GameTime gameTime, InputStates inputState)
 		{
-			
+
+		}
+
+		public void SetSettingsData(SettingsData settingsData)
+		{
+			_settingsData = settingsData;
 		}
 	}
 }
