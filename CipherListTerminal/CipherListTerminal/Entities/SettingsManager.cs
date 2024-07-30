@@ -47,12 +47,19 @@ namespace CipherListTerminal.Entities
 					0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
-
-			spriteBatch.DrawString(_armadaFont, "CRT Shader", new Vector2(270, 155), Color.White,
-				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-
 			spriteBatch.DrawString(_armadaFont, "Music", new Vector2(270, 185), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			if (_settingsData.settings.music)
+				{
+				spriteBatch.DrawString(_armadaFont, "[ Enabled  ]", new Vector2(470, 185), Color.Green,
+					0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+			}
+			else
+			{
+				spriteBatch.DrawString(_armadaFont, "[ Disabled ]", new Vector2(470, 185), Color.Red,
+					0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+			}
 
 			spriteBatch.DrawString(_armadaFont, "FullScreen", new Vector2(270, 215), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
@@ -60,6 +67,17 @@ namespace CipherListTerminal.Entities
 
 			spriteBatch.DrawString(_armadaFont, "(not recommended)", new Vector2(270, 235), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+			if (_settingsData.settings.fullScreen)
+				{
+				spriteBatch.DrawString(_armadaFont, "[ Enabled  ]", new Vector2(470, 215), Color.Green,
+					0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+			}
+			else
+			{
+				spriteBatch.DrawString(_armadaFont, "[ Disabled ]", new Vector2(470, 215), Color.Red,
+					0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+			}
 
 			// High Score
 			spriteBatch.Draw(_settingsUI, new Vector2(_highScoreUIPositionX, _highScoreUIPositionY), null, Color.White,
