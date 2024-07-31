@@ -37,7 +37,7 @@ namespace CipherListTerminal.Entities
 			_buttons = [
 				new Button(_buttonUI, _font, "Back", "ESC", "Back", true),
 				new Button(_buttonUI, _font, "Next Puzzle", "F5", "RT", false),
-				new Button(_buttonUI, _font, "Clear Saves", "F8", "RB", false),
+				new Button(_buttonUI, _font, "Reset", "F8", "RB", false),
 				new Button(_buttonUI, _font, "Switch Input", "F10", "LT", false),
 				new Button(_buttonUI, _font, "Continue", "Enter", "A", true),
 				new Button(_buttonUI, _font, "Full Screen", "F11", "LB", false),
@@ -55,21 +55,21 @@ namespace CipherListTerminal.Entities
 
 				_buttons[1].Draw(spriteBatch, gameTime, scale, _secondButtonPosition);
 
-				_buttons[2].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
+				//_buttons[2].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
 
 				if (InputManager.IsGamePadConnected())
 				{
-					_buttons[3].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
+					_buttons[3].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
 
-					_buttons[5].Draw(spriteBatch, gameTime, scale, _fifthButtonPosition);
-
-					_buttons[6].Draw(spriteBatch, gameTime, scale, _sixthButtonPosition);
-				}
-				else
-				{
 					_buttons[5].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
 
 					_buttons[6].Draw(spriteBatch, gameTime, scale, _fifthButtonPosition);
+				}
+				else
+				{
+					_buttons[5].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
+
+					_buttons[6].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
 				}
 				
 			}
