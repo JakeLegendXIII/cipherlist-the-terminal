@@ -65,7 +65,7 @@ namespace CipherListTerminal.Entities
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 
-			spriteBatch.DrawString(_armadaFont, "(not recommended)", new Vector2(270, 235), Color.White,
+			spriteBatch.DrawString(_armadaFont, "(windowed mode recommended)", new Vector2(270, 235), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			if (_settingsData.settings.fullScreen)
@@ -89,28 +89,28 @@ namespace CipherListTerminal.Entities
 			spriteBatch.DrawString(_armadaFont, "Free Play", new Vector2(660, 155), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			spriteBatch.DrawString(_armadaFont, _settingsData.highScores.freePlay.ToString(), new Vector2(860, 155), Color.White,
+			spriteBatch.DrawString(_armadaFont, _settingsData.highScores.freePlay.ToString(), new Vector2(850, 155), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			spriteBatch.DrawString(_armadaFont, _settingsData.highScores.freePlayRecordDate.ToString(), new Vector2(860, 185), Color.White,
+			spriteBatch.DrawString(_armadaFont, _settingsData.highScores.freePlayRecordDate.ToString(), new Vector2(850, 185), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			spriteBatch.DrawString(_armadaFont, "Best of 10", new Vector2(660, 215), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			spriteBatch.DrawString(_armadaFont, _settingsData.highScores.bestOf10Timed.ToString(), new Vector2(860, 215), Color.White,
+			spriteBatch.DrawString(_armadaFont, _settingsData.highScores.bestOf10Timed.ToString(), new Vector2(850, 215), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			spriteBatch.DrawString(_armadaFont, _settingsData.highScores.bestOf10TimedRecordDate.ToString(), new Vector2(860, 245), Color.White,
+			spriteBatch.DrawString(_armadaFont, _settingsData.highScores.bestOf10TimedRecordDate.ToString(), new Vector2(850, 245), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			spriteBatch.DrawString(_armadaFont, "TimeTrial", new Vector2(660, 275), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			spriteBatch.DrawString(_armadaFont, _settingsData.highScores.timeTrial.ToString(), new Vector2(860, 275), Color.White,
+			spriteBatch.DrawString(_armadaFont, _settingsData.highScores.timeTrial.ToString(), new Vector2(850, 275), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-			spriteBatch.DrawString(_armadaFont, _settingsData.highScores.timeTrialRecordDate.ToString(), new Vector2(860, 305), Color.White,
+			spriteBatch.DrawString(_armadaFont, _settingsData.highScores.timeTrialRecordDate.ToString(), new Vector2(850, 305), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 		}
 
