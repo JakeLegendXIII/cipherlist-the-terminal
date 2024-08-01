@@ -37,12 +37,12 @@ namespace CipherListTerminal.Entities
 			_buttons = [
 				new Button(_buttonUI, _font, "Back", "ESC", "Back", true),
 				new Button(_buttonUI, _font, "Next Puzzle", "F5", "RT", false),
-				new Button(_buttonUI, _font, "Reset", "F8", "RB", false),
+				new Button(_buttonUI, _font, "Reset", "F7", "RB", false),
 				new Button(_buttonUI, _font, "Switch Input", "F10", "LT", false),
 				new Button(_buttonUI, _font, "Continue", "Enter", "A", true),
 				new Button(_buttonUI, _font, "Full Screen", "F11", "LB", false),
 				new Button(_buttonUI, _font, "Clear FX", "F12", "X", true),
-				new Button(_buttonUI, _font, "Music", "F7", "Y", false)
+				new Button(_buttonUI, _font, "Music", "F8", "Y", false)
 			];
 		}
 
@@ -96,7 +96,7 @@ namespace CipherListTerminal.Entities
 			{
 				_buttons[0].Draw(spriteBatch, gameTime, scale, _firstButtonPosition);
 
-				_buttons[4].Draw(spriteBatch, gameTime, scale, _secondButtonPosition);
+				_buttons[2].Draw(spriteBatch, gameTime, scale, _secondButtonPosition);
 
 				_buttons[7].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
 
@@ -105,6 +105,8 @@ namespace CipherListTerminal.Entities
 					_buttons[3].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
 
 					_buttons[5].Draw(spriteBatch, gameTime, scale, _fifthButtonPosition);
+
+					_buttons[6].Draw(spriteBatch, gameTime, scale, _sixthButtonPosition);
 				}
 				else
 				{

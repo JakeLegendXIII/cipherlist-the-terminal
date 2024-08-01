@@ -195,12 +195,12 @@ namespace CipherListTerminal
 
 			InputManager.Update(_renderDestination, _scale);
 
-			if (InputManager.IsKeyDown(Keys.F11) || InputManager.IsGamePadButtonPressed(Buttons.LeftShoulder))
-			{
-				// _graphics.ToggleFullScreen();
-				ToggleFullscreen();
-				// CalculateRenderDestination();
-			}
+			//if (InputManager.IsKeyDown(Keys.F11) || InputManager.IsGamePadButtonPressed(Buttons.LeftShoulder))
+			//{
+			//	// _graphics.ToggleFullScreen();
+			//	ToggleFullscreen();
+			//	// CalculateRenderDestination();
+			//}
 
 			//if (InputManager.IsKeyPressed(Keys.F8) || InputManager.IsGamePadButtonPressed(Buttons.RightShoulder))
 			//{

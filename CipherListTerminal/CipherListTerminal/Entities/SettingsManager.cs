@@ -1,7 +1,9 @@
 ﻿using CipherListTerminal.Core;
 using CipherListTerminal.Data;
+using CipherListTerminal.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace CipherListTerminal.Entities
 {
@@ -116,7 +118,10 @@ namespace CipherListTerminal.Entities
 
 		public void Update(GameTime gameTime, InputStates inputState)
 		{
+			if (InputManager.IsKeyPressed(Keys.F5))
+			{
 
+			}
 		}
 
 		public void SetSettingsData(SettingsData settingsData)
