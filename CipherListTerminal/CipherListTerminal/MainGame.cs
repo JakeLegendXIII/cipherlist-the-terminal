@@ -449,7 +449,7 @@ namespace CipherListTerminal
 					SaveGame();
 				}
 
-				if (InputManager.IsGamePadButtonPressed(Buttons.LeftShoulder) || InputManager.IsKeyPressed(Keys.F8))
+				if (InputManager.IsGamePadButtonPressed(Buttons.Y) || InputManager.IsKeyPressed(Keys.F8))
 				{
 					SettingsData.settings.music = !SettingsData.settings.music;
 
@@ -458,7 +458,25 @@ namespace CipherListTerminal
 					SaveGame();
 				}
 
-			}
+				if (InputManager.IsGamePadButtonPressed(Buttons.LeftShoulder) || InputManager.IsKeyPressed(Keys.F11))
+				{
+					SettingsData.settings.fullScreen = !SettingsData.settings.fullScreen;
+
+					_settingsManager.SetSettingsData(SettingsData);
+
+					SaveGame();
+					ToggleFullscreen();
+				}
+
+                if (InputManager.IsGamePadButtonPressed(Buttons.X) || InputManager.IsKeyPressed(Keys.F12))
+                {
+                    SettingsData.settings.crtShader = !SettingsData.settings.crtShader;
+
+					_settingsManager.SetSettingsData(SettingsData);
+
+					SaveGame();
+                }
+            }
 
 			base.Update(gameTime);
 		}
