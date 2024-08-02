@@ -442,9 +442,14 @@ namespace CipherListTerminal
 				}
 
 				if (InputManager.IsGamePadButtonPressed(Buttons.RightShoulder) || InputManager.IsKeyPressed(Keys.F7))
-				{
-					_settingsManager.SetSettingsData(DefaultSettingsData);
-					SettingsData = DefaultSettingsData;
+				{	
+					if (SettingsData.settings.fullScreen != DefaultSettingsData.settings.fullScreen)
+					{
+						ToggleFullscreen();
+					}
+					SettingsData.settings = DefaultSettingsData.settings;
+
+					_settingsManager.SetSettingsData(SettingsData);
 
 					SaveGame();
 				}
