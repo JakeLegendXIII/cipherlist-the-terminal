@@ -118,10 +118,7 @@ namespace CipherListTerminal.Entities
 
 		public void Update(GameTime gameTime, InputStates inputState)
 		{
-			if (InputManager.IsKeyPressed(Keys.F5))
-			{
 
-			}
 		}
 
 		public void SetSettingsData(SettingsData settingsData)

@@ -440,6 +440,16 @@ namespace CipherListTerminal
 					GameState = GameStates.Menu;
 					PreviousGameState = GameStates.Summary;
 				}
+
+				if (InputManager.IsGamePadButtonPressed(Buttons.RightShoulder) || InputManager.IsKeyPressed(Keys.F7))
+				{
+					_settingsManager.SetSettingsData(DefaultSettingsData);
+					SettingsData = DefaultSettingsData;
+
+					SaveGame();
+				}
+
+
 			}
 
 			base.Update(gameTime);
