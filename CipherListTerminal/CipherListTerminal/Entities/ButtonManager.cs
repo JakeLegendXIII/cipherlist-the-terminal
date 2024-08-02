@@ -59,19 +59,9 @@ namespace CipherListTerminal.Entities
 
 				if (InputManager.IsGamePadConnected())
 				{
-					_buttons[3].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
-
-					_buttons[5].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
-
-					_buttons[6].Draw(spriteBatch, gameTime, scale, _fifthButtonPosition);
-				}
-				else
-				{
-					_buttons[5].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
-
-					_buttons[6].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
-				}
-				
+					_buttons[3].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);					
+					
+				}				
 			}
 
 			if (_gameState == GameStates.Summary)
@@ -82,13 +72,7 @@ namespace CipherListTerminal.Entities
 
 				if (InputManager.IsGamePadConnected())
 				{
-					_buttons[3].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
-
-					_buttons[5].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
-				}
-				else
-				{
-					_buttons[5].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
+					_buttons[3].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);					
 				}
 			}
 
