@@ -40,12 +40,12 @@ namespace CipherListTerminal.Entities
 
 			if (_settingsData.settings.crtShader)
 			{
-				spriteBatch.DrawString(_armadaFont, "[ Enabled  ]", new Vector2(470, 155), Color.Green,
+				spriteBatch.DrawString(_armadaFont, "[ Enabled  ]", new Vector2(470, 155), Color.White,
 					0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 			else
 			{
-				spriteBatch.DrawString(_armadaFont, "[ Disabled ]", new Vector2(470, 155), Color.Red,
+				spriteBatch.DrawString(_armadaFont, "[ Disabled ]", new Vector2(470, 155), Color.Gray,
 					0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
@@ -54,12 +54,12 @@ namespace CipherListTerminal.Entities
 
 			if (_settingsData.settings.music)
 				{
-				spriteBatch.DrawString(_armadaFont, "[ Enabled  ]", new Vector2(470, 185), Color.Green,
+				spriteBatch.DrawString(_armadaFont, "[ Enabled  ]", new Vector2(470, 185), Color.White,
 					0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 			else
 			{
-				spriteBatch.DrawString(_armadaFont, "[ Disabled ]", new Vector2(470, 185), Color.Red,
+				spriteBatch.DrawString(_armadaFont, "[ Disabled ]", new Vector2(470, 185), Color.Gray,
 					0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
@@ -72,12 +72,12 @@ namespace CipherListTerminal.Entities
 
 			if (_settingsData.settings.fullScreen)
 				{
-				spriteBatch.DrawString(_armadaFont, "[ Enabled  ]", new Vector2(470, 215), Color.Green,
+				spriteBatch.DrawString(_armadaFont, "[ Enabled  ]", new Vector2(470, 215), Color.White,
 					0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 			else
 			{
-				spriteBatch.DrawString(_armadaFont, "[ Disabled ]", new Vector2(470, 215), Color.Red,
+				spriteBatch.DrawString(_armadaFont, "[ Disabled ]", new Vector2(470, 215), Color.Gray,
 					0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
