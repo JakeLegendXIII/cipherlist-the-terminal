@@ -449,6 +449,14 @@ namespace CipherListTerminal
 					SaveGame();
 				}
 
+				if (InputManager.IsGamePadButtonPressed(Buttons.LeftShoulder) || InputManager.IsKeyPressed(Keys.F8))
+				{
+					SettingsData.settings.music = !SettingsData.settings.music;
+
+					_settingsManager.SetSettingsData(SettingsData);
+
+					SaveGame();
+				}
 
 			}
 
