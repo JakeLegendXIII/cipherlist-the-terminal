@@ -195,18 +195,6 @@ namespace CipherListTerminal
 
 			InputManager.Update(_renderDestination, _scale);
 
-			//if (InputManager.IsKeyDown(Keys.F11) || InputManager.IsGamePadButtonPressed(Buttons.LeftShoulder))
-			//{
-			//	// _graphics.ToggleFullScreen();
-			//	ToggleFullscreen();
-			//	// CalculateRenderDestination();
-			//}
-
-			//if (InputManager.IsKeyPressed(Keys.F8) || InputManager.IsGamePadButtonPressed(Buttons.RightShoulder))
-			//{
-			//	ResetSaveState();
-			//}
-
 			if (InputManager.IsKeyPressed(Keys.F10) || InputManager.IsGamePadButtonPressed(Buttons.LeftTrigger))
 			{
 				ToggleInputState();
@@ -447,7 +435,9 @@ namespace CipherListTerminal
 					{
 						ToggleFullscreen();
 					}
-					SettingsData.settings = DefaultSettingsData.settings;
+					SettingsData.settings.crtShader = DefaultSettingsData.settings.crtShader;
+					SettingsData.settings.music = DefaultSettingsData.settings.music;
+					SettingsData.settings.fullScreen = DefaultSettingsData.settings.fullScreen;
 
 					_settingsManager.SetSettingsData(SettingsData);
 
