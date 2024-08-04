@@ -9,7 +9,7 @@ namespace CipherListTerminal.Entities
 	{
 		public int Score { get; set; } = 0;
 		public int HighScore { get; set; }
-		public DateTime HighScoreDate { get; set; }
+		public string HighScoreDate { get; set; }
 
 		private Texture2D _summaryUI;
 		private SpriteFont _armadaFont;
@@ -33,7 +33,7 @@ namespace CipherListTerminal.Entities
 
 			spriteBatch.DrawString(_armadaFont, "Score: " + Score, new Vector2(280, 150), Color.White);
 			spriteBatch.DrawString(_armadaFont, "High Score: " + HighScore, new Vector2(280, 175), Color.White);
-			spriteBatch.DrawString(_armadaFont, "Date Achieved: " + HighScoreDate.ToShortDateString(), new Vector2(280, 200), Color.White);
+			spriteBatch.DrawString(_armadaFont, "Date Achieved: " + HighScoreDate, new Vector2(280, 200), Color.White);
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState) { }

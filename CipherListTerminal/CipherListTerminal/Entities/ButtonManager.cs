@@ -41,7 +41,7 @@ namespace CipherListTerminal.Entities
 				new Button(_buttonUI, _font, "Switch Input", "F10", "LT", false),
 				new Button(_buttonUI, _font, "Continue", "Enter", "A", true),
 				new Button(_buttonUI, _font, "Full Screen", "F11", "LB", false),
-				new Button(_buttonUI, _font, "Clear FX", "F12", "X", true),
+				new Button(_buttonUI, _font, "Clear FX", "F12", "X", false),
 				new Button(_buttonUI, _font, "Music", "F8", "Y", false)
 			];
 		}
@@ -59,19 +59,9 @@ namespace CipherListTerminal.Entities
 
 				if (InputManager.IsGamePadConnected())
 				{
-					_buttons[3].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
-
-					_buttons[5].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
-
-					_buttons[6].Draw(spriteBatch, gameTime, scale, _fifthButtonPosition);
-				}
-				else
-				{
-					_buttons[5].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
-
-					_buttons[6].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
-				}
-				
+					_buttons[3].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);					
+					
+				}				
 			}
 
 			if (_gameState == GameStates.Summary)
@@ -82,13 +72,7 @@ namespace CipherListTerminal.Entities
 
 				if (InputManager.IsGamePadConnected())
 				{
-					_buttons[3].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
-
-					_buttons[5].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
-				}
-				else
-				{
-					_buttons[5].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
+					_buttons[3].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);					
 				}
 			}
 
@@ -138,10 +122,16 @@ namespace CipherListTerminal.Entities
 					_buttons[1].SetColor(Color.Gray);
 				}
 
-				if (InputManager.IsGamePadButtonPressed(Buttons.RightShoulder) || InputManager.IsKeyPressed(Keys.F8))
+				if (InputManager.IsGamePadButtonPressed(Buttons.RightShoulder) || InputManager.IsKeyPressed(Keys.F7))
 				{
 					_buttonPress.Play();
 					_buttons[2].SetColor(Color.Gray);
+				}
+
+				if (InputManager.IsGamePadButtonPressed(Buttons.Y) || InputManager.IsKeyPressed(Keys.F8))
+				{
+					_buttonPress.Play();
+					_buttons[7].SetColor(Color.Gray);
 				}
 
 				if (InputManager.IsGamePadButtonPressed(Buttons.LeftTrigger) || InputManager.IsKeyPressed(Keys.F10))
@@ -159,10 +149,16 @@ namespace CipherListTerminal.Entities
 					}
 				}				
 
-				if (InputManager.IsGamePadButtonPressed(Buttons.Y) || InputManager.IsKeyPressed(Keys.F11))
+				if (InputManager.IsGamePadButtonPressed(Buttons.LeftShoulder) || InputManager.IsKeyPressed(Keys.F11))
 				{
 					_buttonPress.Play();
 					_buttons[5].SetColor(Color.Gray);
+				}
+
+				if (InputManager.IsGamePadButtonPressed(Buttons.X) || InputManager.IsKeyPressed(Keys.F12))
+				{
+					_buttonPress.Play();
+					_buttons[6].SetColor(Color.Gray);
 				}
 
 				for (var i = 0; i < _buttons.Count; i++)
