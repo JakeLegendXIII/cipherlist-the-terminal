@@ -80,6 +80,12 @@
 /processorParam:Quality=Best
 /build:Music/NeonThump2.wav
 
+#begin Music/NeonThump3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/NeonThump3.wav
+
 #begin SFX/buttonpress.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

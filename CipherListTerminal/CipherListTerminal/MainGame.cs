@@ -178,7 +178,7 @@ namespace CipherListTerminal
 			_drop = Content.Load<SoundEffect>("SFX/rolanddrop");
 
 			_demoTrack = Content.Load<SoundEffect>("Music/DemoTrack3");
-			_neonThump = Content.Load<SoundEffect>("Music/NeonThump2");
+			_neonThump = Content.Load<SoundEffect>("Music/NeonThump3");
 
 			_soundManager = new SoundManager();
 			var track1 = _demoTrack.CreateInstance();
