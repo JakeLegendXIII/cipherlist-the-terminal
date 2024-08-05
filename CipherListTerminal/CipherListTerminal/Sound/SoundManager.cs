@@ -39,5 +39,24 @@ namespace CipherListTerminal.Sound
 				}
 			}
 		}
+
+		public void StopSoundtrack()
+		{
+			var nbTracks = _soundtracks.Count;
+
+			if (nbTracks <= 0)
+			{
+				return;
+			}
+
+			var currentTrack = _soundtracks[_soundtrackIndex];
+			var nextTrack = _soundtracks[(_soundtrackIndex + 1) % nbTracks];
+
+			if (currentTrack.State == SoundState.Playing)
+			{
+				currentTrack.Stop();
+				nextTrack.Stop();
+			}
+		}
 	}
 }
