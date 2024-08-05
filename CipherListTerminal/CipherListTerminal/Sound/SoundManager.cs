@@ -55,7 +55,6 @@ namespace CipherListTerminal.Sound
 			if (currentTrack.State == SoundState.Playing)
 			{
 				currentTrack.Stop();
-				nextTrack.Stop();
 			}
 		}
 	}

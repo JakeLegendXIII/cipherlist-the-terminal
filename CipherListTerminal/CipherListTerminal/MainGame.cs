@@ -192,6 +192,8 @@ namespace CipherListTerminal
 		{
 			if (SettingsData.settings.music)
 				_soundManager.PlaySoundtrack();
+			else
+				_soundManager.StopSoundtrack();
 
 			InputManager.Update(_renderDestination, _scale);
 
