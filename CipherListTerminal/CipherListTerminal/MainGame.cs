@@ -941,7 +941,8 @@ namespace CipherListTerminal
 
 			_graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 			_graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-			_graphics.HardwareModeSwitch = !_isBorderless;
+			// _graphics.HardwareModeSwitch = !_isBorderless;
+			_graphics.HardwareModeSwitch = false;
 
 			_graphics.IsFullScreen = true;
 			_graphics.ApplyChanges();
