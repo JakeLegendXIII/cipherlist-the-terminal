@@ -57,6 +57,7 @@ namespace CipherListTerminal
 		// Music
 		private SoundEffect _demoTrack;
 		private SoundEffect _neonThump;
+		private SoundEffect _midnight;
 
 		//SFX
 		private SoundEffect _flickingASwitch;
@@ -179,11 +180,13 @@ namespace CipherListTerminal
 
 			_demoTrack = Content.Load<SoundEffect>("Music/DemoTrack3");
 			_neonThump = Content.Load<SoundEffect>("Music/NeonThump3");
+			_midnight = Content.Load<SoundEffect>("Music/Midnight");
 
 			_soundManager = new SoundManager();
 			var track1 = _demoTrack.CreateInstance();
 			var track2 = _neonThump.CreateInstance();
-			_soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
+			var track3 = _midnight.CreateInstance();
+			_soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2, track3 });
 
 			_settingsManager = new SettingsManager(_matrixUI, _armadaFont);
 		}
