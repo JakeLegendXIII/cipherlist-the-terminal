@@ -101,7 +101,7 @@ namespace CipherListTerminal.Entities
 			}
 		}
 
-		public void Update(GameTime gameTime) { }
+		public void Update(GameTime gameTime, InputStates inputState) { }
 
 		public void Update(GameTime gameTime, InputStates inputState, GameStates gameState)
 		{
