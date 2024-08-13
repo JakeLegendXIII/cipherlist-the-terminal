@@ -244,6 +244,8 @@ namespace CipherListTerminal.Entities
 			// May want to create Message on MainGame that is handled here and InputStateIndicator
 			// reset the values to appropriate start row and col values when previous state was Keyboard and now GamePad
 
+
+
 			CurrentInputState = inputState;
 
 			if (inputState == InputStates.MouseKeyboard)
