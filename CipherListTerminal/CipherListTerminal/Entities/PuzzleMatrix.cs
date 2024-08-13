@@ -244,7 +244,35 @@ namespace CipherListTerminal.Entities
 			// May want to create Message on MainGame that is handled here and InputStateIndicator
 			// reset the values to appropriate start row and col values when previous state was Keyboard and now GamePad
 
+			if (CurrentInputState == InputStates.MouseKeyboard && inputState == InputStates.GamePad )
+			{
+				// Reset not working quite right yet
 
+				if (State == MatrixState.FirstSelection)
+				{
+					_highlightColumn = _selectedRowIndex;
+					_highlightCell = _selectedColumnIndex;
+
+					_displayColumnIndex = _selectedRowIndex;
+					_displayRowIndex = _selectedColumnIndex;
+				}
+				else if (State == MatrixState.Horizontal)
+				{
+					_highlightColumn = _selectedRowIndex;
+					_highlightCell = _selectedColumnIndex;
+
+					_displayColumnIndex = _selectedRowIndex;
+					_displayRowIndex = _selectedColumnIndex;
+				}
+				else if (State == MatrixState.Vertical)
+				{
+					_highlightColumn = _selectedColumnIndex;
+					_highlightCell = _selectedRowIndex;
+
+					_displayColumnIndex = _selectedColumnIndex;
+					_displayRowIndex = _selectedRowIndex;
+				}
+			}
 
 			CurrentInputState = inputState;
 
