@@ -198,17 +198,7 @@ namespace CipherListTerminal
 			else
 				_soundManager.StopSoundtrack();
 
-			InputManager.Update(_renderDestination, _scale);
-
-			if (InputManager.IsKeyPressed(Keys.F10) || InputManager.IsGamePadButtonPressed(Buttons.LeftTrigger))
-			{
-				ToggleInputState();
-			}
-
-			if (InputManager.PreviousGamePadConnected() && !InputManager.IsGamePadConnected() && CurrentInputState == InputStates.GamePad)
-			{
-				ToggleInputState();
-			}
+			InputManager.Update(_renderDestination, _scale);		
 
 			_inputStateIndicator.Update(gameTime, CurrentInputState);
 			_buttonManager.Update(gameTime, CurrentInputState, GameState);
@@ -835,25 +825,7 @@ namespace CipherListTerminal
 		//	//CurrentSaveState.FreePlayHighScoreDate = default(DateTime);
 
 		//	SaveGame();
-		//}
-
-		private void ToggleInputState()
-		{
-			if (CurrentInputState == InputStates.GamePad)
-			{
-				CurrentInputState = InputStates.MouseKeyboard;
-			}
-			else if (CurrentInputState == InputStates.MouseKeyboard)
-			{
-				if (InputManager.IsGamePadConnected())
-					CurrentInputState = InputStates.GamePad;
-				else
-					CurrentInputState = InputStates.MouseKeyboard;
-			}
-
-			// TODO : broadcast message instead of passing CurrentInputState in Update
-
-		}
+		//}		
 
 		private void OnClientSizeChanged(object sender, EventArgs e)
 		{

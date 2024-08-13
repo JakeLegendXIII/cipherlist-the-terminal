@@ -6,7 +6,7 @@ namespace CipherListTerminal.Entities
 {
 	internal interface IGameEntity
 	{
-		void Update(GameTime gameTime, InputStates inputState);
+		void Update(GameTime gameTime);
 		void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale);
 	}
 }
