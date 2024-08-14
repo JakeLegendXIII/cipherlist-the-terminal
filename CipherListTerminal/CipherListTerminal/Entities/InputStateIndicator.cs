@@ -9,19 +9,19 @@ namespace CipherListTerminal.Entities
 	{
 		private SpriteFont _armadaFont;
 		InputStates CurrentInputState;
+		private Texture2D _gamePadIcon;
 
-		public InputStateIndicator(SpriteFont armadaFont, InputStates inputState)
+		public InputStateIndicator(SpriteFont armadaFont, InputStates inputState, Texture2D gamepadIcon)
 		{
 			_armadaFont = armadaFont;
 			CurrentInputState = inputState;
+			_gamePadIcon = gamepadIcon;
 		}
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
-
-			spriteBatch.DrawString(_armadaFont, "InputState: ", new Vector2(930, 100), Color.White);
-			spriteBatch.DrawString(_armadaFont, CurrentInputState.ToString(), new Vector2(930, 120), Color.White);
-
+			spriteBatch.DrawString(_armadaFont, "InputState: ", new Vector2(1050, 80), Color.White);
+			spriteBatch.DrawString(_armadaFont, CurrentInputState.ToString(), new Vector2(1050, 100), Color.White);
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState)

@@ -150,7 +150,7 @@ namespace CipherListTerminal
 			else
 				CurrentInputState = InputStates.MouseKeyboard;
 
-			_inputStateIndicator = new InputStateIndicator(_armadaFont, CurrentInputState);
+			_inputStateIndicator = new InputStateIndicator(_armadaFont, CurrentInputState, _pfButtonUI);
 			_buttonManager = new ButtonManager(_pfButtonUI, _armadaFont, CurrentInputState, GameState, _buttonPress);
 
 			DefaultSettingsData = CreateDefaultSettings();
