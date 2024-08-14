@@ -20,8 +20,16 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
-			spriteBatch.DrawString(_armadaFont, "InputState: ", new Vector2(1050, 80), Color.White);
-			spriteBatch.DrawString(_armadaFont, CurrentInputState.ToString(), new Vector2(1050, 100), Color.White);
+			if (CurrentInputState == InputStates.GamePad)
+			{
+				spriteBatch.Draw(_gamePadIcon, new Vector2(1150, 70), null,
+				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+			}
+			else
+			{
+				spriteBatch.DrawString(_armadaFont, "InputState: ", new Vector2(1050, 80), Color.White);
+				spriteBatch.DrawString(_armadaFont, CurrentInputState.ToString(), new Vector2(1050, 100), Color.White);
+			}
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState)

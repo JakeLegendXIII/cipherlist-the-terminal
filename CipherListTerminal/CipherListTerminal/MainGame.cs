@@ -53,6 +53,7 @@ namespace CipherListTerminal
 		private Texture2D _keysUI;
 		private Texture2D _buttonUI;
 		private Texture2D _pfButtonUI;
+		private Texture2D _gamepadIcon;
 
 		// Music
 		private SoundEffect _demoTrack;
@@ -150,7 +151,7 @@ namespace CipherListTerminal
 			else
 				CurrentInputState = InputStates.MouseKeyboard;
 
-			_inputStateIndicator = new InputStateIndicator(_armadaFont, CurrentInputState, _pfButtonUI);
+			_inputStateIndicator = new InputStateIndicator(_armadaFont, CurrentInputState, _gamepadIcon);
 			_buttonManager = new ButtonManager(_pfButtonUI, _armadaFont, CurrentInputState, GameState, _buttonPress);
 
 			DefaultSettingsData = CreateDefaultSettings();
@@ -171,6 +172,7 @@ namespace CipherListTerminal
 			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
 			_buttonUI = Content.Load<Texture2D>("Sprites/RoughButton2");
 			_pfButtonUI = Content.Load<Texture2D>("Sprites/PFButton");
+			_gamepadIcon = Content.Load<Texture2D>("Sprites/Gamepad");
 
 			_flickingASwitch = Content.Load<SoundEffect>("SFX/flickingaswitch");
 			_buttonPress = Content.Load<SoundEffect>("SFX/buttonpress");
