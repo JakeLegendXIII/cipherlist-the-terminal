@@ -25,6 +25,9 @@ namespace CipherListTerminal.Entities
 		private Vector2 _fifthButtonPosition = new Vector2(950, 610);
 		private Vector2 _sixthButtonPosition = new Vector2(1150, 610);
 
+		private Vector2 _sixButtonOffset = new Vector2(10, 0);
+		private Vector2 _outsideOffset = new Vector2(-80, 0);
+
 		public ButtonManager(Texture2D buttonUI, SpriteFont font, InputStates inputState, GameStates gameState, SoundEffect flickingASwitch)
 		{
 			_buttonUI = buttonUI;
@@ -77,25 +80,22 @@ namespace CipherListTerminal.Entities
 			}
 
 			if (_gameState == GameStates.Settings)
-			{
-				_buttons[0].Draw(spriteBatch, gameTime, scale, _firstButtonPosition);
-
-				_buttons[2].Draw(spriteBatch, gameTime, scale, _secondButtonPosition);
-
-				_buttons[7].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
-
+			{				
 				if (InputManager.IsGamePadConnected())
 				{
-					_buttons[3].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
-
-					_buttons[5].Draw(spriteBatch, gameTime, scale, _fifthButtonPosition);
-
-					_buttons[6].Draw(spriteBatch, gameTime, scale, _sixthButtonPosition);
+					_buttons[0].Draw(spriteBatch, gameTime, scale, _firstButtonPosition  + (_outsideOffset + _sixButtonOffset));
+					_buttons[2].Draw(spriteBatch, gameTime, scale, _secondButtonPosition + _outsideOffset);
+					_buttons[7].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition  + _outsideOffset);
+					_buttons[3].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition + _outsideOffset);																						 
+					_buttons[5].Draw(spriteBatch, gameTime, scale, _fifthButtonPosition  + _outsideOffset);																						 
+					_buttons[6].Draw(spriteBatch, gameTime, scale, _sixthButtonPosition  + _outsideOffset);
 				}
 				else
 				{
+					_buttons[0].Draw(spriteBatch, gameTime, scale, _firstButtonPosition);
+					_buttons[2].Draw(spriteBatch, gameTime, scale, _secondButtonPosition);
+					_buttons[7].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
 					_buttons[5].Draw(spriteBatch, gameTime, scale, _fourthButtonPosition);
-
 					_buttons[6].Draw(spriteBatch, gameTime, scale, _fifthButtonPosition);
 				}
 			}
