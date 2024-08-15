@@ -12,6 +12,8 @@ namespace CipherListTerminal.Entities
 		private Texture2D _gamePadIcon;
 		private Texture2D _mouseKeyboardIcon;
 
+		private Vector2 _iconLocation = new Vector2(1135, 65);
+
 		public InputStateIndicator(SpriteFont armadaFont, InputStates inputState, Texture2D gamepadIcon, Texture2D mouseKeyboardIcon)
 		{
 			_armadaFont = armadaFont;
@@ -24,12 +26,12 @@ namespace CipherListTerminal.Entities
 		{
 			if (CurrentInputState == InputStates.GamePad)
 			{
-				spriteBatch.Draw(_gamePadIcon, new Vector2(1100, 70), null,
+				spriteBatch.Draw(_gamePadIcon, _iconLocation, null,
 				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 			else
 			{
-				spriteBatch.Draw(_mouseKeyboardIcon, new Vector2(1100, 70), null,
+				spriteBatch.Draw(_mouseKeyboardIcon, _iconLocation, null,
 				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
