@@ -10,12 +10,14 @@ namespace CipherListTerminal.Entities
 		private SpriteFont _armadaFont;
 		InputStates CurrentInputState;
 		private Texture2D _gamePadIcon;
+		private Texture2D _mouseKeyboardIcon;
 
-		public InputStateIndicator(SpriteFont armadaFont, InputStates inputState, Texture2D gamepadIcon)
+		public InputStateIndicator(SpriteFont armadaFont, InputStates inputState, Texture2D gamepadIcon, Texture2D mouseKeyboardIcon)
 		{
 			_armadaFont = armadaFont;
 			CurrentInputState = inputState;
 			_gamePadIcon = gamepadIcon;
+			_mouseKeyboardIcon = mouseKeyboardIcon;
 		}
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
@@ -27,9 +29,12 @@ namespace CipherListTerminal.Entities
 			}
 			else
 			{
-				spriteBatch.DrawString(_armadaFont, "InputState: ", new Vector2(1050, 80), Color.White);
-				spriteBatch.DrawString(_armadaFont, CurrentInputState.ToString(), new Vector2(1050, 100), Color.White);
+				spriteBatch.Draw(_mouseKeyboardIcon, new Vector2(1100, 70), null,
+				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
+
+			//spriteBatch.DrawString(_armadaFont, "InputState: ", new Vector2(1050, 80), Color.White);
+			//spriteBatch.DrawString(_armadaFont, CurrentInputState.ToString(), new Vector2(1050, 100), Color.White);
 		}
 
 		public void Update(GameTime gameTime, InputStates inputState)
