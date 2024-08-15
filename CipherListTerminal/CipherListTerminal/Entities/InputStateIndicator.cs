@@ -22,7 +22,7 @@ namespace CipherListTerminal.Entities
 		{
 			if (CurrentInputState == InputStates.GamePad)
 			{
-				spriteBatch.Draw(_gamePadIcon, new Vector2(1150, 70), null,
+				spriteBatch.Draw(_gamePadIcon, new Vector2(1100, 70), null,
 				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 			else

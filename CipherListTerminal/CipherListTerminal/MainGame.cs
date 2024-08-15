@@ -172,7 +172,7 @@ namespace CipherListTerminal
 			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
 			_buttonUI = Content.Load<Texture2D>("Sprites/RoughButton2");
 			_pfButtonUI = Content.Load<Texture2D>("Sprites/PFButton");
-			_gamepadIcon = Content.Load<Texture2D>("Sprites/Gamepad");
+			_gamepadIcon = Content.Load<Texture2D>("Sprites/BiggerGamepad");
 
 			_flickingASwitch = Content.Load<SoundEffect>("SFX/flickingaswitch");
 			_buttonPress = Content.Load<SoundEffect>("SFX/buttonpress");
