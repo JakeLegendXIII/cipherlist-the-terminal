@@ -238,31 +238,8 @@ namespace CipherListTerminal.Entities
 		public void Update(GameTime gameTime, InputStates inputState)
 		{			
 			if (CurrentInputState == InputStates.MouseKeyboard && inputState == InputStates.GamePad )
-			{				
-				if (State == MatrixState.FirstSelection)
-				{
-					_highlightColumn = _selectedRowIndex;
-					_highlightCell = _selectedColumnIndex;
-
-					_displayColumnIndex = _selectedRowIndex;
-					_displayRowIndex = _selectedColumnIndex;
-				}			
-				else if (State == MatrixState.Vertical)
-				{
-					_highlightColumn = _selectedColumnIndex;
-					_highlightCell = _selectedRowIndex;
-
-					_displayColumnIndex = _selectedColumnIndex;
-					_displayRowIndex = _selectedRowIndex;
-				}
-				else if (State == MatrixState.Horizontal)
-				{
-					_highlightColumn = _selectedRowIndex;
-					_highlightCell = _selectedColumnIndex;
-
-					_displayColumnIndex = _selectedColumnIndex; 
-					_displayRowIndex = _selectedRowIndex;
-				}
+			{
+				ResetGamePadState();				
 			}
 
 			CurrentInputState = inputState;
@@ -294,7 +271,7 @@ namespace CipherListTerminal.Entities
 					}
 				}
 			}
-		}
+		}	
 
 		private void ManageSelectedInput()
 		{
@@ -618,6 +595,34 @@ namespace CipherListTerminal.Entities
 			else if (_displayColumnIndex >= 5)
 			{
 				_displayColumnIndex = 0;
+			}
+		}
+
+		private void ResetGamePadState()
+		{
+			if (State == MatrixState.FirstSelection)
+			{
+				_highlightColumn = _selectedRowIndex;
+				_highlightCell = _selectedColumnIndex;
+
+				_displayColumnIndex = _selectedRowIndex;
+				_displayRowIndex = _selectedColumnIndex;
+			}
+			else if (State == MatrixState.Vertical)
+			{
+				_highlightColumn = _selectedColumnIndex;
+				_highlightCell = _selectedRowIndex;
+
+				_displayColumnIndex = _selectedColumnIndex;
+				_displayRowIndex = _selectedRowIndex;
+			}
+			else if (State == MatrixState.Horizontal)
+			{
+				_highlightColumn = _selectedRowIndex;
+				_highlightCell = _selectedColumnIndex;
+
+				_displayColumnIndex = _selectedColumnIndex;
+				_displayRowIndex = _selectedRowIndex;
 			}
 		}
 
