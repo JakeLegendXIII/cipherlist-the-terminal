@@ -80,9 +80,9 @@ namespace CipherListTerminal.Entities
 
 			_spriteBatch.DrawString(_font, "Matrix", new Vector2(_startX + 100, _startY - 65), Color.White);
 			// DEBUG values
-			_spriteBatch.DrawString(_font, $"display info: col {_displayColumnIndex} row {_displayRowIndex}", new Vector2(50, 10), Color.White);
-			_spriteBatch.DrawString(_font, $"selected info: col {_selectedColumnIndex} row {_selectedRowIndex}", new Vector2(350, 10), Color.White);
-			_spriteBatch.DrawString(_font, $"highlight info: col {_highlightColumn}  cell{_highlightCell}", new Vector2(50, 40), Color.White);
+			//_spriteBatch.DrawString(_font, $"display info: col {_displayColumnIndex} row {_displayRowIndex}", new Vector2(50, 10), Color.White);
+			//_spriteBatch.DrawString(_font, $"selected info: col {_selectedColumnIndex} row {_selectedRowIndex}", new Vector2(350, 10), Color.White);
+			//_spriteBatch.DrawString(_font, $"highlight info: col {_highlightColumn}  cell{_highlightCell}", new Vector2(50, 40), Color.White);
 
 			Rectangle highlightRectangle;
 
