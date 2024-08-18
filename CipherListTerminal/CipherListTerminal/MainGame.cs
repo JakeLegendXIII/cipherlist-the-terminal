@@ -296,7 +296,7 @@ namespace CipherListTerminal
 
 				_matrix.Update(gameTime, CurrentInputState);
 
-				if (InputManager.IsKeyPressed(Keys.F5))
+				if (InputManager.IsKeyPressed(Keys.F5) || InputManager.IsGamePadButtonPressed(Buttons.RightTrigger))
 				{
 					SetupNewPuzzle();
 					_remainingPuzzles--;
@@ -348,7 +348,7 @@ namespace CipherListTerminal
 
 				_matrix.Update(gameTime, CurrentInputState);
 
-				if (InputManager.IsKeyPressed(Keys.F5))
+				if (InputManager.IsKeyPressed(Keys.F5) || InputManager.IsGamePadButtonPressed(Buttons.RightTrigger))
 				{
 					SetupNewPuzzle();
 					_completedPuzzles++;
