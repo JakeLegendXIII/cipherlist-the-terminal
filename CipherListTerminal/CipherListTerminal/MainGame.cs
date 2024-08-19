@@ -105,6 +105,7 @@ namespace CipherListTerminal
 
 			if (SettingsData.settings.fullScreen)
 			{
+				_isFullscreen = SettingsData.settings.fullScreen;
 				// SetFullscreen();
 				_width = _nativeWidth;     // Window.ClientBounds.Width;
 				_height = _nativeHeight;  // Window.ClientBounds.Height;
