@@ -10,8 +10,19 @@ namespace CipherListTerminal.Entities
 {
 	internal class MainMenu : IGameEntity
 	{
-		private Texture2D _menuLogo;
-		private Texture2D _buttonUI;
+		private const int UI_WIDTH = 500;
+		private const int UI_HEIGHT = 250;
+		private const int MENULOGO_UI_X = 265;
+		private const int MENULOGO_UI_Y = 395;
+		private Rectangle _menuLogoUIRectangle = new Rectangle(MENULOGO_UI_X, MENULOGO_UI_Y, UI_WIDTH, UI_HEIGHT);
+
+		private const int BUTTON_UI_WIDTH = 250;
+		private const int BUTTON_UI_HEIGHT = 150;
+		private const int BUTTON_UI_X = 5;
+		private const int BUTTON_UI_Y = 395;
+		private Rectangle _buttonUIRectangle = new Rectangle(BUTTON_UI_X, BUTTON_UI_Y, BUTTON_UI_WIDTH, BUTTON_UI_HEIGHT);
+
+		private Texture2D _spriteSheet;
 		private SpriteFont _armadaFont;
 		private SpriteFont _farawayFont;
 
@@ -39,11 +50,10 @@ namespace CipherListTerminal.Entities
 		private int _currentlySelectedButton = 1;
 		private bool thumbstickMoved = false;
 
-		public MainMenu(Texture2D menuLogo, Texture2D buttonUI, SpriteFont armadaFont, SpriteFont farawayFont, 
+		public MainMenu(Texture2D spriteSheet, SpriteFont armadaFont, SpriteFont farawayFont, 
 			SoundEffect buttonPress, SoundEffect flickingASwitch)
 		{
-			_menuLogo = menuLogo;
-			_buttonUI = buttonUI;
+			_spriteSheet = spriteSheet;
 			_armadaFont = armadaFont;
 			_farawayFont = farawayFont;
 			_buttonPress = buttonPress;
@@ -52,17 +62,17 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
-			spriteBatch.Draw(_menuLogo, new Vector2(400, 125), null,
+			spriteBatch.Draw(_spriteSheet, new Vector2(400, 125), _menuLogoUIRectangle,
 					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);						
 
 			if (_currentlySelectedButton == 1)
 			{
-				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition1X, _buttonPosition1Y), null,
+				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition1X, _buttonPosition1Y), _buttonUIRectangle,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 			else
 			{
-				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition1X, _buttonPosition1Y), null,
+				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition1X, _buttonPosition1Y), _buttonUIRectangle,
 					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
@@ -72,12 +82,12 @@ namespace CipherListTerminal.Entities
 
 			if (_currentlySelectedButton == 2)
 			{
-				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition2X, _buttonPosition2Y), null,
+				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition2X, _buttonPosition2Y), _buttonUIRectangle,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 			else
 			{
-				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition2X, _buttonPosition2Y), null,
+				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition2X, _buttonPosition2Y), _buttonUIRectangle,
 										Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
@@ -87,12 +97,12 @@ namespace CipherListTerminal.Entities
 
 			if (_currentlySelectedButton == 3)
 			{
-				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition3X, _buttonPosition3Y), null,
+				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition3X, _buttonPosition3Y), _buttonUIRectangle,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 			else
 			{
-				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition3X, _buttonPosition3Y), null,
+				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition3X, _buttonPosition3Y), _buttonUIRectangle,
 										Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
@@ -102,12 +112,12 @@ namespace CipherListTerminal.Entities
 
 			if (_currentlySelectedButton == 4)
 			{
-				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition4X, _buttonPosition4Y), null,
+				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition4X, _buttonPosition4Y), _buttonUIRectangle,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 			else
 			{
-				spriteBatch.Draw(_buttonUI, new Vector2(_buttonPosition4X, _buttonPosition4Y), null,
+				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition4X, _buttonPosition4Y), _buttonUIRectangle,
 										Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
