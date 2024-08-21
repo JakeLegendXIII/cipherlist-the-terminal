@@ -51,7 +51,7 @@ namespace CipherListTerminal
 		//private Texture2D _matrixUI;
 		// private Texture2D _bufferUI;
 		private Texture2D _scoreUI;
-		private Texture2D _keysUI;
+		//private Texture2D _keysUI;
 		private Texture2D _buttonUI;
 		//private Texture2D _pfButtonUI;
 		//private Texture2D _gamepadIcon;
@@ -173,7 +173,7 @@ namespace CipherListTerminal
 			//_matrixUI = Content.Load<Texture2D>("Sprites/MatrixUI");
 			//_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
 			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI2");
-			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
+			//_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
 			_buttonUI = Content.Load<Texture2D>("Sprites/RoughButton2");
 			//_pfButtonUI = Content.Load<Texture2D>("Sprites/PFButton");
 			//_gamepadIcon = Content.Load<Texture2D>("Sprites/BiggerGamepad");
@@ -519,7 +519,7 @@ namespace CipherListTerminal
 				_matrix.Draw(_spriteBatch, gameTime, _scale);
 				_terminalBuffer.Draw(_spriteBatch, gameTime, _scale);
 
-				_spriteBatch.Draw(_keysUI, new Vector2(580, 215), null,
+				_spriteBatch.Draw(_spriteSheet, new Vector2(580, 215), new Rectangle(5, 115, 500, 250),
 									Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 				_spriteBatch.DrawString(_armadaFont, "Target Keys:", new Vector2(590, 225), Color.White);
 
