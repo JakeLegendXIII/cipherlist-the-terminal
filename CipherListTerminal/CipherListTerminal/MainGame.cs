@@ -53,7 +53,7 @@ namespace CipherListTerminal
 		private Texture2D _scoreUI;
 		private Texture2D _keysUI;
 		private Texture2D _buttonUI;
-		private Texture2D _pfButtonUI;
+		//private Texture2D _pfButtonUI;
 		//private Texture2D _gamepadIcon;
 		//private Texture2D _mouseKeyboardIcon;
 
@@ -155,7 +155,7 @@ namespace CipherListTerminal
 				CurrentInputState = InputStates.MouseKeyboard;
 
 			_inputStateIndicator = new InputStateIndicator(_armadaFont, CurrentInputState, _spriteSheet);
-			_buttonManager = new ButtonManager(_pfButtonUI, _armadaFont, CurrentInputState, GameState, _buttonPress);
+			_buttonManager = new ButtonManager(_spriteSheet, _armadaFont, CurrentInputState, GameState, _buttonPress);
 
 			DefaultSettingsData = CreateDefaultSettings();
 		}
@@ -175,7 +175,7 @@ namespace CipherListTerminal
 			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI2");
 			_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
 			_buttonUI = Content.Load<Texture2D>("Sprites/RoughButton2");
-			_pfButtonUI = Content.Load<Texture2D>("Sprites/PFButton");
+			//_pfButtonUI = Content.Load<Texture2D>("Sprites/PFButton");
 			//_gamepadIcon = Content.Load<Texture2D>("Sprites/BiggerGamepad");
 			//_mouseKeyboardIcon = Content.Load<Texture2D>("Sprites/MouseKeyboard");
 

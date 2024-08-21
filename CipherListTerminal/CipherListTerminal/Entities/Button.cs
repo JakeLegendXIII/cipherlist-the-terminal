@@ -2,13 +2,18 @@
 using CipherListTerminal.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Runtime.CompilerServices;
 
 namespace CipherListTerminal.Entities
 {
 	internal class Button : IGameEntity
 	{
-		private Texture2D _buttonUI;
+		private const int UI_WIDTH = 130;
+		private const int UI_HEIGHT = 75;
+		private const int BUTTON_UI_X = 855;
+		private const int BUTTON_UI_Y = 5;
+		private Rectangle _buttonUIRectangle = new Rectangle(BUTTON_UI_X, BUTTON_UI_Y, UI_WIDTH, UI_HEIGHT);
+
+		private Texture2D _spriteSheet;
 		private SpriteFont _headerFont;
 		private string _buttonHeader;
 		private string _keyboardMouse;
@@ -32,10 +37,10 @@ namespace CipherListTerminal.Entities
 		private Vector2 _inputTextPositionOffset;
 		//private Vector2 _inputTextWithGamePadPositionOffset;
 
-		public Button(Texture2D buttonUI, SpriteFont headerFont,
+		public Button(Texture2D spriteSheet, SpriteFont headerFont,
 			string buttonHeader, string keyboardMouse, string gamePad, bool stateChange)
 		{
-			_buttonUI = buttonUI;
+			_spriteSheet = spriteSheet;
 			_headerFont = headerFont;
 			_buttonHeader = buttonHeader;
 			_keyboardMouse = keyboardMouse;
@@ -58,7 +63,7 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale, Vector2 position)
 		{
-			spriteBatch.Draw(_buttonUI, position, null,
+			spriteBatch.Draw(_spriteSheet, position, _buttonUIRectangle,
 				_color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			//// Measure the size of the text

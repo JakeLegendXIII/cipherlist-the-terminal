@@ -9,12 +9,12 @@ using System.Collections.Generic;
 namespace CipherListTerminal.Entities
 {
 	internal class ButtonManager : IGameEntity
-	{
+	{		
 		private InputStates _inputState;
 		private GameStates _gameState;
 		private List<Button> _buttons;
 
-		private Texture2D _buttonUI;
+		private Texture2D _spriteSheet;
 		private SpriteFont _font;
 		private SoundEffect _buttonPress;
 
@@ -28,9 +28,9 @@ namespace CipherListTerminal.Entities
 		private Vector2 _sixButtonOffset = new Vector2(10, 0);
 		private Vector2 _outsideOffset = new Vector2(-80, 0);
 
-		public ButtonManager(Texture2D buttonUI, SpriteFont font, InputStates inputState, GameStates gameState, SoundEffect flickingASwitch)
+		public ButtonManager(Texture2D spriteSheet, SpriteFont font, InputStates inputState, GameStates gameState, SoundEffect flickingASwitch)
 		{
-			_buttonUI = buttonUI;
+			_spriteSheet = spriteSheet;
 			_inputState = inputState;
 			_gameState = gameState;
 			_font = font;
@@ -38,14 +38,14 @@ namespace CipherListTerminal.Entities
 
 			// Pre-load the various buttons for each game mode
 			_buttons = [
-				new Button(_buttonUI, _font, "Back", "ESC", "Back", true),
-				new Button(_buttonUI, _font, "Next Puzzle", "F5", "RT", false),
-				new Button(_buttonUI, _font, "Reset", "F7", "RB", false),
-				new Button(_buttonUI, _font, "Switch Input", "F10", "LT", false),
-				new Button(_buttonUI, _font, "Continue", "Enter", "A", true),
-				new Button(_buttonUI, _font, "Full Screen", "F11", "LB", false),
-				new Button(_buttonUI, _font, "Clear FX", "F12", "X", false),
-				new Button(_buttonUI, _font, "Music", "F8", "Y", false)
+				new Button(_spriteSheet, _font, "Back", "ESC", "Back", true),
+				new Button(_spriteSheet, _font, "Next Puzzle", "F5", "RT", false),
+				new Button(_spriteSheet, _font, "Reset", "F7", "RB", false),
+				new Button(_spriteSheet, _font, "Switch Input", "F10", "LT", false),
+				new Button(_spriteSheet, _font, "Continue", "Enter", "A", true),
+				new Button(_spriteSheet, _font, "Full Screen", "F11", "LB", false),
+				new Button(_spriteSheet, _font, "Clear FX", "F12", "X", false),
+				new Button(_spriteSheet, _font, "Music", "F8", "Y", false)
 			];
 		}
 
