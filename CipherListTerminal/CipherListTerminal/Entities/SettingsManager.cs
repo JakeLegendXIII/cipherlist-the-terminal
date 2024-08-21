@@ -9,7 +9,13 @@ namespace CipherListTerminal.Entities
 {
 	internal class SettingsManager : IGameEntity
 	{
-		private Texture2D _settingsUI;
+		private const int UI_WIDTH = 330;
+		private const int UI_HEIGHT = 380;
+		private const int SETTINGS_UI_X = 515;
+		private const int SETTINGS_UI_Y = 5;
+		private Rectangle _settingsUIRectangle = new Rectangle(SETTINGS_UI_X, SETTINGS_UI_Y, UI_WIDTH, UI_HEIGHT);
+
+		private Texture2D _spriteSheet;
 		private SpriteFont _armadaFont;
 
 		private int _settingsUIPositionX = 260;
@@ -20,16 +26,16 @@ namespace CipherListTerminal.Entities
 
 		private SettingsData _settingsData;
 
-		public SettingsManager(Texture2D summaryUI, SpriteFont armadaFont)
+		public SettingsManager(Texture2D spriteSheet, SpriteFont armadaFont)
 		{
-			_settingsUI = summaryUI;
+			_spriteSheet = spriteSheet;
 			_armadaFont = armadaFont;
 		}
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
 			// Settings			
-			spriteBatch.Draw(_settingsUI, new Vector2(_settingsUIPositionX, _settingsUIPositionY), null, Color.White,
+			spriteBatch.Draw(_spriteSheet, new Vector2(_settingsUIPositionX, _settingsUIPositionY), _settingsUIRectangle, Color.White,
 			0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			spriteBatch.DrawString(_armadaFont, "Settings", new Vector2(270, 95), Color.White,
@@ -66,9 +72,9 @@ namespace CipherListTerminal.Entities
 			spriteBatch.DrawString(_armadaFont, "FullScreen", new Vector2(270, 215), Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-
-			spriteBatch.DrawString(_armadaFont, "(windowed mode recommended)", new Vector2(270, 235), Color.White,
-				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+			// Fullscreen is working better so maybe don't need this anymore?
+			//spriteBatch.DrawString(_armadaFont, "(windowed mode recommended)", new Vector2(270, 235), Color.White,
+			//	0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			if (_settingsData.settings.fullScreen)
 				{
@@ -82,7 +88,7 @@ namespace CipherListTerminal.Entities
 			}
 
 			// High Score
-			spriteBatch.Draw(_settingsUI, new Vector2(_highScoreUIPositionX, _highScoreUIPositionY), null, Color.White,
+			spriteBatch.Draw(_spriteSheet, new Vector2(_highScoreUIPositionX, _highScoreUIPositionY), _settingsUIRectangle, Color.White,
 				0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			spriteBatch.DrawString(_armadaFont, "High Scores", new Vector2(660, 95), Color.White,
