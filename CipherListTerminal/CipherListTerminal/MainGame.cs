@@ -589,7 +589,7 @@ namespace CipherListTerminal
 			}
 
 			// Create the starting Matrix
-			_matrix = new PuzzleMatrix(_armadaFont, _matrixUI, possibleValue, CurrentInputState, _flickingASwitch, _buttonPress, _uiWrong);
+			_matrix = new PuzzleMatrix(_armadaFont, _spriteSheet, possibleValue, CurrentInputState, _flickingASwitch, _buttonPress, _uiWrong);
 
 			_matrix.MatrixSelectionEvent += HandleSelectedMatrixEvent;
 

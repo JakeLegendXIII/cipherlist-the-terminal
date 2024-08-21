@@ -11,10 +11,16 @@ namespace CipherListTerminal.Entities
 {
 	internal class PuzzleMatrix : IGameEntity
 	{
+		private const int UI_WIDTH = 330;
+		private const int UI_HEIGHT = 380;
+		private const int MATRIX_UI_X = 515;
+		private const int MATRIX_UI_Y = 5;
+		private Rectangle _matrixUIRectangle = new Rectangle(MATRIX_UI_X, MATRIX_UI_Y, UI_WIDTH, UI_HEIGHT);
+
 		private string[,] _matrix = new string[6, 6];
 		private string[] _possibleValues;
 		private SpriteFont _font;
-		private Texture2D _matrixUI;
+		private Texture2D _spriteSheet;		
 
 		private SoundEffect _buttonPress;
 		private SoundEffect _flickingASwitch;
@@ -47,11 +53,11 @@ namespace CipherListTerminal.Entities
 		// Highlight color
 		Color highlightColor = new Color(255, 255, 0, 128); // Semi-transparent yellow
 
-		public PuzzleMatrix(SpriteFont font, Texture2D matrixUI, string[] possibleValues, InputStates inputState, 
+		public PuzzleMatrix(SpriteFont font, Texture2D spriteSheet, string[] possibleValues, InputStates inputState, 
 			SoundEffect flickingASwitch, SoundEffect buttonPress, SoundEffect uiWrong)
 		{
 			_font = font;
-			_matrixUI = matrixUI;
+			_spriteSheet = spriteSheet;
 			_possibleValues = possibleValues;
 			_matrixWidth = _cellWidth * 6;
 			_matrixHeight = _cellHeight * 6;
@@ -75,7 +81,7 @@ namespace CipherListTerminal.Entities
 		public void Draw(SpriteBatch _spriteBatch, GameTime gameTime, float scale)
 		{
 			// Draw the Background UI			
-			_spriteBatch.Draw(_matrixUI, new Vector2(_startX - 30, _startY - 75), null,
+			_spriteBatch.Draw(_spriteSheet, new Vector2(_startX - 30, _startY - 75), _matrixUIRectangle,
 				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			_spriteBatch.DrawString(_font, "Matrix", new Vector2(_startX + 100, _startY - 65), Color.White);
