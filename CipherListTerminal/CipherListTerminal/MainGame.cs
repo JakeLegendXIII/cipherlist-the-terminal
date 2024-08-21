@@ -504,7 +504,7 @@ namespace CipherListTerminal
 				_spriteBatch.End();
 			}
 
-			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+			_spriteBatch.Begin(samplerState: SamplerState.PointClamp);				
 
 			if (GameState == GameStates.Menu)
 			{
@@ -555,6 +555,9 @@ namespace CipherListTerminal
 			{
 				_inputStateIndicator.Draw(_spriteBatch, gameTime, _scale);
 			}
+
+			_spriteBatch.DrawString(_armadaFont, $" RenderDest.Width: {_renderDestination.Width} RenderDest.Height: {_renderDestination.Height}", new Vector2(10, 10), Color.White);
+			_spriteBatch.DrawString(_armadaFont, $" PreferredB.Width: {_graphics.PreferredBackBufferWidth} PreferredB.Height: {_graphics.PreferredBackBufferHeight}", new Vector2(10, 30), Color.White);
 
 			_spriteBatch.End();
 
@@ -894,7 +897,7 @@ namespace CipherListTerminal
 			var texSize = new Vector2(_renderDestination.Width, _renderDestination.Height);
 			_effect.Parameters["textureSize"]?.SetValue(texSize);
 			_effect.Parameters["videoSize"]?.SetValue(texSize);
-			var outSize = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+			var outSize = new Vector2(_nativeWidth, _nativeHeight);
 			_effect.Parameters["outputSize"]?.SetValue(outSize);
 		}
 
