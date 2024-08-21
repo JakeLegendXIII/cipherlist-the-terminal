@@ -47,6 +47,7 @@ namespace CipherListTerminal
 
 		private Texture2D _menuLogo;
 		private Texture2D _backgroundTexture;
+		private Texture2D _spriteSheet;
 		private Texture2D _matrixUI;
 		private Texture2D _bufferUI;
 		private Texture2D _scoreUI;
@@ -153,7 +154,7 @@ namespace CipherListTerminal
 			else
 				CurrentInputState = InputStates.MouseKeyboard;
 
-			_inputStateIndicator = new InputStateIndicator(_armadaFont, CurrentInputState, _gamepadIcon, _mouseKeyboardIcon);
+			_inputStateIndicator = new InputStateIndicator(_armadaFont, CurrentInputState, _spriteSheet);
 			_buttonManager = new ButtonManager(_pfButtonUI, _armadaFont, CurrentInputState, GameState, _buttonPress);
 
 			DefaultSettingsData = CreateDefaultSettings();
@@ -168,6 +169,7 @@ namespace CipherListTerminal
 
 			_menuLogo = Content.Load<Texture2D>("Sprites/RoughMenu");
 			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG3");
+			_spriteSheet = Content.Load<Texture2D>("Sprites/spritesheet");
 			_matrixUI = Content.Load<Texture2D>("Sprites/MatrixUI");
 			_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
 			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI2");

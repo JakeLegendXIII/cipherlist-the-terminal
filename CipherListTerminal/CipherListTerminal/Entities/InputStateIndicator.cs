@@ -7,31 +7,38 @@ namespace CipherListTerminal.Entities
 {
 	internal class InputStateIndicator : IGameEntity
 	{
+		private const int ICON_WIDTH = 64;
+		private const int ICON_HEIGHT = 64;
+		private const int GAMEPAD_ICON_X = 5;
+		private const int GAMEPAD_ICON_Y = 5;
+		private const int MOUSE_KEYBOARD_ICON_X = 419;
+		private const int MOUSE_KEYBOARD_ICON_Y = 5;
+		private Rectangle _gamePadRectangle = new Rectangle(GAMEPAD_ICON_X, GAMEPAD_ICON_Y, ICON_WIDTH, ICON_HEIGHT);
+		private Rectangle _mouseKeyboardRectangle = new Rectangle(MOUSE_KEYBOARD_ICON_X, MOUSE_KEYBOARD_ICON_Y, ICON_WIDTH, ICON_HEIGHT);
+
 		private SpriteFont _armadaFont;
 		InputStates CurrentInputState;
-		private Texture2D _gamePadIcon;
-		private Texture2D _mouseKeyboardIcon;
+		private Texture2D _spriteSheet;
 
 		private Vector2 _iconLocation = new Vector2(1135, 65);
 
-		public InputStateIndicator(SpriteFont armadaFont, InputStates inputState, Texture2D gamepadIcon, Texture2D mouseKeyboardIcon)
+		public InputStateIndicator(SpriteFont armadaFont, InputStates inputState, Texture2D spriteSheet)
 		{
 			_armadaFont = armadaFont;
 			CurrentInputState = inputState;
-			_gamePadIcon = gamepadIcon;
-			_mouseKeyboardIcon = mouseKeyboardIcon;
+			_spriteSheet = spriteSheet;
 		}
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
 			if (CurrentInputState == InputStates.GamePad)
 			{
-				spriteBatch.Draw(_gamePadIcon, _iconLocation, null,
+				spriteBatch.Draw(_spriteSheet, _iconLocation, _gamePadRectangle,
 				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 			else
 			{
-				spriteBatch.Draw(_mouseKeyboardIcon, _iconLocation, null,
+				spriteBatch.Draw(_spriteSheet, _iconLocation, _mouseKeyboardRectangle,
 				Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 
