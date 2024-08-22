@@ -50,7 +50,7 @@ namespace CipherListTerminal
 		private Texture2D _spriteSheet;
 		//private Texture2D _matrixUI;
 		// private Texture2D _bufferUI;
-		private Texture2D _scoreUI;
+		//private Texture2D _scoreUI;
 		//private Texture2D _keysUI;
 		//private Texture2D _buttonUI;
 		//private Texture2D _pfButtonUI;
@@ -172,7 +172,7 @@ namespace CipherListTerminal
 			_spriteSheet = Content.Load<Texture2D>("Sprites/spritesheet");
 			//_matrixUI = Content.Load<Texture2D>("Sprites/MatrixUI");
 			//_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
-			_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI2");
+			//_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI2");
 			//_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
 			//_buttonUI = Content.Load<Texture2D>("Sprites/RoughButton2");
 			//_pfButtonUI = Content.Load<Texture2D>("Sprites/PFButton");
@@ -601,7 +601,7 @@ namespace CipherListTerminal
 
 		private void SetupScoreBoard()
 		{
-			_scoreBoard = new ScoreBoard(_armadaFont, _scoreUI);
+			_scoreBoard = new ScoreBoard(_armadaFont, _spriteSheet);
 
 			if (GameState == GameStates.FreePlay)
 			{
@@ -619,7 +619,7 @@ namespace CipherListTerminal
 
 		private void SetupScoreBoardPrevious()
 		{
-			_scoreBoard = new ScoreBoard(_armadaFont, _scoreUI);
+			_scoreBoard = new ScoreBoard(_armadaFont, _spriteSheet);
 
 			if (PreviousGameState == GameStates.FreePlay)
 			{
