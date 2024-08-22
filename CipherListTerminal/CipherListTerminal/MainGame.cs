@@ -45,17 +45,8 @@ namespace CipherListTerminal
 		private SpriteFont _armadaFont;
 		private SpriteFont _farawayFont;
 
-		//private Texture2D _menuLogo;
 		private Texture2D _backgroundTexture;
 		private Texture2D _spriteSheet;
-		//private Texture2D _matrixUI;
-		// private Texture2D _bufferUI;
-		//private Texture2D _scoreUI;
-		//private Texture2D _keysUI;
-		//private Texture2D _buttonUI;
-		//private Texture2D _pfButtonUI;
-		//private Texture2D _gamepadIcon;
-		//private Texture2D _mouseKeyboardIcon;
 
 		// Music
 		private SoundEffect _demoTrack;
@@ -167,17 +158,8 @@ namespace CipherListTerminal
 			_armadaFont = Content.Load<SpriteFont>("Fonts/ArmadaBold16");
 			_farawayFont = Content.Load<SpriteFont>("Fonts/Faraway16");
 
-			//_menuLogo = Content.Load<Texture2D>("Sprites/RoughMenu");
 			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG3");
 			_spriteSheet = Content.Load<Texture2D>("Sprites/spritesheet");
-			//_matrixUI = Content.Load<Texture2D>("Sprites/MatrixUI");
-			//_bufferUI = Content.Load<Texture2D>("Sprites/BufferUI");
-			//_scoreUI = Content.Load<Texture2D>("Sprites/ScoreUI2");
-			//_keysUI = Content.Load<Texture2D>("Sprites/KeysUI");
-			//_buttonUI = Content.Load<Texture2D>("Sprites/RoughButton2");
-			//_pfButtonUI = Content.Load<Texture2D>("Sprites/PFButton");
-			//_gamepadIcon = Content.Load<Texture2D>("Sprites/BiggerGamepad");
-			//_mouseKeyboardIcon = Content.Load<Texture2D>("Sprites/MouseKeyboard");
 
 			_flickingASwitch = Content.Load<SoundEffect>("SFX/flickingaswitch");
 			_buttonPress = Content.Load<SoundEffect>("SFX/buttonpress");
