@@ -80,6 +80,8 @@ namespace CipherListTerminal.Entities
 			spriteBatch.DrawString(_farawayFont, "No time or puzzle limits.", new Vector2(170, 520), Color.White);
 			spriteBatch.DrawString(_farawayFont, "Just have fun with it!", new Vector2(170, 535), Color.White);
 
+			spriteBatch.DrawString(_armadaFont, "F1", new Vector2(110, 550), Color.White);
+
 			if (_currentlySelectedButton == 2)
 			{
 				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition2X, _buttonPosition2Y), _buttonUIRectangle,
