@@ -50,6 +50,8 @@ namespace CipherListTerminal.Entities
 		private int _currentlySelectedButton = 1;
 		private bool thumbstickMoved = false;
 
+		private InputStates CurrentInputState;
+
 		public MainMenu(Texture2D spriteSheet, SpriteFont armadaFont, SpriteFont farawayFont, 
 			SoundEffect buttonPress, SoundEffect flickingASwitch)
 		{
@@ -69,6 +71,11 @@ namespace CipherListTerminal.Entities
 			{
 				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition1X, _buttonPosition1Y), _buttonUIRectangle,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+				if (CurrentInputState == InputStates.GamePad)
+				{
+					spriteBatch.DrawString(_armadaFont, "A", new Vector2(330, 550), Color.White);
+				}				
 			}
 			else
 			{
@@ -132,6 +139,7 @@ namespace CipherListTerminal.Entities
 
 		public void Update(GameTime gameTime, InputStates inputState)
 		{
+			CurrentInputState = inputState;
 
 			if (inputState == InputStates.MouseKeyboard)
 			{
