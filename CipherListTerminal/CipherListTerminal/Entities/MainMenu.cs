@@ -72,10 +72,10 @@ namespace CipherListTerminal.Entities
 				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition1X, _buttonPosition1Y), _buttonUIRectangle,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-				if (CurrentInputState == InputStates.GamePad)
-				{
+				//if (CurrentInputState == InputStates.GamePad)
+				//{
 					spriteBatch.DrawString(_armadaFont, "A", new Vector2(330, 550), Color.White);
-				}				
+				//}				
 			}
 			else
 			{
@@ -93,6 +93,11 @@ namespace CipherListTerminal.Entities
 			{
 				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition2X, _buttonPosition2Y), _buttonUIRectangle,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+				//if (CurrentInputState == InputStates.GamePad)
+				//{
+					spriteBatch.DrawString(_armadaFont, "A", new Vector2(605, 550), Color.White);
+				//}
 			}
 			else
 			{
@@ -103,6 +108,8 @@ namespace CipherListTerminal.Entities
 			spriteBatch.DrawString(_armadaFont, "Best of 10 Timed", new Vector2(425, 445), Color.White);
 			spriteBatch.DrawString(_farawayFont, "60 seconds per puzzle.", new Vector2(445, 520), Color.White);
 			spriteBatch.DrawString(_farawayFont, "10 puzzles. Do your best!", new Vector2(445, 535), Color.White);
+
+			spriteBatch.DrawString(_armadaFont, "F2", new Vector2(385, 550), Color.White);
 
 			if (_currentlySelectedButton == 3)
 			{
