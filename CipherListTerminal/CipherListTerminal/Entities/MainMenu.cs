@@ -29,17 +29,17 @@ namespace CipherListTerminal.Entities
 		private SoundEffect _buttonPress;
 		private SoundEffect _flickingASwitch;
 
-		private int _buttonPosition1X = 100;
-		private int _buttonPosition1Y = 425;
+		private int _buttonPosition1X = 100; // 110 330
+		private int _buttonPosition1Y = 425; // 550
 
-		private int _buttonPosition2X = 375;
-		private int _buttonPosition2Y = 425;
+		private int _buttonPosition2X = 375; // 385 605
+		private int _buttonPosition2Y = 425; // 550
 
-		private int _buttonPosition3X = 650;
-		private int _buttonPosition3Y = 425;
+		private int _buttonPosition3X = 650; // 660 880
+		private int _buttonPosition3Y = 425; // 550
 
-		private int _buttonPosition4X = 925;
-		private int _buttonPosition4Y = 425;
+		private int _buttonPosition4X = 925; // 935 1155
+		private int _buttonPosition4Y = 425; // 550
 
 		private int _buttonWidth = 250;
 		private int _buttonHeight = 150;
@@ -115,6 +115,11 @@ namespace CipherListTerminal.Entities
 			{
 				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition3X, _buttonPosition3Y), _buttonUIRectangle,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+				//if (CurrentInputState == InputStates.GamePad)
+				//{
+				spriteBatch.DrawString(_armadaFont, "A", new Vector2(880, 550), Color.White);
+				//}
 			}
 			else
 			{
@@ -126,10 +131,17 @@ namespace CipherListTerminal.Entities
 			spriteBatch.DrawString(_farawayFont, "5 minutes total.", new Vector2(700, 520), Color.White);
 			spriteBatch.DrawString(_farawayFont, "As many puzzles as you can solve!", new Vector2(700, 535), Color.White);
 
+			spriteBatch.DrawString(_armadaFont, "F3", new Vector2(660, 550), Color.White);
+
 			if (_currentlySelectedButton == 4)
 			{
 				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition4X, _buttonPosition4Y), _buttonUIRectangle,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+				//if (CurrentInputState == InputStates.GamePad)
+				//{
+				spriteBatch.DrawString(_armadaFont, "A", new Vector2(1155, 550), Color.White);
+				//}
 			}
 			else
 			{
@@ -141,6 +153,7 @@ namespace CipherListTerminal.Entities
 			spriteBatch.DrawString(_farawayFont, "Update game settings.", new Vector2(1000, 520), Color.White);
 			spriteBatch.DrawString(_farawayFont, "Review High Scores.", new Vector2(1000, 535), Color.White);
 
+			spriteBatch.DrawString(_armadaFont, "F4", new Vector2(935, 550), Color.White);
 			// spriteBatch.DrawString(_armadaFont, $"Selected button: {_currentlySelectedButton}", new Vector2(450, 100), Color.White);
 		}
 
