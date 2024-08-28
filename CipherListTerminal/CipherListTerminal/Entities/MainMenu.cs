@@ -29,17 +29,17 @@ namespace CipherListTerminal.Entities
 		private SoundEffect _buttonPress;
 		private SoundEffect _flickingASwitch;
 
-		private int _buttonPosition1X = 100; // 110 330
-		private int _buttonPosition1Y = 425; // 550
+		private int _buttonPosition1X = 100;
+		private int _buttonPosition1Y = 425;
 
-		private int _buttonPosition2X = 375; // 385 605
-		private int _buttonPosition2Y = 425; // 550
+		private int _buttonPosition2X = 375;
+		private int _buttonPosition2Y = 425;
 
-		private int _buttonPosition3X = 650; // 660 880
-		private int _buttonPosition3Y = 425; // 550
+		private int _buttonPosition3X = 650;
+		private int _buttonPosition3Y = 425;
 
-		private int _buttonPosition4X = 925; // 935 1155
-		private int _buttonPosition4Y = 425; // 550
+		private int _buttonPosition4X = 925;
+		private int _buttonPosition4Y = 425;
 
 		private int _buttonWidth = 250;
 		private int _buttonHeight = 150;
@@ -52,7 +52,7 @@ namespace CipherListTerminal.Entities
 
 		private InputStates CurrentInputState;
 
-		public MainMenu(Texture2D spriteSheet, SpriteFont armadaFont, SpriteFont farawayFont, 
+		public MainMenu(Texture2D spriteSheet, SpriteFont armadaFont, SpriteFont farawayFont,
 			SoundEffect buttonPress, SoundEffect flickingASwitch)
 		{
 			_spriteSheet = spriteSheet;
@@ -65,17 +65,17 @@ namespace CipherListTerminal.Entities
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
 			spriteBatch.Draw(_spriteSheet, new Vector2(400, 125), _menuLogoUIRectangle,
-					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);						
+					Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
 			if (_currentlySelectedButton == 1)
 			{
 				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition1X, _buttonPosition1Y), _buttonUIRectangle,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-				//if (CurrentInputState == InputStates.GamePad)
-				//{
+				if (CurrentInputState == InputStates.GamePad)
+				{
 					spriteBatch.DrawString(_armadaFont, "A", new Vector2(330, 550), Color.White);
-				//}				
+				}
 			}
 			else
 			{
@@ -94,10 +94,10 @@ namespace CipherListTerminal.Entities
 				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition2X, _buttonPosition2Y), _buttonUIRectangle,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-				//if (CurrentInputState == InputStates.GamePad)
-				//{
+				if (CurrentInputState == InputStates.GamePad)
+				{
 					spriteBatch.DrawString(_armadaFont, "A", new Vector2(605, 550), Color.White);
-				//}
+				}
 			}
 			else
 			{
@@ -116,10 +116,10 @@ namespace CipherListTerminal.Entities
 				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition3X, _buttonPosition3Y), _buttonUIRectangle,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-				//if (CurrentInputState == InputStates.GamePad)
-				//{
-				spriteBatch.DrawString(_armadaFont, "A", new Vector2(880, 550), Color.White);
-				//}
+				if (CurrentInputState == InputStates.GamePad)
+				{
+					spriteBatch.DrawString(_armadaFont, "A", new Vector2(880, 550), Color.White);
+				}
 			}
 			else
 			{
@@ -138,10 +138,10 @@ namespace CipherListTerminal.Entities
 				spriteBatch.Draw(_spriteSheet, new Vector2(_buttonPosition4X, _buttonPosition4Y), _buttonUIRectangle,
 										Color.Gray, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-				//if (CurrentInputState == InputStates.GamePad)
-				//{
-				spriteBatch.DrawString(_armadaFont, "A", new Vector2(1155, 550), Color.White);
-				//}
+				if (CurrentInputState == InputStates.GamePad)
+				{
+					spriteBatch.DrawString(_armadaFont, "A", new Vector2(1155, 550), Color.White);
+				}
 			}
 			else
 			{
@@ -231,13 +231,13 @@ namespace CipherListTerminal.Entities
 					if (InputManager.IsGamePadButtonPressed(Buttons.DPadLeft))
 					{
 						_flickingASwitch.Play();
-						MoveLeft();				
+						MoveLeft();
 					}
 
 					if (InputManager.IsGamePadButtonPressed(Buttons.DPadRight))
 					{
 						_flickingASwitch.Play();
-						MoveRight();					
+						MoveRight();
 					}
 
 					// Check if the thumbstick is moved to the right or left
@@ -283,8 +283,8 @@ namespace CipherListTerminal.Entities
 						}
 					}
 				}
-			}          
-        }
+			}
+		}
 
 		private void MoveRight()
 		{
