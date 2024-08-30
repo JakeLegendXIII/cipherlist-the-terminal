@@ -389,8 +389,7 @@ namespace CipherListTerminal
 				}
 
 				if (InputManager.IsKeyPressed(Keys.Enter) || InputManager.IsGamePadButtonPressed(Buttons.A))
-				{
-					// TODO : need to fix the issue with not showing High Score during restart if it was first score save?
+				{					
 					if (PreviousGameState == GameStates.TimeTrial && _remainingTime <= 0)
 					{
 						_remainingTime = _timeTrialTimer;
