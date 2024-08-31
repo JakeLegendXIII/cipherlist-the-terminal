@@ -841,9 +841,6 @@ namespace CipherListTerminal
 				else
 					CurrentInputState = InputStates.MouseKeyboard;
 			}
-
-			// TODO : broadcast message instead of passing CurrentInputState in Update
-
 		}
 
 		private void OnClientSizeChanged(object sender, EventArgs e)
