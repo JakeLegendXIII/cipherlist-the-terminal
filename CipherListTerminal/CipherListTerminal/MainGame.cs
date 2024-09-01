@@ -170,8 +170,9 @@ namespace CipherListTerminal
 			_neonThump = Content.Load<SoundEffect>("Music/NeonThump3");
 
 			_soundManager = new SoundManager();
-			var track1 = _demoTrack.CreateInstance();
-			var track2 = _neonThump.CreateInstance();
+			SoundEffect.MasterVolume = 0.3f;
+			var track1 = _demoTrack.CreateInstance();			
+			var track2 = _neonThump.CreateInstance();			
 			// var track3 = _midnight.CreateInstance();
 			_soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
 
@@ -945,7 +946,9 @@ namespace CipherListTerminal
 		{
 			// Reset to default resolution, but we do have the previous Width and Height just tweaky if somebody resized
 			_graphics.PreferredBackBufferWidth = _nativeWidth;
-			_graphics.PreferredBackBufferHeight = _nativeHeight;
+			_graphics.PreferredBackBufferHeight = _nativeHeight;			
+
+			_graphics.HardwareModeSwitch = false;
 			_graphics.IsFullScreen = false;
 			_graphics.ApplyChanges();
 		}
