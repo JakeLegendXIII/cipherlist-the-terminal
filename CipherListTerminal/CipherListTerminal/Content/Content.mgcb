@@ -35,12 +35,6 @@
 /processorParam:Quality=Best
 /build:Music/DemoTrack3.wav
 
-#begin Music/Midnight.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Music/Midnight.wav
-
 #begin Music/NeonThump3.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
