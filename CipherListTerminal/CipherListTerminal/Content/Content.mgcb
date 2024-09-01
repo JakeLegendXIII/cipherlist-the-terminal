@@ -13,20 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Fonts/Arial.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Fonts/Arial.spritefont
-
-#begin Fonts/ArmadaBold.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Fonts/ArmadaBold.spritefont
-
 #begin Fonts/ArmadaBold16.png
 /importer:TextureImporter
 /processor:FontTextureProcessor
@@ -34,13 +20,6 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
 /build:Fonts/ArmadaBold16.png
-
-#begin Fonts/Faraway.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Fonts/Faraway.spritefont
 
 #begin Fonts/Faraway16.png
 /importer:TextureImporter
