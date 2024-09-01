@@ -64,6 +64,7 @@
     <PackageReference Include="nulastudio.NetBeauty" Version="2.1.4.5" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Music\" />
     <Folder Include="Content\Sprites\" />
   </ItemGroup>
   <ItemGroup>

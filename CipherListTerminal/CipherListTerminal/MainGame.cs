@@ -49,8 +49,9 @@ namespace CipherListTerminal
 		private Texture2D _spriteSheet;
 
 		// Music
-		private SoundEffect _demoTrack;
-		private SoundEffect _neonThump;
+		//private SoundEffect _losingLight;
+		//private SoundEffect _demoTrack;
+		//private SoundEffect _neonThump;
 
 		//SFX
 		private SoundEffect _flickingASwitch;
@@ -166,15 +167,19 @@ namespace CipherListTerminal
 			_uiWrong = Content.Load<SoundEffect>("SFX/uiwrong");
 			_drop = Content.Load<SoundEffect>("SFX/rolanddrop");
 
-			_demoTrack = Content.Load<SoundEffect>("Music/DemoTrack3");
-			_neonThump = Content.Load<SoundEffect>("Music/NeonThump3");
+			//_losingLight = Content.Load<SoundEffect>("Music/LosingLight");
+			//_demoTrack = Content.Load<SoundEffect>("Music/DemoTrack3");
+			//_neonThump = Content.Load<SoundEffect>("Music/NeonThump3");
 
-			_soundManager = new SoundManager();
-			SoundEffect.MasterVolume = 0.3f;
-			var track1 = _demoTrack.CreateInstance();			
-			var track2 = _neonThump.CreateInstance();			
-			// var track3 = _midnight.CreateInstance();
-			_soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
+			//_soundManager = new SoundManager();
+			//var losingLight = _losingLight.CreateInstance();
+			//losingLight.Volume = 0.4f;
+			//var track1 = _demoTrack.CreateInstance();			
+			//track1.Volume = 0.4f;
+			//var track2 = _neonThump.CreateInstance();
+			//track2.Volume = 0.4f;
+			//// var track3 = _midnight.CreateInstance();
+			//_soundManager.SetSoundtrack(new List<SoundEffectInstance>() { losingLight, track1, track2 });
 
 			_settingsManager = new SettingsManager(_spriteSheet, _armadaFont);
 		}

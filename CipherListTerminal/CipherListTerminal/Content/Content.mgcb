@@ -29,17 +29,23 @@
 /processorParam:TextureFormat=Color
 /build:Fonts/Faraway16.png
 
-#begin Music/DemoTrack3.wav
+#begin Music/Around.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Music/DemoTrack3.wav
+/build:Music/Around.wav
 
-#begin Music/NeonThump3.wav
+#begin Music/LosingLight.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Music/NeonThump3.wav
+/build:Music/LosingLight.wav
+
+#begin Music/NeonThump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/NeonThump.wav
 
 #begin SFX/buttonpress.wav
 /importer:WavImporter
