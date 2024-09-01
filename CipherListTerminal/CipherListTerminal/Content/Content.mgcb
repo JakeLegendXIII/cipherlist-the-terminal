@@ -29,18 +29,6 @@
 /processorParam:TextureFormat=Color
 /build:Fonts/Faraway16.png
 
-#begin Music/DemoTrack.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Music/DemoTrack.wav
-
-#begin Music/DemoTrack2.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Music/DemoTrack2.wav
-
 #begin Music/DemoTrack3.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -52,18 +40,6 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Music/Midnight.wav
-
-#begin Music/NeonThump1.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Music/NeonThump1.wav
-
-#begin Music/NeonThump2.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Music/NeonThump2.wav
 
 #begin Music/NeonThump3.wav
 /importer:WavImporter
