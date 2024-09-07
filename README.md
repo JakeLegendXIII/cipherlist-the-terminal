@@ -8,4 +8,7 @@ Planned game modes:
 * Timed mode where you are given only 60 seconds per puzzle and there are a total of 10 puzzles.
 * Timed mode where you get as many points as possible in 5 minutes.
 
-Synthwave soundtrack.
+Synthwave soundtrack (songs by me):
+* Losing Light
+* Around
+* Neon Thump
