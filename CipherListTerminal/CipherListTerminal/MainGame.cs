@@ -169,7 +169,7 @@ namespace CipherListTerminal
 
 			_losingLight = Content.Load<SoundEffect>("Music/LosingLight");
 			_around = Content.Load<SoundEffect>("Music/Around");
-			_neonThump = Content.Load<SoundEffect>("Music/NeonThump");
+			_neonThump = Content.Load<SoundEffect>("Music/Neon_Thump");
 
 			_soundManager = new SoundManager();
 			var losingLight = _losingLight.CreateInstance();

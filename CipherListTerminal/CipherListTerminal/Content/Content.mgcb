@@ -41,11 +41,11 @@
 /processorParam:Quality=Best
 /build:Music/LosingLight.wav
 
-#begin Music/NeonThump.wav
+#begin Music/Neon_Thump.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Music/NeonThump.wav
+/build:Music/Neon_Thump.wav
 
 #begin SFX/buttonpress.wav
 /importer:WavImporter
