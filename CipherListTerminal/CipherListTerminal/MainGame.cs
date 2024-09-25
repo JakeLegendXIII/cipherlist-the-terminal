@@ -111,10 +111,7 @@ namespace CipherListTerminal
 			}
 			else
 			{
-				UnsetFullscreen();
-				//_graphics.PreferredBackBufferWidth = _nativeWidth;
-				//_graphics.PreferredBackBufferHeight = _nativeHeight;
-				//_graphics.ApplyChanges();				
+				UnsetFullscreen();			
 			}
 
 			Window.Title = "CipherList: The Terminal";
