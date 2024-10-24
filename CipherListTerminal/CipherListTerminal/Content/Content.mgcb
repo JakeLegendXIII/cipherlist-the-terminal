@@ -179,7 +179,7 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/RoughBG9.png
 
-#begin Sprites/spritesheet.png
+#begin Sprites/spritesheetfinal.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -189,5 +189,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/spritesheet.png
+/build:Sprites/spritesheetfinal.png
 
