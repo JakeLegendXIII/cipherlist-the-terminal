@@ -156,7 +156,7 @@ namespace CipherListTerminal
 			_farawayFont = Content.Load<SpriteFont>("Fonts/Faraway16");
 
 			_backgroundTexture = Content.Load<Texture2D>("Sprites/RoughBG13");
-			_spriteSheet = Content.Load<Texture2D>("Sprites/spritesheet");
+			_spriteSheet = Content.Load<Texture2D>("Sprites/spritesheetfinal");
 
 			_flickingASwitch = Content.Load<SoundEffect>("SFX/flickingaswitch");
 			_buttonPress = Content.Load<SoundEffect>("SFX/buttonpress");
