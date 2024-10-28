@@ -30,6 +30,11 @@ namespace CipherListTerminal.Input
 			return GamePad.GetCapabilities(PlayerIndex.One).GamePadType;
 		}
 
+		public static string GetGamePadDisplayName()
+		{
+			return GamePad.GetCapabilities(PlayerIndex.One).DisplayName;
+		}
+
 		public static MouseState GetMousePosition()
 		{
 			return mouseState;
