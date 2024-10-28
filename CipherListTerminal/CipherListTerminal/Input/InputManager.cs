@@ -20,8 +20,14 @@ namespace CipherListTerminal.Input
 			lastGamePadState = gamePadState;
 			gamePadState = GamePad.GetState(PlayerIndex.One);
 
+
 			_renderTarget = renderTarget;
 			_scale = scale;
+		}
+
+		public static GamePadType GetControllerType()
+		{
+			return GamePad.GetCapabilities(PlayerIndex.One).GamePadType;
 		}
 
 		public static MouseState GetMousePosition()
