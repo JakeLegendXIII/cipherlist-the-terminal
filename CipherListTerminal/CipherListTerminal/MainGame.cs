@@ -40,7 +40,7 @@ namespace CipherListTerminal
 		public InputStates CurrentInputState;
 
 		string[] possibleValues = { "1C", "55", "BD", "FF", "E9", "1C", "55" };
-		string[] possibleValuesExpanded = { "1C", "55", "BD", "FF", "E9", "7A", "1C", "55" };
+		string[] possibleValuesExpanded = { "1C", "55", "BD", "FF", "E9", "JK", "1C", "55" };
 
 		private SpriteFont _armadaFont;
 		private SpriteFont _farawayFont;
