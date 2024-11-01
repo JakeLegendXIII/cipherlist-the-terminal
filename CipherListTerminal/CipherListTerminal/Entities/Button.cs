@@ -39,13 +39,14 @@ namespace CipherListTerminal.Entities
 		//private Vector2 _inputTextWithGamePadPositionOffset;
 
 		public Button(Texture2D spriteSheet, SpriteFont headerFont,
-			string buttonHeader, string keyboardMouse, string gamePad, bool stateChange)
+			string buttonHeader, string keyboardMouse, string gamePadXbox, string gamePadPS, bool stateChange)
 		{
 			_spriteSheet = spriteSheet;
 			_headerFont = headerFont;
 			_buttonHeader = buttonHeader;
 			_keyboardMouse = keyboardMouse;
-			_gamePadXbox = gamePad;
+			_gamePadXbox = gamePadXbox;
+			_gamePadPS = gamePadPS;
 			_color = _originalColor;
 			_stateChange = stateChange;
 

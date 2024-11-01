@@ -38,14 +38,14 @@ namespace CipherListTerminal.Entities
 
 			// Pre-load the various buttons for each game mode
 			_buttons = [
-				new Button(_spriteSheet, _font, "Back", "ESC", "Back", true),
-				new Button(_spriteSheet, _font, "Next Puzzle", "F5", "RT", false),
-				new Button(_spriteSheet, _font, "Reset", "F7", "RB", false),
-				new Button(_spriteSheet, _font, "Switch Input", "F10", "LT", false),
-				new Button(_spriteSheet, _font, "Continue", "Enter", "A", true),
-				new Button(_spriteSheet, _font, "Full Screen", "F11", "LB", false),
-				new Button(_spriteSheet, _font, "Clear FX", "F12", "X", false),
-				new Button(_spriteSheet, _font, "Music", "F8", "Y", false)
+				new Button(_spriteSheet, _font, "Back", "ESC", "Back", "Back", true),
+				new Button(_spriteSheet, _font, "Next Puzzle", "F5", "RT", "R2", false),
+				new Button(_spriteSheet, _font, "Reset", "F7", "RB", "R1", false),
+				new Button(_spriteSheet, _font, "Switch Input", "F10", "LT", "L2", false),
+				new Button(_spriteSheet, _font, "Continue", "Enter", "A", "X", true),
+				new Button(_spriteSheet, _font, "Full Screen", "F11", "LB", "L1", false),
+				new Button(_spriteSheet, _font, "Clear FX", "F12", "X", "Square", false),
+				new Button(_spriteSheet, _font, "Music", "F8", "Y", "Triangle", false)
 			];
 		}
 
