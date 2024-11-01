@@ -17,7 +17,8 @@ namespace CipherListTerminal.Entities
 		private SpriteFont _headerFont;
 		private string _buttonHeader;
 		private string _keyboardMouse;
-		private string _gamePad;
+		private string _gamePadXbox;
+		private string _gamePadPS;
 		private bool _stateChange = false;
 
 		private Color _color = Color.White;
@@ -44,7 +45,7 @@ namespace CipherListTerminal.Entities
 			_headerFont = headerFont;
 			_buttonHeader = buttonHeader;
 			_keyboardMouse = keyboardMouse;
-			_gamePad = gamePad;
+			_gamePadXbox = gamePad;
 			_color = _originalColor;
 			_stateChange = stateChange;
 
@@ -77,7 +78,7 @@ namespace CipherListTerminal.Entities
 
 			if (InputManager.IsGamePadConnected())
 			{
-				inputText += "  |  " + _gamePad;
+				inputText += "  |  " + _gamePadXbox;
 			}
 
 			//Vector2 inputTextSize = _headerFont.MeasureString(inputText);
