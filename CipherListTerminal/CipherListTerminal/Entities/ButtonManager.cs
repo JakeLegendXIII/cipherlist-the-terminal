@@ -44,8 +44,8 @@ namespace CipherListTerminal.Entities
 				new Button(_spriteSheet, _font, "Switch Input", "F10", "LT", "L2", false),
 				new Button(_spriteSheet, _font, "Continue", "Enter", "A", "X", true),
 				new Button(_spriteSheet, _font, "Full Screen", "F11", "LB", "L1", false),
-				new Button(_spriteSheet, _font, "Clear FX", "F12", "X", "Square", false),
-				new Button(_spriteSheet, _font, "Music", "F8", "Y", "Triangle", false)
+				new Button(_spriteSheet, _font, "Clear FX", "F12", "X", "[]", false),
+				new Button(_spriteSheet, _font, "Music", "F8", "Y", @"/\", false)
 			];
 		}
 

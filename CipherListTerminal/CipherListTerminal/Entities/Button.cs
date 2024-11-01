@@ -79,7 +79,14 @@ namespace CipherListTerminal.Entities
 
 			if (InputManager.IsGamePadConnected())
 			{
-				inputText += "  |  " + _gamePadXbox;
+				if (InputManager.GetGamePadDisplayName().ToUpper().Contains("PS"))
+				{
+					inputText += "  |  " + _gamePadPS;
+				}
+				else
+				{
+					inputText += "  |  " + _gamePadXbox;
+				}
 			}
 
 			//Vector2 inputTextSize = _headerFont.MeasureString(inputText);

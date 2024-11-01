@@ -44,6 +44,8 @@ namespace CipherListTerminal.Entities
 		private int _buttonWidth = 250;
 		private int _buttonHeight = 150;
 
+		private string _buttonGamePadText = "A";
+
 		public delegate void MenuButtonSelectedEventHandler(GameStates newGameState);
 		public event MenuButtonSelectedEventHandler MenuButtonSelectionEvent;
 
@@ -74,7 +76,7 @@ namespace CipherListTerminal.Entities
 
 				if (CurrentInputState == InputStates.GamePad)
 				{
-					spriteBatch.DrawString(_armadaFont, "A", new Vector2(330, 550), Color.White);
+					spriteBatch.DrawString(_armadaFont, _buttonGamePadText, new Vector2(330, 550), Color.White);
 				}
 			}
 			else
@@ -96,7 +98,7 @@ namespace CipherListTerminal.Entities
 
 				if (CurrentInputState == InputStates.GamePad)
 				{
-					spriteBatch.DrawString(_armadaFont, "A", new Vector2(605, 550), Color.White);
+					spriteBatch.DrawString(_armadaFont, _buttonGamePadText, new Vector2(605, 550), Color.White);
 				}
 			}
 			else
@@ -118,7 +120,7 @@ namespace CipherListTerminal.Entities
 
 				if (CurrentInputState == InputStates.GamePad)
 				{
-					spriteBatch.DrawString(_armadaFont, "A", new Vector2(880, 550), Color.White);
+					spriteBatch.DrawString(_armadaFont, _buttonGamePadText, new Vector2(880, 550), Color.White);
 				}
 			}
 			else
@@ -140,7 +142,7 @@ namespace CipherListTerminal.Entities
 
 				if (CurrentInputState == InputStates.GamePad)
 				{
-					spriteBatch.DrawString(_armadaFont, "A", new Vector2(1155, 550), Color.White);
+					spriteBatch.DrawString(_armadaFont, _buttonGamePadText, new Vector2(1155, 550), Color.White);
 				}
 			}
 			else
@@ -221,6 +223,11 @@ namespace CipherListTerminal.Entities
 			{
 				if (InputManager.IsGamePadConnected())
 				{
+					if (InputManager.GetGamePadDisplayName().ToUpper().Contains("PS"))
+					{
+						_buttonGamePadText = "X";
+					}
+
 					GamePadState gamePadState = InputManager.GetGamePadState();
 
 					if (_currentlySelectedButton > 4 || _currentlySelectedButton < 1)
