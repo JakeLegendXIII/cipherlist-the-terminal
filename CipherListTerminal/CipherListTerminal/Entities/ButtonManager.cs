@@ -26,6 +26,7 @@ namespace CipherListTerminal.Entities
 		private Vector2 _sixthButtonPosition = new Vector2(1150, 610);
 
 		private Vector2 _sixButtonOffset = new Vector2(10, 0);
+		private Vector2 _eightButtonOffset = new Vector2(20, 0);
 		private Vector2 _outsideOffset = new Vector2(-80, 0);
 
 		public ButtonManager(Texture2D spriteSheet, SpriteFont font, InputStates inputState, GameStates gameState, SoundEffect flickingASwitch)
@@ -45,7 +46,8 @@ namespace CipherListTerminal.Entities
 				new Button(_spriteSheet, _font, "Continue", "Enter", "A", "X", true),
 				new Button(_spriteSheet, _font, "Full Screen", "F11", "LB", "L1", false),
 				new Button(_spriteSheet, _font, "Clear FX", "F12", "X", "[]", false),
-				new Button(_spriteSheet, _font, "Music", "F8", "Y", @"/\", false)
+				new Button(_spriteSheet, _font, "Music", "F8", "Y", @"/\", false),
+				new Button(_spriteSheet, _font, "Quit", "ESC", "Back", "Back", true),
 			];
 		}
 
@@ -53,7 +55,7 @@ namespace CipherListTerminal.Entities
 		{
 			if (_gameState == GameStates.Menu)
 			{
-				_buttons[0].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
+				_buttons[8].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition + _eightButtonOffset);
 			}
 
 			if (_gameState == GameStates.FreePlay || _gameState == GameStates.SinglePuzzleTimed || _gameState == GameStates.TimeTrial)
@@ -170,7 +172,15 @@ namespace CipherListTerminal.Entities
 				{
 					_buttons[i].Update(gameTime, inputState);
 				}
-			}			
+			}
+			else
+			{
+				if (InputManager.IsGamePadButtonPressed(Buttons.Back) || InputManager.IsKeyPressed(Keys.Escape))
+				{
+					_buttonPress.Play();
+					_buttons[8].SetColor(Color.Gray);
+				}
+			}
 		}
 	}
 }
