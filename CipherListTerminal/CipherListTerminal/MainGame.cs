@@ -12,6 +12,7 @@ using CipherListTerminal.Sound;
 using System.Collections.Generic;
 using CipherListTerminal.Data;
 using System.Text.Json;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CipherListTerminal
 {
@@ -759,7 +760,7 @@ namespace CipherListTerminal
 		{
 			try
 			{
-				string defaultJsonData = JsonSerializer.Serialize(SettingsData, new JsonSerializerOptions { WriteIndented = true });
+				string defaultJsonData = JsonSerializer.Serialize(SettingsData, SourceGenerationContext.Default.SettingsData);
 
 				File.WriteAllText(SETTINGS_FILE_NAME, defaultJsonData);
 			}
@@ -768,7 +769,7 @@ namespace CipherListTerminal
 				Debug.WriteLine("An error occurred while saving the game: " + ex.Message);
 			}
 		}
-
+		
 		private void LoadSettingsFile()
 		{
 			try
@@ -777,14 +778,14 @@ namespace CipherListTerminal
 				{
 					string jsonData = File.ReadAllText(SETTINGS_FILE_NAME);
 
-					SettingsData = JsonSerializer.Deserialize<SettingsData>(jsonData);
+					SettingsData = JsonSerializer.Deserialize<SettingsData>(jsonData, SourceGenerationContext.Default.SettingsData);
 				}
 				else
 				{
 					SettingsData = CreateDefaultSettings();
 
 					// Serialize the default object to JSON
-					string defaultJsonData = JsonSerializer.Serialize(SettingsData, new JsonSerializerOptions { WriteIndented = true });
+					string defaultJsonData = JsonSerializer.Serialize(SettingsData, SourceGenerationContext.Default.SettingsData);
 
 					// Write JSON to file
 					File.WriteAllText(SETTINGS_FILE_NAME, defaultJsonData);

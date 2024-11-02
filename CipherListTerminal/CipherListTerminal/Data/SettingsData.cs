@@ -1,4 +1,6 @@
-﻿namespace CipherListTerminal.Data
+﻿using System.Text.Json.Serialization;
+
+namespace CipherListTerminal.Data
 {
 	public class SettingsData
 	{
@@ -21,5 +23,12 @@
 		public bool fullScreen { get; set; }
 		public bool crtShader { get; set; }
 		public bool music { get; set; }
+	}
+
+	// [JsonSourceGenerationOptions(GenerationMode = JsonSourceGenerationMode.Serialization, PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+	[JsonSourceGenerationOptions(WriteIndented = true)]	
+	[JsonSerializable(typeof(SettingsData))]
+	internal sealed partial class SourceGenerationContext : JsonSerializerContext
+	{
 	}
 }
