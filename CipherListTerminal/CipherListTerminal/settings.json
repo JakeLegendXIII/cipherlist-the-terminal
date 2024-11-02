@@ -1,11 +1,11 @@
 {
   "highScores": {
     "freePlay": 0,
-    "freePlayRecordDate": "2024-04-01",
+    "freePlayRecordDate": "2024-11-01",
     "bestOf10Timed": 0,
-    "bestOf10TimedRecordDate": "2024-04-01",
+    "bestOf10TimedRecordDate": "2024-11-01",
     "timeTrial": 0,
-    "timeTrialRecordDate": "2024-04-01"
+    "timeTrialRecordDate": "2024-11-01"
   },
   "settings": {
     "fullScreen": false,
