@@ -51,6 +51,11 @@ namespace CipherListTerminal.Entities
 
 		public void Draw(SpriteBatch spriteBatch, GameTime gameTime, float scale)
 		{
+			if (_gameState == GameStates.Menu)
+			{
+				_buttons[0].Draw(spriteBatch, gameTime, scale, _thirdButtonPosition);
+			}
+
 			if (_gameState == GameStates.FreePlay || _gameState == GameStates.SinglePuzzleTimed || _gameState == GameStates.TimeTrial)
 			{
 

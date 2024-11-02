@@ -492,6 +492,7 @@ namespace CipherListTerminal
 			if (GameState == GameStates.Menu)
 			{
 				_mainMenu.Draw(_spriteBatch, gameTime, _scale);
+				_buttonManager.Draw(_spriteBatch, gameTime, _scale);
 			}
 			else if (GameState == GameStates.FreePlay || GameState == GameStates.SinglePuzzleTimed ||
 				GameState == GameStates.TimeTrial)

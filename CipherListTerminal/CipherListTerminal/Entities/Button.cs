@@ -106,7 +106,7 @@ namespace CipherListTerminal.Entities
 
 			// TODO : There is a bug when navigating between states that the esc button will still be highlighted
 			// from the previous state if you move out and then back to the screen. It is shortened now, but not fixed.
-			// Need to rigure out how to fix this.
+			// Need to figure out how to fix this.
 			if (_color != Color.White)
 			{
 				colorChangeTime += gameTime.ElapsedGameTime.TotalSeconds;
