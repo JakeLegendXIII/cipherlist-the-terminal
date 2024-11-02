@@ -24,8 +24,7 @@ namespace CipherListTerminal.Data
 		public bool crtShader { get; set; }
 		public bool music { get; set; }
 	}
-
-	// [JsonSourceGenerationOptions(GenerationMode = JsonSourceGenerationMode.Serialization, PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+	
 	[JsonSourceGenerationOptions(WriteIndented = true)]	
 	[JsonSerializable(typeof(SettingsData))]
 	internal sealed partial class SourceGenerationContext : JsonSerializerContext

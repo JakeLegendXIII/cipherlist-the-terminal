@@ -7,8 +7,6 @@
     <TieredCompilation>false</TieredCompilation>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
     <PublishAot>true</PublishAot>
-    <!--<RuntimeIdentifiers>win-x64;osx-x64;osx-arm64;linux-x64</RuntimeIdentifiers>
-    <Platforms>x64;ARM64</Platforms>-->
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
