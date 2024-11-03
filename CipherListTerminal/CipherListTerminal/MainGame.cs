@@ -538,7 +538,7 @@ namespace CipherListTerminal
 			if (InputManager.IsGamePadConnected())
 			{
 				_inputStateIndicator.Draw(_spriteBatch, gameTime, _scale);
-				_spriteBatch.DrawString(_armadaFont, $" GamePadDisplayName: {InputManager.GetGamePadDisplayName()}", new Vector2(10, 10), Color.White);
+				// _spriteBatch.DrawString(_armadaFont, $" GamePadDisplayName: {InputManager.GetGamePadDisplayName()}", new Vector2(10, 10), Color.White);
 			}
 			
 			//_spriteBatch.DrawString(_armadaFont, $" RenderDest.Width: {_renderDestination.Width} RenderDest.Height: {_renderDestination.Height}", new Vector2(10, 10), Color.White);
