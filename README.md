@@ -23,7 +23,7 @@ Synthwave soundtrack (songs by Jake Kirkbride):
 * Around
 * Neon Thump
 
-Sound effects were all Creative Commons licensed (allowing for Commercial use) and sourced from freesound.org.
+Sound effects were all Creative Commons licensed (allowing for Commercial use) and sourced from freesound.org. These are not copyright or owned by me, and they have their own licensing agreements.
 
 
 All of the sprites and artwork were created by Jake Kirkbride in Aseprite.
@@ -32,7 +32,7 @@ With an obvious reference for the background:
 * Bliss (Windows XP wallpaper) by Charles O'Rear 
 
 
-The Fonts were Bitmap Fonts created by ChevyRay on Itch.io and part of their amazing Font pack that can be purchased [here](https://chevyray.itch.io/pixel-font-megapack). I break their rules and do some scaling on them, but trust me they're much better than I make them look in my game here :)
+The Fonts were Bitmap Fonts created by ChevyRay on Itch.io and part of their amazing Font pack that can be purchased [here](https://chevyray.itch.io/pixel-font-megapack). I break their rules and do some scaling on them, but trust me they're much better than I make them look in my game here. :)
 
 
 
