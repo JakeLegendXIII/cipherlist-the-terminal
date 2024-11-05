@@ -12,7 +12,6 @@ using CipherListTerminal.Sound;
 using System.Collections.Generic;
 using CipherListTerminal.Data;
 using System.Text.Json;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace CipherListTerminal
 {
