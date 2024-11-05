@@ -135,8 +135,8 @@ namespace CipherListTerminal.Entities
 
 				if (_highlightColumn >= 0)
 				{
-					highlightRectangle = new Rectangle((_startX + _highlightColumn * _cellWidth) - GetScaleValue(scale),
-					_startY - GetScaleValue(scale), _cellWidth, _matrixHeight);
+					highlightRectangle = new Rectangle((_startX + _highlightColumn * _cellWidth) - 18,
+					_startY - 15, _cellWidth, _matrixHeight);
 
 					RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);
 				}
@@ -145,8 +145,8 @@ namespace CipherListTerminal.Entities
 			{
 				_highlightColumn = _selectedColumnIndex;
 
-				highlightRectangle = new Rectangle((_startX + _highlightColumn * _cellWidth) - GetScaleValue(scale),
-					_startY - GetScaleValue(scale), _cellWidth, _matrixHeight);
+				highlightRectangle = new Rectangle((_startX + _highlightColumn * _cellWidth) - 18,
+					_startY - 15, _cellWidth, _matrixHeight);
 
 				RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);
 
@@ -171,8 +171,8 @@ namespace CipherListTerminal.Entities
 			{
 				_highlightColumn = _selectedRowIndex;
 
-				highlightRectangle = new Rectangle(_startX - GetScaleValue(scale),
-							(_startY + _highlightColumn * _cellHeight) - GetScaleValue(scale), _matrixWidth, _cellHeight);
+				highlightRectangle = new Rectangle(_startX - 15,
+							(_startY + _highlightColumn * _cellHeight) - 18, _matrixWidth, _cellHeight);
 
 				RectangleSprite.DrawRectangle(_spriteBatch, highlightRectangle, highlightColor, 6);
 
@@ -218,18 +218,18 @@ namespace CipherListTerminal.Entities
 
 					if (State == MatrixState.FirstSelection && i == 0 && j == _highlightCell)
 					{
-						RectangleSprite.DrawRectangle(_spriteBatch, new Rectangle((int)position.X - GetScaleValue(scale),
-																					(int)position.Y - GetScaleValue(scale), _cellWidth, _cellHeight), Color.Teal, 6);
+						RectangleSprite.DrawRectangle(_spriteBatch, new Rectangle((int)position.X - 18,
+																					(int)position.Y - 15, _cellWidth, _cellHeight), Color.Teal, 6);
 					}
 					if (State == MatrixState.Horizontal && i == _selectedRowIndex && j == _highlightCell)
 					{
-						RectangleSprite.DrawRectangle(_spriteBatch, new Rectangle((int)position.X - GetScaleValue(scale),
-														(int)position.Y - GetScaleValue(scale), _cellWidth, _cellHeight), Color.Teal, 6);
+						RectangleSprite.DrawRectangle(_spriteBatch, new Rectangle((int)position.X - 15,
+														(int)position.Y - 18, _cellWidth, _cellHeight), Color.Teal, 6);
 					}
 					if (State == MatrixState.Vertical && i == _highlightCell && j == _selectedColumnIndex)
 					{
-						RectangleSprite.DrawRectangle(_spriteBatch, new Rectangle((int)position.X - GetScaleValue(scale),
-																					(int)position.Y - GetScaleValue(scale), _cellWidth, _cellHeight), Color.Teal, 6);
+						RectangleSprite.DrawRectangle(_spriteBatch, new Rectangle((int)position.X - 18,
+																					(int)position.Y - 15, _cellWidth, _cellHeight), Color.Teal, 6);
 					}
 				}
 			}
@@ -634,7 +634,7 @@ namespace CipherListTerminal.Entities
 
 		// TODO: Review this for current scaling/positioning bug
 		private int GetScaleValue(float scale)
-		{			
+		{
 			if (scale <= 1f)
 			{
 				return (int)(10 * 1.5);
