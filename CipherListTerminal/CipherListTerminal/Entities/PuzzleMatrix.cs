@@ -634,12 +634,8 @@ namespace CipherListTerminal.Entities
 
 		// TODO: Review this for current scaling/positioning bug
 		private int GetScaleValue(float scale)
-		{
-			if (scale == 1f)
-			{
-				return (int)(10 * 1.5);
-			}
-			if (scale < 1f)
+		{			
+			if (scale <= 1f)
 			{
 				return (int)(10 * 1.5);
 			}

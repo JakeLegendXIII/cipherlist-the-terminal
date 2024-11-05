@@ -12,6 +12,7 @@ using CipherListTerminal.Sound;
 using System.Collections.Generic;
 using CipherListTerminal.Data;
 using System.Text.Json;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CipherListTerminal
 {
@@ -496,8 +497,7 @@ namespace CipherListTerminal
 			}
 			else if (GameState == GameStates.FreePlay || GameState == GameStates.SinglePuzzleTimed ||
 				GameState == GameStates.TimeTrial)
-			{
-				// _spriteBatch.DrawString(_font, "Scale: " + _scale.ToString(), new Vector2(600, 100), Color.White);
+			{				
 				_matrix.Draw(_spriteBatch, gameTime, _scale);
 				_terminalBuffer.Draw(_spriteBatch, gameTime, _scale);
 
@@ -540,7 +540,8 @@ namespace CipherListTerminal
 				_inputStateIndicator.Draw(_spriteBatch, gameTime, _scale);
 				// _spriteBatch.DrawString(_armadaFont, $" GamePadDisplayName: {InputManager.GetGamePadDisplayName()}", new Vector2(10, 10), Color.White);
 			}
-			
+
+			_spriteBatch.DrawString(_armadaFont, "Scale: " + _scale.ToString(), new Vector2(10, 10), Color.White);
 			//_spriteBatch.DrawString(_armadaFont, $" RenderDest.Width: {_renderDestination.Width} RenderDest.Height: {_renderDestination.Height}", new Vector2(10, 10), Color.White);
 			//_spriteBatch.DrawString(_armadaFont, $" PreferredB.Width: {_graphics.PreferredBackBufferWidth} PreferredB.Height: {_graphics.PreferredBackBufferHeight}", new Vector2(10, 30), Color.White);
 
