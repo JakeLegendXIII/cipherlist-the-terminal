@@ -631,18 +631,6 @@ namespace CipherListTerminal.Entities
 				_displayRowIndex = _selectedRowIndex;
 			}
 		}
-
-		// TODO: Review this for current scaling/positioning bug
-		private int GetScaleValue(float scale)
-		{
-			if (scale <= 1f)
-			{
-				return (int)(10 * 1.5);
-			}
-
-			return (int)(10 * scale);
-		}
-
 	}
 
 	public enum MatrixState

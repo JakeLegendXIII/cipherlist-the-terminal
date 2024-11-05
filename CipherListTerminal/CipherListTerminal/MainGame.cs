@@ -541,7 +541,7 @@ namespace CipherListTerminal
 				// _spriteBatch.DrawString(_armadaFont, $" GamePadDisplayName: {InputManager.GetGamePadDisplayName()}", new Vector2(10, 10), Color.White);
 			}
 
-			_spriteBatch.DrawString(_armadaFont, "Scale: " + _scale.ToString(), new Vector2(10, 10), Color.White);
+			//_spriteBatch.DrawString(_armadaFont, "Scale: " + _scale.ToString(), new Vector2(10, 10), Color.White);
 			//_spriteBatch.DrawString(_armadaFont, $" RenderDest.Width: {_renderDestination.Width} RenderDest.Height: {_renderDestination.Height}", new Vector2(10, 10), Color.White);
 			//_spriteBatch.DrawString(_armadaFont, $" PreferredB.Width: {_graphics.PreferredBackBufferWidth} PreferredB.Height: {_graphics.PreferredBackBufferHeight}", new Vector2(10, 30), Color.White);
 
