@@ -77,11 +77,15 @@
 /processorParam:Quality=Best
 /build:SFX/uiwrong.wav
 
+$set BuildEffects=Yes
+
+$if BuildEffects=Yes
 #begin Shaders/crt-lottes-mg.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
 /build:Shaders/crt-lottes-mg.fx
+$endif
 
 #begin Sprites/Background.png
 /importer:TextureImporter
