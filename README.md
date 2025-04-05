@@ -1,6 +1,8 @@
 # cipherlist-the-terminal
 6x6 Matrix Puzzle Game
 
+Available on [Itch.io](https://jakelegendxiii.itch.io/cipherlist-the-terminal)!
+
 Based on breach protocol style matrix puzzles. The goal is to select values from a 6x6 matrix that most optimally complete the keys on the right. The player is awarded points based on the complexity of the sequence they are able to select in the matrix and get it into the limited number of spaces in the buffer. 
 
 Game modes:
